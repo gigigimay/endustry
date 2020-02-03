@@ -54,8 +54,8 @@ flutter:
   fonts:
     - family: CloudSoft
       fonts:
-        - asset: assets/fonts/Cloud Soft-Light.otf
-        - asset: assets/fonts/Cloud Soft-Bold.otf
+        - asset: assets/fonts/CloudSoft-Light.otf
+        - asset: assets/fonts/CloudSoft-Bold.otf
           weight: 700
           
   # For details regarding fonts from package dependencies,

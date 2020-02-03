@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as CONSTANT;
 
 class TitleText extends StatelessWidget {
-  TitleText(this.title, {Key key, this.fontSize = 36.0, this.height = 1.0})
+  TitleText(this.title, {Key key, this.fontSize = CONSTANT.FONT_SIZE_TITLE, this.height = 1.0})
       : super(key: key);
   final title, fontSize, height;
   @override

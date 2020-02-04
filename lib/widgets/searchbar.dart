@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:endustry/export.dart';
 import '../constants.dart' as CONSTANT;
 
 class SearchBar extends StatelessWidget {

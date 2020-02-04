@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import '../../constants.dart' as CONSTANT;
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key key}) : super(key: key);

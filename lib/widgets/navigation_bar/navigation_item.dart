@@ -27,7 +27,7 @@ class NavItem extends StatelessWidget {
           color: currentPage == comparePage
               ? Colors.white
               : CONSTANT.COLOR_PRIMARY,
-          iconSize: width * 0.1,
+          iconSize: width * 0.08,
           onPressed: currentPage != comparePage ? onPressed : () {},
         ));
   }

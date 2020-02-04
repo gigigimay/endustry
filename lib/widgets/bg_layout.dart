@@ -7,21 +7,19 @@ class BgLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(this.bgImg),
-              fit: BoxFit.cover,
-            ),
-          ),
+        body: Container(
+      width: width,
+      height: height,
+      child: this.child,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(this.bgImg),
+          fit: BoxFit.cover,
         ),
-        Center(
-          child: this.child,
-        ),
-      ],
+      ),
     ));
   }
 }

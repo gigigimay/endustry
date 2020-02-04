@@ -31,6 +31,13 @@ class _NavigationbarState extends State<Navigationbar> {
           color: Colors.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x26000000),
+              offset: Offset(0, -3),
+              blurRadius: 6,
+            )
+          ],
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,

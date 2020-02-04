@@ -16,6 +16,7 @@ class BgLayout extends StatelessWidget {
       height: height,
       child: this.child,
       decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor,
         image: DecorationImage(
           image: AssetImage(this.bgImg),
           fit: BoxFit.cover,

@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import '../constants.dart' as CONSTANT;
-import '../widgets/searchbar.dart';
+import '../widgets/home/searchbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(
-                  CONSTANT.XL, CONSTANT.MD, CONSTANT.XL, 0),
+                  CONSTANT.SIZE_XL, CONSTANT.SIZE_MD, CONSTANT.SIZE_XL, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                       TitleText('อุตสาหกรรม', fontSize: 50.0, height: 0.8),
                     ],
                   ),
-                  const SizedBox(height: CONSTANT.XX),
+                  const SizedBox(height: CONSTANT.SIZE_XX),
                   SearchBar(),
                 ],
               ),

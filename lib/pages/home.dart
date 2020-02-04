@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import '../constants.dart' as CONSTANT;
+import '../widgets/searchbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);

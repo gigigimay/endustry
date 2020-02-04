@@ -8,5 +8,4 @@ export 'pages/menu.dart';
 export 'widgets/bg_layout.dart';
 export 'widgets/navigationBar.dart';
 export 'widgets/navigationbarItem.dart';
-export 'widgets/searchbar.dart';
 export 'widgets/title_text.dart';

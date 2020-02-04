@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:endustry/export.dart';
+import '../constants.dart' as CONSTANT;
 
 class BgLayout extends StatelessWidget {
   BgLayout({Key key, this.child, this.bgImg = 'assets/images/appbg.png'})

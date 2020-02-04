@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import '../../constants.dart' as CONSTANT;
 
-class NavigationBarItem extends StatelessWidget {
-  const NavigationBarItem(
+class NavItem extends StatelessWidget {
+  const NavItem(
       {Key key, this.icon, this.currentPage, this.comparePage, this.onPressed})
       : super(key: key);
   final IconData icon;

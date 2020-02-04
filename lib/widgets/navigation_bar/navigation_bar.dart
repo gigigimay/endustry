@@ -1,16 +1,17 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import '../../constants.dart' as CONSTANT;
+import './navigation_item.dart';
 
-class Navigationbar extends StatefulWidget {
-  Navigationbar({Key key, @required this.currentpage}) : super(key: key);
-
-  String currentpage;
-
+class NavigationBar extends StatefulWidget {
+  NavigationBar({Key key, @required this.currentpage}) : super(key: key);
+  
+  final currentpage;
+  
   @override
-  _NavigationbarState createState() => _NavigationbarState();
+  _NavigationBarState createState() => _NavigationBarState();
 }
 
-class _NavigationbarState extends State<Navigationbar> {
+class _NavigationBarState extends State<NavigationBar> {
   navigateTo(page) {
     Navigator.push(
       context,
@@ -43,7 +44,7 @@ class _NavigationbarState extends State<Navigationbar> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            NavigationBarItem(
+            NavItem(
               icon: Icons.home,
               currentPage: widget.currentpage,
               comparePage: 'home',
@@ -51,7 +52,7 @@ class _NavigationbarState extends State<Navigationbar> {
                 navigateTo(HomePage());
               },
             ),
-            NavigationBarItem(
+            NavItem(
               icon: Icons.subtitles,
               currentPage: widget.currentpage,
               comparePage: 'news',
@@ -59,7 +60,7 @@ class _NavigationbarState extends State<Navigationbar> {
                 navigateTo(NewsPage());
               },
             ),
-            NavigationBarItem(
+            NavItem(
               icon: Icons.person,
               currentPage: widget.currentpage,
               comparePage: 'service',
@@ -67,7 +68,15 @@ class _NavigationbarState extends State<Navigationbar> {
                 navigateTo(ServicePage());
               },
             ),
-            NavigationBarItem(
+            NavItem(
+              icon: Icons.library_books,
+              currentPage: widget.currentpage,
+              comparePage: 'knowledge',
+              onPressed: () {
+                navigateTo(KnowledgePage());
+              },
+            ),
+            NavItem(
               icon: Icons.more_horiz,
               currentPage: widget.currentpage,
               comparePage: 'menu',

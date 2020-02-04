@@ -13,7 +13,7 @@ class NewsPage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Text('News Page'),
-              Navigationbar(currentpage: 'news')
+              NavigationBar(currentpage: 'news')
             ],
           ),
         ),

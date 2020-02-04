@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Navigationbar(
+              NavigationBar(
                 currentpage: 'home',
               )
             ],

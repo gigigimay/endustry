@@ -13,7 +13,7 @@ class MenuPage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Text('menu Page'),
-              Navigationbar(currentpage: 'menu')
+              NavigationBar(currentpage: 'menu')
             ],
           ),
         ),

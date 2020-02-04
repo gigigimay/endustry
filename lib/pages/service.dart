@@ -13,7 +13,7 @@ class ServicePage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Text('service Page'),
-              Navigationbar(currentpage: 'service')
+              NavigationBar(currentpage: 'service')
             ],
           ),
         ),

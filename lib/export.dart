@@ -6,7 +6,6 @@ export 'pages/knowledge.dart';
 export 'pages/menu.dart';
 
 export 'widgets/bg_layout.dart';
-export 'widgets/navigationBar.dart';
-export 'widgets/navigationbarItem.dart';
+export 'widgets/navigation_bar/navigation_bar.dart';
 export 'widgets/title_text.dart';
 export 'widgets/page_padding.dart';

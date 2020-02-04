@@ -13,7 +13,7 @@ class KnowledgePage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Text('knowledge Page'),
-              Navigationbar(currentpage: 'knowledge')
+              NavigationBar(currentpage: 'knowledge')
             ],
           ),
         ),

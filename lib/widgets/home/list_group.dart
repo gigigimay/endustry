@@ -21,7 +21,19 @@ class ListGroup extends StatelessWidget {
                   this.title,
                   style: CONSTANT.TEXT_STYLE_HEADING,
                 )),
-                Icon(Icons.arrow_forward)
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    customBorder: CircleBorder(),
+                    onTap: () => print('pressed: ${this.title}'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(CONSTANT.SIZE_XS),
+                      child: Icon(
+                        Icons.arrow_forward,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -30,11 +42,12 @@ class ListGroup extends StatelessWidget {
             height: itemWidth + 80,
             child: ListView.builder(
               padding: EdgeInsets.symmetric(
-                horizontal: CONSTANT.SIZE_XL - CONSTANT.SIZE_SM),
+                  horizontal: CONSTANT.SIZE_XL - CONSTANT.SIZE_SM),
               scrollDirection: Axis.horizontal,
               itemCount: this.items.length,
               itemBuilder: (BuildContext context, int index) {
-                return Item(itemWidth: itemWidth, label: this.items[index]['label']);
+                return Item(
+                    itemWidth: itemWidth, label: this.items[index]['label']);
               },
             ),
           ),

@@ -9,3 +9,4 @@ export 'widgets/bg_layout.dart';
 export 'widgets/navigationBar.dart';
 export 'widgets/navigationbarItem.dart';
 export 'widgets/title_text.dart';
+export 'widgets/page_padding.dart';

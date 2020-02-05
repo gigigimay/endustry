@@ -6,17 +6,10 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          child: Stack(
-            children: <Widget>[
-              Text('menu Page'),
-              NavigationBar(currentpage: 'menu')
-            ],
-          ),
-        ),
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'menu'),
+      child: Column(
+        children: <Widget>[PagePadding(child: TitleText('Menu Page!'))],
       ),
     );
   }

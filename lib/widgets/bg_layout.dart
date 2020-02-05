@@ -1,20 +1,30 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/constants.dart' as CONSTANT;
 
 class BgLayout extends StatelessWidget {
-  BgLayout({Key key, this.child, this.bgImg = 'assets/images/appbg.png'})
-      : super(key: key);
-  final child, bgImg;
+  BgLayout({
+    Key key,
+    this.child,
+    this.bgImg = 'assets/images/appbg.png',
+    this.navbar,
+    this.safeTop = true,
+    this.safeBottom = true,
+  }) : super(key: key);
+  final String bgImg;
+  final Widget navbar, child;
+  final bool safeTop, safeBottom;
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    Widget pageBody =
+        SafeArea(top: safeTop, bottom: safeBottom, child: this.child);
+    Widget pagechild = this.navbar != null
+        ? Stack(children: <Widget>[
+            pageBody,
+            this.navbar,
+          ])
+        : pageBody;
     return Scaffold(
         body: Container(
-      width: width,
-      height: height,
-      child: this.child,
       decoration: BoxDecoration(
         color: Theme.of(context).backgroundColor,
         image: DecorationImage(
@@ -22,6 +32,7 @@ class BgLayout extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+      child: pagechild,
     ));
   }
 }

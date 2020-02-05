@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 import './navigation_item.dart';
 
 class NavigationBar extends StatefulWidget {

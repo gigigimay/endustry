@@ -1,17 +1,7 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/list_group.dart';
-
-const MOCK_ITEMS = [
-  {'label': 'ระบบรับแจ้งข้อเท็จจริงของผู้นำเข้าหรือส่งออก ซึ่งวัตถุอันตราย'},
-  {'label': 'นะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุท ธัสสะ'},
-  {'label': 'นะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุท ธัสสะ'},
-  {'label': 'นะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุท ธัสสะ'},
-  {'label': 'มะริ่งกิ่งก่อง สะระน๊องก่องแก่ง'},
-  {'label': 'มะน่องมะแน่งมั๊บ ปะล่องป่องแป่ง'},
-  {'label': 'ง้องแง้งง้องแง้ง ในชีวิตเธอ'},
-];
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);

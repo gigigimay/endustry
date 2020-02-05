@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key key}) : super(key: key);

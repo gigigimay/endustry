@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class PagePadding extends StatelessWidget {
   const PagePadding(

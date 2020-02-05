@@ -3,24 +3,29 @@ import 'package:endustry/pages/newsIn.dart';
 import '../../constants.dart' as CONSTANT;
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({Key key, this.title, this.date, this.author, this.imgURL})
-      : super(key: key);
+  const NewsItem({Key key, this.newsData}) : super(key: key);
 
-  final String title, date, author, imgURL;
+  // final String title, date, author, imgURL;
+  final newsData;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    final dateData = DateTime.parse(date);
+    final dateData = DateTime.parse(newsData['date']);
     final dateString =
         '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => NewsInPage()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => NewsInPage(
+                      newsData: newsData,
+                      dateString: dateString,
+                    )));
       },
       child: Container(
         height: width * 0.4,
@@ -54,7 +59,7 @@ class NewsItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        title,
+                        newsData['title'],
                         style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
                         maxLines: 1,
                       ),
@@ -67,7 +72,7 @@ class NewsItem extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    author,
+                    newsData['author'],
                     style: TextStyle(
                       fontSize: CONSTANT.FONT_SIZE_BODY,
                     ),

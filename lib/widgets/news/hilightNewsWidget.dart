@@ -14,31 +14,37 @@ class HilightNewsWidget extends StatefulWidget {
 class _HilightNewsWidgetState extends State<HilightNewsWidget>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  int _hilightControllerIndex = 0;
+
+  _handleTabSelection() {}
 
   @override
   void initState() {
     super.initState();
     _tabController =
         TabController(length: widget.hilightData.length, vsync: this);
+    _tabController.addListener(() => setState(() {
+          _tabController.index;
+        }));
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     List<Widget> hilight_news = widget.hilightData
         .map((item) => HilightNewsItem(
-          title: item['label'],
-        ))
+              newsData: item,
+            ))
         .toList();
 
-    List<Widget> hilight_btn = widget.hilightData
+    List<Widget> hilight_button = widget.hilightData
         .asMap()
         .map((i, item) => MapEntry(
             i,
@@ -85,7 +91,7 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: hilight_btn,
+          children: hilight_button,
         )
       ],
     );

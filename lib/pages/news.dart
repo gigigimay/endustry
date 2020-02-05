@@ -2,6 +2,7 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/news/hilightNewsWidget.dart';
 import 'package:endustry/widgets/news/newsItem.dart';
+import 'package:endustry/widgets/newsFilterDialog.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key}) : super(key: key);
@@ -17,141 +18,192 @@ class _NewsPageState extends State<NewsPage>
 
   var hilightData = [
     {
-      'label':
-          'ค่าธรรมเนียมรายปีโรงงานฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกห',
-      'imgurl': 'i1'
-    },
-    {'label': 'Hzxc', 'imgurl': 'i2'},
-    {'label': 'Hqwe', 'imgurl': 'i3'},
-  ];
-
-  var newsData = [
-    {
-      'title': 'asd',
+      'title': 'ค่าธรรมเนียมโรงงาน ฟหกด เอกอาสอวอ',
+      'content': 'Loremasdasdasd',
       'imgurl': 'i1',
       'date': '1969-07-20 20:18:04Z',
       'author': 'josh'
     },
     {
-      'title': 'sdf',
+      'title': 'asd',
+      'content': 'Loremasdasdasd',
       'imgurl': 'i1',
-      'date': '1969-07-21 20:18:04Z',
+      'date': '1969-07-20 20:18:04Z',
       'author': 'josh'
     },
     {
-      'title': 'dfg',
+      'title': 'asd',
+      'content': 'Loremasdasdasd',
       'imgurl': 'i1',
-      'date': '1969-07-22 20:18:04Z',
-      'author': 'josh'
-    },
-    {
-      'title': 'fgh',
-      'imgurl': 'i1',
-      'date': '1969-07-23 20:18:04Z',
-      'author': 'josh'
-    },
-    {
-      'title': 'ghj',
-      'imgurl': 'i1',
-      'date': '1969-07-24 20:18:04Z',
+      'date': '1969-07-20 20:18:04Z',
       'author': 'josh'
     },
   ];
 
+  var newsData_json = {
+    'ข่าวประชาสัมพันธ์': [
+      {
+        'title': 'ประชา',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-20 20:18:04Z',
+        'author': 'josh'
+      },
+      {
+        'title': 'สัมพันธ์',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-21 20:18:04Z',
+        'author': 'josh'
+      },
+    ],
+    'ข่าวอุตสาหกรรมจังหวัด': [
+      {
+        'title': 'ประจำ',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-20 20:18:04Z',
+        'author': 'josh'
+      },
+      {
+        'title': 'จังหวัด',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-21 20:18:04Z',
+        'author': 'josh'
+      },
+    ],
+    'ข่าวรับสมัครงาน': [
+      {
+        'title': 'รับ',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-20 20:18:04Z',
+        'author': 'josh'
+      },
+      {
+        'title': 'สมัคร',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-21 20:18:04Z',
+        'author': 'josh'
+      },
+      {
+        'title': 'งาน',
+        'content': 'Loremasdasdasd',
+        'imgurl': 'i1',
+        'date': '1969-07-21 20:18:04Z',
+        'author': 'josh'
+      },
+    ]
+  };
+
+  var newsData = {'ข่าวทั้งหมด': []};
+
+  String selectedFilter;
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
+    selectedFilter = 'ข่าวทั้งหมด';
+    newsData[selectedFilter] =
+        newsData_json.values.toList().expand((x) => x).toList();
+    newsData.addAll(newsData_json);
+    print(newsData);
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return SafeArea(
-        child: Scaffold(
-      body: Container(
-        child: Stack(
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'news'),
+      child: PagePadding(
+        child: Column(
           children: <Widget>[
-            BgLayout(
-              child: Padding(
-                padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
-                child: Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              'ข่าว',
-                              style: CONSTANT.TEXT_STYLE_TITLE,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.search),
-                              iconSize: CONSTANT.SIZE_XX,
+                    selectedFilter != 'ข่าวทั้งหมด'
+                        ? GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedFilter = 'ข่าวทั้งหมด';
+                              });
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios,
                               color: CONSTANT.COLOR_PRIMARY,
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.filter_list),
-                              iconSize: CONSTANT.SIZE_XX,
-                              color: CONSTANT.COLOR_PRIMARY,
-                              onPressed: () {},
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                              size: CONSTANT.SIZE_XX,
+                            ))
+                        : Container(),
                     SizedBox(
-                      height: CONSTANT.SIZE_MD,
+                      width: CONSTANT.SIZE_MD,
                     ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        controller: null,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    TitleText('ข่าว')
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      iconSize: CONSTANT.SIZE_XX,
+                      color: CONSTANT.COLOR_PRIMARY,
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.filter_list),
+                      iconSize: CONSTANT.SIZE_XX,
+                      color: CONSTANT.COLOR_PRIMARY,
+                      onPressed: () {
+                        showDialog<void>(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return NewsFilterDialog(
+                                newsData: newsData,
+                                selectedFilter: selectedFilter,
+                                state: this,
+                              );
+                            });
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
+            PageScrollBody(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  selectedFilter == 'ข่าวทั้งหมด'
+                      ? Column(
                           children: <Widget>[
                             HilightNewsWidget(
                               hilightData: hilightData,
                             ),
-                            Text(
-                              'ข่าวทั้งหมด',
-                              style: CONSTANT.TEXT_STYLE_HEADING,
-                            ),
-                            Column(
-                                children: newsData
-                                    .map((item) => NewsItem(
-                                          title: item['title'],
-                                          date: item['date'],
-                                          author: item['author'],
-                                          imgURL: item['imgURL'],
-                                        ))
-                                    .toList()),
                             SizedBox(
-                              height: height * 0.1,
-                            )
+                              height: CONSTANT.SIZE_MD,
+                            ),
                           ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                        )
+                      : Container(),
+                  Text(
+                    selectedFilter,
+                    style: CONSTANT.TEXT_STYLE_HEADING,
+                  ),
+                  Column(
+                      children: newsData[selectedFilter]
+                          .map((item) => NewsItem(
+                                newsData: item,
+                              ))
+                          .toList()),
+                ],
               ),
             ),
-            NavigationBar(currentpage: 'news')
           ],
         ),
       ),
-    ));
+    );
   }
 }

@@ -14,6 +14,7 @@ class ListGroup extends StatelessWidget {
       child: Column(
         children: <Widget>[
           PagePadding(
+            right: CONSTANT.SIZE_MD,
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -27,7 +28,7 @@ class ListGroup extends StatelessWidget {
                     customBorder: CircleBorder(),
                     onTap: () => print('pressed: ${this.title}'),
                     child: Padding(
-                      padding: const EdgeInsets.all(CONSTANT.SIZE_XS),
+                      padding: const EdgeInsets.all(CONSTANT.SIZE_SM),
                       child: Icon(
                         Icons.arrow_forward,
                       ),
@@ -37,7 +38,6 @@ class ListGroup extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: CONSTANT.SIZE_XS),
           Container(
             height: itemWidth + 80,
             child: ListView.builder(

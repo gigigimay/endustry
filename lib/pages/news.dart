@@ -1,16 +1,115 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/news/hilightNewsWidget.dart';
+import 'package:endustry/widgets/news/newsListView.dart';
 
-class NewsPage extends StatelessWidget {
-  const NewsPage({Key key}) : super(key: key);
+class NewsPage extends StatefulWidget {
+  NewsPage({Key key}) : super(key: key);
+
+  @override
+  _NewsPageState createState() => _NewsPageState();
+}
+
+class _NewsPageState extends State<NewsPage>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  PageController _pageController;
+
+  var hilightData = [
+    {'label': 'Hasd', 'imgurl': 'i1'},
+    {'label': 'Hzxc', 'imgurl': 'i2'},
+    {'label': 'Hqwe', 'imgurl': 'i3'},
+  ];
+
+  var newsData = [
+    {
+      'title': 'asd',
+      'imgurl': 'i1',
+      'date': '1969-07-20 20:18:04Z',
+      'author': 'josh'
+    },
+    {
+      'title': 'sdf',
+      'imgurl': 'i1',
+      'date': '1969-07-21 20:18:04Z',
+      'author': 'josh'
+    },
+    {
+      'title': 'dfg',
+      'imgurl': 'i1',
+      'date': '1969-07-22 20:18:04Z',
+      'author': 'josh'
+    },
+    {
+      'title': 'fgh',
+      'imgurl': 'i1',
+      'date': '1969-07-23 20:18:04Z',
+      'author': 'josh'
+    },
+    {
+      'title': 'ghj',
+      'imgurl': 'i1',
+      'date': '1969-07-24 20:18:04Z',
+      'author': 'josh'
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    print('render');
     return BgLayout(
       navbar: NavigationBar(currentpage: 'news'),
-      child: Column(
-        children: <Widget>[PagePadding(child: TitleText('News page!'))],
-      ),
+      child: PagePadding(
+          child: PageScrollBody(
+        child: Padding(
+          padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text('ข่าว'),
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.filter_list),
+                        onPressed: () {},
+                      )
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: CONSTANT.SIZE_MD,
+              ),
+              HilightNewsWidget(
+                hilightData: hilightData,
+              ),
+              Text('ข่าวทั้งหมด'),
+              NewsListView(
+                newsData: newsData,
+              )
+            ],
+          ),
+        ),
+      )),
     );
   }
 }

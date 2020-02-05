@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class MenuPage extends StatelessWidget {
   const MenuPage({Key key}) : super(key: key);
@@ -13,7 +13,7 @@ class MenuPage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Text('menu Page'),
-              Navigationbar(currentpage: 'menu')
+              NavigationBar(currentpage: 'menu')
             ],
           ),
         ),

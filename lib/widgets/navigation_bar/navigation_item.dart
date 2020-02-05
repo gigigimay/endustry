@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
-class NavigationBarItem extends StatelessWidget {
-  const NavigationBarItem(
+class NavItem extends StatelessWidget {
+  const NavItem(
       {Key key, this.icon, this.currentPage, this.comparePage, this.onPressed})
       : super(key: key);
   final IconData icon;
@@ -27,7 +27,7 @@ class NavigationBarItem extends StatelessWidget {
           color: currentPage == comparePage
               ? Colors.white
               : CONSTANT.COLOR_PRIMARY,
-          iconSize: width * 0.1,
+          iconSize: width * 0.08,
           onPressed: currentPage != comparePage ? onPressed : () {},
         ));
   }

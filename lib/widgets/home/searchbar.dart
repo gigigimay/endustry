@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key key}) : super(key: key);
@@ -18,16 +18,16 @@ class SearchBar extends StatelessWidget {
         splashColor: Colors.purple[50],
         highlightColor: Colors.purple[50],
         textColor: Theme.of(context).disabledColor,
-        padding: EdgeInsets.symmetric(vertical: CONSTANT.MD, horizontal: CONSTANT.LG),
+        padding: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_MD, horizontal: CONSTANT.SIZE_LG),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         child: Row(
           children: <Widget>[
             Icon(
               Icons.search,
               color: Theme.of(context).primaryColor,
-              size: CONSTANT.XX,
+              size: CONSTANT.SIZE_XX,
             ),
-            const SizedBox(width: CONSTANT.MD),
+            const SizedBox(width: CONSTANT.SIZE_MD),
             Text(
               'ค้นหา',
               style: TextStyle(fontSize: CONSTANT.FONT_SIZE_HEAD),

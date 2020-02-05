@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class TitleText extends StatelessWidget {
   TitleText(this.title, {Key key, this.fontSize = CONSTANT.FONT_SIZE_TITLE, this.height = 1.0})

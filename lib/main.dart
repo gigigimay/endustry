@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import 'constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 void main() => runApp(MyApp());
 
@@ -14,20 +14,14 @@ class MyApp extends StatelessWidget {
           backgroundColor: CONSTANT.COLOR_BACKGROUND,
           dividerColor: CONSTANT.COLOR_DISABLED,
           disabledColor: CONSTANT.COLOR_DISABLED,
+          highlightColor: Colors.purple[50],
+          splashColor: Colors.purple[100],
           fontFamily: 'CloudSoft',
           textTheme: TextTheme(
-            body1: TextStyle(
-                fontSize: CONSTANT.FONT_SIZE_BODY, color: CONSTANT.COLOR_BODY),
-            title: TextStyle(
-                fontSize: CONSTANT.FONT_SIZE_TITLE,
-                fontWeight: FontWeight.w700,
-                color: CONSTANT.COLOR_PRIMARY),
-            button: TextStyle(
-                fontSize: CONSTANT.FONT_SIZE_BODY, fontWeight: FontWeight.w700),
-            subhead: TextStyle(
-                fontSize: CONSTANT.FONT_SIZE_HEAD,
-                fontWeight: FontWeight.w700,
-                color: CONSTANT.COLOR_BODY),
+            body1: CONSTANT.TEXT_STYLE_BODY,
+            title: CONSTANT.TEXT_STYLE_TITLE,
+            button: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
+            subhead: CONSTANT.TEXT_STYLE_HEADING,
           )),
       home: HomePage(),
     );

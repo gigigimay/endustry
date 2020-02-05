@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import '../constants.dart' as CONSTANT;
+import 'package:endustry/constants.dart' as CONSTANT;
 
 class BgLayout extends StatelessWidget {
   BgLayout({Key key, this.child, this.bgImg = 'assets/images/appbg.png'})
@@ -16,6 +16,7 @@ class BgLayout extends StatelessWidget {
       height: height,
       child: this.child,
       decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor,
         image: DecorationImage(
           image: AssetImage(this.bgImg),
           fit: BoxFit.cover,

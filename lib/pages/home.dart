@@ -34,10 +34,11 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: CONSTANT.SIZE_XL),
+                  const SizedBox(height: CONSTANT.SIZE_MD),
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.only(bottom: height * 0.1),
+                      padding: EdgeInsets.only(
+                          bottom: height * 0.1, top: CONSTANT.SIZE_MD),
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: <Widget>[

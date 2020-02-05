@@ -1,7 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/news/hilightNewsWidget.dart';
-import 'package:endustry/widgets/news/newsListView.dart';
+import 'package:endustry/widgets/news/newsItem.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key}) : super(key: key);
@@ -16,7 +16,11 @@ class _NewsPageState extends State<NewsPage>
   PageController _pageController;
 
   var hilightData = [
-    {'label': 'Hasd', 'imgurl': 'i1'},
+    {
+      'label':
+          'ค่าธรรมเนียมรายปีโรงงานฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกฟหกห',
+      'imgurl': 'i1'
+    },
     {'label': 'Hzxc', 'imgurl': 'i2'},
     {'label': 'Hqwe', 'imgurl': 'i3'},
   ];
@@ -69,43 +73,82 @@ class _NewsPageState extends State<NewsPage>
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print('render');
-    return BgLayout(
-      navbar: NavigationBar(currentpage: 'news'),
-      child: PagePadding(
-          child: PageScrollBody(
-        child: Padding(
-          padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
-          child: Column(
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          child: Stack(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text('ข่าว'),
-                  Row(
+              BgLayout(
+                child: Padding(
+                  padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
+                  child: Column(
                     children: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                'ข่าว',
+                                style: CONSTANT.TEXT_STYLE_TITLE,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                icon: Icon(Icons.search),
+                                iconSize: CONSTANT.SIZE_XX,
+                                color: CONSTANT.COLOR_PRIMARY,
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.filter_list),
+                                iconSize: CONSTANT.SIZE_XX,
+                                color: CONSTANT.COLOR_PRIMARY,
+                                onPressed: () {},
+                              )
+                            ],
+                          )
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(Icons.filter_list),
-                        onPressed: () {},
+                      SizedBox(
+                        height: CONSTANT.SIZE_MD,
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          controller: null,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              HilightNewsWidget(
+                                hilightData: hilightData,
+                              ),
+                              Text(
+                                'ข่าวทั้งหมด',
+                                style: CONSTANT.TEXT_STYLE_HEADING,
+                              ),
+                              Column(
+                                  children: newsData
+                                      .map((item) => NewsItem(
+                                            title: item['title'],
+                                            date: item['date'],
+                                            author: item['author'],
+                                            imgURL: item['imgURL'],
+                                          ))
+                                      .toList()),
+                              SizedBox(
+                                height: height * 0.1,
+                              )
+                            ],
+                          ),
+                        ),
                       )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
-              SizedBox(
-                height: CONSTANT.SIZE_MD,
-              ),
-              HilightNewsWidget(
-                hilightData: hilightData,
-              ),
-              Text('ข่าวทั้งหมด'),
-              NewsListView(
-                newsData: newsData,
-              )
+              NavigationBar(currentpage: 'news')
             ],
           ),
         ),

@@ -34,8 +34,8 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
 
     List<Widget> hilight_news = widget.hilightData
         .map((item) => HilightNewsItem(
-              title: item['label'],
-            ))
+          title: item['label'],
+        ))
         .toList();
 
     List<Widget> hilight_btn = widget.hilightData
@@ -63,9 +63,16 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
         .values
         .toList();
 
-    print(height);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        Text(
+          'ไฮไลท์',
+          style: CONSTANT.TEXT_STYLE_HEADING,
+        ),
+        SizedBox(
+          height: CONSTANT.SIZE_MD,
+        ),
         Container(
           height: height * 0.24,
           child: TabBarView(

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:endustry/export.dart';
 import '../../constants.dart' as CONSTANT;
-import '../../widgets/page_padding.dart';
 import './list_item.dart';
 
 class ListGroup extends StatelessWidget {
   const ListGroup({Key key, this.title, this.items}) : super(key: key);
-  final title, items;
+  final title;
+  final List<Service> items;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -47,7 +47,7 @@ class ListGroup extends StatelessWidget {
               itemCount: this.items.length,
               itemBuilder: (BuildContext context, int index) {
                 return Item(
-                    itemWidth: itemWidth, label: this.items[index]['label']);
+                    itemWidth: itemWidth, label: this.items[index].name);
               },
             ),
           ),

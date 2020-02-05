@@ -46,9 +46,9 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: <Widget>[
-                      ListGroup(title: 'การใช้งานล่าสุด', items: MOCK_ITEMS),
-                      ListGroup(title: 'บริการแนะนำ', items: MOCK_ITEMS),
-                      ListGroup(title: 'คลังความรู้แนะนำ', items: MOCK_ITEMS),
+                      ListGroup(title: 'การใช้งานล่าสุด', items: MOCK_SERVICES),
+                      ListGroup(title: 'บริการแนะนำ', items: MOCK_SERVICES),
+                      ListGroup(title: 'คลังความรู้แนะนำ', items: MOCK_SERVICES),
                     ],
                   ),
                 ),

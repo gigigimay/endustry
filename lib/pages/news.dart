@@ -3,20 +3,13 @@ import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          child: Stack(
-            children: <Widget>[
-              Text('News Page'),
-              NavigationBar(currentpage: 'news')
-            ],
-          ),
-        ),
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'news'),
+      child: Column(
+        children: <Widget>[PagePadding(child: TitleText('News page!'))],
       ),
     );
   }

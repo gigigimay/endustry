@@ -6,17 +6,10 @@ class KnowledgePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-          child: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          child: Stack(
-            children: <Widget>[
-              Text('knowledge Page'),
-              NavigationBar(currentpage: 'knowledge')
-            ],
-          ),
-        ),
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'knowledge'),
+      child: Column(
+        children: <Widget>[PagePadding(child: TitleText('Knowledge Page!'))],
       ),
     );
   }

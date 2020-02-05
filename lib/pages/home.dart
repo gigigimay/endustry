@@ -7,13 +7,9 @@ class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        body: BgLayout(
-          child: Stack(children: <Widget>[
-            Column(
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'home'),
+      child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 PagePadding(
@@ -28,30 +24,18 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                        bottom: height * 0.1, top: CONSTANT.SIZE_MD),
-                    scrollDirection: Axis.vertical,
+          PageScrollBody(
                     child: Column(
                       children: <Widget>[
-                        ListGroup(
-                            title: 'การใช้งานล่าสุด', items: MOCK_SERVICES),
+                ListGroup(title: 'การใช้งานล่าสุด', items: MOCK_SERVICES),
                         ListGroup(title: 'บริการแนะนำ', items: MOCK_SERVICES),
                         ListGroup(
                             title: 'คลังความรู้แนะนำ', items: MOCK_SERVICES),
                       ],
                     ),
                   ),
-                ),
               ],
             ),
-            NavigationBar(
-              currentpage: 'home',
-            )
-          ]),
-        ),
-      ),
     );
   }
 }

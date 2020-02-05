@@ -6,17 +6,10 @@ class ServicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-          child: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          child: Stack(
-            children: <Widget>[
-              Text('service Page'),
-              NavigationBar(currentpage: 'service')
-            ],
-          ),
-        ),
+    return BgLayout(
+      navbar: NavigationBar(currentpage: 'service'),
+      child: Column(
+        children: <Widget>[PagePadding(child: TitleText('Service Page!'))],
       ),
     );
   }

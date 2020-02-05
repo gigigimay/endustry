@@ -6,7 +6,7 @@ export 'pages/knowledge.dart';
 export 'pages/menu.dart';
 
 export './models.dart';
-export './mockData.dart';
+export './mock_data.dart';
 
 export 'widgets/bg_layout.dart';
 export 'widgets/navigation_bar/navigation_bar.dart';

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 color: CONSTANT.COLOR_BODY),
           )),
-      home: HomePage(),
+      home: NewsPage(),
     );
   }
 }

@@ -27,6 +27,8 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: CONSTANT.XX),
                   SearchBar(),
+                  FlatButton(onPressed: (){},child: Text('ok'),),
+                  InkWell(onTap: (){},child: Text('ink'),)
                 ],
               ),
             ),

@@ -74,85 +74,84 @@ class _NewsPageState extends State<NewsPage>
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Stack(
-            children: <Widget>[
-              BgLayout(
-                child: Padding(
-                  padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                'ข่าว',
-                                style: CONSTANT.TEXT_STYLE_TITLE,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              IconButton(
-                                icon: Icon(Icons.search),
-                                iconSize: CONSTANT.SIZE_XX,
-                                color: CONSTANT.COLOR_PRIMARY,
-                                onPressed: () {},
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.filter_list),
-                                iconSize: CONSTANT.SIZE_XX,
-                                color: CONSTANT.COLOR_PRIMARY,
-                                onPressed: () {},
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_MD,
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          controller: null,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              HilightNewsWidget(
-                                hilightData: hilightData,
-                              ),
-                              Text(
-                                'ข่าวทั้งหมด',
-                                style: CONSTANT.TEXT_STYLE_HEADING,
-                              ),
-                              Column(
-                                  children: newsData
-                                      .map((item) => NewsItem(
-                                            title: item['title'],
-                                            date: item['date'],
-                                            author: item['author'],
-                                            imgURL: item['imgURL'],
-                                          ))
-                                      .toList()),
-                              SizedBox(
-                                height: height * 0.1,
-                              )
-                            ],
-                          ),
+        child: Scaffold(
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            BgLayout(
+              child: Padding(
+                padding: const EdgeInsets.all(CONSTANT.SIZE_XL),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'ข่าว',
+                              style: CONSTANT.TEXT_STYLE_TITLE,
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
+                        Row(
+                          children: <Widget>[
+                            IconButton(
+                              icon: Icon(Icons.search),
+                              iconSize: CONSTANT.SIZE_XX,
+                              color: CONSTANT.COLOR_PRIMARY,
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.filter_list),
+                              iconSize: CONSTANT.SIZE_XX,
+                              color: CONSTANT.COLOR_PRIMARY,
+                              onPressed: () {},
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: CONSTANT.SIZE_MD,
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        controller: null,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            HilightNewsWidget(
+                              hilightData: hilightData,
+                            ),
+                            Text(
+                              'ข่าวทั้งหมด',
+                              style: CONSTANT.TEXT_STYLE_HEADING,
+                            ),
+                            Column(
+                                children: newsData
+                                    .map((item) => NewsItem(
+                                          title: item['title'],
+                                          date: item['date'],
+                                          author: item['author'],
+                                          imgURL: item['imgURL'],
+                                        ))
+                                    .toList()),
+                            SizedBox(
+                              height: height * 0.1,
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              NavigationBar(currentpage: 'news')
-            ],
-          ),
+            ),
+            NavigationBar(currentpage: 'news')
+          ],
         ),
-      )),
-    );
+      ),
+    ));
   }
 }

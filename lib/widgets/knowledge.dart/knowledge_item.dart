@@ -2,8 +2,8 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/home/list_group.dart';
 
-class KnowlwdgeItem extends StatelessWidget {
-  const KnowlwdgeItem({Key key}) : super(key: key);
+class KnowledgeItem extends StatelessWidget {
+  const KnowledgeItem({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

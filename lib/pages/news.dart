@@ -116,67 +116,68 @@ class _NewsPageState extends State<NewsPage>
   Widget build(BuildContext context) {
     return BgLayout(
       navbar: NavigationBar(currentpage: 'news'),
-      child: PagePadding(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    selectedFilter != 'ข่าวทั้งหมด'
-                        ? GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedFilter = 'ข่าวทั้งหมด';
-                              });
-                            },
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: CONSTANT.COLOR_PRIMARY,
-                              size: CONSTANT.SIZE_XX,
-                            ))
-                        : Container(),
-                    SizedBox(
-                      width: CONSTANT.SIZE_MD,
-                    ),
-                    TitleText('ข่าว')
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.search),
-                      iconSize: CONSTANT.SIZE_XX,
-                      color: CONSTANT.COLOR_PRIMARY,
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.filter_list),
-                      iconSize: CONSTANT.SIZE_XX,
-                      color: CONSTANT.COLOR_PRIMARY,
-                      onPressed: () {
-                        showDialog<void>(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (BuildContext context) {
-                              return NewsFilterDialog(
-                                newsData: newsData,
-                                selectedFilter: selectedFilter,
-                                state: this,
-                              );
-                            });
-                      },
-                    )
-                  ],
-                )
-              ],
-            ),
-            PageScrollBody(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  selectedFilter == 'ข่าวทั้งหมด'
+                  selectedFilter != 'ข่าวทั้งหมด'
+                      ? GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedFilter = 'ข่าวทั้งหมด';
+                            });
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: CONSTANT.COLOR_PRIMARY,
+                            size: CONSTANT.SIZE_XX,
+                          ))
+                      : Container(),
+                  SizedBox(
+                    width: CONSTANT.SIZE_MD,
+                  ),
+                  TitleText('ข่าว')
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    iconSize: CONSTANT.SIZE_XX,
+                    color: CONSTANT.COLOR_PRIMARY,
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.filter_list),
+                    iconSize: CONSTANT.SIZE_XX,
+                    color: CONSTANT.COLOR_PRIMARY,
+                    onPressed: () {
+                      showDialog<void>(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return NewsFilterDialog(
+                              newsData: newsData,
+                              selectedFilter: selectedFilter,
+                              state: this,
+                            );
+                          });
+                    },
+                  )
+                ],
+              )
+            ],
+          ),
+          PageScrollBody(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                PagePadding(
+                  side: 0.0,
+                  child: selectedFilter == 'ข่าวทั้งหมด'
                       ? Column(
                           children: <Widget>[
                             HilightNewsWidget(
@@ -188,21 +189,28 @@ class _NewsPageState extends State<NewsPage>
                           ],
                         )
                       : Container(),
-                  Text(
-                    selectedFilter,
-                    style: CONSTANT.TEXT_STYLE_HEADING,
+                ),
+                PagePadding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        selectedFilter,
+                        style: CONSTANT.TEXT_STYLE_HEADING,
+                      ),
+                      Column(
+                          children: newsData[selectedFilter]
+                              .map((item) => NewsItem(
+                                    newsData: item,
+                                  ))
+                              .toList()),
+                    ],
                   ),
-                  Column(
-                      children: newsData[selectedFilter]
-                          .map((item) => NewsItem(
-                                newsData: item,
-                              ))
-                          .toList()),
-                ],
-              ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

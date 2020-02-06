@@ -27,7 +27,7 @@ class HilightNewsItem extends StatelessWidget {
                     )));
       },
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_XL),
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: Colors.white),

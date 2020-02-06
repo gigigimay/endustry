@@ -49,7 +49,7 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
         .map((i, item) => MapEntry(
             i,
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(CONSTANT.SIZE_SM),
               child: GestureDetector(
                 child: Icon(
                   Icons.lens,
@@ -72,9 +72,12 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'ไฮไลท์',
-          style: CONSTANT.TEXT_STYLE_HEADING,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_XL),
+          child: Text(
+            'ไฮไลท์',
+            style: CONSTANT.TEXT_STYLE_HEADING,
+          ),
         ),
         SizedBox(
           height: CONSTANT.SIZE_MD,

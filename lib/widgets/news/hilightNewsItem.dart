@@ -5,16 +5,11 @@ import '../../constants.dart' as CONSTANT;
 class HilightNewsItem extends StatelessWidget {
   const HilightNewsItem({Key key, this.newsData}) : super(key: key);
 
-  final newsData;
+  final News newsData;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    final dateData = DateTime.parse(newsData['date']);
-    final dateString =
-        '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
 
     return GestureDetector(
       onTap: () {
@@ -23,7 +18,6 @@ class HilightNewsItem extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => NewsInPage(
                       newsData: newsData,
-                      dateString: dateString,
                     )));
       },
       child: Padding(
@@ -47,7 +41,7 @@ class HilightNewsItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: CONSTANT.SIZE_MD, vertical: CONSTANT.SIZE_MD),
                   child: Text(
-                    newsData['title'],
+                    newsData.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

@@ -16,8 +16,6 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
   TabController _tabController;
   int _hilightControllerIndex = 0;
 
-  _handleTabSelection() {}
-
   @override
   void initState() {
     super.initState();

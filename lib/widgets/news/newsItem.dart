@@ -6,16 +6,12 @@ class NewsItem extends StatelessWidget {
   const NewsItem({Key key, this.newsData}) : super(key: key);
 
   // final String title, date, author, imgURL;
-  final newsData;
+  final News newsData;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-    final dateData = DateTime.parse(newsData['date']);
-    final dateString =
-        '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
 
     return GestureDetector(
       onTap: () {
@@ -24,7 +20,6 @@ class NewsItem extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => NewsInPage(
                       newsData: newsData,
-                      dateString: dateString,
                     )));
       },
       child: Container(
@@ -48,36 +43,39 @@ class NewsItem extends StatelessWidget {
             SizedBox(
               width: CONSTANT.SIZE_SM,
             ),
-            Container(
-              height: width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        newsData['title'],
-                        style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
-                        maxLines: 1,
-                      ),
-                      Text(
-                        dateString,
-                        style: TextStyle(
-                            fontSize: CONSTANT.FONT_SIZE_BODY,
-                            color: CONSTANT.COLOR_PRIMARY),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    newsData['author'],
-                    style: TextStyle(
-                      fontSize: CONSTANT.FONT_SIZE_BODY,
+            Expanded(
+              child: Container(
+                height: width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          newsData.title,
+                          style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          News.getDateTimeString(newsData.date),
+                          style: TextStyle(
+                              fontSize: CONSTANT.FONT_SIZE_BODY,
+                              color: CONSTANT.COLOR_PRIMARY),
+                        ),
+                      ],
                     ),
-                  )
-                ],
+                    Text(
+                      newsData.author,
+                      style: TextStyle(
+                        fontSize: CONSTANT.FONT_SIZE_BODY,
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],

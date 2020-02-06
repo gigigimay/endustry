@@ -13,92 +13,7 @@ class NewsPage extends StatefulWidget {
 
 class _NewsPageState extends State<NewsPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  PageController _pageController;
-
-  var hilightData = [
-    {
-      'title': 'ค่าธรรมเนียมโรงงาน ฟหกด เอกอาสอวอ',
-      'content': 'Loremasdasdasd',
-      'imgurl': 'i1',
-      'date': '1969-07-20 20:18:04Z',
-      'author': 'josh'
-    },
-    {
-      'title': 'asd',
-      'content': 'Loremasdasdasd',
-      'imgurl': 'i1',
-      'date': '1969-07-20 20:18:04Z',
-      'author': 'josh'
-    },
-    {
-      'title': 'asd',
-      'content': 'Loremasdasdasd',
-      'imgurl': 'i1',
-      'date': '1969-07-20 20:18:04Z',
-      'author': 'josh'
-    },
-  ];
-
-  var newsData_json = {
-    'ข่าวประชาสัมพันธ์': [
-      {
-        'title': 'ประชา',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-20 20:18:04Z',
-        'author': 'josh'
-      },
-      {
-        'title': 'สัมพันธ์',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-21 20:18:04Z',
-        'author': 'josh'
-      },
-    ],
-    'ข่าวอุตสาหกรรมจังหวัด': [
-      {
-        'title': 'ประจำ',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-20 20:18:04Z',
-        'author': 'josh'
-      },
-      {
-        'title': 'จังหวัด',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-21 20:18:04Z',
-        'author': 'josh'
-      },
-    ],
-    'ข่าวรับสมัครงาน': [
-      {
-        'title': 'รับ',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-20 20:18:04Z',
-        'author': 'josh'
-      },
-      {
-        'title': 'สมัคร',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-21 20:18:04Z',
-        'author': 'josh'
-      },
-      {
-        'title': 'งาน',
-        'content': 'Loremasdasdasd',
-        'imgurl': 'i1',
-        'date': '1969-07-21 20:18:04Z',
-        'author': 'josh'
-      },
-    ]
-  };
-
-  var newsData = {'ข่าวทั้งหมด': []};
+  var newsData = MOCK_NEWS;
 
   String selectedFilter;
 
@@ -106,10 +21,10 @@ class _NewsPageState extends State<NewsPage>
   void initState() {
     super.initState();
     selectedFilter = 'ข่าวทั้งหมด';
-    newsData[selectedFilter] =
-        newsData_json.values.toList().expand((x) => x).toList();
-    newsData.addAll(newsData_json);
-    print(newsData);
+    // newsData[selectedFilter] =
+    //     newsData_json.values.toList().expand((x) => x).toList();
+    // newsData.addAll(newsData_json);
+    // print(newsData);
   }
 
   @override
@@ -175,13 +90,18 @@ class _NewsPageState extends State<NewsPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                PagePadding(
-                  side: 0.0,
-                  child: selectedFilter == 'ข่าวทั้งหมด'
+                Container(
+                  child: selectedFilter == 'ข่าวทั้งหมด' &&
+                          newsData
+                                  .where((item) => item.typeId == 'nwst00')
+                                  .length >
+                              0
                       ? Column(
                           children: <Widget>[
                             HilightNewsWidget(
-                              hilightData: hilightData,
+                              hilightData: newsData
+                                  .where((item) => item.typeId == 'nwst00')
+                                  .toList(),
                             ),
                             SizedBox(
                               height: CONSTANT.SIZE_MD,
@@ -199,7 +119,21 @@ class _NewsPageState extends State<NewsPage>
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       Column(
-                          children: newsData[selectedFilter]
+                          children: newsData
+                              .where((item) {
+                                if (item.typeId == NEWSTYPES.first.id)
+                                  return false;
+                                else if (selectedFilter == 'ข่าวทั้งหมด')
+                                  return true;
+                                else
+                                  return item.typeId ==
+                                      NEWSTYPES
+                                          .where((item) =>
+                                              item.typeName == selectedFilter)
+                                          .first
+                                          .id;
+                              })
+                              .toList()
                               .map((item) => NewsItem(
                                     newsData: item,
                                   ))

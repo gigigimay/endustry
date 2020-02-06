@@ -7,10 +7,17 @@ class NewsFilterDialog extends StatelessWidget {
       : super(key: key);
 
   final state, selectedFilter;
-  final Map<String, dynamic> newsData;
+  final List<News> newsData;
 
   @override
   Widget build(BuildContext context) {
+    List<String> filterNameList = ['ข่าวทั้งหมด'] +
+        NEWSTYPES
+            .where((item) => item.id != NEWSTYPES.first.id)
+            .toList()
+            .map((item) => item.typeName)
+            .toList();
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -18,13 +25,14 @@ class NewsFilterDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: newsData.keys.map((item) {
+          children: filterNameList.map((item) {
             return Column(
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
                     state.setState(() {
                       state.selectedFilter = item;
+                      print(state.selectedFilter);
                     });
                     Navigator.pop(context);
                   },
@@ -41,7 +49,7 @@ class NewsFilterDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                item != newsData.keys.last
+                item != NEWSTYPES.last.typeName.toString()
                     ? Divider(
                         height: 0,
                       )

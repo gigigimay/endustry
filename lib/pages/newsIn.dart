@@ -2,8 +2,8 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsInPage extends StatefulWidget {
-  NewsInPage({Key key, this.newsData, this.dateString}) : super(key: key);
-  dynamic newsData, dateString;
+  NewsInPage({Key key, this.newsData}) : super(key: key);
+  News newsData;
 
   @override
   _NewsInPageState createState() => _NewsInPageState();
@@ -59,20 +59,20 @@ class _NewsInPageState extends State<NewsInPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Text(
-                        widget.newsData['title'],
+                        widget.newsData.title,
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       SizedBox(
                         height: CONSTANT.SIZE_SM,
                       ),
                       Text(
-                        widget.dateString,
+                        News.getDateTimeString(widget.newsData.date),
                         style: TextStyle(
                             color: CONSTANT.COLOR_PRIMARY,
                             fontSize: CONSTANT.FONT_SIZE_BODY),
                       ),
                       Text(
-                        widget.newsData['author'],
+                        widget.newsData.author,
                         style: TextStyle(
                           fontSize: CONSTANT.FONT_SIZE_BODY,
                         ),
@@ -98,7 +98,7 @@ class _NewsInPageState extends State<NewsInPage> {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        widget.newsData['content'],
+                        widget.newsData.content,
                         style: CONSTANT.TEXT_STYLE_BODY,
                       ),
                     ],

@@ -25,7 +25,7 @@ class NewsItem extends StatelessWidget {
       child: Container(
         height: width * 0.4,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
           color: Colors.white,
         ),
         margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -36,7 +36,7 @@ class NewsItem extends StatelessWidget {
                 height: width * 0.4,
                 width: width * 0.3,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
                   color: Colors.purple[50],
                 ),
                 child: FittedBox(fit: BoxFit.contain, child: FlutterLogo())),

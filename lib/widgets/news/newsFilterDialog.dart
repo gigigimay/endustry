@@ -20,7 +20,7 @@ class NewsFilterDialog extends StatelessWidget {
 
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
       ),
       backgroundColor: Colors.white,
       child: Column(

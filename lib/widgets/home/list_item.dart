@@ -24,7 +24,7 @@ class Item extends StatelessWidget {
               height: this.itemWidth,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
             ),
             const SizedBox(height: CONSTANT.SIZE_SM),
             Text(

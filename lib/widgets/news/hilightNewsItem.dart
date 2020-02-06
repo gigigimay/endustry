@@ -24,7 +24,7 @@ class HilightNewsItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_XL),
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.white),
+              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS), color: Colors.white),
           child: Column(
             children: <Widget>[
               Expanded(child: FlutterLogo()),
@@ -32,8 +32,8 @@ class HilightNewsItem extends StatelessWidget {
                 width: width - (CONSTANT.SIZE_XL * 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(CONSTANT.BORDER_RADIUS),
+                    bottomRight: Radius.circular(CONSTANT.BORDER_RADIUS),
                   ),
                   color: CONSTANT.COLOR_PRIMARY,
                 ),

@@ -52,7 +52,7 @@ class _NewsInPageState extends State<NewsInPage> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
                 child: Padding(
                   padding: const EdgeInsets.all(CONSTANT.SIZE_MD),
                   child: Column(
@@ -82,7 +82,7 @@ class _NewsInPageState extends State<NewsInPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
                             color: Colors.purple[50]),
                         height: height * 0.24,
                         child: FittedBox(

@@ -1,8 +1,9 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/news/hilightNewsWidget.dart';
+import 'package:endustry/widgets/news/newsFilterDialog.dart';
 import 'package:endustry/widgets/news/newsItem.dart';
-import 'package:endustry/widgets/newsFilterDialog.dart';
+import 'package:endustry/widgets/page_appbar.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key}) : super(key: key);
@@ -21,10 +22,6 @@ class _NewsPageState extends State<NewsPage>
   void initState() {
     super.initState();
     selectedFilter = 'ข่าวทั้งหมด';
-    // newsData[selectedFilter] =
-    //     newsData_json.values.toList().expand((x) => x).toList();
-    // newsData.addAll(newsData_json);
-    // print(newsData);
   }
 
   @override
@@ -33,58 +30,41 @@ class _NewsPageState extends State<NewsPage>
       navbar: NavigationBar(currentpage: 'news'),
       child: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  selectedFilter != 'ข่าวทั้งหมด'
-                      ? GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedFilter = 'ข่าวทั้งหมด';
-                            });
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: CONSTANT.COLOR_PRIMARY,
-                            size: CONSTANT.SIZE_XX,
-                          ))
-                      : Container(),
-                  SizedBox(
-                    width: CONSTANT.SIZE_MD,
-                  ),
-                  TitleText('ข่าว')
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    iconSize: CONSTANT.SIZE_XX,
-                    color: CONSTANT.COLOR_PRIMARY,
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.filter_list),
-                    iconSize: CONSTANT.SIZE_XX,
-                    color: CONSTANT.COLOR_PRIMARY,
-                    onPressed: () {
-                      showDialog<void>(
-                          context: context,
-                          barrierDismissible: true,
-                          builder: (BuildContext context) {
-                            return NewsFilterDialog(
-                              newsData: newsData,
-                              selectedFilter: selectedFilter,
-                              state: this,
-                            );
-                          });
-                    },
-                  )
-                ],
-              )
-            ],
+          PageAppBar(
+            title: 'ข่าว',
+            haveBackArrow: selectedFilter != 'ข่าวทั้งหมด',
+            backArrowFunction: () {
+              setState(() {
+                selectedFilter = 'ข่าวทั้งหมด';
+              });
+            },
+            actionWidget: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.search),
+                  iconSize: CONSTANT.SIZE_XX,
+                  color: CONSTANT.COLOR_PRIMARY,
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.filter_list),
+                  iconSize: CONSTANT.SIZE_XX,
+                  color: CONSTANT.COLOR_PRIMARY,
+                  onPressed: () {
+                    showDialog<void>(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (BuildContext context) {
+                          return NewsFilterDialog(
+                            newsData: newsData,
+                            selectedFilter: selectedFilter,
+                            state: this,
+                          );
+                        });
+                  },
+                )
+              ],
+            ),
           ),
           PageScrollBody(
             child: Column(

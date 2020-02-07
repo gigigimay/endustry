@@ -44,10 +44,13 @@ class _NavigationBarState extends State<NavigationBar> {
             height: height * 0.1,
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 NavItem(
-                  icon: Icons.home,
+                  title: 'หน้าแรก',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/home_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'home',
                   onPressed: () {
@@ -55,7 +58,10 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.subtitles,
+                  title: 'ข่าว',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/news_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'news',
                   onPressed: () {
@@ -63,7 +69,10 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.person,
+                  title: 'บริการ',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/service_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'service',
                   onPressed: () {
@@ -71,7 +80,10 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.library_books,
+                  title: 'คลังความรู้',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/know_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'knowledge',
                   onPressed: () {
@@ -79,7 +91,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.more_horiz,
+                  title: 'โปรไฟล์',
+                  icon: Icon(Icons.menu),
                   currentPage: widget.currentpage,
                   comparePage: 'menu',
                   onPressed: () {

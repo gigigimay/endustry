@@ -48,7 +48,9 @@ class _NavigationBarState extends State<NavigationBar> {
               children: <Widget>[
                 NavItem(
                   title: 'หน้าแรก',
-                  iconURL: 'assets/images/home_white.png',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/home_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'home',
                   onPressed: () {
@@ -57,7 +59,9 @@ class _NavigationBarState extends State<NavigationBar> {
                 ),
                 NavItem(
                   title: 'ข่าว',
-                  iconURL: 'assets/images/news_white.png',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/news_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'news',
                   onPressed: () {
@@ -66,7 +70,9 @@ class _NavigationBarState extends State<NavigationBar> {
                 ),
                 NavItem(
                   title: 'บริการ',
-                  iconURL: 'assets/images/service_white.png',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/service_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'service',
                   onPressed: () {
@@ -75,7 +81,9 @@ class _NavigationBarState extends State<NavigationBar> {
                 ),
                 NavItem(
                   title: 'คลังความรู็',
-                  iconURL: 'assets/images/know_white.png',
+                  icon: ImageIcon(
+                    AssetImage('assets/images/know_white.png'),
+                  ),
                   currentPage: widget.currentpage,
                   comparePage: 'knowledge',
                   onPressed: () {

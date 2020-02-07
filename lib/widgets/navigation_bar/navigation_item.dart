@@ -6,14 +6,12 @@ class NavItem extends StatelessWidget {
       {Key key,
       this.title,
       this.icon,
-      this.iconURL = '',
       this.currentPage,
       this.comparePage,
       this.onPressed})
       : super(key: key);
   final String title;
-  final Icon icon;
-  final String iconURL;
+  final Widget icon;
   final String currentPage;
   final String comparePage;
   final void Function() onPressed;
@@ -24,6 +22,8 @@ class NavItem extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     var dy = currentPage == comparePage ? -20.0 : 0.0;
+
+    print(icon.runtimeType);
 
     return Stack(
       alignment: Alignment.center,
@@ -50,15 +50,13 @@ class NavItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
-                icon: iconURL.isNotEmpty
-                    ? ImageIcon(
-                        AssetImage(iconURL),
-                      )
-                    : icon,
+                icon: icon,
                 color: currentPage == comparePage
                     ? Colors.white
                     : CONSTANT.COLOR_PRIMARY,
-                iconSize: iconURL.isNotEmpty ? width * 0.06 : width * 0.08,
+                iconSize: width * 0.06
+                //  : width * 0.08
+                ,
                 onPressed: currentPage != comparePage ? onPressed : () {},
               ),
               currentPage == comparePage

@@ -44,10 +44,11 @@ class _NavigationBarState extends State<NavigationBar> {
             height: height * 0.1,
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 NavItem(
-                  icon: Icons.home,
+                  title: 'หน้าแรก',
+                  iconURL: 'assets/images/home_white.png',
                   currentPage: widget.currentpage,
                   comparePage: 'home',
                   onPressed: () {
@@ -55,7 +56,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.subtitles,
+                  title: 'ข่าว',
+                  iconURL: 'assets/images/news_white.png',
                   currentPage: widget.currentpage,
                   comparePage: 'news',
                   onPressed: () {
@@ -63,7 +65,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.person,
+                  title: 'บริการ',
+                  iconURL: 'assets/images/service_white.png',
                   currentPage: widget.currentpage,
                   comparePage: 'service',
                   onPressed: () {
@@ -71,7 +74,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.library_books,
+                  title: 'คลังความรู็',
+                  iconURL: 'assets/images/know_white.png',
                   currentPage: widget.currentpage,
                   comparePage: 'knowledge',
                   onPressed: () {
@@ -79,7 +83,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  icon: Icons.more_horiz,
+                  title: 'โปรไฟล์',
+                  icon: Icon(Icons.more_horiz),
                   currentPage: widget.currentpage,
                   comparePage: 'menu',
                   onPressed: () {

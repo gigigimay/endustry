@@ -20,11 +20,8 @@ class MenuPage extends StatelessWidget {
             child: UserProfile(userData: userData),
           ),
           SizedBox(height: CONSTANT.SIZE_LG),
-          Divider(
-            color: CONSTANT.COLOR_DISABLED,
-            height: 1,
-          ),
-          SizedBox(height: CONSTANT.SIZE_XX),
+          Divider(color: CONSTANT.COLOR_DISABLED),
+          SizedBox(height: CONSTANT.SIZE_MD),
           MenuItem(
               icon: Icons.settings,
               text: 'ตั้งค่า',

@@ -40,29 +40,28 @@ class _NewsPageState extends State<NewsPage>
             },
             actionWidget: Row(
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.search),
-                  iconSize: CONSTANT.SIZE_XX,
+                IconButtonInk(
+                  icon: Icons.search,
                   color: CONSTANT.COLOR_PRIMARY,
-                  onPressed: () {},
+                  size: CONSTANT.SIZE_XX,
+                  onTap: () => print('search'),
                 ),
-                IconButton(
-                  icon: Icon(Icons.filter_list),
-                  iconSize: CONSTANT.SIZE_XX,
-                  color: CONSTANT.COLOR_PRIMARY,
-                  onPressed: () {
-                    showDialog<void>(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return NewsFilterDialog(
-                            newsData: newsData,
-                            selectedFilter: selectedFilter,
-                            state: this,
-                          );
-                        });
-                  },
-                )
+                IconButtonInk(
+                    icon: Icons.filter_list,
+                    color: CONSTANT.COLOR_PRIMARY,
+                    size: CONSTANT.SIZE_XX,
+                    onTap: () {
+                      showDialog<void>(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return NewsFilterDialog(
+                              newsData: newsData,
+                              selectedFilter: selectedFilter,
+                              state: this,
+                            );
+                          });
+                    }),
               ],
             ),
           ),

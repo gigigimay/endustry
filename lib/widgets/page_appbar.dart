@@ -23,6 +23,7 @@ class _PageAppBarState extends State<PageAppBar> {
   @override
   Widget build(BuildContext context) {
     return PagePadding(
+      top: CONSTANT.SIZE_XS,
       side: CONSTANT.SIZE_MD,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +47,7 @@ class _PageAppBarState extends State<PageAppBar> {
               )
             ],
           ),
-          widget.actionWidget
+          widget.actionWidget != null ? widget.actionWidget : Container()
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:endustry/export.dart';
 
 class Service {
-  final id, name, description, image, url, depId;
+  final String id, name, description, image, url, depId;
   const Service(
       {@required this.id,
       @required this.name,
@@ -12,7 +12,7 @@ class Service {
 }
 
 class News {
-  final id, title, content, imgurl, date, author, typeId;
+  final String id, title, content, imgurl, date, author, typeId;
   const News(
       {@required this.id,
       @required this.title,

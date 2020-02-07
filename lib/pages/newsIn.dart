@@ -17,42 +17,22 @@ class _NewsInPageState extends State<NewsInPage> {
     print(widget.newsData);
     return BgLayout(
       navbar: NavigationBar(currentpage: 'news'),
-      child: PagePadding(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: CONSTANT.COLOR_PRIMARY,
-                          size: CONSTANT.SIZE_XX,
-                        )),
-                    SizedBox(
-                      width: CONSTANT.SIZE_MD,
-                    ),
-                    Text(
-                      'ข่าว',
-                      style: CONSTANT.TEXT_STYLE_TITLE,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: CONSTANT.SIZE_MD,
-            ),
-            PageScrollBody(
+      child: Column(
+        children: <Widget>[
+          PageAppBar(
+            title: 'ข่าว',
+            haveBackArrow: true,
+            backArrowFunction: () {
+              Navigator.pop(context);
+            },
+          ),
+          PageScrollBody(
+            child: PagePadding(
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+                    borderRadius:
+                        BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
                 child: Padding(
                   padding: const EdgeInsets.all(CONSTANT.SIZE_MD),
                   child: Column(
@@ -82,7 +62,8 @@ class _NewsInPageState extends State<NewsInPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+                            borderRadius:
+                                BorderRadius.circular(CONSTANT.BORDER_RADIUS),
                             color: Colors.purple[50]),
                         height: height * 0.24,
                         child: FittedBox(
@@ -105,9 +86,9 @@ class _NewsInPageState extends State<NewsInPage> {
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

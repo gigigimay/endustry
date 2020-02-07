@@ -40,16 +40,10 @@ class _NewsPageState extends State<NewsPage>
             },
             actionWidget: Row(
               children: <Widget>[
-                IconButtonInk(
-                  icon: Icons.search,
-                  color: CONSTANT.COLOR_PRIMARY,
-                  size: CONSTANT.SIZE_XX,
-                  onTap: () => print('search'),
-                ),
+                SearchButton(),
                 IconButtonInk(
                     icon: Icons.filter_list,
                     color: CONSTANT.COLOR_PRIMARY,
-                    size: CONSTANT.SIZE_XX,
                     onTap: () {
                       showDialog<void>(
                           context: context,

@@ -6,7 +6,7 @@ class IconButtonInk extends StatelessWidget {
     Key key,
     @required this.onTap,
     @required this.icon,
-    this.size,
+    this.size = CONSTANT.SIZE_XX,
     this.padding = const EdgeInsets.all(CONSTANT.SIZE_SM),
     this.color
   }) : super(key: key);

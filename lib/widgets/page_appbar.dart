@@ -35,7 +35,6 @@ class _PageAppBarState extends State<PageAppBar> {
                       onTap: widget.backArrowFunction,
                       icon: Icons.arrow_back_ios,
                       color: Theme.of(context).primaryColor,
-                      size: CONSTANT.SIZE_XX,
                     )
                   : Container(),
               SizedBox(
@@ -47,7 +46,7 @@ class _PageAppBarState extends State<PageAppBar> {
               )
             ],
           ),
-          widget.actionWidget != null ? widget.actionWidget : Container()
+          widget.actionWidget ?? Container()
         ],
       ),
     );

@@ -96,3 +96,11 @@ const List<NewsType> NEWSTYPES = [
   NewsType(id: 'nwst02', typeName: 'ข่าวประจำจังหวัด'),
   NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน')
 ];
+
+const User MOCK_USER = User(
+    id: 'user01',
+    email: 'nani@gmail.com',
+    firstName: 'แพร',
+    lastName: 'อ้วนนะ!',
+    userType: 'ผู้ประกอบการ',
+    imgUrl: 'https://picsum.photos/200');

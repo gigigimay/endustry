@@ -32,3 +32,14 @@ class NewsType {
   final String id, typeName;
   const NewsType({@required this.id, this.typeName});
 }
+
+class User {
+  final String id, firstName, lastName, email, imgUrl, userType;
+  const User(
+      {@required this.id,
+      @required this.email,
+      this.firstName,
+      this.lastName,
+      this.imgUrl,
+      this.userType});
+}

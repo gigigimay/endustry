@@ -2,38 +2,59 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({
-    Key key,
-  }) : super(key: key);
+  const UserProfile({Key key, @required this.userData}) : super(key: key);
+
+  final User userData;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double avatarSize = width * 0.25;
+    double editSize = avatarSize * 0.4;
     return Row(
       children: <Widget>[
         Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_SM),
-          child: Container(
-            width: width * 0.25,
-            height: width * 0.25,
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: CONSTANT.COLOR_BORDER_LIGHT,
-                    width: CONSTANT.BORDER_WIDTH_THICK),
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.white),
-          ),
+          child: Stack(children: <Widget>[
+            Container(
+              width: avatarSize,
+              height: avatarSize,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: CONSTANT.COLOR_BORDER_LIGHT,
+                      width: CONSTANT.BORDER_WIDTH_THICK),
+                  borderRadius: BorderRadius.circular(999)),
+              child: CircleAvatar(
+                  radius: 999, backgroundImage: NetworkImage(userData.imgUrl)),
+            ),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: Container(
+                width: editSize,
+                height: editSize,
+                child: FittedBox(
+                  child: FloatingActionButton(
+                      onPressed: () => print('edit'),
+                      backgroundColor: CONSTANT.COLOR_PRIMARY,
+                      elevation: 0,
+                      child:
+                          Transform.scale(scale: 1.2, child: Icon(Icons.edit))),
+                ),
+              ),
+            )
+          ]),
         ),
         SizedBox(width: CONSTANT.SIZE_MD),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'แพร อ้วนนะ!',
+              '${userData.firstName} ${userData.lastName}',
               style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
             ),
             SizedBox(height: CONSTANT.SIZE_XS),
-            Text('nani@gmail.com'),
+            Text(userData.email),
             SizedBox(height: CONSTANT.SIZE_SM),
             Container(
               padding: EdgeInsets.symmetric(
@@ -43,7 +64,7 @@ class UserProfile extends StatelessWidget {
                   border: Border.all(color: CONSTANT.COLOR_PRIMARY),
                   borderRadius: BorderRadius.all(Radius.circular(100))),
               child: Text(
-                'ผู้ประกอบการ',
+                userData.userType,
                 style: TextStyle(color: CONSTANT.COLOR_PRIMARY),
               ),
             )

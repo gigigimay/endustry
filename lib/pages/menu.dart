@@ -8,13 +8,14 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User userData = MOCK_USER;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'menu'),
       child: Column(
         children: <Widget>[
           PagePadding(
             top: CONSTANT.SIZE_XX,
-            child: UserProfile(),
+            child: UserProfile(userData: userData),
           ),
           SizedBox(height: CONSTANT.SIZE_LG),
           Divider(

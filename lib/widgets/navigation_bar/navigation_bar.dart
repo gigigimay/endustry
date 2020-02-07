@@ -80,7 +80,7 @@ class _NavigationBarState extends State<NavigationBar> {
                   },
                 ),
                 NavItem(
-                  title: 'คลังความรู็',
+                  title: 'คลังความรู้',
                   icon: ImageIcon(
                     AssetImage('assets/images/know_white.png'),
                   ),

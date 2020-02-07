@@ -11,6 +11,8 @@ class UserProfile extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double avatarSize = width * 0.25;
     double editSize = avatarSize * 0.4;
+    String userType = MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
+
     return Row(
       children: <Widget>[
         Container(
@@ -64,7 +66,7 @@ class UserProfile extends StatelessWidget {
                   border: Border.all(color: CONSTANT.COLOR_PRIMARY),
                   borderRadius: BorderRadius.all(Radius.circular(100))),
               child: Text(
-                userData.userType,
+                userType,
                 style: TextStyle(color: CONSTANT.COLOR_PRIMARY),
               ),
             )

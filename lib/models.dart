@@ -34,12 +34,20 @@ class NewsType {
 }
 
 class User {
-  final String id, firstName, lastName, email, imgUrl, userType;
-  const User(
+  String id, firstName, lastName, email, imgUrl, typeId;
+  User(
       {@required this.id,
       @required this.email,
       this.firstName,
       this.lastName,
       this.imgUrl,
-      this.userType});
+      this.typeId});
+}
+
+class UserType {
+  final String id, name;
+  const UserType({
+    @required this.id,
+    @required this.name,
+  });
 }

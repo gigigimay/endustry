@@ -97,10 +97,15 @@ const List<NewsType> NEWSTYPES = [
   NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน')
 ];
 
-const User MOCK_USER = User(
+User MOCK_USER = User(
     id: 'user01',
     email: 'nani@gmail.com',
     firstName: 'แพร',
     lastName: 'อ้วนนะ!',
-    userType: 'ผู้ประกอบการ',
+    typeId: 'ust01',
     imgUrl: 'https://picsum.photos/200');
+
+const List<UserType> MOCK_USERTYPES = [
+  UserType(id: 'ust00', name: 'บุคคลทั่วไป'),
+  UserType(id: 'ust01', name: 'ผู้ประกอบการ'),
+];

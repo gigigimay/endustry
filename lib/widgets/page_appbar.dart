@@ -37,12 +37,10 @@ class _PageAppBarState extends State<PageAppBar> {
                       color: Theme.of(context).primaryColor,
                     )
                   : Container(),
-              SizedBox(
-                width: CONSTANT.SIZE_MD,
-              ),
               Container(
                 child: TitleText(widget.title),
-                padding: EdgeInsets.only(top: CONSTANT.SIZE_SM),
+                padding: EdgeInsets.only(
+                    top: CONSTANT.SIZE_SM, left: CONSTANT.SIZE_SM),
               )
             ],
           ),

@@ -32,7 +32,14 @@ class MenuPage extends StatelessWidget {
               text: 'เกี่ยวกับกระทรวงอุตสาหกรรม',
               onPressed: () => print('เกี่ยวกับกระทรวงอุตสาหกรรม')),
           MenuItem(
-              icon: Icons.input,
+              iconWidget: Transform.rotate(
+                angle: 22 / 7,
+                child: Icon(
+                  Icons.exit_to_app,
+                  color: CONSTANT.COLOR_PRIMARY,
+                  size: CONSTANT.SIZE_XX,
+                ),
+              ),
               text: 'ออกจากระบบ',
               onPressed: () => print('ออกจากระบบ')),
         ],

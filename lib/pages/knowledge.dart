@@ -2,6 +2,7 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/home/list_group.dart';
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
+import 'package:endustry/widgets/page_appbar.dart';
 
 class KnowledgePage extends StatelessWidget {
   const KnowledgePage({Key key}) : super(key: key);
@@ -13,33 +14,32 @@ class KnowledgePage extends StatelessWidget {
 
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            ListGroup(
-              title: 'คลังความรู้แนะนำ',
-              items: [],
+      child: Column(
+        children: <Widget>[
+          PageAppBar(
+            title: 'คลังความรู้',
+            haveBackArrow: false,
+            backArrowFunction: () {},
+          ),
+          PageScrollBody(
+            child: Column(
+              children: <Widget>[
+                ListGroup(
+                  title: 'คลังความรู้แนะนำ',
+                  items: [],
+                ),
+                PagePadding(
+                    child: Column(
+                  children: MOCK_KNOWLEDGE
+                      .map((item) => KnowledgeItem(
+                            knowledgeData: item,
+                          ))
+                      .toList(),
+                ))
+              ],
             ),
-            PagePadding(
-                child: Column(
-              children: [
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1'
-              ].map((item) => KnowledgeItem()).toList(),
-            ))
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

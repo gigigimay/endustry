@@ -50,7 +50,8 @@ const List<Service> MOCK_SERVICES = [
 const List<News> MOCK_NEWS = [
   News(
       id: 'nws01',
-      title: 'ค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอ',
+      title:
+          'ค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอค่าธรรมเนียมโรงงาน ฟอหอกอดอ เอกอาสอวอ',
       content: 'Lorem1',
       date: '1969-07-20 20:18:04Z',
       author: 'ระนองระยอง',
@@ -108,4 +109,50 @@ User MOCK_USER = User(
 const List<UserType> MOCK_USERTYPES = [
   UserType(id: 'ust00', name: 'บุคคลทั่วไป'),
   UserType(id: 'ust01', name: 'ผู้ประกอบการ'),
+  
+const List<Knowledge> MOCK_KNOWLEDGE = [
+  Knowledge(
+      id: 'nws02',
+      title: 'โดดดิด่ง',
+      content: 'Lorem2',
+      date: '1969-07-21 20:18:04Z',
+      author: 'ประญุจ',
+      attachurl: 'img2',
+      fav: false),
+  Knowledge(
+      id: 'nws03',
+      title: 'เอิ้นหยังบ้ฮู้',
+      content: 'แต่จังห้ะถึกใจ',
+      date: '1969-07-21 20:18:04Z',
+      author: 'น้ำ',
+      fav: false),
+  Knowledge(
+      id: 'nws04',
+      title: 'ซวนกันไปแมะสู',
+      content: 'สิยืนอยู่เห้ดอีหยางง',
+      date: '1969-07-23 20:18:04Z',
+      author: 'ใส',
+      fav: true),
+  Knowledge(
+      id: 'nws05',
+      title: 'ชาดีดาดีด้าดีด้าดีด่าดีดาดี้ดาดีด้าด้าดา',
+      content: 'ชาดีชาดีด้า ชาดีชาดี ด้า ดา ด้า ดา',
+      date: '1969-07-23 20:18:04Z',
+      author: 'นั้ลลัค',
+      attachurl: 'img5',
+      fav: false),Knowledge(
+      id: 'nws04',
+      title: 'ซวนกันไปแมะสู',
+      content: 'สิยืนอยู่เห้ดอีหยางง',
+      date: '1969-07-23 20:18:04Z',
+      author: 'ใส',
+      fav: true),
+  Knowledge(
+      id: 'nws05',
+      title: 'ชาดีดาดีด้าดีด้าดีด่าดีดาดี้ดาดีด้าด้าดา',
+      content: 'ชาดีชาดีด้า ชาดีชาดี ด้า ดา ด้า ดา',
+      date: '1969-07-23 20:18:04Z',
+      author: 'นั้ลลัค',
+      attachurl: 'img5',
+      fav: false),
 ];

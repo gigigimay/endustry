@@ -32,7 +32,7 @@ class _NewsPageState extends State<NewsPage>
         children: <Widget>[
           PageAppBar(
             title: 'ข่าว',
-            haveBackArrow: selectedFilter != 'ข่าวทั้งหมด',
+            hasBackArrow: selectedFilter != 'ข่าวทั้งหมด',
             backArrowFunction: () {
               setState(() {
                 selectedFilter = 'ข่าวทั้งหมด';

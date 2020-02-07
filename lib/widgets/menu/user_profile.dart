@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/edit_profile.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key key, @required this.userData}) : super(key: key);
@@ -11,7 +12,8 @@ class UserProfile extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double avatarSize = width * 0.25;
     double editSize = avatarSize * 0.4;
-    String userType = MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
+    String userType =
+        MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
 
     return Row(
       children: <Widget>[
@@ -37,7 +39,12 @@ class UserProfile extends StatelessWidget {
                 height: editSize,
                 child: FittedBox(
                   child: FloatingActionButton(
-                      onPressed: () => print('edit'),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditProfilePage()));
+                      },
                       backgroundColor: CONSTANT.COLOR_PRIMARY,
                       elevation: 0,
                       child:

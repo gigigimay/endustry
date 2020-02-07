@@ -23,8 +23,6 @@ class NavItem extends StatelessWidget {
 
     var dy = currentPage == comparePage ? -20.0 : 0.0;
 
-    print(icon.runtimeType);
-
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
@@ -54,9 +52,8 @@ class NavItem extends StatelessWidget {
                 color: currentPage == comparePage
                     ? Colors.white
                     : CONSTANT.COLOR_PRIMARY,
-                iconSize: width * 0.06
-                //  : width * 0.08
-                ,
+                iconSize:
+                    icon.runtimeType == ImageIcon ? width * 0.06 : width * 0.08,
                 onPressed: currentPage != comparePage ? onPressed : () {},
               ),
               currentPage == comparePage

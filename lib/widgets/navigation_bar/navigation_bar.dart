@@ -92,7 +92,7 @@ class _NavigationBarState extends State<NavigationBar> {
                 ),
                 NavItem(
                   title: 'โปรไฟล์',
-                  icon: Icon(Icons.more_horiz),
+                  icon: Icon(Icons.menu),
                   currentPage: widget.currentpage,
                   comparePage: 'menu',
                   onPressed: () {

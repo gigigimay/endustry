@@ -90,7 +90,7 @@ const List<News> MOCK_NEWS = [
       typeId: 'nwst02'),
 ];
 
-const List<NewsType> NEWSTYPES = [
+const List<NewsType> MOCK_NEWSTYPES = [
   NewsType(id: 'nwst00', typeName: 'hilight'),
   NewsType(id: 'nwst01', typeName: 'ข่าวประชาสัมพันธ์'),
   NewsType(id: 'nwst02', typeName: 'ข่าวประจำจังหวัด'),

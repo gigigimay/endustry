@@ -10,10 +10,10 @@ class PageAppBar extends StatefulWidget {
       @required this.title})
       : super(key: key);
 
-  bool haveBackArrow;
-  VoidCallback backArrowFunction;
-  Widget actionWidget;
-  String title;
+  final bool haveBackArrow;
+  final VoidCallback backArrowFunction;
+  final Widget actionWidget;
+  final String title;
 
   @override
   _PageAppBarState createState() => _PageAppBarState();
@@ -23,32 +23,30 @@ class _PageAppBarState extends State<PageAppBar> {
   @override
   Widget build(BuildContext context) {
     return PagePadding(
-      top: 0.0,
+      side: CONSTANT.SIZE_MD,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Row(
             children: <Widget>[
               widget.haveBackArrow
-                  ? Row(
-                      children: <Widget>[
-                        GestureDetector(
-                            onTap: widget.backArrowFunction,
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: CONSTANT.COLOR_PRIMARY,
-                              size: CONSTANT.SIZE_XX,
-                            )),
-                        SizedBox(
-                          width: CONSTANT.SIZE_MD,
-                        ),
-                      ],
+                  ? IconButtonInk(
+                      onTap: widget.backArrowFunction,
+                      icon: Icons.arrow_back_ios,
+                      color: Theme.of(context).primaryColor,
+                      size: CONSTANT.SIZE_XX,
                     )
                   : Container(),
-              TitleText(widget.title)
+              SizedBox(
+                width: CONSTANT.SIZE_MD,
+              ),
+              Container(
+                child: TitleText(widget.title),
+                padding: EdgeInsets.only(top: CONSTANT.SIZE_SM),
+              )
             ],
           ),
-          widget.actionWidget ?? Container()
+          widget.actionWidget
         ],
       ),
     );

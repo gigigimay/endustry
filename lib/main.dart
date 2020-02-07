@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
             button: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
             subhead: CONSTANT.TEXT_STYLE_HEADING,
           )),
-      home:HomePage(),
+      home: HomePage(),
     );
   }
 }

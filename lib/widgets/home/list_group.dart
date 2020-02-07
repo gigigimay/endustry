@@ -3,9 +3,11 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import './list_item.dart';
 
 class ListGroup extends StatelessWidget {
-  const ListGroup({Key key, this.title, this.items}) : super(key: key);
-  final title;
-  final List<Service> items;
+  const ListGroup({Key key, this.title, this.items, this.goto})
+      : super(key: key);
+  final String title;
+  final Widget goto;
+  final List items;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -22,19 +24,15 @@ class ListGroup extends StatelessWidget {
                   this.title,
                   style: CONSTANT.TEXT_STYLE_HEADING,
                 )),
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    customBorder: CircleBorder(),
-                    onTap: () => print('pressed: ${this.title}'),
-                    child: Padding(
-                      padding: const EdgeInsets.all(CONSTANT.SIZE_SM),
-                      child: Icon(
-                        Icons.arrow_forward,
-                      ),
-                    ),
-                  ),
-                )
+                IconButtonInk(
+                    icon: Icons.arrow_forward,
+                    onTap: () {
+                      if (this.goto != null)
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => this.goto),
+                        );
+                    })
               ],
             ),
           ),

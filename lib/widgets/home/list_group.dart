@@ -37,15 +37,14 @@ class ListGroup extends StatelessWidget {
             ),
           ),
           Container(
-            height: itemWidth + 80,
+            height: itemWidth * 1.6,
             child: ListView.builder(
               padding: EdgeInsets.symmetric(
                   horizontal: CONSTANT.SIZE_XL - CONSTANT.SIZE_SM),
               scrollDirection: Axis.horizontal,
               itemCount: this.items.length,
               itemBuilder: (BuildContext context, int index) {
-                return Item(
-                    itemWidth: itemWidth, label: this.items[index].name);
+                return items[index];
               },
             ),
           ),

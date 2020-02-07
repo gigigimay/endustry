@@ -27,9 +27,9 @@ class HomePage extends StatelessWidget {
           PageScrollBody(
             child: Column(
               children: <Widget>[
-                ListGroup(title: 'การใช้งานล่าสุด', items: MOCK_SERVICES),
-                ListGroup(title: 'บริการแนะนำ', items: MOCK_SERVICES),
-                ListGroup(title: 'คลังความรู้แนะนำ', items: MOCK_SERVICES),
+                // ListGroup(title: 'การใช้งานล่าสุด', items: MOCK_SERVICES),
+                // ListGroup(title: 'บริการแนะนำ', items: MOCK_SERVICES),
+                // ListGroup(title: 'คลังความรู้แนะนำ', items: MOCK_SERVICES),
               ],
             ),
           ),

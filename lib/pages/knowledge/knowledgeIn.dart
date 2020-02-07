@@ -68,23 +68,22 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                       SizedBox(
                         height: CONSTANT.SIZE_SM,
                       ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_SM,
-                      ),
                       widget.knowledgeData.attachurl != null
-                          ? Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      CONSTANT.BORDER_RADIUS),
-                                  color: Colors.purple[50]),
-                              height: height * 0.24,
-                              child: FittedBox(
-                                  fit: BoxFit.contain, child: FlutterLogo()),
-                            )
+                          ? Column(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        CONSTANT.BORDER_RADIUS),
+                                    color: Colors.purple[50]),
+                                height: height * 0.24,
+                                child: FittedBox(
+                                    fit: BoxFit.contain, child: FlutterLogo()),
+                              ),
+                              SizedBox(
+                                height: CONSTANT.SIZE_LG,
+                              ),
+                            ])
                           : Container(),
-                      SizedBox(
-                        height: CONSTANT.SIZE_LG,
-                      ),
                       Text(
                         'เนื้อหา',
                         style: TextStyle(

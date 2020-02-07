@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/page_appbar.dart';
 
 class NewsInPage extends StatefulWidget {
   NewsInPage({Key key, this.newsData}) : super(key: key);
@@ -20,30 +21,12 @@ class _NewsInPageState extends State<NewsInPage> {
       child: PagePadding(
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: CONSTANT.COLOR_PRIMARY,
-                          size: CONSTANT.SIZE_XX,
-                        )),
-                    SizedBox(
-                      width: CONSTANT.SIZE_MD,
-                    ),
-                    Text(
-                      'ข่าว',
-                      style: CONSTANT.TEXT_STYLE_TITLE,
-                    ),
-                  ],
-                ),
-              ],
+            PageAppBar(
+              title: 'ข่าว',
+              haveBackArrow: true,
+              backArrowFunction: () {
+                Navigator.pop(context);
+              },
             ),
             SizedBox(
               height: CONSTANT.SIZE_MD,
@@ -52,7 +35,8 @@ class _NewsInPageState extends State<NewsInPage> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+                    borderRadius:
+                        BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
                 child: Padding(
                   padding: const EdgeInsets.all(CONSTANT.SIZE_MD),
                   child: Column(
@@ -82,7 +66,8 @@ class _NewsInPageState extends State<NewsInPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+                            borderRadius:
+                                BorderRadius.circular(CONSTANT.BORDER_RADIUS),
                             color: Colors.purple[50]),
                         height: height * 0.24,
                         child: FittedBox(

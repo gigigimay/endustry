@@ -23,6 +23,7 @@ class _PageAppBarState extends State<PageAppBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Row(
@@ -42,7 +43,7 @@ class _PageAppBarState extends State<PageAppBar> {
             TitleText(widget.title)
           ],
         ),
-        widget.actionWidget
+        widget.actionWidget ?? Container()
       ],
     );
   }

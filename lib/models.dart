@@ -32,3 +32,15 @@ class NewsType {
   final String id, typeName;
   const NewsType({@required this.id, this.typeName});
 }
+
+class Knowledge {
+  final id, title, content, attachurl, date, author, fav;
+  const Knowledge(
+      {@required this.id,
+      @required this.title,
+      this.content,
+      this.attachurl,
+      this.date,
+      this.author,
+      this.fav});
+}

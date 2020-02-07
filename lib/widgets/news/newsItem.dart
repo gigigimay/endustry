@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/newsIn.dart';
+import 'package:endustry/pages/news/newsIn.dart';
 import '../../constants.dart' as CONSTANT;
 
 class NewsItem extends StatelessWidget {

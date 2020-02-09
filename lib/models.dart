@@ -35,7 +35,7 @@ class NewsType {
 
 class User {
   String id, firstName, lastName, email, imgUrl, typeId;
-  List<String> fav;
+  List<String> favKnowledges;
 
   User(
       {@required this.id,
@@ -44,7 +44,7 @@ class User {
       this.lastName,
       this.imgUrl,
       this.typeId,
-      this.fav});
+      this.favKnowledges});
 }
 
 class UserType {

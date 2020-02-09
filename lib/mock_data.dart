@@ -105,7 +105,7 @@ User MOCK_USER = User(
     lastName: 'อ้วนนะ!',
     typeId: 'ust01',
     imgUrl: 'https://picsum.photos/200',
-    fav: ['knw02', 'knw03', 'knw05']);
+    favKnowledges: ['knw02', 'knw03', 'knw05']);
 
 const List<UserType> MOCK_USERTYPES = [
   UserType(id: 'ust00', name: 'บุคคลทั่วไป'),

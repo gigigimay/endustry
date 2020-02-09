@@ -9,7 +9,7 @@ class KnowledgePage extends StatefulWidget {
 // รอรับค่าจากข้างนอก
   final suggestKnowledgeData = MOCK_KNOWLEDGE.reversed.toList();
   final knowledgeData = MOCK_KNOWLEDGE;
-  List favList = MOCK_USER.fav;
+  List favList = MOCK_USER.favKnowledges;
 
   @override
   _KnowledgePageState createState() => _KnowledgePageState();

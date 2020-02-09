@@ -39,7 +39,6 @@ class KnowledgeListPage extends StatelessWidget {
                   children: knowledgeData
                       .map((item) => KnowledgeItem(
                             knowledgeData: item,
-                            visible: isFavVisible,
                             favStatus: favList.contains(item.id),
                           ))
                       .toList(),

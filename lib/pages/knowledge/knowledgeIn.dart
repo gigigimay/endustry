@@ -102,15 +102,3 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
     );
   }
 }
-// ListGroup(
-//               title: 'คลังความรู้แนะนำ',
-//               items: [],
-//             ),
-//             PagePadding(
-//                 child: Column(
-//               children: MOCK_KNOWLEDGE
-//                   .map((item) => KnowledgeItem(
-//                         knowledgeData: item,
-//                       ))
-//                   .toList(),
-//             ))

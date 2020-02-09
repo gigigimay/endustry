@@ -3,15 +3,10 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledgeIn.dart';
 
 class KnowledgeItem extends StatelessWidget {
-  const KnowledgeItem(
-      {Key key,
-      this.knowledgeData,
-      this.visible = true,
-      @required this.favStatus})
+  const KnowledgeItem({Key key, this.knowledgeData, @required this.favStatus})
       : super(key: key);
 
   final Knowledge knowledgeData;
-  final visible;
   final bool favStatus;
 
   @override
@@ -49,13 +44,10 @@ class KnowledgeItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Visibility(
-                    visible: visible,
-                    child: Icon(
-                      favStatus ? Icons.star : Icons.star_border,
-                      color: CONSTANT.COLOR_PRIMARY,
-                      size: CONSTANT.SIZE_LG + 2.0,
-                    ),
+                  Icon(
+                    favStatus ? Icons.star : Icons.star_border,
+                    color: CONSTANT.COLOR_PRIMARY,
+                    size: CONSTANT.SIZE_LG + 2.0,
                   )
                 ],
               ),

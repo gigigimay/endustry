@@ -10,7 +10,7 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User userData = MOCK_USER;
+    final User userData = MOCK_USER;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'menu'),
       child: Column(

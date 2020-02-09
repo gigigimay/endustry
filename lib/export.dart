@@ -13,10 +13,11 @@ export './mock_data.dart';
 
 // shared widgets
 export 'widgets/bg_layout.dart';
-export 'widgets/navigation_bar/navigation_bar.dart';
-export 'widgets/title_text.dart';
 export 'widgets/page_padding.dart';
-export 'widgets/icon_button_ink.dart';
-export 'widgets/search_button.dart';
 export 'widgets/page_scroll_body.dart';
 export 'widgets/page_appbar.dart';
+export 'widgets/navigation_bar/navigation_bar.dart';
+export 'widgets/title_text.dart';
+export 'widgets/icon_button_ink.dart';
+export 'widgets/search_button.dart';
+export 'widgets/rounded_box.dart';

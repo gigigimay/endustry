@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
                 children: <Widget>[
                   IconButtonInk(
                     icon: Icon(Icons.arrow_back_ios),
-                    onTap: () {
+                    onPressed: () {
                       Navigator.pop(context);
                     },
                   ),

@@ -9,7 +9,9 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButtonInk(
-      onPressed: () => print('search'),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+      },
       icon: Icon(Icons.search),
     );
   }

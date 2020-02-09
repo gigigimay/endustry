@@ -23,30 +23,30 @@ class MenuPage extends StatelessWidget {
           Divider(color: CONSTANT.COLOR_DISABLED),
           SizedBox(height: CONSTANT.SIZE_MD),
           MenuItem(
-              icon: Icons.settings,
-              text: 'ตั้งค่า',
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MenuSettingPage()));
-              }),
+            icon: Icons.settings,
+            text: 'ตั้งค่า',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MenuSettingPage()));
+            },
+          ),
           MenuItem(
-              icon: Icons.info,
-              text: 'เกี่ยวกับกระทรวง',
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MenuAboutPage()));
-              }),
+            icon: Icons.info,
+            text: 'เกี่ยวกับกระทรวง',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MenuAboutPage()));
+            },
+          ),
           MenuItem(
-            iconWidget: Transform.rotate(
-              angle: 22 / 7,
-              child: Icon(
-                Icons.exit_to_app,
-                color: CONSTANT.COLOR_PRIMARY,
-                size: CONSTANT.SIZE_XX,
-              ),
+            iconWidget: Container(
+              width: CONSTANT.SIZE_XX,
+              height: CONSTANT.SIZE_XX,
+              padding: EdgeInsets.only(top: 2, left: 3, right: 2, bottom: 2),
+              child: ImageIcon(AssetImage('assets/images/logout.png')),
             ),
             text: 'ออกจากระบบ',
-            onPressed: () {},
+            onPressed: () => print('log out!'),
           )
         ],
       ),

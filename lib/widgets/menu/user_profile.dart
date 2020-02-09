@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/menu/edit_profile.dart';
+import 'package:endustry/pages/edit_profile/edit_profile.dart';
 import '../../widgets/menu/profile_avatar.dart';
 
 class UserProfile extends StatelessWidget {

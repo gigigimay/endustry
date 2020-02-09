@@ -21,3 +21,6 @@ export 'widgets/title_text.dart';
 export 'widgets/icon_button_ink.dart';
 export 'widgets/search_button.dart';
 export 'widgets/rounded_box.dart';
+export 'widgets/my_textfield.dart';
+export 'widgets/my_dropdown.dart';
+export 'widgets/gradient_button.dart';

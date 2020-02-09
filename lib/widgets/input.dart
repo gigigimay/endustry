@@ -2,8 +2,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
-class MyTextField extends StatelessWidget {
-  const MyTextField({
+class Input extends StatelessWidget {
+  const Input({
     Key key,
     this.hintText,
     this.isPassword = false,

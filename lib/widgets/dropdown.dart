@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
-class MyDropdown extends StatelessWidget {
-  const MyDropdown({
+class Dropdown extends StatelessWidget {
+  const Dropdown({
     Key key,
     @required this.valueLabel,
     @required this.title,

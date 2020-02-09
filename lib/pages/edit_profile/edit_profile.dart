@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/menu/box_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
@@ -28,7 +27,10 @@ class EditProfilePage extends StatelessWidget {
         imgUrl: userData.imgUrl,
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
-        fabIcon: Icon(Icons.camera_alt),
+        fabIcon: Icon(
+          Icons.camera_alt,
+          size: CONSTANT.SIZE_XL,
+        ),
         fabAction: () => print('edit image!'),
       ),
       bottomWidget: GradientButton(
@@ -44,25 +46,25 @@ class EditProfilePage extends StatelessWidget {
             PageScrollBody(
               child: Column(
                 children: <Widget>[
-                  MyTextField(
+                  Input(
                     hintText: 'ชื่อ',
                     initialValue: userData.firstName,
                   ),
-                  MyTextField(
+                  Input(
                     hintText: 'นามสกุล',
                     initialValue: userData.lastName,
                   ),
-                  MyTextField(
+                  Input(
                     hintText: 'อีเมล์',
                     initialValue: userData.email,
                   ),
-                  MyTextField(
+                  Input(
                     initialValue: '••••••••••',
                     isPassword: true,
                   ),
                   SizedBox(height: CONSTANT.SIZE_XX),
                   // TODO: click to open dropdown, change structure of data
-                  MyDropdown(title: 'คุณคือ', valueLabel: userType, items: []),
+                  Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
                   SizedBox(height: CONSTANT.SIZE_XL),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

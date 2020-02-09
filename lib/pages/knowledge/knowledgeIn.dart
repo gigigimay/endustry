@@ -28,7 +28,11 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
         children: <Widget>[
           PageAppBar(
             title: 'คลังความรู้',
+<<<<<<< HEAD
+            hasBackArrow: true,
+=======
             haveBackArrow: true,
+>>>>>>> 10ed6e64e56bbf6cc2d876a0aa03b0b5d500d570
             backArrowFunction: () {
               Navigator.pop(context);
             },

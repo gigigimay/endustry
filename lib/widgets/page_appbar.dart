@@ -33,7 +33,7 @@ class _PageAppBarState extends State<PageAppBar> {
               widget.haveBackArrow
                   ? IconButtonInk(
                       onTap: widget.backArrowFunction,
-                      icon: Icons.arrow_back_ios,
+                      icon: Icon(Icons.arrow_back_ios),
                       color: Theme.of(context).primaryColor,
                     )
                   : Container(),

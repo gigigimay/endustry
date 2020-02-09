@@ -23,34 +23,31 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'news'),
-      child: PagePadding(
-        child: Column(
-          children: <Widget>[
-            PageAppBar(
-              title: 'คลังความรู้',
-              haveBackArrow: true,
-              backArrowFunction: () {
-                Navigator.pop(context);
-              },
-              actionWidget: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    favStatus = !favStatus;
-                  });
-                  // update fav status
-                },
-                child: Icon(
-                  favStatus ? Icons.star : Icons.star_border,
-                  color: CONSTANT.COLOR_PRIMARY,
-                  size: CONSTANT.SIZE_XL,
-                ),
+      navbar: NavigationBar(currentpage: 'knowledge'),
+      child: Column(
+        children: <Widget>[
+          PageAppBar(
+            title: 'คลังความรู้',
+            haveBackArrow: true,
+            backArrowFunction: () {
+              Navigator.pop(context);
+            },
+            actionWidget: IconButtonInk(
+              icon: Icon(
+                favStatus ? Icons.star : Icons.star_border,
+                color: CONSTANT.COLOR_PRIMARY,
+                size: CONSTANT.SIZE_XL,
               ),
+              onTap: () {
+                setState(() {
+                  favStatus = !favStatus;
+                });
+                // update fav status
+              },
             ),
-            SizedBox(
-              height: CONSTANT.SIZE_MD,
-            ),
-            PageScrollBody(
+          ),
+          PageScrollBody(
+            child: PagePadding(
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -75,7 +72,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                                     borderRadius: BorderRadius.circular(
                                         CONSTANT.BORDER_RADIUS),
                                     color: Colors.purple[50]),
-                                height: height * 0.24,
+                                width: width,
                                 child: FittedBox(
                                     fit: BoxFit.contain, child: FlutterLogo()),
                               ),
@@ -98,9 +95,9 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -4,11 +4,13 @@ import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
 import 'package:endustry/widgets/page_appbar.dart';
 
 class KnowledgeListPage extends StatelessWidget {
-  const KnowledgeListPage({Key key, this.title, this.knowledgeData})
+  const KnowledgeListPage(
+      {Key key, this.title, this.knowledgeData, this.isFavVisible = true})
       : super(key: key);
 
   final title;
   final List<Knowledge> knowledgeData;
+  final isFavVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +22,12 @@ class KnowledgeListPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           PageAppBar(
-            title: title,
-            haveBackArrow: true,
-            backArrowFunction: () {
-              Navigator.pop(context);
-            },
-            actionWidget: Material(
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              child: InkWell(
-                customBorder: CircleBorder(),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.search),
-                ),
-                onTap: (){},
-              ),
-            ),
-          ),
+              title: title,
+              haveBackArrow: true,
+              backArrowFunction: () {
+                Navigator.pop(context);
+              },
+              actionWidget: SearchButton()),
           PageScrollBody(
             child: PagePadding(
                 top: 0.0,
@@ -44,6 +35,7 @@ class KnowledgeListPage extends StatelessWidget {
                   children: knowledgeData
                       .map((item) => KnowledgeItem(
                             knowledgeData: item,
+                            visible: isFavVisible,
                           ))
                       .toList(),
                 )),

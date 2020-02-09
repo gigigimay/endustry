@@ -42,7 +42,7 @@ class _NewsPageState extends State<NewsPage>
               children: <Widget>[
                 SearchButton(),
                 IconButtonInk(
-                    icon: Icons.filter_list,
+                    icon: Icon(Icons.filter_list),
                     color: CONSTANT.COLOR_PRIMARY,
                     onTap: () {
                       showDialog<void>(

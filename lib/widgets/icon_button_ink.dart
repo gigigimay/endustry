@@ -2,17 +2,17 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class IconButtonInk extends StatelessWidget {
-  const IconButtonInk({
-    Key key,
-    @required this.onTap,
-    @required this.icon,
-    this.size = CONSTANT.SIZE_XX,
-    this.padding = const EdgeInsets.all(CONSTANT.SIZE_SM),
-    this.color
-  }) : super(key: key);
+  const IconButtonInk(
+      {Key key,
+      @required this.onTap,
+      @required this.icon,
+      this.size = CONSTANT.SIZE_XX,
+      this.padding = const EdgeInsets.all(CONSTANT.SIZE_SM),
+      this.color})
+      : super(key: key);
 
   final Function onTap;
-  final IconData icon;
+  final Widget icon;
   final double size;
   final EdgeInsets padding;
   final Color color;
@@ -26,7 +26,7 @@ class IconButtonInk extends StatelessWidget {
         onTap: onTap,
         child: Padding(
           padding: padding,
-          child: Icon(icon, size: size, color: color,),
+          child: icon,
         ),
       ),
     );

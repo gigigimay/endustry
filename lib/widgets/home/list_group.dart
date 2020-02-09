@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/icon_button_ink.dart';
 import './list_item.dart';
 
 class ListGroup extends StatelessWidget {
@@ -25,7 +26,7 @@ class ListGroup extends StatelessWidget {
                   style: CONSTANT.TEXT_STYLE_HEADING,
                 )),
                 IconButtonInk(
-                    icon: Icons.arrow_forward,
+                    icon: Icon(Icons.arrow_forward),
                     onTap: () {
                       if (this.goto != null)
                         Navigator.push(
@@ -37,15 +38,14 @@ class ListGroup extends StatelessWidget {
             ),
           ),
           Container(
-            height: itemWidth + 80,
+            height: itemWidth * 1.6,
             child: ListView.builder(
               padding: EdgeInsets.symmetric(
                   horizontal: CONSTANT.SIZE_XL - CONSTANT.SIZE_SM),
               scrollDirection: Axis.horizontal,
               itemCount: this.items.length,
               itemBuilder: (BuildContext context, int index) {
-                return Item(
-                    itemWidth: itemWidth, label: this.items[index].name);
+                return items[index];
               },
             ),
           ),

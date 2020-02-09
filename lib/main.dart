@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
             title: CONSTANT.TEXT_STYLE_TITLE,
             button: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
             subhead: CONSTANT.TEXT_STYLE_HEADING,
-          )),
+          ),
+          iconTheme: IconThemeData(
+              color: CONSTANT.COLOR_PRIMARY, size: CONSTANT.SIZE_XX)),
       home: HomePage(),
     );
   }

@@ -35,7 +35,7 @@ class NavItem extends StatelessWidget {
               decoration: BoxDecoration(
                 image: currentPage == comparePage
                     ? DecorationImage(
-                        image: AssetImage('assets/images/select page.png'),
+                        image: AssetImage('assets/images/select_page.png'),
                       )
                     : null,
               ),

@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/edit_profile.dart';
+import 'package:endustry/pages/menu/edit_profile.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key key, @required this.userData}) : super(key: key);

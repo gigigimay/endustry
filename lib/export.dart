@@ -5,7 +5,7 @@ export 'pages/home.dart';
 export 'pages/news/news.dart';
 export 'pages/service.dart';
 export 'pages/knowledge/knowledge.dart';
-export 'pages/menu.dart';
+export 'pages/menu/menu.dart';
 
 // about data
 export './models.dart';

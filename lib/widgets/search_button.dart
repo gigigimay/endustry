@@ -10,7 +10,6 @@ class SearchButton extends StatelessWidget {
     return IconButtonInk(
       onTap: () => print('search'),
       icon: Icon(Icons.search),
-      color: Theme.of(context).primaryColor,
     );
   }
 }

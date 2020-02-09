@@ -1,21 +1,21 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/page_appbar.dart';
 
 class KnowledgeInPage extends StatefulWidget {
-  KnowledgeInPage({Key key, this.knowledgeData}) : super(key: key);
+  KnowledgeInPage({Key key, this.knowledgeData, this.favStatus})
+      : super(key: key);
 
   Knowledge knowledgeData;
+  bool favStatus;
+
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
 }
 
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
-  var favStatus;
   @override
   void initState() {
     super.initState();
-    favStatus = widget.knowledgeData.fav;
   }
 
   @override
@@ -34,13 +34,13 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
             },
             actionWidget: IconButtonInk(
               icon: Icon(
-                favStatus ? Icons.star : Icons.star_border,
+                widget.favStatus ? Icons.star : Icons.star_border,
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),
               onTap: () {
                 setState(() {
-                  favStatus = !favStatus;
+                  widget.favStatus = !widget.favStatus;
                 });
                 // update fav status
               },
@@ -65,7 +65,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                       SizedBox(
                         height: CONSTANT.SIZE_SM,
                       ),
-                      widget.knowledgeData.attachurl != null
+                      widget.knowledgeData.attachUrl != null
                           ? Column(children: <Widget>[
                               Container(
                                 decoration: BoxDecoration(

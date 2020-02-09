@@ -3,7 +3,6 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/news/hilightNewsWidget.dart';
 import 'package:endustry/widgets/news/newsFilterDialog.dart';
 import 'package:endustry/widgets/news/newsItem.dart';
-import 'package:endustry/widgets/page_appbar.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key}) : super(key: key);
@@ -43,7 +42,7 @@ class _NewsPageState extends State<NewsPage>
                 SearchButton(),
                 IconButtonInk(
                     icon: Icon(Icons.filter_list),
-                    color: CONSTANT.COLOR_PRIMARY,
+                    
                     onTap: () {
                       showDialog<void>(
                           context: context,

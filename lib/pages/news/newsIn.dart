@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/page_appbar.dart';
 
 class NewsInPage extends StatefulWidget {
   NewsInPage({Key key, this.newsData}) : super(key: key);

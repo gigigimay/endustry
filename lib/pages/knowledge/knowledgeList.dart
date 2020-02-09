@@ -1,15 +1,19 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
-import 'package:endustry/widgets/page_appbar.dart';
 
 class KnowledgeListPage extends StatelessWidget {
   const KnowledgeListPage(
-      {Key key, this.title, this.knowledgeData, this.isFavVisible = true})
+      {Key key,
+      this.title,
+      this.knowledgeData,
+      this.favList,
+      this.isFavVisible = true})
       : super(key: key);
 
   final title;
   final List<Knowledge> knowledgeData;
+  final favList;
   final isFavVisible;
 
   @override
@@ -36,6 +40,7 @@ class KnowledgeListPage extends StatelessWidget {
                       .map((item) => KnowledgeItem(
                             knowledgeData: item,
                             visible: isFavVisible,
+                            favStatus: favList.contains(item.id),
                           ))
                       .toList(),
                 )),

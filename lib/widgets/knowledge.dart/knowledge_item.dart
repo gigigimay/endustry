@@ -3,11 +3,16 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledgeIn.dart';
 
 class KnowledgeItem extends StatelessWidget {
-  const KnowledgeItem({Key key, this.knowledgeData, this.visible = true})
+  const KnowledgeItem(
+      {Key key,
+      this.knowledgeData,
+      this.visible = true,
+      @required this.favStatus})
       : super(key: key);
 
   final Knowledge knowledgeData;
   final visible;
+  final bool favStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,7 @@ class KnowledgeItem extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => KnowledgeInPage(
                         knowledgeData: knowledgeData,
+                        favStatus: favStatus,
                       )));
         },
         child: Container(
@@ -46,7 +52,7 @@ class KnowledgeItem extends StatelessWidget {
                   Visibility(
                     visible: visible,
                     child: Icon(
-                      knowledgeData.fav ? Icons.star : Icons.star_border,
+                      favStatus ? Icons.star : Icons.star_border,
                       color: CONSTANT.COLOR_PRIMARY,
                       size: CONSTANT.SIZE_LG + 2.0,
                     ),

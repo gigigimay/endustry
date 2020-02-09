@@ -35,13 +35,16 @@ class NewsType {
 
 class User {
   String id, firstName, lastName, email, imgUrl, typeId;
+  List<String> fav;
+
   User(
       {@required this.id,
       @required this.email,
       this.firstName,
       this.lastName,
       this.imgUrl,
-      this.typeId});
+      this.typeId,
+      this.fav});
 }
 
 class UserType {
@@ -53,13 +56,13 @@ class UserType {
 }
 
 class Knowledge {
-  final id, title, content, attachurl, date, author, fav;
-  const Knowledge(
-      {@required this.id,
-      @required this.title,
-      this.content,
-      this.attachurl,
-      this.date,
-      this.author,
-      this.fav});
+  final id, title, content, attachUrl, date, author;
+  const Knowledge({
+    @required this.id,
+    @required this.title,
+    this.content,
+    this.attachUrl,
+    this.date,
+    this.author,
+  });
 }

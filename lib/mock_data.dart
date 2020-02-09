@@ -118,7 +118,7 @@ const User MOCK_USER = User(
   typeId: 'ust01',
   imgUrl: 'https://picsum.photos/200',
   favKnowledges: ['knw02', 'knw03', 'knw05'],
-  interestedTopics: ['kw02', 'kw08', 'kw04', 'kw06', 'kw10', 'kw013'],
+  interestedTopics: ['kw02', 'kw08', 'kw04', 'kw06', 'kw10', 'kw13'],
 );
 
 const List<UserType> MOCK_USERTYPES = [
@@ -194,7 +194,7 @@ const List<Keyword> MOCK_KEYWORDS = [
   Keyword(id: 'kw09', name: 'โตชิบ้า'),
   Keyword(id: 'kw10', name: 'แมคบุ้คโปร2019วิธทัชบาร์'),
   Keyword(id: 'kw11', name: 'กระดาษทิชชู่'),
-  Keyword(id: 'kw12', name: 'ฮุ่ยฮุ่ยฮุ่ยฮุ่ย'),
+  Keyword(id: 'kw12', name: 'ฮุ่ย ฮุ่ย ฮุ่ยฮุ่ย'),
   Keyword(id: 'kw13', name: 'ทำหน้าฟรี'),
   Keyword(id: 'kw14', name: 'แต่ลืมไปว่าสวยแล้ว'),
   Keyword(id: 'kw15', name: 'โคโรน่า'),

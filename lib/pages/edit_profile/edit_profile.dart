@@ -14,11 +14,18 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     final double avatarSize = width * 0.4;
 
     String userType =
         MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
+
+    List<String> keywords = userData.interestedTopics.map((String id) {
+      Keyword keyword = keywordsData.firstWhere((Keyword k) => k.id == id);
+      return keyword?.name;
+    }).toList();
+    keywords.sort(); // TODO: kaizen the sort funtion
+
+    print('form >> ' + _formKey.toString());
 
     return BoxLayout(
       title: 'แก้ไขโปรไฟล์',
@@ -46,6 +53,7 @@ class EditProfilePage extends StatelessWidget {
           children: <Widget>[
             PageScrollBody(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
@@ -88,20 +96,24 @@ class EditProfilePage extends StatelessWidget {
                         'สิ่งที่คุณสนใจ',
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
-                      EditButton(onTap: () => print('tap'))
+                      EditButton(onTap: () => print('edit interested topic'))
                     ],
                   ),
                   Wrap(
-                    runSpacing: 0,
-                    spacing: 8.0,
-                    children: userData.interestedTopics.map((String word) {
-                      return Chip(
-                        padding: EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(),
-                        label: Text(word),
-                        backgroundColor: Colors.white,
-                      );
-                    }).toList(),
+                    spacing: CONSTANT.SIZE_XL,
+                    runSpacing: 0.0,
+                    children: keywords
+                        .map((String word) => Chip(
+                              padding: EdgeInsets.all(0),
+                              label: Text(
+                                word,
+                                style: TextStyle(
+                                    fontSize: CONSTANT.FONT_SIZE_BODY),
+                              ),
+                              labelPadding: EdgeInsets.all(0),
+                              backgroundColor: Colors.white,
+                            ))
+                        .toList(),
                   )
                 ],
               ),

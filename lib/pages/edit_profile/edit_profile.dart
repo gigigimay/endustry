@@ -9,6 +9,7 @@ class EditProfilePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   final User userData = MOCK_USER;
+  final List<Keyword> keywordsData = MOCK_KEYWORDS;
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +58,50 @@ class EditProfilePage extends StatelessWidget {
                   Input(
                     hintText: 'อีเมล์',
                     initialValue: userData.email,
+                    validator: (String value) =>
+                        CONSTANT.REGEX_EMAIL.hasMatch(value)
+                            ? null
+                            : 'อีเมล์ไม่ถูกต้อง',
                   ),
                   Input(
                     initialValue: '••••••••••',
-                    isPassword: true,
+                    readOnly: true,
+                    obscureText: true,
+                    suffixText: 'แก้ไข',
+                    suffixIcon: IconButtonInk(
+                      padding: EdgeInsets.all(0),
+                      onPressed: () => print('edit!'),
+                      icon: Icon(
+                        Icons.edit,
+                        color: CONSTANT.COLOR_PRIMARY,
+                      ),
+                    ),
                   ),
                   SizedBox(height: CONSTANT.SIZE_XX),
-                  // TODO: click to open dropdown, change structure of data
+                  // TODO: click to open dropdown
                   Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
                   SizedBox(height: CONSTANT.SIZE_XL),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('สิ่งที่คุณสนใจ',
-                          style: CONSTANT.TEXT_STYLE_HEADING),
+                      Text(
+                        'สิ่งที่คุณสนใจ',
+                        style: CONSTANT.TEXT_STYLE_HEADING,
+                      ),
                       EditButton(onTap: () => print('tap'))
                     ],
+                  ),
+                  Wrap(
+                    runSpacing: 0,
+                    spacing: 8.0,
+                    children: userData.interestedTopics.map((String word) {
+                      return Chip(
+                        padding: EdgeInsets.all(0),
+                        shape: RoundedRectangleBorder(),
+                        label: Text(word),
+                        backgroundColor: Colors.white,
+                      );
+                    }).toList(),
                   )
                 ],
               ),

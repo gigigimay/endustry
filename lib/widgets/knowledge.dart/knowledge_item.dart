@@ -3,10 +3,11 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledgeIn.dart';
 
 class KnowledgeItem extends StatelessWidget {
-  const KnowledgeItem({Key key, this.knowledgeData}) : super(key: key);
+  const KnowledgeItem({Key key, this.knowledgeData, this.visible = true})
+      : super(key: key);
 
-  // final String title, date, author, imgURL;
   final Knowledge knowledgeData;
+  final visible;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,6 @@ class KnowledgeItem extends StatelessWidget {
                       )));
         },
         child: Container(
-          height: 100,
           padding: EdgeInsets.all(CONSTANT.SIZE_MD),
           margin: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_SM),
           decoration: BoxDecoration(
@@ -43,10 +43,13 @@ class KnowledgeItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Icon(
-                    knowledgeData.fav ? Icons.star : Icons.star_border,
-                    color: CONSTANT.COLOR_PRIMARY,
-                    size: CONSTANT.SIZE_LG + 2.0,
+                  Visibility(
+                    visible: visible,
+                    child: Icon(
+                      knowledgeData.fav ? Icons.star : Icons.star_border,
+                      color: CONSTANT.COLOR_PRIMARY,
+                      size: CONSTANT.SIZE_LG + 2.0,
+                    ),
                   )
                 ],
               ),

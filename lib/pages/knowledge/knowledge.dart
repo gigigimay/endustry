@@ -26,23 +26,21 @@ class KnowledgePage extends StatelessWidget {
             title: 'คลังความรู้',
             actionWidget: Row(
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {},
-                ),
-                IconButton(
+                SearchButton(),
+                IconButtonInk(
                   icon: ImageIcon(
                     AssetImage('assets/images/fav.png'),
                     color: CONSTANT.COLOR_PRIMARY,
                   ),
-                  onPressed: () {
+                  onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => KnowledgeListPage(
                                   title: 'คลังความรู้ของฉัน',
-                                  knowledgeData:
-                                      knowledgeData.where((item) => item.fav).toList(),
+                                  knowledgeData: knowledgeData
+                                      .where((item) => item.fav)
+                                      .toList(),
                                 )));
                   },
                 ),
@@ -59,15 +57,11 @@ class KnowledgePage extends StatelessWidget {
                             knowledgeData: item,
                           ))
                       .toList(),
-                  onGoTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => KnowledgeListPage(
-                                  title: 'คลังความรู้แนะนำ',
-                                  knowledgeData: suggestKnowledgeData,
-                                )));
-                  },
+                  goto: KnowledgeListPage(
+                    title: 'คลังความรู้แนะนำ',
+                    knowledgeData: suggestKnowledgeData,
+                    isFavVisible: false,
+                  ),
                 ),
                 PagePadding(
                     top: 0.0,

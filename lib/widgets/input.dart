@@ -5,6 +5,7 @@ class Input extends StatelessWidget {
   const Input({
     Key key,
     this.hintText,
+    this.labelText,
     this.initialValue = '',
     this.validator,
     this.suffixIcon,
@@ -13,14 +14,14 @@ class Input extends StatelessWidget {
     this.readOnly = false,
   }) : super(key: key);
 
-  final String hintText;
+  final String hintText, labelText, initialValue, suffixText;
   final bool obscureText, readOnly;
-  final String initialValue, suffixText;
   final Function validator;
   final Widget suffixIcon;
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     String validate(String value) {
       if (value.length == 0) return 'กรุณากรอกข้อมูล';
       return validator != null ? validator(value) : null;
@@ -33,14 +34,16 @@ class Input extends StatelessWidget {
         readOnly: readOnly,
         obscureText: obscureText,
         validator: validate,
-        style: TextStyle(fontSize: CONSTANT.FONT_SIZE_HEAD),
+        style: TextStyle(fontSize: width * 0.05),
         decoration: InputDecoration(
+          hasFloatingPlaceholder: true,
             suffixText: suffixText,
             suffixStyle: TextStyle(
                 color: CONSTANT.COLOR_PRIMARY,
                 fontSize: CONSTANT.FONT_SIZE_BODY,
                 fontWeight: FontWeight.w700),
             suffixIcon: suffixIcon,
+            labelText: labelText,
             hintText: hintText,
             contentPadding: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_SM)),
       ),

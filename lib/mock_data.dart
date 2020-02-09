@@ -110,7 +110,7 @@ const List<NewsType> MOCK_NEWSTYPES = [
   NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน')
 ];
 
-User MOCK_USER = User(
+const User MOCK_USER = User(
   id: 'user01',
   email: 'nani@gmail.com',
   firstName: 'แพร',

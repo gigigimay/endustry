@@ -5,7 +5,7 @@ import '../../constants.dart' as CONSTANT;
 class HilightNewsWidget extends StatefulWidget {
   HilightNewsWidget({Key key, this.hilightData}) : super(key: key);
 
-  List hilightData;
+  final List hilightData;
 
   @override
   _HilightNewsWidgetState createState() => _HilightNewsWidgetState();
@@ -14,7 +14,6 @@ class HilightNewsWidget extends StatefulWidget {
 class _HilightNewsWidgetState extends State<HilightNewsWidget>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  int _hilightControllerIndex = 0;
 
   @override
   void initState() {
@@ -36,13 +35,13 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
-    List<Widget> hilight_news = widget.hilightData
+    List<Widget> hilightNews = widget.hilightData
         .map((item) => HilightNewsItem(
               newsData: item,
             ))
         .toList();
 
-    List<Widget> hilight_button = widget.hilightData
+    List<Widget> hilightButton = widget.hilightData
         .asMap()
         .map((i, item) => MapEntry(
             i,
@@ -84,7 +83,7 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
           height: height * 0.24,
           child: TabBarView(
             controller: _tabController,
-            children: hilight_news,
+            children: hilightNews,
           ),
         ),
         SizedBox(
@@ -92,7 +91,7 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: hilight_button,
+          children: hilightButton,
         )
       ],
     );

@@ -1,7 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import '../widgets/home/searchbar.dart';
-import '../widgets/home/list_group.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);

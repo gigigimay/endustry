@@ -9,7 +9,7 @@ class KnowledgePage extends StatefulWidget {
 // รอรับค่าจากข้างนอก
   final suggestKnowledgeData = MOCK_KNOWLEDGE.reversed.toList();
   final knowledgeData = MOCK_KNOWLEDGE;
-  List favList = MOCK_USER.favKnowledges;
+  final List favList = MOCK_USER.favKnowledges;
 
   @override
   _KnowledgePageState createState() => _KnowledgePageState();
@@ -21,7 +21,6 @@ class _KnowledgePageState extends State<KnowledgePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),
@@ -39,16 +38,17 @@ class _KnowledgePageState extends State<KnowledgePage> {
                   ),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => KnowledgeListPage(
-                                  title: 'คลังความรู้ของฉัน',
-                                  favList: widget.favList,
-                                  knowledgeData: widget.knowledgeData
-                                      .where((item) =>
-                                          widget.favList.contains(item.id))
-                                      .toList(),
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => KnowledgeListPage(
+                          title: 'คลังความรู้ของฉัน',
+                          favList: widget.favList,
+                          knowledgeData: widget.knowledgeData
+                              .where((item) => widget.favList.contains(item.id))
+                              .toList(),
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],

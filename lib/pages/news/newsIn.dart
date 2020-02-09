@@ -3,7 +3,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsInPage extends StatefulWidget {
   NewsInPage({Key key, this.newsData}) : super(key: key);
-  News newsData;
+  final News newsData;
 
   @override
   _NewsInPageState createState() => _NewsInPageState();
@@ -12,7 +12,6 @@ class NewsInPage extends StatefulWidget {
 class _NewsInPageState extends State<NewsInPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     print(widget.newsData);
     return BgLayout(

@@ -36,10 +36,10 @@ class NewsType {
 }
 
 class User {
-  String id, firstName, lastName, email, imgUrl, typeId;
-  List<String> favKnowledges, interestedTopics;
+  final String id, firstName, lastName, email, imgUrl, typeId;
+  final List<String> favKnowledges, interestedTopics;
 
-  User({
+  const User({
     @required this.id,
     @required this.email,
     this.firstName,

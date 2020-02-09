@@ -32,7 +32,7 @@ class _NewsPageState extends State<NewsPage>
         children: <Widget>[
           PageAppBar(
             title: 'ข่าว',
-            haveBackArrow: selectedFilter != 'ข่าวทั้งหมด',
+            hasBackArrow: selectedFilter != 'ข่าวทั้งหมด',
             backArrowFunction: () {
               setState(() {
                 selectedFilter = 'ข่าวทั้งหมด';
@@ -94,13 +94,13 @@ class _NewsPageState extends State<NewsPage>
                       Column(
                           children: newsData
                               .where((item) {
-                                if (item.typeId == NEWSTYPES.first.id)
+                                if (item.typeId == MOCK_NEWSTYPES.first.id)
                                   return false;
                                 else if (selectedFilter == 'ข่าวทั้งหมด')
                                   return true;
                                 else
                                   return item.typeId ==
-                                      NEWSTYPES
+                                      MOCK_NEWSTYPES
                                           .where((item) =>
                                               item.typeName == selectedFilter)
                                           .first

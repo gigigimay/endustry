@@ -90,9 +90,22 @@ const List<News> MOCK_NEWS = [
       typeId: 'nwst02'),
 ];
 
-const List<NewsType> NEWSTYPES = [
+const List<NewsType> MOCK_NEWSTYPES = [
   NewsType(id: 'nwst00', typeName: 'hilight'),
   NewsType(id: 'nwst01', typeName: 'ข่าวประชาสัมพันธ์'),
   NewsType(id: 'nwst02', typeName: 'ข่าวประจำจังหวัด'),
   NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน')
+];
+
+User MOCK_USER = User(
+    id: 'user01',
+    email: 'nani@gmail.com',
+    firstName: 'แพร',
+    lastName: 'อ้วนนะ!',
+    typeId: 'ust01',
+    imgUrl: 'https://picsum.photos/200');
+
+const List<UserType> MOCK_USERTYPES = [
+  UserType(id: 'ust00', name: 'บุคคลทั่วไป'),
+  UserType(id: 'ust01', name: 'ผู้ประกอบการ'),
 ];

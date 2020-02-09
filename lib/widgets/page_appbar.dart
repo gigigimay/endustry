@@ -4,13 +4,13 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class PageAppBar extends StatefulWidget {
   PageAppBar(
       {Key key,
-      this.haveBackArrow = false,
+      this.hasBackArrow = false,
       this.backArrowFunction,
       this.actionWidget,
       @required this.title})
       : super(key: key);
 
-  final bool haveBackArrow;
+  final bool hasBackArrow;
   final VoidCallback backArrowFunction;
   final Widget actionWidget;
   final String title;
@@ -30,7 +30,7 @@ class _PageAppBarState extends State<PageAppBar> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              widget.haveBackArrow
+              widget.hasBackArrow
                   ? IconButtonInk(
                       onTap: widget.backArrowFunction,
                       icon: Icons.arrow_back_ios,

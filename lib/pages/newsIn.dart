@@ -21,7 +21,7 @@ class _NewsInPageState extends State<NewsInPage> {
         children: <Widget>[
           PageAppBar(
             title: 'ข่าว',
-            haveBackArrow: true,
+            hasBackArrow: true,
             backArrowFunction: () {
               Navigator.pop(context);
             },

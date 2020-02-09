@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-// colors
+// -------------------- colors --------------------
 const Color COLOR_PRIMARY = Color(0xff7F4192);
 const Color COLOR_BACKGROUND = Color(0xfff3f3f3);
 const Color COLOR_DISABLED = Color(0xffbebebe);
 const Color COLOR_BODY = Color(0xff414141);
+const Color COLOR_BORDER = Color(0xffbebebe);
+const Color COLOR_BORDER_LIGHT = Color(0xffe0e0e0);
 
-// spacing size
+// -------------------- spacing size --------------------
 /// 4
 const double SIZE_XS = 4.0;
 
@@ -25,10 +27,17 @@ const double SIZE_XL = 24.0;
 /// 32
 const double SIZE_XX = 32.0;
 
-// border radius
+// -------------------- border --------------------
+/// 1
+const double BORDER_WIDTH_NORMAL = 1.0;
+
+/// 5
+const double BORDER_WIDTH_THICK = 5.0;
+
+/// 10
 const double BORDER_RADIUS = 10.0;
 
-// font size
+// -------------------- font size --------------------
 /// 16
 const double FONT_SIZE_BODY = 16.0;
 
@@ -38,7 +47,7 @@ const double FONT_SIZE_HEAD = 24.0;
 /// 36
 const double FONT_SIZE_TITLE = 36.0;
 
-// font style
+// -------------------- font style --------------------
 const TextStyle TEXT_STYLE_BODY =
     TextStyle(fontSize: FONT_SIZE_BODY, color: COLOR_BODY);
 const TextStyle TEXT_STYLE_BODY_PRIMARY = TextStyle(
@@ -56,7 +65,7 @@ const TextStyle TEXT_STYLE_TITLE = TextStyle(
     fontWeight: FontWeight.w700,
     color: COLOR_PRIMARY);
 
-// boxShadow
+// -------------------- boxShadow --------------------
 const BoxShadow BOX_SHADOW = BoxShadow(
   color: Color(0x26000000),
   offset: Offset(0, 3),

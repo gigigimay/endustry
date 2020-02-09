@@ -12,8 +12,8 @@ class NewsFilterDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> filterNameList = ['ข่าวทั้งหมด'] +
-        NEWSTYPES
-            .where((item) => item.id != NEWSTYPES.first.id)
+        MOCK_NEWSTYPES
+            .where((item) => item.id != MOCK_NEWSTYPES.first.id)
             .toList()
             .map((item) => item.typeName)
             .toList();
@@ -49,7 +49,7 @@ class NewsFilterDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                item != NEWSTYPES.last.typeName.toString()
+                item != MOCK_NEWSTYPES.last.typeName.toString()
                     ? Divider(
                         height: 0,
                       )

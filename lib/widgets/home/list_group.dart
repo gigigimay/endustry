@@ -27,7 +27,7 @@ class ListGroup extends StatelessWidget {
                 )),
                 IconButtonInk(
                     icon: Icon(Icons.arrow_forward),
-                    onTap: () {
+                    onPressed: () {
                       if (this.goto != null)
                         Navigator.push(
                           context,

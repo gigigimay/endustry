@@ -37,7 +37,7 @@ class _KnowledgePageState extends State<KnowledgePage> {
                     AssetImage('assets/images/fav.png'),
                     color: CONSTANT.COLOR_PRIMARY,
                   ),
-                  onTap: () {
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(

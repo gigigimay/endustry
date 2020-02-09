@@ -10,22 +10,23 @@ class EditButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        children: <Widget>[
-          Text(
-            text,
-            style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
-          ),
-          SizedBox(width: CONSTANT.SIZE_MD),
-          Icon(
+    return Row(
+      children: <Widget>[
+        Text(
+          text,
+          style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
+        ),
+        SizedBox(width: CONSTANT.SIZE_XS),
+        IconButtonInk(
+          onPressed: onTap,
+          icon: Icon(
             Icons.edit,
             color: CONSTANT.COLOR_PRIMARY,
             size: CONSTANT.SIZE_XL,
-          )
-        ],
-      ),
+          ),
+        ),
+        SizedBox(width: 2),
+      ],
     );
   }
 }

@@ -8,7 +8,7 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButtonInk(
-      onTap: () => print('search'),
+      onPressed: () => print('search'),
       icon: Icon(Icons.search),
     );
   }

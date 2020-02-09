@@ -38,7 +38,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),
-              onTap: () {
+              onPressed: () {
                 setState(() {
                   widget.favStatus = !widget.favStatus;
                 });

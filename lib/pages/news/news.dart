@@ -43,7 +43,7 @@ class _NewsPageState extends State<NewsPage>
                 IconButtonInk(
                     icon: Icon(Icons.filter_list),
                     
-                    onTap: () {
+                    onPressed: () {
                       showDialog<void>(
                           context: context,
                           barrierDismissible: true,

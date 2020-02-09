@@ -7,13 +7,19 @@ class GradientButton extends StatelessWidget {
     @required this.onTap,
     @required this.text,
     this.child,
+    this.disabled = false,
     this.colors = const [CONSTANT.COLOR_PRIMARY, CONSTANT.COLOR_SECONDARY],
+    this.disabledColors = const [
+      CONSTANT.COLOR_BORDER_LIGHT,
+      CONSTANT.COLOR_DISABLED,
+    ],
   }) : super(key: key);
 
   final Function onTap;
   final String text;
   final Widget child;
-  final List<Color> colors;
+  final bool disabled;
+  final List<Color> colors, disabledColors;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class GradientButton extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           gradient: LinearGradient(
-            colors: colors,
+            colors: disabled ? disabledColors : colors,
             begin: Alignment.topLeft,
             end: Alignment.topRight,
           )),
@@ -29,7 +35,7 @@ class GradientButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(999),
-          onTap: onTap,
+          onTap: disabled ? null : onTap,
           child: Container(
             padding: EdgeInsets.symmetric(
                 vertical: CONSTANT.SIZE_SM, horizontal: CONSTANT.SIZE_XX),

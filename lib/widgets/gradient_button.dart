@@ -4,7 +4,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class GradientButton extends StatelessWidget {
   const GradientButton({
     Key key,
-    @required this.onTap,
+    @required this.onPressed,
     @required this.text,
     this.child,
     this.disabled = false,
@@ -15,7 +15,7 @@ class GradientButton extends StatelessWidget {
     ],
   }) : super(key: key);
 
-  final Function onTap;
+  final Function onPressed;
   final String text;
   final Widget child;
   final bool disabled;
@@ -25,17 +25,18 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(999),
-          gradient: LinearGradient(
-            colors: disabled ? disabledColors : colors,
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-          )),
+        borderRadius: BorderRadius.circular(999),
+        gradient: LinearGradient(
+          colors: disabled ? disabledColors : colors,
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+        ),
+      ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(999),
-          onTap: disabled ? null : onTap,
+          onTap: disabled ? null : onPressed,
           child: Container(
             padding: EdgeInsets.symmetric(
                 vertical: CONSTANT.SIZE_SM, horizontal: CONSTANT.SIZE_XX),
@@ -43,9 +44,10 @@ class GradientButton extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: CONSTANT.FONT_SIZE_HEAD,
-                      color: Colors.white),
+                    fontWeight: FontWeight.w700,
+                    fontSize: CONSTANT.FONT_SIZE_HEAD,
+                    color: Colors.white,
+                  ),
                 ),
           ),
         ),

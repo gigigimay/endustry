@@ -4,12 +4,56 @@ import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
 class EditProfilePage extends StatelessWidget {
-  EditProfilePage({Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return EditProfileForm();
+  }
+}
 
-  final _formKey = GlobalKey<FormState>();
-
+class EditProfileForm extends StatefulWidget {
   final User userData = MOCK_USER;
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
+  final List<UserType> userTypesData = MOCK_USERTYPES;
+
+  @override
+  _EditProfileFormState createState() => _EditProfileFormState();
+}
+
+class _EditProfileFormState extends State<EditProfileForm> {
+  final _formKey = GlobalKey<FormState>();
+  bool _isValid = true;
+  var _form = {};
+
+  @override
+  void initState() {
+    print('_form000 >> ' + _form.runtimeType.toString());
+    _form = {
+      "firstName": widget.userData.firstName,
+      "lastName": widget.userData.lastName,
+      "email": widget.userData.email,
+      "typeId": widget.userData.typeId,
+      "interestedTopics": widget.userData.interestedTopics,
+      "imgUrl": widget.userData.imgUrl,
+    };
+    super.initState();
+  }
+
+  void validateForm() {
+    this.setState(() {
+      _isValid = _formKey.currentState.validate();
+    });
+  }
+
+  void submitForm() {
+    print('_form >> ' + _form.toString());
+    // TODO: update profile
+  }
+
+  Function saveForm(key) => (value) {
+        setState(() {
+          _form[key] = value;
+        });
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -17,22 +61,21 @@ class EditProfilePage extends StatelessWidget {
     final double avatarSize = width * 0.4;
 
     String userType =
-        MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
+        widget.userTypesData.firstWhere((UserType t) => t.id == _form['typeId']).name;
 
-    List<String> keywords = userData.interestedTopics.map((String id) {
-      Keyword keyword = keywordsData.firstWhere((Keyword k) => k.id == id);
+    List keywords = _form['interestedTopics'].map((String id) {
+      Keyword keyword =
+          widget.keywordsData.firstWhere((Keyword k) => k.id == id);
       return keyword?.name;
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
-
-    print('form >> ' + _formKey.toString());
 
     return BoxLayout(
       title: 'แก้ไขโปรไฟล์',
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        imgUrl: userData.imgUrl,
+        imgUrl: _form['imgUrl'],
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(
@@ -43,12 +86,14 @@ class EditProfilePage extends StatelessWidget {
       ),
       bottomWidget: GradientButton(
         text: 'บันทึก',
-        onTap: () => print('save!'),
+        disabled: !_isValid,
+        onPressed: submitForm,
       ),
       // TODO: submit form
       child: Form(
         key: _formKey,
         autovalidate: true,
+        onChanged: validateForm,
         child: Column(
           children: <Widget>[
             PageScrollBody(
@@ -57,20 +102,24 @@ class EditProfilePage extends StatelessWidget {
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
-                    initialValue: userData.firstName,
+                    initialValue: _form['firstName'],
+                    onChanged: saveForm('firstName'),
                   ),
                   Input(
                     hintText: 'นามสกุล',
-                    initialValue: userData.lastName,
+                    initialValue: _form['lastName'],
+                    onChanged: saveForm('lastName'),
                   ),
                   Input(
                     hintText: 'อีเมล์',
-                    initialValue: userData.email,
+                    initialValue: _form['email'],
+                    onChanged: saveForm('email'),
                     validator: (String value) =>
                         CONSTANT.REGEX_EMAIL.hasMatch(value)
                             ? null
                             : 'อีเมล์ไม่ถูกต้อง',
                   ),
+                  // TODO: edit password
                   Input(
                     initialValue: '••••••••••',
                     readOnly: true,
@@ -103,7 +152,7 @@ class EditProfilePage extends StatelessWidget {
                     spacing: CONSTANT.SIZE_XL,
                     runSpacing: 0.0,
                     children: keywords
-                        .map((String word) => Chip(
+                        .map((word) => Chip(
                               padding: EdgeInsets.all(0),
                               label: Text(
                                 word,

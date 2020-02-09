@@ -33,7 +33,6 @@ class NewsType {
   const NewsType({@required this.id, this.typeName});
 }
 
-<<<<<<< HEAD
 class User {
   String id, firstName, lastName, email, imgUrl, typeId;
   User(
@@ -53,8 +52,6 @@ class UserType {
   });
 }
 
-=======
->>>>>>> 10ed6e64e56bbf6cc2d876a0aa03b0b5d500d570
 class Knowledge {
   final id, title, content, attachurl, date, author, fav;
   const Knowledge(

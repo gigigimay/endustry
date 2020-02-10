@@ -18,6 +18,31 @@ class SearchItemList extends StatelessWidget {
   final List<Service> serviceResult;
   final List<Knowledge> knowledgeResult;
 
+  showBottomContainer() {
+    int newsL = newsResult.length;
+    int serviceL = serviceResult.length;
+    int knowledgeL = knowledgeResult.length;
+
+    switch (mode) {
+      case CONSTANT.WORD_NEWS_TH:
+        if (newsL == 0) return false;
+        break;
+      case CONSTANT.WORD_SERVICE_TH:
+        if (serviceL == 0) return false;
+        break;
+      case CONSTANT.WORD_KNOWLEDGE_TH:
+        if (knowledgeL == 0) return false;
+        break;
+      case CONSTANT.WORD_ALL_TH:
+        if (newsL + serviceL + knowledgeL == 0) return false;
+        break;
+      default:
+        return true;
+    }
+
+    return true;
+  }
+
   List<Widget> getSearchItemList(BuildContext context) {
     List<Widget> listSearchItem = [];
 
@@ -67,7 +92,6 @@ class SearchItemList extends StatelessWidget {
         break;
       case CONSTANT.WORD_SERVICE_TH:
         listSearchItem = serviceItems;
-
         break;
       case CONSTANT.WORD_KNOWLEDGE_TH:
         listSearchItem = knowledgeItems;
@@ -99,7 +123,7 @@ class SearchItemList extends StatelessWidget {
                 : List<Widget>());
     }
 
-    if (newsResult.length + serviceResult.length + knowledgeResult.length > 0) {
+    if (showBottomContainer()) {
       listSearchItem.add(Container(
         height: CONSTANT.SIZE_MD,
         decoration: BoxDecoration(

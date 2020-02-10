@@ -62,10 +62,35 @@ class _SearchPageState extends State<SearchPage> {
           if (knowledgeL == 0) text = none;
           break;
         default:
-          if (newsL + serviceL + knowledgeL <= 0) text = none;
+          if (newsL + serviceL + knowledgeL == 0) text = none;
       }
 
       return text;
+    }
+
+    showBottomDivider() {
+      int newsL = newsResult.length;
+      int serviceL = serviceResult.length;
+      int knowledgeL = knowledgeResult.length;
+
+      switch (mode) {
+        case CONSTANT.WORD_NEWS_TH:
+          if (newsL == 0) return false;
+          break;
+        case CONSTANT.WORD_SERVICE_TH:
+          if (serviceL == 0) return false;
+          break;
+        case CONSTANT.WORD_KNOWLEDGE_TH:
+          if (knowledgeL == 0) return false;
+          break;
+        case CONSTANT.WORD_ALL_TH:
+          if (newsL + serviceL + knowledgeL == 0) return false;
+          break;
+        default:
+          return true;
+      }
+
+      return true;
     }
 
     return BgLayout(
@@ -116,20 +141,13 @@ class _SearchPageState extends State<SearchPage> {
                         mode: mode,
                         state: this,
                       ),
-                      newsResult.length +
-                                  serviceResult.length +
-                                  knowledgeResult.length >
-                              0
-                          ? Column(
-                              children: <Widget>[
-                                Container(
-                                  color: Colors.white,
-                                  height: CONSTANT.SIZE_XS,
-                                ),
-                                Divider(
-                                  height: 0,
-                                ),
-                              ],
+                      showBottomDivider()
+                          ? Container(
+                              color: Colors.white,
+                              height: CONSTANT.SIZE_XS,
+                              child: Divider(
+                                height: 0,
+                              ),
                             )
                           : Container(),
                     ],

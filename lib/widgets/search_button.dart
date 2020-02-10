@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/searchPage.dart';
+import 'package:endustry/pages/search/searchPage.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({

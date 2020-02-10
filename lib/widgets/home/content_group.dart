@@ -1,4 +1,3 @@
-
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
@@ -38,7 +37,7 @@ class ContentGroup extends StatelessWidget {
           children: <Widget>[
             Text('ดูทั้งหมด', style: CONSTANT.TEXT_STYLE_BODY_PRIMARY),
             IconButtonInk(
-              onTap: onSeeAll ?? () => print('see all'),
+              onPressed: onSeeAll ?? () => print('see all'),
               icon: Transform.rotate(
                 angle: 22 / 7,
                 child: Icon(Icons.keyboard_backspace),

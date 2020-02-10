@@ -74,7 +74,7 @@ const BoxShadow BOX_SHADOW = BoxShadow(
 );
 
 // -------------------- boxShadow --------------------
-RegExp REGEX_EMAIL = new RegExp(
+RegExp REGEX_EMAIL = RegExp(
   r'[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$',
   caseSensitive: false,
   multiLine: false,

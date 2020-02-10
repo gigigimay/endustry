@@ -7,7 +7,7 @@ export './mock_data.dart';
 // ==========  pages  ==========
 export 'pages/home.dart';
 export 'pages/news/news.dart';
-export 'pages/service.dart';
+export 'pages/service/service.dart';
 export 'pages/knowledge/knowledge.dart';
 export 'pages/menu/menu.dart';
 

@@ -1,7 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/icon_button_ink.dart';
-import './list_item.dart';
 
 class ListGroup extends StatelessWidget {
   const ListGroup({Key key, this.title, this.items, this.goto})
@@ -27,7 +26,7 @@ class ListGroup extends StatelessWidget {
                 )),
                 IconButtonInk(
                     icon: Icon(Icons.arrow_forward),
-                    onTap: () {
+                    onPressed: () {
                       if (this.goto != null)
                         Navigator.push(
                           context,

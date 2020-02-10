@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/edit_profile.dart';
+import 'package:endustry/pages/edit_profile/edit_profile.dart';
+import '../../widgets/menu/profile_avatar.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key key, @required this.userData}) : super(key: key);
@@ -11,7 +12,6 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double avatarSize = width * 0.25;
-    double editSize = avatarSize * 0.4;
     String userType =
         MOCK_USERTYPES.firstWhere((UserType t) => t.id == userData.typeId).name;
 
@@ -19,40 +19,16 @@ class UserProfile extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_SM),
-          child: Stack(children: <Widget>[
-            Container(
-              width: avatarSize,
-              height: avatarSize,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: CONSTANT.COLOR_BORDER_LIGHT,
-                      width: CONSTANT.BORDER_WIDTH_THICK),
-                  borderRadius: BorderRadius.circular(999)),
-              child: CircleAvatar(
-                  radius: 999, backgroundImage: NetworkImage(userData.imgUrl)),
-            ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: Container(
-                width: editSize,
-                height: editSize,
-                child: FittedBox(
-                  child: FloatingActionButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => EditProfilePage()));
-                      },
-                      backgroundColor: CONSTANT.COLOR_PRIMARY,
-                      elevation: 0,
-                      child:
-                          Transform.scale(scale: 1.2, child: Icon(Icons.edit))),
-                ),
-              ),
-            )
-          ]),
+          child: ProfileAvatar(
+            fabIcon: Icon(Icons.edit, size: CONSTANT.SIZE_XL,),
+            imgUrl: userData.imgUrl,
+            avatarSize: avatarSize,
+            fabSize: avatarSize * 0.4,
+            fabAction: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EditProfilePage()));
+            },
+          ),
         ),
         SizedBox(width: CONSTANT.SIZE_MD),
         Column(

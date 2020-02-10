@@ -3,7 +3,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsInPage extends StatefulWidget {
   NewsInPage({Key key, this.newsData}) : super(key: key);
-  News newsData;
+  final News newsData;
 
   @override
   _NewsInPageState createState() => _NewsInPageState();
@@ -12,7 +12,6 @@ class NewsInPage extends StatefulWidget {
 class _NewsInPageState extends State<NewsInPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     print(widget.newsData);
     return BgLayout(
@@ -28,11 +27,7 @@ class _NewsInPageState extends State<NewsInPage> {
           ),
           PageScrollBody(
             child: PagePadding(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+              child: RoundedBox(
                 child: Padding(
                   padding: const EdgeInsets.all(CONSTANT.SIZE_MD),
                   child: Column(
@@ -60,11 +55,8 @@ class _NewsInPageState extends State<NewsInPage> {
                       SizedBox(
                         height: CONSTANT.SIZE_SM,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-                            color: Colors.purple[50]),
+                      RoundedBox(
+                        color: Colors.purple[50],
                         height: height * 0.24,
                         child: FittedBox(
                             fit: BoxFit.contain, child: FlutterLogo()),

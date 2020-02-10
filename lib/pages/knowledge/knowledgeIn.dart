@@ -5,8 +5,8 @@ class KnowledgeInPage extends StatefulWidget {
   KnowledgeInPage({Key key, this.knowledgeData, this.favStatus})
       : super(key: key);
 
-  Knowledge knowledgeData;
-  bool favStatus;
+  final Knowledge knowledgeData;
+  final bool favStatus;
 
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
@@ -15,13 +15,15 @@ class KnowledgeInPage extends StatefulWidget {
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
   @override
   void initState() {
+    _fav = widget.favStatus;
     super.initState();
   }
+
+  bool _fav;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),
       child: Column(
@@ -38,11 +40,11 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),
-              onTap: () {
+              onPressed: () {
                 setState(() {
-                  widget.favStatus = !widget.favStatus;
+                  _fav = !_fav;
                 });
-                // update fav status
+                // TODO: update fav status
               },
             ),
           ),

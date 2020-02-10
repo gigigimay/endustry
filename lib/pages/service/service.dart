@@ -9,6 +9,7 @@ class ServicePage extends StatelessWidget {
 
   final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = MOCK_SERVICES;
+  final List<Service> servicesData = MOCK_SERVICES;
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +41,22 @@ class ServicePage extends StatelessWidget {
                             ))
                         .toList(),
                   ),
-                  // ContentGroup(
-                  //   title: 'บริการแนะนำสำหรับคุณ',
-                  //   // TODO: add onSeeAll
-                  //   children: suggestedServicesData
-                  //       .sublist(0, 4)
-                  //       .map((Service service) => ListItem(
-                  //             label: service.name,
-                  //             itemWidth: itemWidth,
-                  //             imageHeight: itemWidth * 2 / 3,
-                  //             padding: EdgeInsets.all(0),
-                  //             // TODO: add onPressed
-                  //           ))
-                  //       .toList(),
-                  // ),
+                  ContentGroup(
+                    title: 'บริการแนะนำสำหรับคุณ',
+                    // TODO: add onSeeAll
+                    children: suggestedServicesData
+                        .sublist(0, 4)
+                        .map((Service service) => ListItem(
+                              label: service.name,
+                              itemWidth: itemWidth,
+                              imageHeight: itemWidth * 2 / 3,
+                              padding: EdgeInsets.all(0),
+                              // TODO: add onPressed
+                            ))
+                        .toList(),
+                  ),
                   SizedBox(height: CONSTANT.SIZE_XX),
-                  ServiceList(itemWidth: itemWidth, width: width),
+                  ServiceList(servicesData: servicesData),
                 ],
               ),
             ),

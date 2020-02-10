@@ -6,12 +6,10 @@ import './service_item.dart';
 class ServiceList extends StatelessWidget {
   const ServiceList({
     Key key,
-    @required this.itemWidth,
-    @required this.width,
+    this.servicesData,
   }) : super(key: key);
 
-  final double itemWidth;
-  final double width;
+  final List<Service> servicesData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +28,9 @@ class ServiceList extends StatelessWidget {
             child: Wrap(
               spacing: CONSTANT.SIZE_XL,
               runSpacing: CONSTANT.SIZE_XL,
-              children: <Widget>[
-                ServiceItem(itemWidth: itemWidth, width: width),
-                ServiceItem(itemWidth: itemWidth, width: width),
-                ServiceItem(itemWidth: itemWidth, width: width),
-                ServiceItem(itemWidth: itemWidth, width: width),
-                ServiceItem(itemWidth: itemWidth, width: width),
-              ],
+              children: servicesData
+                  .map((Service item) => ServiceItem(serviceData: item))
+                  .toList(),
             ),
           ),
         )

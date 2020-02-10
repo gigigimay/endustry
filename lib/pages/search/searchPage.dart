@@ -33,93 +33,93 @@ class _SearchPageState extends State<SearchPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    var newsResult = searchNewsData
+        .where((item) => item.title.contains(searchWord))
+        .toList();
+    var serviceResult = searchServiceData
+        .where((item) => item.name.contains(searchWord))
+        .toList();
+    var knowledgeResult = searchKnowledgeData
+        .where((item) => item.title.contains(searchWord))
+        .toList();
+
     return BgLayout(
       child: PagePadding(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    SearchField(
-                      textEditingController: _textEditingController,
-                      onChange: (text) {
-                        setState(() {
-                          searchWord = text;
-                        });
-                      },
-                      onClear: () {
-                        setState(() {
-                          _textEditingController.clear();
-                          searchWord = _textEditingController.text;
-                        });
-                      },
-                    ),
-                    Divider(
-                      height: 0,
-                    ),
-                    SizedBox(
-                      height: CONSTANT.SIZE_SM,
-                    ),
-                    TopicBtnGroup(
-                      mode: mode,
-                      state: this,
-                    ),
-                    Divider(
-                      height: CONSTANT.SIZE_LG,
-                    ),
-                  ],
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+              child: Column(
+                children: <Widget>[
+                  SearchField(
+                    textEditingController: _textEditingController,
+                    onChange: (text) {
+                      setState(() {
+                        searchWord = text;
+                      });
+                    },
+                    onClear: () {
+                      setState(() {
+                        _textEditingController.clear();
+                        searchWord = _textEditingController.text;
+                      });
+                    },
+                  ),
+                  Divider(
+                    height: 0,
+                  ),
+                  SizedBox(
+                    height: CONSTANT.SIZE_SM,
+                  ),
+                  TopicBtnGroup(
+                    mode: mode,
+                    state: this,
+                  ),
+                  newsResult.length +
+                              serviceResult.length +
+                              knowledgeResult.length >
+                          0
+                      ? Column(
+                          children: <Widget>[
+                            Container(
+                              color: Colors.white,
+                              height: CONSTANT.SIZE_XS,
+                            ),
+                            Divider(
+                              height: 0,
+                            ),
+                          ],
+                        )
+                      : Container(),
+                ],
               ),
-              Expanded(
-                child: Scrollbar(
-                  child: Container(
-                    child: SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _scrollController,
-                      child: SearchItemList(
-                        mode: mode,
-                        newsResult: searchNewsData
-                            .where((item) => item.title.contains(searchWord))
-                            .toList(),
-                        serviceResult: searchServiceData
-                            .where((item) => item.name.contains(searchWord))
-                            .toList(),
-                        knowledgeResult: searchKnowledgeData
-                            .where((item) => item.title.contains(searchWord))
-                            .toList(),
-                      ),
-                    ),
+            ),
+            Expanded(
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  physics: ClampingScrollPhysics(),
+                  controller: _scrollController,
+                  child: SearchItemList(
+                    mode: mode,
+                    newsResult: searchNewsData
+                        .where((item) => item.title.contains(searchWord))
+                        .toList(),
+                    serviceResult: searchServiceData
+                        .where((item) => item.name.contains(searchWord))
+                        .toList(),
+                    knowledgeResult: searchKnowledgeData
+                        .where((item) => item.title.contains(searchWord))
+                        .toList(),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-// TODO: custom scrollbar
-
-// Draggable(
-//   axis: Axis.vertical,
-//   feedback: Container(
-//     decoration: BoxDecoration(color: CONSTANT.COLOR_PRIMARY),
-//     height: 100,
-//     width: 10,
-//   ),
-//   child: Container(
-//     decoration: BoxDecoration(color: CONSTANT.COLOR_PRIMARY),
-//     height: 100,
-//     width: 10,
-//   ),
-//   childWhenDragging: Container(
-//     decoration: BoxDecoration(color: Colors.transparent),
-//     height: 100,
-//     width: 10,
-//   ),
-// ),

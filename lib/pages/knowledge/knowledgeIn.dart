@@ -2,21 +2,23 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class KnowledgeInPage extends StatefulWidget {
-  KnowledgeInPage({Key key, this.knowledgeData, this.favStatus})
-      : super(key: key);
+  KnowledgeInPage({Key key, this.knowledgeData}) : super(key: key);
 
-  final Knowledge knowledgeData;
-  final bool favStatus;
+  Knowledge knowledgeData;
 
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
 }
 
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
+  bool favStatus;
+
   @override
   void initState() {
-    _fav = widget.favStatus;
+    // _fav = widget.favStatus;
     super.initState();
+    // TODO: change to get data from real user
+    _fav = MOCK_USER.favKnowledges.contains(widget.knowledgeData.id);
   }
 
   bool _fav;
@@ -36,7 +38,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
             },
             actionWidget: IconButtonInk(
               icon: Icon(
-                widget.favStatus ? Icons.star : Icons.star_border,
+                favStatus ? Icons.star : Icons.star_border,
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),

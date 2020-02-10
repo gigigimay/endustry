@@ -10,6 +10,7 @@ class ServicePage extends StatelessWidget {
   final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = MOCK_SERVICES;
   final List<Service> servicesData = MOCK_SERVICES;
+  final List<Department> departmentsData = MOCK_DEPARTMENT;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,12 @@ class ServicePage extends StatelessWidget {
                         .toList(),
                   ),
                   SizedBox(height: CONSTANT.SIZE_XX),
-                  ServiceList(servicesData: servicesData),
+                  Container(
+                    child: ServiceList(
+                      servicesData: servicesData,
+                      departmentsData: departmentsData,
+                    ),
+                  ),
                 ],
               ),
             ),

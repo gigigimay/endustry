@@ -4,10 +4,10 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class ServiceItem extends StatelessWidget {
   const ServiceItem({
     Key key,
-    @required this.serviceData
+    @required this.text,
   }) : super(key: key);
 
-  final Service serviceData;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ServiceItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-        onTap: () => print('tap: ' + serviceData.name),
+        onTap: () => print('tap: ' + text),
         child: Container(
           width: itemWidth,
           child: Column(
@@ -36,7 +36,7 @@ class ServiceItem extends StatelessWidget {
               ),
               SizedBox(height: CONSTANT.SIZE_SM),
               Text(
-                serviceData.name,
+                text,
                 style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

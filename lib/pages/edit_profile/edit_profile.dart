@@ -124,7 +124,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     initialValue: '••••••••••',
                     readOnly: true,
                     obscureText: true,
-                    suffixText: 'แก้ไข',
+                    suffixText: 'เปลี่ยนรหัสผ่าน',
                     suffixIcon: IconButtonInk(
                       padding: EdgeInsets.all(0),
                       onPressed: () => print('edit!'),

@@ -43,6 +43,31 @@ class _SearchPageState extends State<SearchPage> {
         .where((item) => item.title.contains(searchWord) && searchWord != '')
         .toList();
 
+    getSerchStatusText() {
+      String text = '';
+      String none = 'ไม่พบผลลัพธ์';
+
+      int newsL = newsResult.length;
+      int serviceL = serviceResult.length;
+      int knowledgeL = knowledgeResult.length;
+
+      switch (mode) {
+        case CONSTANT.WORD_NEWS_TH:
+          if (newsL == 0) text = none;
+          break;
+        case CONSTANT.WORD_SERVICE_TH:
+          if (serviceL == 0) text = none;
+          break;
+        case CONSTANT.WORD_KNOWLEDGE_TH:
+          if (knowledgeL == 0) text = none;
+          break;
+        default:
+          if (newsL + serviceL + knowledgeL <= 0) text = none;
+      }
+
+      return text;
+    }
+
     return BgLayout(
       child: PagePadding(
         child: Stack(
@@ -50,14 +75,7 @@ class _SearchPageState extends State<SearchPage> {
             Center(
               // TODO: แก้ word
               child: Text(
-                searchWord == ''
-                    ? 'แพรอ้วน & เมอ้วน'
-                    : newsResult.length +
-                                serviceResult.length +
-                                knowledgeResult.length <=
-                            0
-                        ? 'ไม่พบผลลัพธ์'
-                        : '',
+                searchWord == '' ? 'แพรอ้วน & เมอ้วน' : getSerchStatusText(),
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_HEAD,
                     fontWeight: FontWeight.w700,

@@ -34,88 +34,104 @@ class _SearchPageState extends State<SearchPage> {
     double width = MediaQuery.of(context).size.width;
 
     var newsResult = searchNewsData
-        .where((item) => item.title.contains(searchWord))
+        .where((item) => item.title.contains(searchWord) && searchWord != '')
         .toList();
     var serviceResult = searchServiceData
-        .where((item) => item.name.contains(searchWord))
+        .where((item) => item.name.contains(searchWord) && searchWord != '')
         .toList();
     var knowledgeResult = searchKnowledgeData
-        .where((item) => item.title.contains(searchWord))
+        .where((item) => item.title.contains(searchWord) && searchWord != '')
         .toList();
 
     return BgLayout(
       child: PagePadding(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-              child: Column(
-                children: <Widget>[
-                  SearchField(
-                    textEditingController: _textEditingController,
-                    onChange: (text) {
-                      setState(() {
-                        searchWord = text;
-                      });
-                    },
-                    onClear: () {
-                      setState(() {
-                        _textEditingController.clear();
-                        searchWord = _textEditingController.text;
-                      });
-                    },
-                  ),
-                  Divider(
-                    height: 0,
-                  ),
-                  SizedBox(
-                    height: CONSTANT.SIZE_SM,
-                  ),
-                  TopicBtnGroup(
-                    mode: mode,
-                    state: this,
-                  ),
-                  newsResult.length +
-                              serviceResult.length +
-                              knowledgeResult.length >
-                          0
-                      ? Column(
-                          children: <Widget>[
-                            Container(
-                              color: Colors.white,
-                              height: CONSTANT.SIZE_XS,
-                            ),
-                            Divider(
-                              height: 0,
-                            ),
-                          ],
-                        )
-                      : Container(),
-                ],
+            Center(
+              // TODO: แก้ word
+              child: Text(
+                searchWord == ''
+                    ? 'แพรอ้วน & เมอ้วน'
+                    : newsResult.length +
+                                serviceResult.length +
+                                knowledgeResult.length <=
+                            0
+                        ? 'ไม่พบผลลัพธ์'
+                        : '',
+                style: TextStyle(
+                    fontSize: CONSTANT.FONT_SIZE_HEAD,
+                    fontWeight: FontWeight.w700,
+                    color: CONSTANT.COLOR_DISABLED),
               ),
             ),
-            Expanded(
-              child: Scrollbar(
-                child: SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
-                  controller: _scrollController,
-                  child: SearchItemList(
-                    mode: mode,
-                    newsResult: searchNewsData
-                        .where((item) => item.title.contains(searchWord))
-                        .toList(),
-                    serviceResult: searchServiceData
-                        .where((item) => item.name.contains(searchWord))
-                        .toList(),
-                    knowledgeResult: searchKnowledgeData
-                        .where((item) => item.title.contains(searchWord))
-                        .toList(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+                  child: Column(
+                    children: <Widget>[
+                      SearchField(
+                        textEditingController: _textEditingController,
+                        onChange: (text) {
+                          setState(() {
+                            searchWord = text;
+                          });
+                        },
+                        onClear: () {
+                          setState(() {
+                            _textEditingController.clear();
+                            searchWord = _textEditingController.text;
+                          });
+                        },
+                      ),
+                      Divider(
+                        height: 0,
+                      ),
+                      SizedBox(
+                        height: CONSTANT.SIZE_SM,
+                      ),
+                      TopicBtnGroup(
+                        mode: mode,
+                        state: this,
+                      ),
+                      newsResult.length +
+                                  serviceResult.length +
+                                  knowledgeResult.length >
+                              0
+                          ? Column(
+                              children: <Widget>[
+                                Container(
+                                  color: Colors.white,
+                                  height: CONSTANT.SIZE_XS,
+                                ),
+                                Divider(
+                                  height: 0,
+                                ),
+                              ],
+                            )
+                          : Container(),
+                    ],
                   ),
                 ),
-              ),
+                Expanded(
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      physics: ClampingScrollPhysics(),
+                      controller: _scrollController,
+                      child: SearchItemList(
+                        mode: mode,
+                        newsResult: newsResult,
+                        serviceResult: serviceResult,
+                        knowledgeResult: knowledgeResult,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

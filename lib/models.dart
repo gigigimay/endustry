@@ -78,3 +78,14 @@ class Keyword {
     @required this.name,
   });
 }
+
+class Department {
+  final String id, name, description, image, url;
+  const Department({
+    @required this.id,
+    @required this.name,
+    this.description,
+    this.image,
+    this.url,
+  });
+}

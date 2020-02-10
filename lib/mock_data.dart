@@ -194,3 +194,34 @@ const List<Keyword> MOCK_KEYWORDS = [
   Keyword(id: 'kw14', name: 'แต่ลืมไปว่าสวยแล้ว'),
   Keyword(id: 'kw15', name: 'โคโรน่า'),
 ];
+
+const List<Department> MOCK_DEPARTMENT = [
+  Department(
+    id: 'dep01',
+    name: 'ผนงรจตกม',
+    description: 'ผู้นำโง่เราจะตายกันหมด',
+    url: 'https://www.google.com/',
+    image: 'https://picsum.photos/200',
+  ),
+  Department(
+    id: 'dep02',
+    name: 'คะน้าหมูกรอบ',
+    description: 'เรื่องราวเกี่ยวกับพี่น้องสองคน พี่ชายได้รับการตัดสินว่าเป็นอาชญากร แต่เขาไม่ได้ทำ',
+    url: 'https://www.google.com/',
+    image: 'https://picsum.photos/200',
+  ),
+  Department(
+    id: 'dep03',
+    name: 'รู้จักประเทศที่ สวยกว่าสวิสเซอร์แลนด์ แต่ถูกกว่าเมืองไทย',
+    description: 'น้องชายของลินคอล์นผู้เฉลียวฉลาดเป็นวิศวกรโครงสร้างชื่อ ไมเคิล ได้พยายามจะวางแผนช่วยพี่ชายของเขาหนีออกจากคุกทำการปล้นธนาคารเพื่อให้ได้จำคุก',
+    url: 'https://www.google.com/',
+    image: 'https://picsum.photos/200',
+  ),
+  Department(
+    id: 'dep04',
+    name: 'มีปราสาทเก่าแก่ของเยอรมนี ภูเขาที่ปกคลุมด้วยหิมะของสวิตเซอร์แลนด์',
+    description: 'ที่คุกฟอกซ์ริเวอร์ที่เดียวกับพี่ชาย และเขาต้องร่วมมือกับนักโทษภายในคุกเพื่อจะช่วยพี่ชายของเขาออกมา',
+    url: 'https://www.google.com/',
+    image: 'https://picsum.photos/200',
+  ),
+];

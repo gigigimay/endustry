@@ -15,12 +15,14 @@ class KnowledgeItem extends StatelessWidget {
     return GestureDetector(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => KnowledgeInPage(
-                        knowledgeData: knowledgeData,
-                        favStatus: favStatus,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => KnowledgeInPage(
+                knowledgeData: knowledgeData,
+                favStatus: favStatus,
+              ),
+            ),
+          );
         },
         child: Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_MD),

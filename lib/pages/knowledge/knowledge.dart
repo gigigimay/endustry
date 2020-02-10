@@ -7,8 +7,8 @@ class KnowledgePage extends StatefulWidget {
   KnowledgePage({Key key}) : super(key: key);
 
 // รอรับค่าจากข้างนอก
-  final suggestKnowledgeData = MOCK_KNOWLEDGE.reversed.toList();
-  final knowledgeData = MOCK_KNOWLEDGE;
+  final suggestKnowledgeData = MOCK_KNOWLEDGES.reversed.toList();
+  final knowledgeData = MOCK_KNOWLEDGES;
   final List favList = MOCK_USER.favKnowledges;
 
   @override

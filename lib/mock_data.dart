@@ -132,7 +132,7 @@ const List<UserType> MOCK_USERTYPES = [
   ),
 ];
 
-const List<Knowledge> MOCK_KNOWLEDGE = [
+const List<Knowledge> MOCK_KNOWLEDGES = [
   Knowledge(
     id: 'knw01',
     title: 'โดดดิด่ง',

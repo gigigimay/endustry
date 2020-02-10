@@ -5,9 +5,11 @@ class ServiceItem extends StatelessWidget {
   const ServiceItem({
     Key key,
     @required this.text,
+    this.onPressed
   }) : super(key: key);
 
   final String text;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class ServiceItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-        onTap: () => print('tap: ' + text),
+        onTap: onPressed ?? () => print('tap: ' + text),
         child: Container(
           width: itemWidth,
           child: Column(

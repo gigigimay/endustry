@@ -32,7 +32,10 @@ class _PageAppBarState extends State<PageAppBar> {
             children: <Widget>[
               widget.hasBackArrow
                   ? IconButtonInk(
-                      onPressed: widget.backArrowFunction,
+                      onPressed: widget.backArrowFunction ??
+                          () {
+                            Navigator.pop(context);
+                          },
                       icon: Icon(
                         Icons.arrow_back_ios,
                         color: Theme.of(context).primaryColor,

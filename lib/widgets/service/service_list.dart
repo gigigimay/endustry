@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/service/service_in.dart';
 import './tab_menu.dart';
 import './service_item.dart';
 
@@ -52,7 +53,17 @@ class _ServiceListState extends State<ServiceList> {
               spacing: CONSTANT.SIZE_XL,
               runSpacing: CONSTANT.SIZE_XL,
               children: listData
-                  .map((item) => ServiceItem(text: item.name))
+                  .map((item) => ServiceItem(
+                        text: item.name,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ServiceInPage(serviceData: item)),
+                          );
+                        },
+                      ))
                   .toList(),
             ),
           ),

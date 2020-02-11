@@ -17,7 +17,6 @@ export 'pages/menu/menu.dart';
 // ==========  shared widgets  ==========
 // layouts
 export 'widgets/bg_layout.dart';
-export 'widgets/box_layout.dart';
 
 // container / part of layout
 export 'widgets/page_padding.dart';

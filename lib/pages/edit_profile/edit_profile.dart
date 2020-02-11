@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
@@ -70,7 +71,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
-    return BoxLayout(
+    return EditProfileLayout(
       title: 'แก้ไขโปรไฟล์',
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,

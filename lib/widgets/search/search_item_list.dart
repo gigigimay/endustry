@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledgeIn.dart';
-import 'package:endustry/pages/news/newsIn.dart';
-import 'package:endustry/widgets/search/searchItems.dart';
+import 'package:endustry/pages/knowledge/knowledge_in.dart';
+import 'package:endustry/pages/news/news_in.dart';
+import 'package:endustry/widgets/search/search_items.dart';
 
 class SearchItemList extends StatelessWidget {
   const SearchItemList(
@@ -10,38 +10,15 @@ class SearchItemList extends StatelessWidget {
       this.mode,
       this.newsResult,
       this.serviceResult,
-      this.knowledgeResult})
+      this.knowledgeResult,
+      this.showBottomComponent = false})
       : super(key: key);
 
   final mode;
   final List<News> newsResult;
   final List<Service> serviceResult;
   final List<Knowledge> knowledgeResult;
-
-  showBottomContainer() {
-    int newsL = newsResult.length;
-    int serviceL = serviceResult.length;
-    int knowledgeL = knowledgeResult.length;
-
-    switch (mode) {
-      case CONSTANT.WORD_NEWS_TH:
-        if (newsL == 0) return false;
-        break;
-      case CONSTANT.WORD_SERVICE_TH:
-        if (serviceL == 0) return false;
-        break;
-      case CONSTANT.WORD_KNOWLEDGE_TH:
-        if (knowledgeL == 0) return false;
-        break;
-      case CONSTANT.WORD_ALL_TH:
-        if (newsL + serviceL + knowledgeL == 0) return false;
-        break;
-      default:
-        return true;
-    }
-
-    return true;
-  }
+  final bool showBottomComponent;
 
   List<Widget> getSearchItemList(BuildContext context) {
     List<Widget> listSearchItem = [];
@@ -52,8 +29,8 @@ class SearchItemList extends StatelessWidget {
 
     if (newsResult.length > 0) {
       newsItems = newsResult.map((item) {
-        return SearchItems.searchItemNews(
-            NetworkImage('https://picsum.photos/200'), item, 80.0, () {
+        return SearchItems.searchItemNews(NetworkImage(item.imgurl), item, 80.0,
+            () {
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -66,7 +43,7 @@ class SearchItemList extends StatelessWidget {
     if (serviceResult.length > 0) {
       serviceItems = serviceResult.map((item) {
         return SearchItems.searchItemService(
-            NetworkImage('https://picsum.photos/200'), item, 80.0, () {
+            NetworkImage(item.image), item, 80.0, () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => ServicePage()));
         });
@@ -74,8 +51,7 @@ class SearchItemList extends StatelessWidget {
     }
     if (knowledgeResult.length > 0) {
       knowledgeItems = knowledgeResult.map((item) {
-        return SearchItems.searchItemKnowledge(
-            NetworkImage('https://picsum.photos/200'), item, () {
+        return SearchItems.searchItemKnowledge(item, () {
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -123,7 +99,7 @@ class SearchItemList extends StatelessWidget {
                 : List<Widget>());
     }
 
-    if (showBottomContainer()) {
+    if (showBottomComponent) {
       listSearchItem.add(Container(
         height: CONSTANT.SIZE_MD,
         decoration: BoxDecoration(

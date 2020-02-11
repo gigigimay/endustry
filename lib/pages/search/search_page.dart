@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/search/searchItemList.dart';
-import 'package:endustry/widgets/search/searchfield.dart';
-import 'package:endustry/widgets/search/topicBtnGroup.dart';
+import 'package:endustry/widgets/search/search_field.dart';
+import 'package:endustry/widgets/search/search_item_list.dart';
+import 'package:endustry/widgets/search/topic_btn_group.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -33,15 +33,21 @@ class _SearchPageState extends State<SearchPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    var newsResult = searchNewsData
-        .where((item) => item.title.contains(searchWord) && searchWord != '')
-        .toList();
-    var serviceResult = searchServiceData
-        .where((item) => item.name.contains(searchWord) && searchWord != '')
-        .toList();
-    var knowledgeResult = searchKnowledgeData
-        .where((item) => item.title.contains(searchWord) && searchWord != '')
-        .toList();
+    var newsResult = List<News>(),
+        serviceResult = List<Service>(),
+        knowledgeResult = List<Knowledge>();
+
+    if (searchWord.isNotEmpty) {
+      newsResult = searchNewsData
+          .where((item) => item.title.contains(searchWord))
+          .toList();
+      serviceResult = searchServiceData
+          .where((item) => item.name.contains(searchWord))
+          .toList();
+      knowledgeResult = searchKnowledgeData
+          .where((item) => item.title.contains(searchWord))
+          .toList();
+    }
 
     getSerchStatusText() {
       String text = '';
@@ -68,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
       return text;
     }
 
-    showBottomDivider() {
+    showBottomComponent() {
       int newsL = newsResult.length;
       int serviceL = serviceResult.length;
       int knowledgeL = knowledgeResult.length;
@@ -86,8 +92,6 @@ class _SearchPageState extends State<SearchPage> {
         case CONSTANT.WORD_ALL_TH:
           if (newsL + serviceL + knowledgeL == 0) return false;
           break;
-        default:
-          return true;
       }
 
       return true;
@@ -141,7 +145,7 @@ class _SearchPageState extends State<SearchPage> {
                         mode: mode,
                         state: this,
                       ),
-                      showBottomDivider()
+                      showBottomComponent()
                           ? Container(
                               color: Colors.white,
                               height: CONSTANT.SIZE_XS,
@@ -163,6 +167,7 @@ class _SearchPageState extends State<SearchPage> {
                         newsResult: newsResult,
                         serviceResult: serviceResult,
                         knowledgeResult: knowledgeResult,
+                        showBottomComponent: showBottomComponent(),
                       ),
                     ),
                   ),

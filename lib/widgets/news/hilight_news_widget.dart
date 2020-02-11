@@ -1,5 +1,5 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/widgets/news/hilightNewsItem.dart';
+import 'package:endustry/widgets/news/hilight_news_item.dart';
 import '../../constants.dart' as CONSTANT;
 
 class HilightNewsWidget extends StatefulWidget {

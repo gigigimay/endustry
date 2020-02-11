@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/news/hilightNewsWidget.dart';
-import 'package:endustry/widgets/news/newsFilterDialog.dart';
-import 'package:endustry/widgets/news/newsItem.dart';
+import 'package:endustry/widgets/news/hilight_news_widget.dart';
+import 'package:endustry/widgets/news/news_filter_dialog.dart';
+import 'package:endustry/widgets/news/news_item.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key}) : super(key: key);

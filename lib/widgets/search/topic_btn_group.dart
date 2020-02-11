@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/search/topic_btn.dart';
 
 class TopicBtnGroup extends StatelessWidget {
   TopicBtnGroup({Key key, this.mode, this.state}) : super(key: key);
@@ -16,50 +17,42 @@ class TopicBtnGroup extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-          child: Text(CONSTANT.WORD_ALL_TH,
-              style: getTextStyleByMode(CONSTANT.WORD_ALL_TH)),
+        TopicBtn(
+          text: CONSTANT.WORD_ALL_TH,
+          style: getTextStyleByMode(CONSTANT.WORD_ALL_TH),
           onPressed: () {
             state.setState(() {
               state.mode = CONSTANT.WORD_ALL_TH;
             });
           },
         ),
-        FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-          child: Text(CONSTANT.WORD_NEWS_TH,
-              style: getTextStyleByMode(CONSTANT.WORD_NEWS_TH)),
+        TopicBtn(
+          text: CONSTANT.WORD_NEWS_TH,
+          style: getTextStyleByMode(CONSTANT.WORD_NEWS_TH),
           onPressed: () {
             state.setState(() {
               state.mode = CONSTANT.WORD_NEWS_TH;
             });
           },
         ),
-        FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-          child: Text(CONSTANT.WORD_SERVICE_TH,
-              style: getTextStyleByMode(CONSTANT.WORD_SERVICE_TH)),
+        TopicBtn(
+          text: CONSTANT.WORD_SERVICE_TH,
+          style: getTextStyleByMode(CONSTANT.WORD_SERVICE_TH),
           onPressed: () {
             state.setState(() {
               state.mode = CONSTANT.WORD_SERVICE_TH;
             });
           },
         ),
-        FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-          child: Text(CONSTANT.WORD_KNOWLEDGE_TH,
-              style: getTextStyleByMode(CONSTANT.WORD_KNOWLEDGE_TH)),
+        TopicBtn(
+          text: CONSTANT.WORD_KNOWLEDGE_TH,
+          style: getTextStyleByMode(CONSTANT.WORD_KNOWLEDGE_TH),
           onPressed: () {
             state.setState(() {
               state.mode = CONSTANT.WORD_KNOWLEDGE_TH;
             });
           },
-        )
+        ),
       ],
     );
   }

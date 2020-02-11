@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledgeList.dart';
+import 'package:endustry/pages/knowledge/knowledge_list.dart';
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
 
 class KnowledgePage extends StatefulWidget {

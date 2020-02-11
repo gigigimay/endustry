@@ -111,7 +111,7 @@ class SearchItems {
     );
   }
 
-  static Widget searchItemKnowledge(ImageProvider img, Knowledge data,onTap) {
+  static Widget searchItemKnowledge(Knowledge data, onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

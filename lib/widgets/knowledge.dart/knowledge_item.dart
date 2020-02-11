@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledgeIn.dart';
+import 'package:endustry/pages/knowledge/knowledge_in.dart';
 
 class KnowledgeItem extends StatelessWidget {
   const KnowledgeItem({Key key, this.knowledgeData, @required this.favStatus})

@@ -11,8 +11,6 @@ class KnowledgeInPage extends StatefulWidget {
 }
 
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
-  bool favStatus;
-
   @override
   void initState() {
     // _fav = widget.favStatus;
@@ -26,6 +24,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),
       child: Column(
@@ -38,7 +37,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
             },
             actionWidget: IconButtonInk(
               icon: Icon(
-                favStatus ? Icons.star : Icons.star_border,
+                _fav ? Icons.star : Icons.star_border,
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),
@@ -70,20 +69,37 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                         height: CONSTANT.SIZE_SM,
                       ),
                       widget.knowledgeData.attachUrl != null
-                          ? Column(children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        CONSTANT.BORDER_RADIUS),
-                                    color: Colors.purple[50]),
-                                width: width,
-                                child: FittedBox(
-                                    fit: BoxFit.contain, child: FlutterLogo()),
-                              ),
-                              SizedBox(
-                                height: CONSTANT.SIZE_LG,
-                              ),
-                            ])
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                  RoundedBox(
+                                    height: height * 0.24,
+                                    color: Colors.white,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          CONSTANT.BORDER_RADIUS),
+                                      child: FadeInImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            widget.knowledgeData.attachUrl),
+                                        placeholder: AssetImage(
+                                            'assets/images/know_white.png'),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: CONSTANT.SIZE_LG,
+                                  ),
+                                ])
+                          // Container(
+                          //     decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(
+                          //             CONSTANT.BORDER_RADIUS),
+                          //         color: Colors.purple[50]),
+                          //     width: width,
+                          //     child: FittedBox(
+                          //         fit: BoxFit.contain, child: Image(image: NetworkImage(widget.knowledgeData.attachUrl),)),
+                          //   )
                           : Container(),
                       Text(
                         'เนื้อหา',

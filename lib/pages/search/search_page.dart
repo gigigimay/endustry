@@ -22,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
 
   var searchNewsData = MOCK_NEWS;
   var searchServiceData = MOCK_SERVICES;
-  var searchKnowledgeData = MOCK_KNOWLEDGE;
+  var searchKnowledgeData = MOCK_KNOWLEDGES;
 
   var mode = CONSTANT.WORD_ALL_TH;
 

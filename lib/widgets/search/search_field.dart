@@ -21,12 +21,12 @@ class SearchField extends StatelessWidget {
             decoration: InputDecoration(
                 prefixIcon: IconButtonInk(
                   icon: Icon(Icons.arrow_back_ios),
-                  onTap: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
                 suffixIcon:
-                    IconButtonInk(icon: Icon(Icons.close), onTap: onClear),
+                    IconButtonInk(icon: Icon(Icons.close), onPressed: onClear),
                 contentPadding: EdgeInsets.all(8),
                 border: InputBorder.none,
                 hintText: CONSTANT.WORD_SEARCH_TH,

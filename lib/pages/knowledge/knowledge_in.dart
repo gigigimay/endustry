@@ -91,15 +91,6 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                                     height: CONSTANT.SIZE_LG,
                                   ),
                                 ])
-                          // Container(
-                          //     decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(
-                          //             CONSTANT.BORDER_RADIUS),
-                          //         color: Colors.purple[50]),
-                          //     width: width,
-                          //     child: FittedBox(
-                          //         fit: BoxFit.contain, child: Image(image: NetworkImage(widget.knowledgeData.attachUrl),)),
-                          //   )
                           : Container(),
                       Text(
                         'เนื้อหา',

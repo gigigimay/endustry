@@ -37,15 +37,25 @@ class _SearchPageState extends State<SearchPage> {
         serviceResult = List<Service>(),
         knowledgeResult = List<Knowledge>();
 
+    // TODO: search for dep name
     if (searchWord.isNotEmpty) {
       newsResult = searchNewsData
-          .where((item) => item.title.contains(searchWord))
+          .where((item) =>
+              item.title.contains(searchWord) ||
+              item.content.contains(searchWord) ||
+              item.author.contains(searchWord))
           .toList();
       serviceResult = searchServiceData
-          .where((item) => item.name.contains(searchWord))
+          .where((item) =>
+              item.name.contains(searchWord) ||
+              item.description.contains(searchWord) ||
+              item.depId.contains(searchWord))
           .toList();
       knowledgeResult = searchKnowledgeData
-          .where((item) => item.title.contains(searchWord))
+          .where((item) =>
+              item.title.contains(searchWord) ||
+              item.content.contains(searchWord) ||
+              item.author.contains(searchWord))
           .toList();
     }
 
@@ -102,9 +112,8 @@ class _SearchPageState extends State<SearchPage> {
         child: Stack(
           children: <Widget>[
             Center(
-              // TODO: แก้ word
               child: Text(
-                searchWord == '' ? 'แพรอ้วน & เมอ้วน' : getSerchStatusText(),
+                searchWord == '' ? 'พิมพ์เพื่อค้นหา' : getSerchStatusText(),
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_HEAD,
                     fontWeight: FontWeight.w700,

@@ -1,4 +1,7 @@
 export 'package:flutter/material.dart';
+export 'package:transparent_image/transparent_image.dart';
+
+export './utilities.dart';
 
 // ==========  data  ==========
 export './models.dart';

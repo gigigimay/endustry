@@ -24,7 +24,7 @@ class _PageAppBarState extends State<PageAppBar> {
   Widget build(BuildContext context) {
     return PagePadding(
       top: CONSTANT.SIZE_XS,
-      side: CONSTANT.SIZE_MD,
+      side: CONSTANT.SIZE_LG,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -33,9 +33,7 @@ class _PageAppBarState extends State<PageAppBar> {
               widget.hasBackArrow
                   ? IconButtonInk(
                       onPressed: widget.backArrowFunction ??
-                          () {
-                            Navigator.pop(context);
-                          },
+                          () => Navigator.pop(context),
                       icon: Icon(
                         Icons.arrow_back_ios,
                         color: Theme.of(context).primaryColor,
@@ -45,7 +43,9 @@ class _PageAppBarState extends State<PageAppBar> {
               Container(
                 child: TitleText(widget.title),
                 padding: EdgeInsets.only(
-                    top: CONSTANT.SIZE_SM, left: CONSTANT.SIZE_SM),
+                  top: CONSTANT.SIZE_SM,
+                  left: CONSTANT.SIZE_SM,
+                ),
               )
             ],
           ),

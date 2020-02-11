@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/service/service_in.dart';
 import 'package:endustry/widgets/home/content_group.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/service/service_list.dart';
@@ -37,8 +38,12 @@ class ServicePage extends StatelessWidget {
                               label: service.name,
                               itemWidth: itemWidth,
                               imageHeight: itemWidth * 2 / 3,
+                              imageUrl: service.image,
                               padding: EdgeInsets.all(0),
-                              // TODO: add onPressed
+                              onPressed: () => Utils.navigatePush(
+                                context,
+                                ServiceInPage(serviceData: service),
+                              ),
                             ))
                         .toList(),
                   ),
@@ -51,8 +56,12 @@ class ServicePage extends StatelessWidget {
                               label: service.name,
                               itemWidth: itemWidth,
                               imageHeight: itemWidth * 2 / 3,
+                              imageUrl: service.image,
                               padding: EdgeInsets.all(0),
-                              // TODO: add onPressed
+                              onPressed: () => Utils.navigatePush(
+                                context,
+                                ServiceInPage(serviceData: service),
+                              ),
                             ))
                         .toList(),
                   ),

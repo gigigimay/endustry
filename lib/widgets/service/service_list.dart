@@ -2,44 +2,59 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/service/service_in.dart';
 import './tab_menu.dart';
-import './service_item.dart';
+import './service_list_item.dart';
 
 class ServiceList extends StatefulWidget {
   const ServiceList({
     Key key,
     this.servicesData,
     this.departmentsData,
-    this.depsData,
   }) : super(key: key);
 
   final List<Service> servicesData;
   final List<Department> departmentsData;
-  final List depsData;
 
   @override
   _ServiceListState createState() => _ServiceListState();
 }
 
 class _ServiceListState extends State<ServiceList> {
-  String _selectedItem = 'บริการทั้งหมด';
+  String _selectedTab = CONSTANT.WORD_SERVICE_ALL_TH;
 
   void onChangeTab(String value) {
     setState(() {
-      _selectedItem = value;
+      _selectedTab = value;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List listData = _selectedItem == 'บริการทั้งหมด'
-        ? widget.servicesData
-        : widget.departmentsData;
+    List getItems() {
+      switch (_selectedTab) {
+        case CONSTANT.WORD_DEPARTMENT_TH:
+          return widget.departmentsData
+              .map((item) => ServiceItem(
+                    text: item.name,
+                    onPressed: () => Utils.navigatePush(context, null),
+                  ))
+              .toList();
+        case CONSTANT.WORD_SERVICE_ALL_TH:
+        default:
+          return widget.servicesData
+              .map((item) => ServiceItem(
+                    text: item.name,
+                    onPressed: () => Utils.navigatePush(
+                        context, ServiceInPage(serviceData: item)),
+                  ))
+              .toList();
+      }
+    }
 
     return Column(
       children: <Widget>[
         TabMenu(
-          items: ['บริการทั้งหมด', 'หน่วยงาน'],
-          selectedItem: _selectedItem,
+          items: [CONSTANT.WORD_SERVICE_ALL_TH, CONSTANT.WORD_DEPARTMENT_TH],
+          selectedItem: _selectedTab,
           onChange: onChangeTab,
         ),
         Transform.translate(
@@ -52,19 +67,7 @@ class _ServiceListState extends State<ServiceList> {
             child: Wrap(
               spacing: CONSTANT.SIZE_XL,
               runSpacing: CONSTANT.SIZE_XL,
-              children: listData
-                  .map((item) => ServiceItem(
-                        text: item.name,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ServiceInPage(serviceData: item)),
-                          );
-                        },
-                      ))
-                  .toList(),
+              children: getItems(),
             ),
           ),
         ),

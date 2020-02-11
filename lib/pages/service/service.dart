@@ -16,7 +16,7 @@ class ServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_SM);
+    double itemWidth = ((width - CONSTANT.SIZE_XL) / 2) - CONSTANT.SIZE_XL;
 
     return BgLayout(
       navbar: NavigationBar(currentpage: 'service'),

@@ -5,10 +5,11 @@ class ServiceItem extends StatelessWidget {
   const ServiceItem({
     Key key,
     @required this.text,
-    this.onPressed
+    this.onPressed,
+    this.imageUrl,
   }) : super(key: key);
 
-  final String text;
+  final String text, imageUrl;
   final Function onPressed;
 
   @override
@@ -35,6 +36,15 @@ class ServiceItem extends StatelessWidget {
                     width: CONSTANT.BORDER_WIDTH_THICK,
                   ),
                 ),
+                child: imageUrl != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: imageUrl,
+                        ),
+                      )
+                    : Container(),
               ),
               SizedBox(height: CONSTANT.SIZE_SM),
               Text(

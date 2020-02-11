@@ -26,8 +26,8 @@ class ContentGroup extends StatelessWidget {
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.start,
           runAlignment: WrapAlignment.start,
-          spacing: CONSTANT.SIZE_LG,
-          runSpacing: CONSTANT.SIZE_LG,
+          spacing: CONSTANT.SIZE_XL,
+          runSpacing: CONSTANT.SIZE_XX,
           direction: Axis.horizontal,
           children: children,
         ),

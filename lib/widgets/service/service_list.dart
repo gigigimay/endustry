@@ -31,18 +31,20 @@ class _ServiceListState extends State<ServiceList> {
   Widget build(BuildContext context) {
     List getItems() {
       switch (_selectedTab) {
-        case CONSTANT.WORD_DEPARTMENT_TH:
+        case CONSTANT.WORD_DEPARTMENT_TH: // หน่วยงาน
           return widget.departmentsData
               .map((item) => ServiceItem(
                     text: item.name,
                     onPressed: () => Utils.navigatePush(context, null),
+                    imageUrl: item.image,
                   ))
               .toList();
-        case CONSTANT.WORD_SERVICE_ALL_TH:
+        case CONSTANT.WORD_SERVICE_ALL_TH: // บริการทั้งหมด
         default:
           return widget.servicesData
               .map((item) => ServiceItem(
                     text: item.name,
+                    imageUrl: item.image,
                     onPressed: () => Utils.navigatePush(
                         context, ServiceInPage(serviceData: item)),
                   ))
@@ -58,15 +60,15 @@ class _ServiceListState extends State<ServiceList> {
           onChange: onChangeTab,
         ),
         Transform.translate(
-          offset: Offset(0, -CONSTANT.SIZE_LG),
+          offset: Offset(0, -CONSTANT.SIZE_XL),
           child: RoundedBox(
             padding: EdgeInsets.symmetric(
               horizontal: CONSTANT.SIZE_XL,
-              vertical: CONSTANT.SIZE_LG,
+              vertical: CONSTANT.SIZE_XX,
             ),
             child: Wrap(
               spacing: CONSTANT.SIZE_XL,
-              runSpacing: CONSTANT.SIZE_XL,
+              runSpacing: CONSTANT.SIZE_XX,
               children: getItems(),
             ),
           ),

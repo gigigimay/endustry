@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: CONSTANT.COLOR_BACKGROUND,
         dividerColor: CONSTANT.COLOR_DISABLED,
         disabledColor: CONSTANT.COLOR_DISABLED,
-        highlightColor: Colors.purple[50],
+        highlightColor: Colors.transparent,
         splashColor: Colors.purple[100],
         fontFamily: 'CloudSoft',
         textTheme: TextTheme(
@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
           subhead: CONSTANT.TEXT_STYLE_HEADING,
         ),
         iconTheme: IconThemeData(
-            color: CONSTANT.COLOR_PRIMARY, size: CONSTANT.SIZE_XX),
+          color: CONSTANT.COLOR_PRIMARY,
+          size: CONSTANT.SIZE_XX,
+        ),
       ),
       home: HomePage(),
     );

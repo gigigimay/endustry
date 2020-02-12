@@ -20,17 +20,14 @@ class CircleFadeInImage extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
+      decoration: ShapeDecoration(
         color: bgColor,
-        border: Border.all(
-          color: borderColor,
-          width: borderWidth,
+        shape: CircleBorder(
+          side: BorderSide(color: borderColor, width: borderWidth),
         ),
       ),
       child: imageUrl != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(999),
+          ? ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: imageUrl,

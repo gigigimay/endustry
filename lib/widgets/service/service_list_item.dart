@@ -26,26 +26,7 @@ class ServiceItem extends StatelessWidget {
           width: itemWidth,
           child: Column(
             children: <Widget>[
-              Container(
-                width: iconWidth,
-                height: iconWidth,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(
-                    color: CONSTANT.COLOR_PRIMARY,
-                    width: CONSTANT.BORDER_WIDTH_THICK,
-                  ),
-                ),
-                child: imageUrl != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(999),
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: imageUrl,
-                        ),
-                      )
-                    : Container(),
-              ),
+              CircleFadeInImage(size: iconWidth, imageUrl: imageUrl),
               SizedBox(height: CONSTANT.SIZE_SM),
               Text(
                 text,

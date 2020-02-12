@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_SM);
+    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
 
     final User userData = MOCK_USER;
 

@@ -5,14 +5,26 @@ class GradientButton extends StatelessWidget {
   const GradientButton({
     Key key,
     @required this.onPressed,
-    @required this.text,
+    this.text,
     this.child,
     this.disabled = false,
-    this.colors = const [CONSTANT.COLOR_PRIMARY, CONSTANT.COLOR_SECONDARY],
+    this.colors = const [
+      CONSTANT.COLOR_PRIMARY,
+      CONSTANT.COLOR_SECONDARY,
+    ],
     this.disabledColors = const [
       CONSTANT.COLOR_BORDER_LIGHT,
       CONSTANT.COLOR_DISABLED,
     ],
+    this.borderRadius = 999.0,
+    this.width,
+    this.height,
+    this.padding = const EdgeInsets.symmetric(
+      vertical: CONSTANT.SIZE_SM,
+      horizontal: CONSTANT.SIZE_XX,
+    ),
+    this.gradientBegin = Alignment.topLeft,
+    this.gradientEnd = Alignment.topRight,
   }) : super(key: key);
 
   final Function onPressed;
@@ -20,26 +32,30 @@ class GradientButton extends StatelessWidget {
   final Widget child;
   final bool disabled;
   final List<Color> colors, disabledColors;
+  final double borderRadius, width, height;
+  final EdgeInsetsGeometry padding;
+  final Alignment gradientBegin, gradientEnd;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular(borderRadius),
         gradient: LinearGradient(
           colors: disabled ? disabledColors : colors,
-          begin: Alignment.topLeft,
-          end: Alignment.topRight,
+          begin: gradientBegin,
+          end: gradientEnd,
         ),
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(999),
+          borderRadius: BorderRadius.circular(borderRadius),
           onTap: disabled ? null : onPressed,
           child: Container(
-            padding: EdgeInsets.symmetric(
-                vertical: CONSTANT.SIZE_SM, horizontal: CONSTANT.SIZE_XX),
+            padding: padding,
             child: child ??
                 Text(
                   text,

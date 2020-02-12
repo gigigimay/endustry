@@ -34,3 +34,4 @@ export 'widgets/title_text.dart';
 export 'widgets/icon_button_ink.dart';
 export 'widgets/search_button.dart';
 export 'widgets/gradient_button.dart';
+export 'widgets/circle_fade_in_image.dart';

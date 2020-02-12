@@ -7,13 +7,6 @@ import 'package:endustry/widgets/search/topic_btn_group.dart';
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
 
-  final List<String> topics = [
-    CONSTANT.WORD_ALL_TH,
-    CONSTANT.WORD_NEWS_TH,
-    CONSTANT.WORD_SERVICE_TH,
-    CONSTANT.WORD_KNOWLEDGE_TH,
-  ];
-
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -158,7 +151,12 @@ class _SearchPageState extends State<SearchPage> {
                       Divider(height: 0),
                       SizedBox(height: CONSTANT.SIZE_SM),
                       TopicBtnGroup(
-                        topics: widget.topics,
+                        topics: [
+                          CONSTANT.WORD_ALL_TH,
+                          CONSTANT.WORD_NEWS_TH,
+                          CONSTANT.WORD_SERVICE_TH,
+                          CONSTANT.WORD_KNOWLEDGE_TH,
+                        ],
                         mode: _mode,
                         onChange: onTabChange,
                       ),

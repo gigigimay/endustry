@@ -14,7 +14,7 @@ class TopicBtn extends StatelessWidget {
   final Function onChange;
 
   void onPressed() {
-    onChange(this.text);
+    onChange(text);
   }
 
   @override

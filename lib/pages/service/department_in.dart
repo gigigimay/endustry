@@ -47,7 +47,9 @@ class DepartmentInPage extends StatelessWidget {
                               ),
                               SizedBox(height: CONSTANT.SIZE_LG),
                               GradientButton(
-                                onPressed: () => print(departmentData.url),
+                                onPressed: () {
+                                  Utils.launchURL(departmentData.url);
+                                },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: CONSTANT.SIZE_XS),

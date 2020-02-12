@@ -55,13 +55,15 @@ class ServiceInPage extends StatelessWidget {
                               ),
                               SizedBox(height: CONSTANT.SIZE_XS),
                               GradientButton(
-                                onPressed: () => print(serviceData.url),
+                                onPressed: () {
+                                  Utils.launchURL(serviceData.url);
+                                },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: CONSTANT.SIZE_XS),
                                   child: Center(
                                     child: Text(
-                                      'เข้าใช้งานบริำการ',
+                                      'เข้าใช้งานบริการ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w700,

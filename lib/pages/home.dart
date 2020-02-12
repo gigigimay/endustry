@@ -99,11 +99,7 @@ class HomePage extends StatelessWidget {
                             spacing: 0,
                             runSpacing: 0,
                             onSeeAll: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => KnowledgePage()),
-                              );
+                              Utils.navigatePush(context, KnowledgePage());
                             },
                             children: suggestedKnowledgesData
                                 .sublist(0, 3)

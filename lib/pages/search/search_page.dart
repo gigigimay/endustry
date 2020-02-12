@@ -14,6 +14,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   ScrollController _scrollController;
   final _textEditingController = TextEditingController();
+  String _mode = CONSTANT.WORD_ALL_TH;
+  String _searchWord = '';
 
   @override
   void initState() {
@@ -24,9 +26,11 @@ class _SearchPageState extends State<SearchPage> {
   var searchServiceData = MOCK_SERVICES;
   var searchKnowledgeData = MOCK_KNOWLEDGES;
 
-  var mode = CONSTANT.WORD_ALL_TH;
-
-  var searchWord = '';
+  void onTabChange(String value) {
+    setState(() {
+      _mode = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +41,25 @@ class _SearchPageState extends State<SearchPage> {
         serviceResult = List<Service>(),
         knowledgeResult = List<Knowledge>();
 
-    // TODO: search for dep name
-    if (searchWord.isNotEmpty) {
+    // TODO: search for dep name and keywords
+    if (_searchWord.isNotEmpty) {
       newsResult = searchNewsData
           .where((item) =>
-              item.title.contains(searchWord) ||
-              item.content.contains(searchWord) ||
-              item.author.contains(searchWord))
+              item.title.contains(_searchWord) ||
+              item.content.contains(_searchWord) ||
+              item.author.contains(_searchWord))
           .toList();
       serviceResult = searchServiceData
           .where((item) =>
-              item.name.contains(searchWord) ||
-              item.description.contains(searchWord) ||
-              item.depId.contains(searchWord))
+              item.name.contains(_searchWord) ||
+              item.description.contains(_searchWord) ||
+              item.depId.contains(_searchWord))
           .toList();
       knowledgeResult = searchKnowledgeData
           .where((item) =>
-              item.title.contains(searchWord) ||
-              item.content.contains(searchWord) ||
-              item.author.contains(searchWord))
+              item.title.contains(_searchWord) ||
+              item.content.contains(_searchWord) ||
+              item.author.contains(_searchWord))
           .toList();
     }
 
@@ -67,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
       int serviceL = serviceResult.length;
       int knowledgeL = knowledgeResult.length;
 
-      switch (mode) {
+      switch (_mode) {
         case CONSTANT.WORD_NEWS_TH:
           if (newsL == 0) text = none;
           break;
@@ -89,7 +93,7 @@ class _SearchPageState extends State<SearchPage> {
       int serviceL = serviceResult.length;
       int knowledgeL = knowledgeResult.length;
 
-      switch (mode) {
+      switch (_mode) {
         case CONSTANT.WORD_NEWS_TH:
           if (newsL == 0) return false;
           break;
@@ -113,7 +117,7 @@ class _SearchPageState extends State<SearchPage> {
           children: <Widget>[
             Center(
               child: Text(
-                searchWord == '' ? 'พิมพ์เพื่อค้นหา' : getSerchStatusText(),
+                _searchWord == '' ? 'พิมพ์เพื่อค้นหา' : getSerchStatusText(),
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_HEAD,
                     fontWeight: FontWeight.w700,
@@ -134,25 +138,27 @@ class _SearchPageState extends State<SearchPage> {
                         textEditingController: _textEditingController,
                         onChange: (text) {
                           setState(() {
-                            searchWord = text;
+                            _searchWord = text;
                           });
                         },
                         onClear: () {
                           setState(() {
                             _textEditingController.clear();
-                            searchWord = _textEditingController.text;
+                            _searchWord = _textEditingController.text;
                           });
                         },
                       ),
-                      Divider(
-                        height: 0,
-                      ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_SM,
-                      ),
+                      Divider(height: 0),
+                      SizedBox(height: CONSTANT.SIZE_SM),
                       TopicBtnGroup(
-                        mode: mode,
-                        state: this,
+                        topics: [
+                          CONSTANT.WORD_ALL_TH,
+                          CONSTANT.WORD_NEWS_TH,
+                          CONSTANT.WORD_SERVICE_TH,
+                          CONSTANT.WORD_KNOWLEDGE_TH,
+                        ],
+                        mode: _mode,
+                        onChange: onTabChange,
                       ),
                       showBottomComponent()
                           ? Container(
@@ -172,7 +178,7 @@ class _SearchPageState extends State<SearchPage> {
                       physics: ClampingScrollPhysics(),
                       controller: _scrollController,
                       child: SearchItemList(
-                        mode: mode,
+                        mode: _mode,
                         newsResult: newsResult,
                         serviceResult: serviceResult,
                         knowledgeResult: knowledgeResult,

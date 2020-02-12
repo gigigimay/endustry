@@ -79,3 +79,14 @@ RegExp REGEX_EMAIL = new RegExp(
   caseSensitive: false,
   multiLine: false,
 );
+// -------------------- word --------------------
+const WORD_SERVICE_TH = 'บริการ';
+const WORD_SERVICE_ENG = 'service';
+const WORD_NEWS_TH = 'ข่าว';
+const WORD_NEWS_ENG = 'news';
+const WORD_KNOWLEDGE_TH = 'คลังความรู้';
+const WORD_KNOWLEDGE_ENG = 'knowledge';
+const WORD_ALL_TH = 'ทั้งหมด';
+const WORD_ALL_ENG = 'all';
+const WORD_SEARCH_TH = 'ค้นหา';
+const WORD_SEARCH_ENG = 'search';

@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledgeIn.dart';
+import 'package:endustry/pages/knowledge/knowledge_in.dart';
 
 class KnowledgeItem extends StatelessWidget {
   const KnowledgeItem({Key key, this.knowledgeData, @required this.favStatus})
@@ -15,14 +15,11 @@ class KnowledgeItem extends StatelessWidget {
     return GestureDetector(
         onTap: () {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => KnowledgeInPage(
-                knowledgeData: knowledgeData,
-                favStatus: favStatus,
-              ),
-            ),
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (context) => KnowledgeInPage(
+                        knowledgeData: knowledgeData,
+                      )));
         },
         child: Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_MD),

@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/pages/search/search_page.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({
@@ -8,7 +9,9 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButtonInk(
-      onPressed: () => print('search'),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+      },
       icon: Icon(Icons.search),
     );
   }

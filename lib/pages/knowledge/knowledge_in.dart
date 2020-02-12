@@ -2,11 +2,9 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class KnowledgeInPage extends StatefulWidget {
-  KnowledgeInPage({Key key, this.knowledgeData, this.favStatus})
-      : super(key: key);
+  KnowledgeInPage({Key key, this.knowledgeData}) : super(key: key);
 
-  final Knowledge knowledgeData;
-  final bool favStatus;
+  Knowledge knowledgeData;
 
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
@@ -15,8 +13,10 @@ class KnowledgeInPage extends StatefulWidget {
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
   @override
   void initState() {
-    _fav = widget.favStatus;
+    // _fav = widget.favStatus;
     super.initState();
+    // TODO: change to get data from real user
+    _fav = MOCK_USER.favKnowledges.contains(widget.knowledgeData.id);
   }
 
   bool _fav;
@@ -24,6 +24,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),
       child: Column(
@@ -36,7 +37,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
             },
             actionWidget: IconButtonInk(
               icon: Icon(
-                widget.favStatus ? Icons.star : Icons.star_border,
+                _fav ? Icons.star : Icons.star_border,
                 color: CONSTANT.COLOR_PRIMARY,
                 size: CONSTANT.SIZE_XL,
               ),
@@ -68,20 +69,28 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                         height: CONSTANT.SIZE_SM,
                       ),
                       widget.knowledgeData.attachUrl != null
-                          ? Column(children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        CONSTANT.BORDER_RADIUS),
-                                    color: Colors.purple[50]),
-                                width: width,
-                                child: FittedBox(
-                                    fit: BoxFit.contain, child: FlutterLogo()),
-                              ),
-                              SizedBox(
-                                height: CONSTANT.SIZE_LG,
-                              ),
-                            ])
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                  RoundedBox(
+                                    height: height * 0.24,
+                                    color: Colors.white,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          CONSTANT.BORDER_RADIUS),
+                                      child: FadeInImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            widget.knowledgeData.attachUrl),
+                                        placeholder: AssetImage(
+                                            'assets/images/know_white.png'),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: CONSTANT.SIZE_LG,
+                                  ),
+                                ])
                           : Container(),
                       Text(
                         'เนื้อหา',

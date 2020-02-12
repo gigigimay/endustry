@@ -12,6 +12,7 @@ class NewsInPage extends StatefulWidget {
 class _NewsInPageState extends State<NewsInPage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     print(widget.newsData);
     return BgLayout(
@@ -56,10 +57,19 @@ class _NewsInPageState extends State<NewsInPage> {
                         height: CONSTANT.SIZE_SM,
                       ),
                       RoundedBox(
-                        color: Colors.purple[50],
+                        color: Colors.white,
                         height: height * 0.24,
-                        child: FittedBox(
-                            fit: BoxFit.contain, child: FlutterLogo()),
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+                          child: FadeInImage(
+                            width: width,
+                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.newsData.imgurl),
+                            placeholder:
+                                AssetImage('assets/images/news_white.png'),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: CONSTANT.SIZE_LG,

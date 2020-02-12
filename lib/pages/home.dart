@@ -1,6 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledgeIn.dart';
+import 'package:endustry/pages/knowledge/knowledge_in.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
@@ -108,8 +108,6 @@ class HomePage extends StatelessWidget {
                                             builder: (context) =>
                                                 KnowledgeInPage(
                                               knowledgeData: item,
-                                              favStatus: userData.favKnowledges
-                                                  .contains(item.id),
                                             ),
                                           ),
                                         );

@@ -1,7 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledge_in.dart';
+import 'package:endustry/pages/service/service_in.dart';
 import 'package:endustry/widgets/home/list_item.dart';
+import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
 
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_SM);
+    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
 
     final User userData = MOCK_USER;
 
@@ -66,8 +67,12 @@ class HomePage extends StatelessWidget {
                                       label: service.name,
                                       itemWidth: itemWidth,
                                       imageHeight: itemWidth * 2 / 3,
+                                      imageUrl: service.image,
                                       padding: EdgeInsets.all(0),
-                                      // TODO: add onPressed
+                                      onPressed: () => Utils.navigatePush(
+                                        context,
+                                        ServiceInPage(serviceData: service),
+                                      ),
                                     ))
                                 .toList(),
                           ),
@@ -80,38 +85,28 @@ class HomePage extends StatelessWidget {
                                       label: service.name,
                                       itemWidth: itemWidth,
                                       imageHeight: itemWidth * 2 / 3,
+                                      imageUrl: service.image,
                                       padding: EdgeInsets.all(0),
-                                      // TODO: add onPressed
+                                      onPressed: () => Utils.navigatePush(
+                                        context,
+                                        ServiceInPage(serviceData: service),
+                                      ),
                                     ))
                                 .toList(),
                           ),
                           ContentGroup(
                             title: 'คลังความรู้แนะนำสำหรับคุณ',
+                            spacing: 0,
+                            runSpacing: 0,
                             onSeeAll: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => KnowledgePage()),
-                              );
+                              Utils.navigatePush(context, KnowledgePage());
                             },
                             children: suggestedKnowledgesData
-                                .sublist(0, 4)
-                                .map((Knowledge item) => ListItem(
-                                      label: item.title,
-                                      itemWidth: itemWidth,
-                                      imageHeight: itemWidth * 2 / 3,
-                                      padding: EdgeInsets.all(0),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                KnowledgeInPage(
-                                              knowledgeData: item,
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                .sublist(0, 3)
+                                .map((Knowledge item) => KnowledgeItem(
+                                      favStatus: userData.favKnowledges
+                                          .contains(item.id),
+                                      knowledgeData: item,
                                     ))
                                 .toList(),
                           ),

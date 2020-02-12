@@ -6,9 +6,9 @@ class SearchField extends StatelessWidget {
       {Key key, this.textEditingController, this.onChange, this.onClear})
       : super(key: key);
 
-  TextEditingController textEditingController;
-  VoidCallback onClear;
-  Function(String) onChange;
+  final TextEditingController textEditingController;
+  final VoidCallback onClear;
+  final Function(String) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +19,21 @@ class SearchField extends StatelessWidget {
             autofocus: true,
             controller: textEditingController,
             decoration: InputDecoration(
-                prefixIcon: IconButtonInk(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                suffixIcon:
-                    IconButtonInk(icon: Icon(Icons.close), onPressed: onClear),
-                contentPadding: EdgeInsets.all(8),
-                border: InputBorder.none,
-                hintText: CONSTANT.WORD_SEARCH_TH,
-                hintStyle:
-                    TextStyle(color: CONSTANT.COLOR_DISABLED, height: 0.8)),
-            onChanged: (text) {
-              onChange(text);
-            },
+              prefixIcon: IconButtonInk(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              suffixIcon: textEditingController.text.isNotEmpty
+                  ? IconButtonInk(icon: Icon(Icons.clear), onPressed: onClear)
+                  : null,
+              contentPadding: EdgeInsets.all(8),
+              border: InputBorder.none,
+              hintText: CONSTANT.WORD_SEARCH_TH,
+              hintStyle: TextStyle(color: CONSTANT.COLOR_DISABLED, height: 0.8),
+            ),
+            onChanged: onChange,
           ),
         ),
       ],

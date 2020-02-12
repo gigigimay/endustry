@@ -1,4 +1,7 @@
 export 'package:flutter/material.dart';
+export 'package:transparent_image/transparent_image.dart';
+
+export './utilities.dart';
 
 // ==========  data  ==========
 export './models.dart';
@@ -7,14 +10,13 @@ export './mock_data.dart';
 // ==========  pages  ==========
 export 'pages/home.dart';
 export 'pages/news/news.dart';
-export 'pages/service.dart';
+export 'pages/service/service.dart';
 export 'pages/knowledge/knowledge.dart';
 export 'pages/menu/menu.dart';
 
 // ==========  shared widgets  ==========
 // layouts
 export 'widgets/bg_layout.dart';
-export 'widgets/box_layout.dart';
 
 // container / part of layout
 export 'widgets/page_padding.dart';
@@ -32,3 +34,4 @@ export 'widgets/title_text.dart';
 export 'widgets/icon_button_ink.dart';
 export 'widgets/search_button.dart';
 export 'widgets/gradient_button.dart';
+export 'widgets/circle_fade_in_image.dart';

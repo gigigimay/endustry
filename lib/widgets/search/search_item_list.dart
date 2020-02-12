@@ -2,6 +2,7 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_in.dart';
 import 'package:endustry/pages/news/news_in.dart';
+import 'package:endustry/pages/service/service_in.dart';
 import 'package:endustry/widgets/search/search_items.dart';
 
 class SearchItemList extends StatelessWidget {
@@ -31,12 +32,7 @@ class SearchItemList extends StatelessWidget {
       newsItems = newsResult.map((item) {
         return SearchItems.searchItemNews(NetworkImage(item.imgurl), item, 80.0,
             () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NewsInPage(
-                        newsData: item,
-                      )));
+          Utils.navigatePush(context, NewsInPage(newsData: item));
         });
       }).toList();
     }
@@ -44,20 +40,14 @@ class SearchItemList extends StatelessWidget {
       serviceItems = serviceResult.map((item) {
         return SearchItems.searchItemService(
             NetworkImage(item.image), item, 80.0, () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ServicePage()));
+          Utils.navigatePush(context, ServiceInPage(serviceData: item));
         });
       }).toList();
     }
     if (knowledgeResult.length > 0) {
       knowledgeItems = knowledgeResult.map((item) {
         return SearchItems.searchItemKnowledge(item, () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => KnowledgeInPage(
-                        knowledgeData: item,
-                      )));
+          Utils.navigatePush(context, KnowledgeInPage(knowledgeData: item));
         });
       }).toList();
     }

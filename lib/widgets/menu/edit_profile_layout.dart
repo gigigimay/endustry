@@ -1,8 +1,8 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
-class BoxLayout extends StatelessWidget {
-  BoxLayout({
+class EditProfileLayout extends StatelessWidget {
+  EditProfileLayout({
     Key key,
     this.child,
     this.title,

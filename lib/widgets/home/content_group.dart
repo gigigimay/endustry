@@ -7,11 +7,14 @@ class ContentGroup extends StatelessWidget {
     @required this.title,
     @required this.children,
     this.onSeeAll,
+    this.spacing = CONSTANT.SIZE_XL,
+    this.runSpacing = CONSTANT.SIZE_XX,
   }) : super(key: key);
 
   final String title;
   final List<Widget> children;
   final Function onSeeAll;
+  final double spacing, runSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +29,8 @@ class ContentGroup extends StatelessWidget {
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.start,
           runAlignment: WrapAlignment.start,
-          spacing: CONSTANT.SIZE_LG,
-          runSpacing: CONSTANT.SIZE_LG,
+          spacing: spacing,
+          runSpacing: runSpacing,
           direction: Axis.horizontal,
           children: children,
         ),

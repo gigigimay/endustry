@@ -32,6 +32,9 @@ const double SIZE_XX = 32.0;
 /// 1
 const double BORDER_WIDTH_NORMAL = 1.0;
 
+/// 3
+const double BORDER_WIDTH_MEDIUM = 3.0;
+
 /// 5
 const double BORDER_WIDTH_THICK = 5.0;
 
@@ -73,15 +76,18 @@ const BoxShadow BOX_SHADOW = BoxShadow(
   blurRadius: 6,
 );
 
-// -------------------- boxShadow --------------------
-RegExp REGEX_EMAIL = new RegExp(
+// -------------------- regex --------------------
+RegExp REGEX_EMAIL = RegExp(
   r'[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$',
   caseSensitive: false,
   multiLine: false,
 );
+
 // -------------------- word --------------------
 const WORD_SERVICE_TH = 'บริการ';
 const WORD_SERVICE_ENG = 'service';
+const WORD_SERVICE_ALL_TH = 'บริการทั้งหมด';
+const WORD_SERVICE_ALL_ENG = 'all services';
 const WORD_NEWS_TH = 'ข่าว';
 const WORD_NEWS_ENG = 'news';
 const WORD_KNOWLEDGE_TH = 'คลังความรู้';
@@ -90,3 +96,5 @@ const WORD_ALL_TH = 'ทั้งหมด';
 const WORD_ALL_ENG = 'all';
 const WORD_SEARCH_TH = 'ค้นหา';
 const WORD_SEARCH_ENG = 'search';
+const WORD_DEPARTMENT_TH = 'หน่วยงาน';
+const WORD_DEPARTMENT_ENG = 'department';

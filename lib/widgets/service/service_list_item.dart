@@ -23,6 +23,7 @@ class ServiceItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
         onTap: onPressed ?? () => print('tap: ' + text),
         child: Container(
+          padding: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_SM),
           width: itemWidth,
           child: Column(
             children: <Widget>[
@@ -31,6 +32,7 @@ class ServiceItem extends StatelessWidget {
               Text(
                 text,
                 style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
+                textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               )

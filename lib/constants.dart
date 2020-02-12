@@ -32,6 +32,9 @@ const double SIZE_XX = 32.0;
 /// 1
 const double BORDER_WIDTH_NORMAL = 1.0;
 
+/// 3
+const double BORDER_WIDTH_MEDIUM = 3.0;
+
 /// 5
 const double BORDER_WIDTH_THICK = 5.0;
 

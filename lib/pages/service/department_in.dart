@@ -113,7 +113,8 @@ class DepartmentInPage extends StatelessWidget {
                             children: <Widget>[
                               CircleFadeInImage(
                                 size: serviceButtonWidth * 0.6,
-                                borderWidth: 0,
+                                borderWidth: CONSTANT.BORDER_WIDTH_MEDIUM,
+                                borderColor: Colors.white,
                                 imageUrl: s.image,
                               ),
                               SizedBox(height: CONSTANT.SIZE_SM),

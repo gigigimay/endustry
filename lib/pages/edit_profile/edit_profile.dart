@@ -61,8 +61,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.4;
 
-    String userType =
-        widget.userTypesData.firstWhere((UserType t) => t.id == _form['typeId']).name;
+    String userType = widget.userTypesData
+        .firstWhere((UserType t) => t.id == _form['typeId'])
+        .name;
 
     List keywords = _form['interestedTopics'].map((String id) {
       Keyword keyword =
@@ -103,16 +104,19 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
+                    style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
                   ),
                   Input(
                     hintText: 'นามสกุล',
+                    style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
                   ),
                   Input(
                     hintText: 'อีเมล์',
+                    style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     validator: (String value) =>
@@ -123,6 +127,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   // TODO: edit password
                   Input(
                     initialValue: '••••••••••',
+                    style: TextStyle(fontSize: width * 0.05),
                     readOnly: true,
                     obscureText: true,
                     suffixText: 'เปลี่ยนรหัสผ่าน',

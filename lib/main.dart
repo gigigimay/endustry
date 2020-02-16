@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/registry/register_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           size: CONSTANT.SIZE_XX,
         ),
       ),
-      home: HomePage(),
+      //TODO: change back to HomePage
+      home: RegisterPage(),
     );
   }
 }

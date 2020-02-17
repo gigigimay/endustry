@@ -3,20 +3,23 @@ import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsFilterDialog extends StatelessWidget {
   const NewsFilterDialog(
-      {Key key, this.newsData, this.state, this.selectedFilter})
+      {Key key, this.newsData, this.state, this.selectedFilter, this.onPressed})
       : super(key: key);
 
   final state, selectedFilter;
   final List<News> newsData;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
-    List<String> filterNameList = ['ข่าวทั้งหมด'] +
-        MOCK_NEWSTYPES
-            .where((item) => item.id != MOCK_NEWSTYPES.first.id)
-            .toList()
-            .map((item) => item.typeName)
-            .toList();
+    List _filterName = MOCK_NEWSTYPES
+        .where((item) => item.id != MOCK_NEWSTYPES.first.id)
+        .toList()
+        .map((item) => item.typeName)
+        .toList();
+    _filterName.sort((a, b) => a.compareTo(b));
+
+    List<String> filterNameList = ['ข่าวทั้งหมด'] + _filterName;
 
     return Dialog(
       shape: RoundedRectangleBorder(
@@ -28,23 +31,26 @@ class NewsFilterDialog extends StatelessWidget {
           children: filterNameList.map((item) {
             return Column(
               children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    state.setState(() {
-                      state.selectedFilter = item;
-                      print(state.selectedFilter);
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: CONSTANT.SIZE_LG),
-                      child: Text(
-                        item,
-                        style: item == selectedFilter
-                            ? CONSTANT.TEXT_STYLE_HEADING_PRIMARY
-                            : CONSTANT.TEXT_STYLE_HEADING,
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      onPressed(item);
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: CONSTANT.SIZE_LG),
+                        child: Center(
+                          child: Text(
+                            item,
+                            style: item == selectedFilter
+                                ? CONSTANT.TEXT_STYLE_HEADING_PRIMARY
+                                : CONSTANT.TEXT_STYLE_HEADING,
+                          ),
+                        ),
                       ),
                     ),
                   ),

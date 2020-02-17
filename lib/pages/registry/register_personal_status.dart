@@ -1,12 +1,10 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/widgets/registry/register_stutus_btn.dart';
+import 'package:endustry/widgets/registry/register_status_btn.dart';
 
 class RegisterPage3 extends StatefulWidget {
-  RegisterPage3({
-    Key key,
-  }) : super(key: key);
-
+  RegisterPage3({Key key, this.onpressed}) : super(key: key);
+  final Function onpressed;
   @override
   _RegisterPage3State createState() => _RegisterPage3State();
 }
@@ -32,6 +30,7 @@ class _RegisterPage3State extends State<RegisterPage3> {
           onTap: () {
             setState(() {
               _selectIndex = 0;
+              widget.onpressed(true);
             });
           },
         ),
@@ -45,6 +44,7 @@ class _RegisterPage3State extends State<RegisterPage3> {
           onTap: () {
             setState(() {
               _selectIndex = 1;
+              widget.onpressed(true);
             });
           },
         )

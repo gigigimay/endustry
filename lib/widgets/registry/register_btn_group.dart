@@ -7,11 +7,13 @@ class RegisterBtnGroup extends StatelessWidget {
       this.nextText,
       this.nextBtnFuntion,
       this.backText,
-      this.prevBtnFuntion})
+      this.prevBtnFuntion,
+      this.disabled = false})
       : super(key: key);
 
   final String backText, nextText;
   final Function() nextBtnFuntion, prevBtnFuntion;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class RegisterBtnGroup extends StatelessWidget {
                 onPressed: prevBtnFuntion),
           ),
           GradientButton(
+              disabled: disabled,
               width: width * 0.38,
               child: Center(
                 child: Text(

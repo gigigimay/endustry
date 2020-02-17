@@ -32,82 +32,61 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
+  isFoundResult(newsL, serviceL, knowledgeL) {
+    switch (_mode) {
+      case CONSTANT.WORD_NEWS_TH:
+        if (newsL == 0) return false;
+        break;
+      case CONSTANT.WORD_SERVICE_TH:
+        if (serviceL == 0) return false;
+        break;
+      case CONSTANT.WORD_KNOWLEDGE_TH:
+        if (knowledgeL == 0) return false;
+        break;
+      case CONSTANT.WORD_ALL_TH:
+        if (newsL + serviceL + knowledgeL == 0) return false;
+        break;
+    }
+
+    return true;
+  }
+
+  getNewsFromSearch(searchNewsData) => searchNewsData
+      .where((item) =>
+          item.title.contains(_searchWord) ||
+          item.content.contains(_searchWord) ||
+          item.author.contains(_searchWord))
+      .toList();
+
+  // TODO: search for dep name and keywords
+  getServiceFromSearch(searchServiceData) => searchServiceData
+      .where((item) =>
+          item.name.contains(_searchWord) ||
+          item.description.contains(_searchWord) ||
+          item.depId.contains(_searchWord))
+      .toList();
+
+  getKnowledgeFromSearch(searchServiceData) => searchKnowledgeData
+      .where((item) =>
+          item.title.contains(_searchWord) ||
+          item.content.contains(_searchWord) ||
+          item.author.contains(_searchWord))
+      .toList();
+
   @override
   Widget build(BuildContext context) {
+    var newsResult = _searchWord.isNotEmpty
+            ? getNewsFromSearch(searchNewsData)
+            : List<News>(),
+        serviceResult = _searchWord.isNotEmpty
+            ? getServiceFromSearch(searchServiceData)
+            : List<Service>(),
+        knowledgeResult = _searchWord.isNotEmpty
+            ? getKnowledgeFromSearch(searchServiceData)
+            : List<Knowledge>();
 
-    var newsResult = List<News>(),
-        serviceResult = List<Service>(),
-        knowledgeResult = List<Knowledge>();
-
-    // TODO: search for dep name and keywords
-    if (_searchWord.isNotEmpty) {
-      newsResult = searchNewsData
-          .where((item) =>
-              item.title.contains(_searchWord) ||
-              item.content.contains(_searchWord) ||
-              item.author.contains(_searchWord))
-          .toList();
-      serviceResult = searchServiceData
-          .where((item) =>
-              item.name.contains(_searchWord) ||
-              item.description.contains(_searchWord) ||
-              item.depId.contains(_searchWord))
-          .toList();
-      knowledgeResult = searchKnowledgeData
-          .where((item) =>
-              item.title.contains(_searchWord) ||
-              item.content.contains(_searchWord) ||
-              item.author.contains(_searchWord))
-          .toList();
-    }
-
-    getSerchStatusText() {
-      String text = '';
-      String none = 'ไม่พบผลลัพธ์';
-
-      int newsL = newsResult.length;
-      int serviceL = serviceResult.length;
-      int knowledgeL = knowledgeResult.length;
-
-      switch (_mode) {
-        case CONSTANT.WORD_NEWS_TH:
-          if (newsL == 0) text = none;
-          break;
-        case CONSTANT.WORD_SERVICE_TH:
-          if (serviceL == 0) text = none;
-          break;
-        case CONSTANT.WORD_KNOWLEDGE_TH:
-          if (knowledgeL == 0) text = none;
-          break;
-        default:
-          if (newsL + serviceL + knowledgeL == 0) text = none;
-      }
-
-      return text;
-    }
-
-    showBottomComponent() {
-      int newsL = newsResult.length;
-      int serviceL = serviceResult.length;
-      int knowledgeL = knowledgeResult.length;
-
-      switch (_mode) {
-        case CONSTANT.WORD_NEWS_TH:
-          if (newsL == 0) return false;
-          break;
-        case CONSTANT.WORD_SERVICE_TH:
-          if (serviceL == 0) return false;
-          break;
-        case CONSTANT.WORD_KNOWLEDGE_TH:
-          if (knowledgeL == 0) return false;
-          break;
-        case CONSTANT.WORD_ALL_TH:
-          if (newsL + serviceL + knowledgeL == 0) return false;
-          break;
-      }
-
-      return true;
-    }
+    final _isFoundResult = isFoundResult(
+        newsResult.length, serviceResult.length, knowledgeResult.length);
 
     return BgLayout(
       child: PagePadding(
@@ -115,7 +94,9 @@ class _SearchPageState extends State<SearchPage> {
           children: <Widget>[
             Center(
               child: Text(
-                _searchWord == '' ? 'พิมพ์เพื่อค้นหา' : getSerchStatusText(),
+                _searchWord == ''
+                    ? 'พิมพ์เพื่อค้นหา'
+                    : _isFoundResult ? '' : 'ไม่พบผลลัพธ์',
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_HEAD,
                     fontWeight: FontWeight.w700,
@@ -158,7 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                         mode: _mode,
                         onChange: onTabChange,
                       ),
-                      showBottomComponent()
+                      _isFoundResult
                           ? Container(
                               color: Colors.white,
                               height: CONSTANT.SIZE_XS,
@@ -180,7 +161,7 @@ class _SearchPageState extends State<SearchPage> {
                         newsResult: newsResult,
                         serviceResult: serviceResult,
                         knowledgeResult: knowledgeResult,
-                        showBottomComponent: showBottomComponent(),
+                        showBottomComponent: _isFoundResult,
                       ),
                     ),
                   ),

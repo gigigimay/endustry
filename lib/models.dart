@@ -28,6 +28,11 @@ class News {
     final dateData = DateTime.parse(datetime);
     return '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
   }
+
+  static getDateString(datetime) {
+    final dateData = DateTime.parse(datetime);
+    return '${dateData.day}.${dateData.month}.${dateData.year}';
+  }
 }
 
 class NewsType {

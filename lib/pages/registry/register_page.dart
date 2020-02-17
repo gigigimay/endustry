@@ -13,7 +13,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool canNext;
+  // TODO: STORE ALL SELECTED DATA
+  bool validStep1, validStep2, validStep3, validStep4;
 
   final _milliDuration = 300;
   final _curve = Curves.easeIn;
@@ -38,18 +39,38 @@ class _RegisterPageState extends State<RegisterPage> {
 
   submitData() {
     // TODO: save all data & update db
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-        (Route<dynamic> route) => false);
+    Utils.navigatePushAndPopAll(context, '/homepage');
   }
 
   // TODO: change next text after some activity 1,2,3
+  setValid1(bool boolean) {
+    setState(() {
+      validStep1 = boolean;
+    });
+  }
+
+  setValid2(bool boolean) {
+    setState(() {
+      validStep2 = boolean;
+    });
+  }
+
+  setValid3(bool boolean) {
+    setState(() {
+      validStep3 = boolean;
+    });
+  }
+
+  setValid4(bool boolean) {
+    setState(() {
+      validStep4 = boolean;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    canNext = false;
+    validStep1 = validStep2 = validStep3 = validStep4 = false;
 
     _pageController.addListener(() {
       setState(() {
@@ -60,6 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(ModalRoute.of(context).isCurrent);
     return BgLayout(
         child: PageView(
       controller: _pageController,
@@ -73,20 +95,26 @@ class _RegisterPageState extends State<RegisterPage> {
           nextBtnFuntion: () => goToNextPage(_pageController),
         ),
         RegisterLayout(
-          child: RegisterPage2(),
+          child: RegisterPage2(
+            onPressed: setValid2,
+          ),
           registerStep: 1,
           stateTitle: 'เลือกรูปโปรไฟล์',
           prevBtnFuntion: () => goToPrevPage(_pageController),
           nextBtnFuntion: () => goToNextPage(_pageController),
-          nextText: canNext ? 'ต่อไป' : 'ข้าม',
+          nextText: validStep2 ? 'ต่อไป' : 'ข้าม',
           // nextText: ,
         ),
         RegisterLayout(
-          child: RegisterPage3(),
+          child: RegisterPage3(
+            onpressed: setValid3,
+          ),
           registerStep: 2,
           stateTitle: 'คุณคือ...?',
           prevBtnFuntion: () => goToPrevPage(_pageController),
           nextBtnFuntion: () => goToNextPage(_pageController),
+          nextText: 'ต่อไป',
+          disabled: !validStep3,
         ),
         RegisterLayout(
           child: RegisterPage4(),

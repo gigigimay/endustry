@@ -12,13 +12,15 @@ class RegisterLayout extends StatelessWidget {
       this.nextText = 'ต่อไป',
       this.nextBtnFuntion,
       this.backText = 'ย้อนกลับ',
-      this.prevBtnFuntion,})
+      this.prevBtnFuntion,
+      this.disabled=false})
       : super(key: key);
 
   final Widget child;
   final registerStep, stateTitle;
   final String stateSubTitle, backText, nextText;
   final Function() nextBtnFuntion, prevBtnFuntion;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +105,7 @@ class RegisterLayout extends StatelessWidget {
             ),
           ),
           RegisterBtnGroup(
+            disabled: disabled,
             nextText: nextText,
             nextBtnFuntion: nextBtnFuntion,
             backText: backText,

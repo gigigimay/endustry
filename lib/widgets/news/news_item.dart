@@ -27,11 +27,18 @@ class NewsItem extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: Row(
             children: <Widget>[
-              RoundedBox(
+              ClipRRect(
+                borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+                child: RoundedBox(
                   height: width * 0.4,
                   width: width * 0.3,
-                  color: Colors.purple[50],
-                  child: FittedBox(fit: BoxFit.contain, child: FlutterLogo())),
+                  child: FadeInImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(newsData.imgurl, scale: 1),
+                    placeholder: AssetImage('assets/images/pic.png'),
+                  ),
+                ),
+              ),
               SizedBox(
                 width: CONSTANT.SIZE_SM,
               ),

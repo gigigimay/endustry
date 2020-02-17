@@ -3,7 +3,10 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 
 class RegisterPage2 extends StatefulWidget {
-  RegisterPage2({Key key}) : super(key: key);
+  RegisterPage2({Key key, this.onPressed}) : super(key: key);
+
+  final onPressed;
+
   @override
   _RegisterPage2State createState() => _RegisterPage2State();
 }
@@ -38,6 +41,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
               setState(() {
                 //TODO: pick image or take a shot now
                 imgUrl = MOCK_USER.imgUrl;
+                widget.onPressed(true);
               });
             },
           ),

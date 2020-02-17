@@ -4,7 +4,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class KnowledgeInPage extends StatefulWidget {
   KnowledgeInPage({Key key, this.knowledgeData}) : super(key: key);
 
-  Knowledge knowledgeData;
+  final Knowledge knowledgeData;
 
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
@@ -23,7 +23,6 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return BgLayout(
       navbar: NavigationBar(currentpage: 'knowledge'),

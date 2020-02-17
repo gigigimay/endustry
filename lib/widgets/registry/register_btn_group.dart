@@ -2,9 +2,15 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class RegisterBtnGroup extends StatelessWidget {
-  const RegisterBtnGroup({Key key, this.nextBtnFuntion, this.prevBtnFuntion})
+  const RegisterBtnGroup(
+      {Key key,
+      this.nextText,
+      this.nextBtnFuntion,
+      this.backText,
+      this.prevBtnFuntion})
       : super(key: key);
 
+  final String backText, nextText;
   final Function() nextBtnFuntion, prevBtnFuntion;
 
   @override
@@ -18,6 +24,7 @@ class RegisterBtnGroup extends StatelessWidget {
           Container(
             width: width * 0.38,
             child: FlatButton(
+                color: CONSTANT.COLOR_BACKGROUND,
                 padding: EdgeInsets.symmetric(
                   vertical: CONSTANT.SIZE_SM,
                   horizontal: CONSTANT.SIZE_XX,
@@ -29,7 +36,7 @@ class RegisterBtnGroup extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'ย้อนกลับ',
+                  backText,
                   style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
                 ),
                 onPressed: prevBtnFuntion),
@@ -38,7 +45,7 @@ class RegisterBtnGroup extends StatelessWidget {
               width: width * 0.38,
               child: Center(
                 child: Text(
-                  'ต่อไป',
+                  nextText,
                   style: TextStyle(
                       fontSize: CONSTANT.FONT_SIZE_HEAD,
                       color: Colors.white,

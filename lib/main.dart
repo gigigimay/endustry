@@ -29,8 +29,13 @@ class MyApp extends StatelessWidget {
           size: CONSTANT.SIZE_XX,
         ),
       ),
+      // TODO: add all need route
+      routes: <String, WidgetBuilder>{
+        '/homepage': (BuildContext context) => new HomePage(),
+        '/registerpage': (BuildContext context) => new RegisterPage(),
+      },
       //TODO: change back to HomePage
-      home: RegisterPage(),
+      home: HomePage(),
     );
   }
 }

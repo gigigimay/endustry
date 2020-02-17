@@ -33,7 +33,11 @@ class CircleFadeInImage extends StatelessWidget {
                 image: imageUrl,
               ),
             )
-          : Container(),
+          : CircleAvatar(
+              radius: size / 2,
+              child: Image.asset('assets/images/select_profile_pic.png'),
+              backgroundColor: bgColor,
+            ),
     );
   }
 }

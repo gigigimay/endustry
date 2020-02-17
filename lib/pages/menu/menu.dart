@@ -46,7 +46,9 @@ class MenuPage extends StatelessWidget {
               child: ImageIcon(AssetImage('assets/images/logout.png')),
             ),
             text: 'ออกจากระบบ',
-            onPressed: () => print('log out!'),
+            // TODO: change destination to login page
+            onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                context, '/registerpage', (Route<dynamic> route) => false),
           )
         ],
       ),

@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class RegisterPage1 extends StatefulWidget {
-  RegisterPage1({
-    Key key,
-  }) : super(key: key);
-
+  RegisterPage1({Key key, this.isSelected}) : super(key: key);
+  final bool isSelected;
   @override
   _RegisterPage1State createState() => _RegisterPage1State();
 }
@@ -60,7 +56,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               hintText: 'นามสกุล',
               style: TextStyle(
                   fontSize: CONSTANT.FONT_SIZE_BODY,
-                  color: CONSTANT.COLOR_DISABLED,
                   fontWeight: FontWeight.w300),
               onChanged: saveForm('lastName'),
             ),
@@ -68,7 +63,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               hintText: 'อีเมล์',
               style: TextStyle(
                   fontSize: CONSTANT.FONT_SIZE_BODY,
-                  color: CONSTANT.COLOR_DISABLED,
                   fontWeight: FontWeight.w300),
               onChanged: saveForm('email'),
               validator: (String value) => CONSTANT.REGEX_EMAIL.hasMatch(value)
@@ -79,7 +73,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               hintText: 'รหัสผ่าน',
               style: TextStyle(
                   fontSize: CONSTANT.FONT_SIZE_BODY,
-                  color: CONSTANT.COLOR_DISABLED,
                   fontWeight: FontWeight.w300),
               obscureText: true,
             ),
@@ -87,7 +80,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               hintText: 'ยืนยันรหัสผ่าน',
               style: TextStyle(
                   fontSize: CONSTANT.FONT_SIZE_BODY,
-                  color: CONSTANT.COLOR_DISABLED,
                   fontWeight: FontWeight.w300),
               obscureText: true,
             ),

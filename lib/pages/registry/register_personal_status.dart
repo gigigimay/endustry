@@ -1,24 +1,53 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/registry/register_stutus_btn.dart';
 
-class RegisterPage2 extends StatefulWidget {
-  RegisterPage2({
+class RegisterPage3 extends StatefulWidget {
+  RegisterPage3({
     Key key,
   }) : super(key: key);
 
   @override
-  _RegisterPage2State createState() => _RegisterPage2State();
+  _RegisterPage3State createState() => _RegisterPage3State();
 }
 
-class _RegisterPage2State extends State<RegisterPage2> {
-  final _selectedColor = Color(0xffEFE4F2);
+class _RegisterPage3State extends State<RegisterPage3> {
+  var _selectIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectIndex = null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        
+        RegisterStatusBtn(
+          imgUrl: 'assets/images/entrepreneur.png',
+          text: 'ผู้ประกอบการ',
+          isSelected: _selectIndex == 0,
+          onTap: () {
+            setState(() {
+              _selectIndex = 0;
+            });
+          },
+        ),
+        SizedBox(
+          height: CONSTANT.SIZE_XX,
+        ),
+        RegisterStatusBtn(
+          imgUrl: 'assets/images/people.png',
+          text: 'บุคคลทั่วไป',
+          isSelected: _selectIndex == 1,
+          onTap: () {
+            setState(() {
+              _selectIndex = 1;
+            });
+          },
+        )
       ],
     );
   }

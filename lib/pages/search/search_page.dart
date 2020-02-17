@@ -35,16 +35,16 @@ class _SearchPageState extends State<SearchPage> {
   isFoundResult(newsL, serviceL, knowledgeL) {
     switch (_mode) {
       case CONSTANT.WORD_NEWS_TH:
-        if (newsL == 0) return false;
+        return newsL > 0;
         break;
       case CONSTANT.WORD_SERVICE_TH:
-        if (serviceL == 0) return false;
+        return serviceL > 0;
         break;
       case CONSTANT.WORD_KNOWLEDGE_TH:
-        if (knowledgeL == 0) return false;
+        return knowledgeL > 0;
         break;
       case CONSTANT.WORD_ALL_TH:
-        if (newsL + serviceL + knowledgeL == 0) return false;
+        return newsL + serviceL + knowledgeL > 0;
         break;
     }
 

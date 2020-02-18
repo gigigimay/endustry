@@ -74,7 +74,7 @@ class RegisterLayout extends StatelessWidget {
                         ),
                         Transform.translate(
                           offset: Offset(0, 10),
-                          child: Column(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
                                 stateTitle,

@@ -16,24 +16,19 @@ class _RegisterPageState extends State<RegisterPage> {
   // TODO: STORE ALL SELECTED DATA
   bool validStep1, validStep2, validStep3, validStep4;
 
-  final _milliDuration = 300;
-  final _curve = Curves.easeIn;
-
   PageController _pageController = PageController(initialPage: 0);
 
   checkPageCtrl() => _pageController.hasClients;
 
   goToPrevPage(PageController controller) {
-    if (checkPageCtrl()) {
-      controller.previousPage(
-          duration: Duration(milliseconds: _milliDuration), curve: _curve);
+    if (checkPageCtrl() && controller.page > 0) {
+      controller.jumpToPage((controller.page - 1.0).toInt());
     }
   }
 
   goToNextPage(PageController controller) {
     if (checkPageCtrl()) {
-      controller.nextPage(
-          duration: Duration(milliseconds: _milliDuration), curve: _curve);
+      controller.jumpToPage((controller.page + 1.0).toInt());
     }
   }
 

@@ -1,11 +1,16 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/news/news_in.dart';
 import '../../constants.dart' as CONSTANT;
 
 class HilightNewsItem extends StatelessWidget {
-  const HilightNewsItem({Key key, this.newsData}) : super(key: key);
+  const HilightNewsItem({Key key, this.newsData, this.itemOnPressed})
+      : super(key: key);
 
   final News newsData;
+  final Function itemOnPressed;
+
+  onTap() {
+    itemOnPressed(newsData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +18,7 @@ class HilightNewsItem extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NewsInPage(
-                      newsData: newsData,
-                    )));
-      },
+      onTap: () => onTap(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_XL),
         child: Container(
@@ -40,7 +38,6 @@ class HilightNewsItem extends StatelessWidget {
                     width: width,
                     child: FadeInImage(
                       fit: BoxFit.cover,
-                      
                       image: NetworkImage(newsData.imgurl, scale: 1),
                       placeholder: AssetImage('assets/images/pic.png'),
                     ),

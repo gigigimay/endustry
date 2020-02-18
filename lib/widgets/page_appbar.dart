@@ -11,7 +11,7 @@ class PageAppBar extends StatefulWidget {
       : super(key: key);
 
   final bool hasBackArrow;
-  final VoidCallback backArrowFunction;
+  final Function backArrowFunction;
   final Widget actionWidget;
   final String title;
 

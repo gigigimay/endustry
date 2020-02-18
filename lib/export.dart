@@ -9,7 +9,7 @@ export './mock_data.dart';
 
 // ==========  pages  ==========
 export 'pages/home.dart';
-export 'pages/news/news.dart';
+export 'pages/news/news_page.dart';
 export 'pages/service/service.dart';
 export 'pages/knowledge/knowledge.dart';
 export 'pages/menu/menu.dart';
@@ -29,7 +29,7 @@ export 'widgets/rounded_box.dart';
 export 'widgets/input.dart';
 export 'widgets/dropdown.dart';
 
-// others 
+// others
 export 'widgets/title_text.dart';
 export 'widgets/icon_button_ink.dart';
 export 'widgets/search_button.dart';

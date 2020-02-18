@@ -3,10 +3,10 @@ import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsFilterDialog extends StatelessWidget {
   const NewsFilterDialog(
-      {Key key, this.newsData, this.state, this.selectedFilter, this.onPressed})
+      {Key key, this.newsData, this.selectedFilter, this.onPressed})
       : super(key: key);
 
-  final state, selectedFilter;
+  final selectedFilter;
   final List<News> newsData;
   final Function onPressed;
 
@@ -35,8 +35,8 @@ class NewsFilterDialog extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      onPressed(item);
                       Navigator.pop(context);
+                      onPressed(item);
                     },
                     child: Container(
                       color: Colors.transparent,

@@ -3,24 +3,23 @@ import 'package:endustry/pages/news/news_in.dart';
 import '../../constants.dart' as CONSTANT;
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({Key key, this.newsData}) : super(key: key);
+  const NewsItem({Key key, this.newsData, this.itemOnPressed})
+      : super(key: key);
 
   // final String title, date, author, imgURL;
   final News newsData;
+  final Function itemOnPressed;
+
+  onTap() {
+    itemOnPressed(newsData);
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NewsInPage(
-                      newsData: newsData,
-                    )));
-      },
+      onTap: () => onTap(),
       child: RoundedBox(
           height: width * 0.4,
           margin: EdgeInsets.symmetric(vertical: 8.0),

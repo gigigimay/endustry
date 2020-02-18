@@ -4,23 +4,31 @@ import 'package:endustry/widgets/news/hilight_news_widget.dart';
 import 'package:endustry/widgets/news/news_filter_dialog.dart';
 import 'package:endustry/widgets/news/news_item.dart';
 
-class NewsPage extends StatefulWidget {
-  NewsPage({Key key}) : super(key: key);
+class NewsFeedPage extends StatefulWidget {
+  NewsFeedPage({Key key, this.itemOnPressed}) : super(key: key);
+
+  final Function itemOnPressed;
 
   @override
-  _NewsPageState createState() => _NewsPageState();
+  _NewsFeedPageState createState() => _NewsFeedPageState();
 }
 
-class _NewsPageState extends State<NewsPage>
+class _NewsFeedPageState extends State<NewsFeedPage>
     with SingleTickerProviderStateMixin {
   var newsData = MOCK_NEWS;
 
-  String selectedFilter;
+  String _selectedFilter;
 
   @override
   void initState() {
     super.initState();
-    selectedFilter = 'ข่าวทั้งหมด';
+    _selectedFilter = 'ข่าวทั้งหมด';
+  }
+
+  setFilter(newFilter) {
+    setState(() {
+      _selectedFilter = newFilter;
+    });
   }
 
   @override
@@ -31,27 +39,23 @@ class _NewsPageState extends State<NewsPage>
         children: <Widget>[
           PageAppBar(
             title: 'ข่าว',
-            hasBackArrow: selectedFilter != 'ข่าวทั้งหมด',
-            backArrowFunction: () {
-              setState(() {
-                selectedFilter = 'ข่าวทั้งหมด';
-              });
-            },
+            hasBackArrow: _selectedFilter != 'ข่าวทั้งหมด',
+            backArrowFunction: () => setFilter('ข่าวทั้งหมด'),
             actionWidget: Row(
               children: <Widget>[
                 SearchButton(),
                 IconButtonInk(
                     icon: Icon(Icons.filter_list),
-                    
                     onPressed: () {
                       showDialog<void>(
                           context: context,
                           barrierDismissible: true,
                           builder: (BuildContext context) {
+                            print(_selectedFilter);
                             return NewsFilterDialog(
                               newsData: newsData,
-                              selectedFilter: selectedFilter,
-                              state: this,
+                              selectedFilter: _selectedFilter,
+                              onPressed: setFilter,
                             );
                           });
                     }),
@@ -63,7 +67,7 @@ class _NewsPageState extends State<NewsPage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  child: selectedFilter == 'ข่าวทั้งหมด' &&
+                  child: _selectedFilter == 'ข่าวทั้งหมด' &&
                           newsData
                                   .where((item) => item.typeId == 'nwst00')
                                   .length >
@@ -71,6 +75,7 @@ class _NewsPageState extends State<NewsPage>
                       ? Column(
                           children: <Widget>[
                             HilightNewsWidget(
+                              itemOnPressed: widget.itemOnPressed,
                               hilightData: newsData
                                   .where((item) => item.typeId == 'nwst00')
                                   .toList(),
@@ -87,7 +92,7 @@ class _NewsPageState extends State<NewsPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        selectedFilter,
+                        _selectedFilter,
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       Column(
@@ -95,19 +100,20 @@ class _NewsPageState extends State<NewsPage>
                               .where((item) {
                                 if (item.typeId == MOCK_NEWSTYPES.first.id)
                                   return false;
-                                else if (selectedFilter == 'ข่าวทั้งหมด')
+                                else if (_selectedFilter == 'ข่าวทั้งหมด')
                                   return true;
                                 else
                                   return item.typeId ==
                                       MOCK_NEWSTYPES
                                           .where((item) =>
-                                              item.typeName == selectedFilter)
+                                              item.typeName == _selectedFilter)
                                           .first
                                           .id;
                               })
                               .toList()
                               .map((item) => NewsItem(
                                     newsData: item,
+                                    itemOnPressed: widget.itemOnPressed,
                                   ))
                               .toList()),
                     ],

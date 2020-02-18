@@ -3,9 +3,11 @@ import 'package:endustry/widgets/news/hilight_news_item.dart';
 import '../../constants.dart' as CONSTANT;
 
 class HilightNewsWidget extends StatefulWidget {
-  HilightNewsWidget({Key key, this.hilightData}) : super(key: key);
+  HilightNewsWidget({Key key, this.hilightData, this.itemOnPressed})
+      : super(key: key);
 
   final List hilightData;
+  final Function itemOnPressed;
 
   @override
   _HilightNewsWidgetState createState() => _HilightNewsWidgetState();
@@ -38,6 +40,7 @@ class _HilightNewsWidgetState extends State<HilightNewsWidget>
     List<Widget> hilightNews = widget.hilightData
         .map((item) => HilightNewsItem(
               newsData: item,
+              itemOnPressed: widget.itemOnPressed,
             ))
         .toList();
 

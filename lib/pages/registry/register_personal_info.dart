@@ -2,8 +2,8 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class RegisterPage1 extends StatefulWidget {
-  RegisterPage1({Key key, this.isSelected}) : super(key: key);
-  final bool isSelected;
+  RegisterPage1({Key key,}) : super(key: key);
+
   @override
   _RegisterPage1State createState() => _RegisterPage1State();
 }

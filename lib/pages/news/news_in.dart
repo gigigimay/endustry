@@ -2,8 +2,10 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class NewsInPage extends StatefulWidget {
-  NewsInPage({Key key, this.newsData}) : super(key: key);
+  NewsInPage({Key key, this.newsData, this.backArrowFunction})
+      : super(key: key);
   final News newsData;
+  final backArrowFunction;
 
   @override
   _NewsInPageState createState() => _NewsInPageState();
@@ -14,7 +16,6 @@ class _NewsInPageState extends State<NewsInPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print(widget.newsData);
     return BgLayout(
       navbar: NavigationBar(currentpage: 'news'),
       child: Column(
@@ -22,9 +23,7 @@ class _NewsInPageState extends State<NewsInPage> {
           PageAppBar(
             title: 'ข่าว',
             hasBackArrow: true,
-            backArrowFunction: () {
-              Navigator.pop(context);
-            },
+            backArrowFunction: widget.backArrowFunction,
           ),
           PageScrollBody(
             child: PagePadding(

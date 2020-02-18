@@ -186,6 +186,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
     print(preferList);
     return Expanded(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             children: <Widget>[

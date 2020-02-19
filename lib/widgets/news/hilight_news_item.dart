@@ -18,7 +18,7 @@ class HilightNewsItem extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_XL),
         child: Container(

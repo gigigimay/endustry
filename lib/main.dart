@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       ),
       // TODO: add all need route
       routes: <String, WidgetBuilder>{
-        '/homepage': (BuildContext context) => new HomePage(),
-        '/registerpage': (BuildContext context) => new RegisterPage(),
+        '/home': (BuildContext context) => new HomePage(),
+        '/register': (BuildContext context) => new RegisterPage(),
       },
       //TODO: change back to HomePage
       home: HomePage(),

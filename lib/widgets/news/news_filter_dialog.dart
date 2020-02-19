@@ -12,9 +12,10 @@ class NewsFilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List _filterName = MOCK_NEWSTYPES
+    final newsType = MOCK_NEWSTYPES;
+
+    List _filterName = newsType
         .where((item) => item.id != MOCK_NEWSTYPES.first.id)
-        .toList()
         .map((item) => item.typeName)
         .toList();
     _filterName.sort((a, b) => a.compareTo(b));

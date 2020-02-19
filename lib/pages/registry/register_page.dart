@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   submitData() {
     // TODO: save all data & update db
-    Utils.navigatePushAndPopAll(context, '/homepage');
+    Utils.navigatePushAndPopAll(context, '/home');
   }
 
   // TODO: change next text after some activity 1,2,3
@@ -117,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
           stateTitle: 'เลือกสิ่งที่คุณสนใจ',
           stateSubTitle: 'การกำหนดสิ่งที่คุณสนใจจะช่วยทำให้...',
           prevBtnFuntion: () => goToPrevPage(_pageController),
-          nextBtnFuntion: () => submitData(),
+          nextBtnFuntion: () => submitData,
           nextText: 'เสร็จสิ้น',
         ),
       ],

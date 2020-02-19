@@ -19,7 +19,7 @@ class NewsItem extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: () => onTap,
       child: RoundedBox(
           height: width * 0.4,
           margin: EdgeInsets.symmetric(vertical: 8.0),

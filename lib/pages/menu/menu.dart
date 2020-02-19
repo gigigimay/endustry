@@ -48,7 +48,7 @@ class MenuPage extends StatelessWidget {
             text: 'ออกจากระบบ',
             // TODO: change destination to login page
             onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                context, '/registerpage', (Route<dynamic> route) => false),
+                context, '/register', (Route<dynamic> route) => false),
           )
         ],
       ),

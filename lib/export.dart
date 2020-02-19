@@ -11,7 +11,7 @@ export './mock_data.dart';
 export 'pages/home.dart';
 export 'pages/news/news_page.dart';
 export 'pages/service/service.dart';
-export 'pages/knowledge/knowledge.dart';
+export 'pages/knowledge/knowledge_page.dart';
 export 'pages/menu/menu.dart';
 
 // ==========  shared widgets  ==========

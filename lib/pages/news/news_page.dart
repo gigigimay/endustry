@@ -34,14 +34,16 @@ class _NewsPageState extends State<NewsPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BgLayout(
         safeBottom: false,
+        navbar: NavigationBar(currentpage: 'news'),
         child: PageView(
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),

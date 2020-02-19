@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/knowledge/knowledge_page.dart';
 import 'package:endustry/pages/service/service_in.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
@@ -94,22 +95,24 @@ class HomePage extends StatelessWidget {
                                     ))
                                 .toList(),
                           ),
-                          ContentGroup(
-                            title: 'คลังความรู้แนะนำสำหรับคุณ',
-                            spacing: 0,
-                            runSpacing: 0,
-                            onSeeAll: () {
-                              Utils.navigatePush(context, KnowledgePage());
-                            },
-                            children: suggestedKnowledgesData
-                                .sublist(0, 3)
-                                .map((Knowledge item) => KnowledgeItem(
-                                      favStatus: userData.favKnowledges
-                                          .contains(item.id),
-                                      knowledgeData: item,
-                                    ))
-                                .toList(),
-                          ),
+                          // ContentGroup(
+                          //   title: 'คลังความรู้แนะนำสำหรับคุณ',
+                          //   spacing: 0,
+                          //   runSpacing: 0,
+                          //   onSeeAll: () {
+                          //     Utils.navigatePush(context, KnowledgePage());
+                          //   },
+                          //   children: suggestedKnowledgesData
+                          //       .sublist(0, 3)
+                          //       .map((Knowledge item) => KnowledgeItem(
+                          //             favStatus: userData.favKnowledges
+                          //                 .contains(item.id),
+                          //             knowledgeData: item,
+                          //             // TODO: fix it
+                          //             // itemOnPressed: ,
+                          //           ))
+                          //       .toList(),
+                          // ),
                           SizedBox(height: CONSTANT.SIZE_XL)
                         ],
                       ),

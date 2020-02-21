@@ -30,7 +30,7 @@ class RegisterStatusBtn extends StatelessWidget {
               ),
               backgroundColor:
                   isSelected ? Color(0xffEFE4F2) : CONSTANT.COLOR_BACKGROUND,
-              radius: width * 0.4 / 2,
+              radius: width * 0.2,
             ),
           ),
         ),

@@ -44,12 +44,6 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  setValid2(bool boolean) {
-    setState(() {
-      validStep2 = boolean;
-    });
-  }
-
   setValid3(bool boolean) {
     setState(() {
       validStep3 = boolean;
@@ -82,43 +76,21 @@ class _RegisterPageState extends State<RegisterPage> {
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        RegisterLayout(
-          child: RegisterPage1(),
-          registerStep: 0,
-          stateTitle: 'ข้อมูลส่วนตัว',
+        RegisterPage1(
           prevBtnFuntion: () => goToPrevPage(_pageController),
           nextBtnFuntion: () => goToNextPage(_pageController),
         ),
-        RegisterLayout(
-          child: RegisterPage2(
-            onPressed: setValid2,
-          ),
-          registerStep: 1,
-          stateTitle: 'เลือกรูปโปรไฟล์',
+        RegisterPage2(
           prevBtnFuntion: () => goToPrevPage(_pageController),
           nextBtnFuntion: () => goToNextPage(_pageController),
-          nextText: validStep2 ? 'ต่อไป' : 'ข้าม',
-          // nextText: ,
         ),
-        RegisterLayout(
-          child: RegisterPage3(
-            onpressed: setValid3,
-          ),
-          registerStep: 2,
-          stateTitle: 'คุณคือ...?',
+        RegisterPage3(
           prevBtnFuntion: () => goToPrevPage(_pageController),
           nextBtnFuntion: () => goToNextPage(_pageController),
-          nextText: 'ต่อไป',
-          disabled: !validStep3,
         ),
-        RegisterLayout(
-          child: RegisterPage4(),
-          registerStep: 3,
-          stateTitle: 'เลือกสิ่งที่คุณสนใจ',
-          stateSubTitle: 'การกำหนดสิ่งที่คุณสนใจจะช่วยทำให้...',
+        RegisterPage4(
           prevBtnFuntion: () => goToPrevPage(_pageController),
-          nextBtnFuntion: () => submitData,
-          nextText: 'เสร็จสิ้น',
+          nextBtnFuntion: () => submitData(),
         ),
       ],
     ));

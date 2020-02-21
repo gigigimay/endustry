@@ -6,21 +6,22 @@ class NavItem extends StatelessWidget {
       {Key key,
       this.title,
       this.icon,
-      this.currentPage,
-      this.comparePage,
-      this.onPressed})
+      this.backToMainTopicPage,
+      this.changeTopicPage,
+      @required this.isOnPage})
       : super(key: key);
   final String title;
   final Widget icon;
-  final String currentPage;
-  final String comparePage;
-  final void Function() onPressed;
+  final Function backToMainTopicPage, changeTopicPage;
+  final bool isOnPage;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    var dy = currentPage == comparePage ? -20.0 : 0.0;
+    var dy = isOnPage ? -20.0 : 0.0;
+
+    print(isOnPage);
 
     return Stack(
       alignment: Alignment.center,
@@ -32,7 +33,7 @@ class NavItem extends StatelessWidget {
             child: Container(
               width: width / 5.75,
               decoration: BoxDecoration(
-                image: currentPage == comparePage
+                image: isOnPage
                     ? DecorationImage(
                         image: AssetImage('assets/images/select_page.png'),
                       )
@@ -48,14 +49,13 @@ class NavItem extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: icon,
-                color: currentPage == comparePage
-                    ? Colors.white
-                    : CONSTANT.COLOR_PRIMARY,
+                color: isOnPage ? Colors.white : CONSTANT.COLOR_PRIMARY,
                 iconSize:
                     icon.runtimeType == ImageIcon ? width * 0.06 : width * 0.08,
-                onPressed: currentPage != comparePage ? onPressed : () {},
+                onPressed:
+                    isOnPage ? backToMainTopicPage : changeTopicPage,
               ),
-              currentPage == comparePage
+              isOnPage
                   ? Text(
                       title,
                       style: TextStyle(

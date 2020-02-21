@@ -43,7 +43,10 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
             children: <Widget>[
               SearchButton(),
               IconButtonInk(
-                  icon: Icon(Icons.filter_list),
+                  icon: ImageIcon(
+                    AssetImage('assets/images/filter.png'),
+                    size: CONSTANT.SIZE_XL,
+                  ),
                   onPressed: () {
                     showDialog<void>(
                         context: context,

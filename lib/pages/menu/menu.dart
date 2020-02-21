@@ -6,13 +6,20 @@ import '../../widgets/menu/menu_item.dart';
 import '../../widgets/menu/user_profile.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({Key key}) : super(key: key);
+  const MenuPage({Key key, this.changePage, this.goBackToFirst})
+      : super(key: key);
+
+  final Function goBackToFirst, changePage;
 
   @override
   Widget build(BuildContext context) {
     final User userData = MOCK_USER;
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'menu'),
+      navbar: NavigationBar(
+        currentpage: 'menu',
+        backToFirstPage: goBackToFirst,
+        changeTopicPage: changePage,
+      ),
       child: Column(
         children: <Widget>[
           PagePadding(

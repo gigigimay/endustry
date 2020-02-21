@@ -1,25 +1,23 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/knowledge/knowledge_page.dart';
-import 'package:endustry/pages/news/news_page.dart';
 import './navigation_item.dart';
 
 class NavigationBar extends StatefulWidget {
-  NavigationBar({Key key, @required this.currentpage}) : super(key: key);
+  NavigationBar(
+      {Key key,
+      @required this.currentpage,
+      this.changeTopicPage,
+      this.backToFirstPage})
+      : super(key: key);
 
   final currentpage;
+  final Function backToFirstPage;
+  final Function changeTopicPage;
 
   @override
   _NavigationBarState createState() => _NavigationBarState();
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  navigateTo(page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => page),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,58 +46,43 @@ class _NavigationBarState extends State<NavigationBar> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 NavItem(
-                  title: 'หน้าแรก',
-                  icon: ImageIcon(
-                    AssetImage('assets/images/home_white.png'),
-                  ),
-                  currentPage: widget.currentpage,
-                  comparePage: 'home',
-                  onPressed: () {
-                    navigateTo(HomePage());
-                  },
-                ),
+                    title: 'หน้าแรก',
+                    icon: ImageIcon(
+                      AssetImage('assets/images/home_white.png'),
+                    ),
+                    isOnPage: widget.currentpage == 'home',
+                    changeTopicPage: () => widget.changeTopicPage(0),
+                    backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
-                  title: 'ข่าว',
-                  icon: ImageIcon(
-                    AssetImage('assets/images/news_white.png'),
-                  ),
-                  currentPage: widget.currentpage,
-                  comparePage: 'news',
-                  onPressed: () {
-                    navigateTo(NewsPage());
-                  },
-                ),
+                    title: 'ข่าว',
+                    icon: ImageIcon(
+                      AssetImage('assets/images/news_white.png'),
+                    ),
+                    isOnPage: widget.currentpage == 'news',
+                    changeTopicPage: () => widget.changeTopicPage(1),
+                    backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
-                  title: 'บริการ',
-                  icon: ImageIcon(
-                    AssetImage('assets/images/service_white.png'),
-                  ),
-                  currentPage: widget.currentpage,
-                  comparePage: 'service',
-                  onPressed: () {
-                    navigateTo(ServicePage());
-                  },
-                ),
+                    title: 'บริการ',
+                    icon: ImageIcon(
+                      AssetImage('assets/images/service_white.png'),
+                    ),
+                    isOnPage: widget.currentpage == 'service',
+                    changeTopicPage: () => widget.changeTopicPage(2),
+                    backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
-                  title: 'คลังความรู้',
-                  icon: ImageIcon(
-                    AssetImage('assets/images/know_white.png'),
-                  ),
-                  currentPage: widget.currentpage,
-                  comparePage: 'knowledge',
-                  onPressed: () {
-                    navigateTo(KnowledgePage());
-                  },
-                ),
+                    title: 'คลังความรู้',
+                    icon: ImageIcon(
+                      AssetImage('assets/images/know_white.png'),
+                    ),
+                    isOnPage: widget.currentpage == 'knowledge',
+                    changeTopicPage: () => widget.changeTopicPage(3),
+                    backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
-                  title: 'โปรไฟล์',
-                  icon: Icon(Icons.menu),
-                  currentPage: widget.currentpage,
-                  comparePage: 'menu',
-                  onPressed: () {
-                    navigateTo(MenuPage());
-                  },
-                ),
+                    title: 'โปรไฟล์',
+                    icon: Icon(Icons.menu),
+                    isOnPage: widget.currentpage == 'menu',
+                    changeTopicPage: () => widget.changeTopicPage(4),
+                    backToMainTopicPage: widget.backToFirstPage),
               ],
             ),
           ),

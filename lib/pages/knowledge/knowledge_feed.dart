@@ -62,7 +62,7 @@ class _KnowledgeFeedPageState extends State<KnowledgeFeedPage> {
                           isSuggest = true;
                         });
                       },
-                      child: Text('แนะนำสำหรับคุณ',
+                      child: Text('แนะนำ',
                           style: TextStyle(
                             fontSize: CONSTANT.FONT_SIZE_HEAD,
                             color: isSuggest

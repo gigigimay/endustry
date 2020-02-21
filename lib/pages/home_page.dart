@@ -1,18 +1,15 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/knowledge/knowledge_fav.dart';
-import 'package:endustry/pages/knowledge/knowledge_feed.dart';
-import 'package:endustry/pages/knowledge/knowledge_in.dart';
 
-class KnowledgePage extends StatefulWidget {
-  KnowledgePage({Key key, this.changePage}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.changePage}) : super(key: key);
 
   final Function changePage;
 
   @override
-  _KnowledgePageState createState() => _KnowledgePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _KnowledgePageState extends State<KnowledgePage> {
+class _HomePageState extends State<HomePage> {
   List<Knowledge> _allKnowledgeData, _suggestKnowledgeData, _favKnowledgeData;
   List _favList;
   Knowledge _knowledgeData;
@@ -30,10 +27,9 @@ class _KnowledgePageState extends State<KnowledgePage> {
     }
   }
 
-  goToKnowInPage(Knowledge knowledgeData) {
+  goToInPage(data) {
     if (checkPageCtrl()) {
       setState(() {
-        _knowledgeData = knowledgeData;
         _prevPage = _pageController.page.toInt();
       });
 
@@ -73,30 +69,17 @@ class _KnowledgePageState extends State<KnowledgePage> {
   @override
   Widget build(BuildContext context) {
     return BgLayout(
+        safeTop: false,
         safeBottom: false,
         navbar: NavigationBar(
-          currentpage: 'knowledge',
+          currentpage: 'home',
           backToFirstPage: goBackToFirst,
           changeTopicPage: widget.changePage,
         ),
         child: PageView(
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            KnowledgeFeedPage(
-                goToKnowFavPage: goToKnowFavPage,
-                itemOnPressed: goToKnowInPage),
-            KnowledgeFavPage(
-              favList: _favList,
-              knowledgeData: _favKnowledgeData,
-              itemOnPressed: goToKnowInPage,
-              backArrowFunction: goBack,
-            ),
-            KnowledgeInPage(
-              knowledgeData: _knowledgeData,
-              backArrowFunction: goBack,
-            )
-          ],
+          children: <Widget>[HomeFeedPage()],
         ));
   }
 }

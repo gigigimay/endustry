@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
 
 class KnowledgeFavPage extends StatelessWidget {
@@ -22,7 +23,9 @@ class KnowledgeFavPage extends StatelessWidget {
             title: 'คลังความรู้ของฉัน',
             hasBackArrow: true,
             backArrowFunction: backArrowFunction,
-            actionWidget: SearchButton()),
+            actionWidget: SearchButton(
+              initMode: CONSTANT.WORD_KNOWLEDGE_TH,
+            )),
         PageScrollBody(
           child: PagePadding(
               top: 0.0,

@@ -24,15 +24,17 @@ class BgLayout extends StatelessWidget {
           ])
         : pageBody;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomPadding: false,
         body: Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
-        image: DecorationImage(
-          image: AssetImage(this.bgImg),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: pagechild,
-    ));
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+            image: DecorationImage(
+              image: AssetImage(this.bgImg),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: pagechild,
+        ));
   }
 }

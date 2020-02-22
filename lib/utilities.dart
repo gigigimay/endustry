@@ -6,6 +6,11 @@ class Utils {
     Navigator.push(context, MaterialPageRoute(builder: (context) => page));
   }
 
+  static void navigatePushAndPopAll(BuildContext context, String pageRoute) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, pageRoute, (Route<dynamic> route) => false);
+  }
+
   static void launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

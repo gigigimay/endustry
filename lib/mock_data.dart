@@ -74,7 +74,7 @@ const List<News> MOCK_NEWS = [
     content: 'Lorem1',
     date: '1969-07-20 20:18:04Z',
     author: 'ระนองระยอง',
-    imgurl: 'https://picsum.photos/200',
+    imgurl: 'https://picsum.photos/250',
     typeId: 'nwst00',
   ),
   News(
@@ -83,7 +83,7 @@ const List<News> MOCK_NEWS = [
     content: 'Lorem2',
     date: '1969-07-21 20:18:04Z',
     author: 'ประญุจ',
-    imgurl: 'https://picsum.photos/200',
+    imgurl: 'https://picsum.photos/250',
     typeId: 'nwst00',
   ),
   News(
@@ -119,7 +119,7 @@ const List<NewsType> MOCK_NEWSTYPES = [
   NewsType(id: 'nwst00', typeName: 'hilight'),
   NewsType(id: 'nwst01', typeName: 'ข่าวประชาสัมพันธ์'),
   NewsType(id: 'nwst02', typeName: 'ข่าวประจำจังหวัด'),
-  NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน')
+  NewsType(id: 'nwst03', typeName: 'ข่าวรับสมัครงาน'),
 ];
 
 const User MOCK_USER = User(

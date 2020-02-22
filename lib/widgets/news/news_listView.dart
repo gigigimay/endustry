@@ -1,5 +1,4 @@
 import 'package:endustry/export.dart';
-import '../../constants.dart' as CONSTANT;
 
 class NewsListView extends StatelessWidget {
   const NewsListView({Key key, this.newsData}) : super(key: key);

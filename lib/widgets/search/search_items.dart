@@ -58,7 +58,7 @@ class SearchItems {
                     style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
                   ),
                   Text(
-                    News.getDateTimeString(data.date),
+                    '${News.getDateString(data.date)} | ${data.author}',
                     style: CONSTANT.TEXT_STYLE_BODY,
                   ),
                 ],

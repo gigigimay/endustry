@@ -5,13 +5,16 @@ import 'package:endustry/widgets/home/content_group.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/service/service_list.dart';
 
-class ServicePage extends StatelessWidget {
-  const ServicePage({Key key}) : super(key: key);
+class ServiceFeedPage extends StatelessWidget {
+  const ServiceFeedPage({Key key, this.goBackToFirst, this.changePage})
+      : super(key: key);
 
   final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = MOCK_SERVICES;
   final List<Service> servicesData = MOCK_SERVICES;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
+
+  final Function goBackToFirst, changePage;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,13 @@ class ServicePage extends StatelessWidget {
     double itemWidth = ((width - CONSTANT.SIZE_XL) / 2) - CONSTANT.SIZE_XL;
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service'),
       child: Column(
         children: <Widget>[
-          PageAppBar(title: 'บริการ', actionWidget: SearchButton()),
+          PageAppBar(
+              title: 'บริการ',
+              actionWidget: SearchButton(
+                initMode: CONSTANT.WORD_SERVICE_TH,
+              )),
           SizedBox(height: CONSTANT.SIZE_MD),
           PageScrollBody(
             child: PagePadding(

@@ -31,7 +31,9 @@ class _KnowledgeFeedPageState extends State<KnowledgeFeedPage> {
           title: 'คลังความรู้',
           actionWidget: Row(
             children: <Widget>[
-              SearchButton(),
+              SearchButton(
+                initMode: CONSTANT.WORD_KNOWLEDGE_TH,
+              ),
               IconButtonInk(
                 icon: ImageIcon(
                   AssetImage('assets/images/fav.png'),

@@ -24,7 +24,11 @@ class ServiceFeedPage extends StatelessWidget {
     return BgLayout(
       child: Column(
         children: <Widget>[
-          PageAppBar(title: 'บริการ', actionWidget: SearchButton()),
+          PageAppBar(
+              title: 'บริการ',
+              actionWidget: SearchButton(
+                initMode: CONSTANT.WORD_SERVICE_TH,
+              )),
           SizedBox(height: CONSTANT.SIZE_MD),
           PageScrollBody(
             child: PagePadding(

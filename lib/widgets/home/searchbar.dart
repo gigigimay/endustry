@@ -15,7 +15,11 @@ class SearchBar extends StatelessWidget {
       child: RaisedButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SearchPage()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SearchPage(
+                        initMode: CONSTANT.WORD_ALL_TH,
+                      )));
         },
         elevation: 0,
         color: Colors.white,

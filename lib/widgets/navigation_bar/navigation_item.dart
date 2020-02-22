@@ -11,9 +11,13 @@ class NavItem extends StatelessWidget {
       @required this.isOnPage})
       : super(key: key);
   final String title;
-  final Widget icon;
+  final icon;
   final Function backToMainTopicPage, changeTopicPage;
   final bool isOnPage;
+
+  getIconColor() {
+    return isOnPage ? Colors.white : CONSTANT.COLOR_PRIMARY;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,54 +25,53 @@ class NavItem extends StatelessWidget {
 
     var dy = isOnPage ? -20.0 : 0.0;
 
-    print(isOnPage);
-
-    return Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        Transform.translate(
-          offset: Offset(0, dy),
-          child: Transform.scale(
-            scale: 1.3,
-            child: Container(
-              width: width / 5.75,
-              decoration: BoxDecoration(
-                image: isOnPage
-                    ? DecorationImage(
-                        image: AssetImage('assets/images/select_page.png'),
-                      )
-                    : null,
+    return InkWell(
+      onTap: isOnPage ? backToMainTopicPage : changeTopicPage,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Transform.translate(
+            offset: Offset(0, dy),
+            child: Transform.scale(
+              scale: 1.3,
+              child: Container(
+                width: width / 5.75,
+                decoration: BoxDecoration(
+                  image: isOnPage
+                      ? DecorationImage(
+                          image: AssetImage('assets/images/select_page.png'),
+                        )
+                      : null,
+                ),
               ),
             ),
           ),
-        ),
-        Transform.translate(
-          offset: Offset(0, dy == 0 ? 0 : dy - 5),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              IconButton(
-                icon: icon,
-                color: isOnPage ? Colors.white : CONSTANT.COLOR_PRIMARY,
-                iconSize:
-                    icon.runtimeType == ImageIcon ? width * 0.06 : width * 0.08,
-                onPressed:
-                    isOnPage ? backToMainTopicPage : changeTopicPage,
-              ),
-              isOnPage
-                  ? Text(
-                      title,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: CONSTANT.FONT_SIZE_BODY,
-                          fontWeight: FontWeight.w700,
-                          height: 0.8),
-                    )
-                  : Container()
-            ],
-          ),
-        )
-      ],
+          Transform.translate(
+            offset: Offset(0, dy == 0 ? 0 : dy - 5),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                icon.runtimeType != IconData
+                    ? ImageIcon(icon, color: getIconColor(), size: width * 0.06)
+                    : Icon(icon, color: getIconColor(), size: width * 0.08),
+                isOnPage
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: CONSTANT.SIZE_LG),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: CONSTANT.FONT_SIZE_BODY,
+                              fontWeight: FontWeight.w700,
+                              height: 0.8),
+                        ),
+                      )
+                    : Container()
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

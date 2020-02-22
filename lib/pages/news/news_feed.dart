@@ -5,9 +5,15 @@ import 'package:endustry/widgets/news/news_filter_dialog.dart';
 import 'package:endustry/widgets/news/news_item.dart';
 
 class NewsFeedPage extends StatefulWidget {
-  NewsFeedPage({Key key, this.itemOnPressed}) : super(key: key);
+  NewsFeedPage(
+      {Key key,
+      this.itemOnPressed,
+      this.setFilter,
+      this.selectedFilter = "ข่าวทั้งหมด"})
+      : super(key: key);
 
-  final Function itemOnPressed;
+  final Function itemOnPressed, setFilter;
+  final String selectedFilter;
 
   @override
   _NewsFeedPageState createState() => _NewsFeedPageState();
@@ -17,31 +23,25 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
   final newsData = MOCK_NEWS;
   final newsType = MOCK_NEWSTYPES;
 
-  String _selectedFilter;
-
   @override
   void initState() {
     super.initState();
-    _selectedFilter = 'ข่าวทั้งหมด';
-  }
-
-  setFilter(newFilter) {
-    setState(() {
-      _selectedFilter = newFilter;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.selectedFilter);
     return Column(
       children: <Widget>[
         PageAppBar(
           title: 'ข่าว',
-          hasBackArrow: _selectedFilter != 'ข่าวทั้งหมด',
-          backArrowFunction: () => setFilter('ข่าวทั้งหมด'),
+          hasBackArrow: widget.selectedFilter != 'ข่าวทั้งหมด',
+          backArrowFunction: () => widget.setFilter('ข่าวทั้งหมด'),
           actionWidget: Row(
             children: <Widget>[
-              SearchButton(),
+              SearchButton(
+                initMode: CONSTANT.WORD_NEWS_TH,
+              ),
               IconButtonInk(
                   icon: ImageIcon(
                     AssetImage('assets/images/filter.png'),
@@ -54,8 +54,8 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                         builder: (BuildContext context) {
                           return NewsFilterDialog(
                             newsData: newsData,
-                            selectedFilter: _selectedFilter,
-                            onPressed: setFilter,
+                            selectedFilter: widget.selectedFilter,
+                            onPressed: widget.setFilter,
                           );
                         });
                   }),
@@ -67,7 +67,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                child: _selectedFilter == 'ข่าวทั้งหมด' &&
+                child: widget.selectedFilter == 'ข่าวทั้งหมด' &&
                         newsData
                                 .where((item) => item.typeId == 'nwst00')
                                 .length >
@@ -92,7 +92,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      _selectedFilter,
+                      widget.selectedFilter,
                       style: CONSTANT.TEXT_STYLE_HEADING,
                     ),
                     Column(
@@ -100,13 +100,14 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                             .where((item) {
                               if (item.typeId == newsType.first.id)
                                 return false;
-                              else if (_selectedFilter == 'ข่าวทั้งหมด')
+                              else if (widget.selectedFilter == 'ข่าวทั้งหมด')
                                 return true;
                               else
                                 return item.typeId ==
                                     newsType
                                         .firstWhere((item) =>
-                                            item.typeName == _selectedFilter)
+                                            item.typeName ==
+                                            widget.selectedFilter)
                                         .id;
                             })
                             .toList()

@@ -5,7 +5,9 @@ import 'package:endustry/widgets/search/search_item_list.dart';
 import 'package:endustry/widgets/search/topic_btn_group.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+  SearchPage({Key key, this.initMode}) : super(key: key);
+
+  final String initMode;
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -20,6 +22,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
+    _mode = widget.initMode;
   }
 
   var searchNewsData = MOCK_NEWS;

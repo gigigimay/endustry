@@ -21,7 +21,6 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -47,39 +46,31 @@ class _NavigationBarState extends State<NavigationBar> {
               children: <Widget>[
                 NavItem(
                     title: 'หน้าแรก',
-                    icon: ImageIcon(
-                      AssetImage('assets/images/home_white.png'),
-                    ),
+                    icon: AssetImage('assets/images/home_white.png'),
                     isOnPage: widget.currentpage == 'home',
                     changeTopicPage: () => widget.changeTopicPage(0),
                     backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
                     title: 'ข่าว',
-                    icon: ImageIcon(
-                      AssetImage('assets/images/news_white.png'),
-                    ),
+                    icon: AssetImage('assets/images/news_white.png'),
                     isOnPage: widget.currentpage == 'news',
                     changeTopicPage: () => widget.changeTopicPage(1),
                     backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
                     title: 'บริการ',
-                    icon: ImageIcon(
-                      AssetImage('assets/images/service_white.png'),
-                    ),
+                    icon: AssetImage('assets/images/service_white.png'),
                     isOnPage: widget.currentpage == 'service',
                     changeTopicPage: () => widget.changeTopicPage(2),
                     backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
                     title: 'คลังความรู้',
-                    icon: ImageIcon(
-                      AssetImage('assets/images/know_white.png'),
-                    ),
+                    icon: AssetImage('assets/images/know_white.png'),
                     isOnPage: widget.currentpage == 'knowledge',
                     changeTopicPage: () => widget.changeTopicPage(3),
                     backToMainTopicPage: widget.backToFirstPage),
                 NavItem(
                     title: 'โปรไฟล์',
-                    icon: Icon(Icons.menu),
+                    icon: Icons.menu,
                     isOnPage: widget.currentpage == 'menu',
                     changeTopicPage: () => widget.changeTopicPage(4),
                     backToMainTopicPage: widget.backToFirstPage),

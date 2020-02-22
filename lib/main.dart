@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
       ),
       // TODO: add all need route
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new HomeFeedPage(),
+        '/app': (BuildContext context) => new AppLayout(),
         '/register': (BuildContext context) => new RegisterPage(),
       },
-      //TODO: change back to HomePage
+      //TODO: change back to AppLayout
       home: AppLayout(),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class KnowledgeFavPage extends StatelessWidget {
   const KnowledgeFavPage(

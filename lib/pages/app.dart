@@ -1,5 +1,4 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/home_page.dart';
 import 'package:endustry/pages/service/service_page.dart';
 

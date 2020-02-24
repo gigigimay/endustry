@@ -1,16 +1,17 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/news/hilight_news_widget.dart';
 import 'package:endustry/widgets/news/news_filter_dialog.dart';
 import 'package:endustry/widgets/news/news_item.dart';
 
 class NewsFeedPage extends StatefulWidget {
-  NewsFeedPage(
-      {Key key,
-      this.itemOnPressed,
-      this.setFilter,
-      this.selectedFilter = "ข่าวทั้งหมด"})
-      : super(key: key);
+  NewsFeedPage({
+    Key key,
+    this.itemOnPressed,
+    this.setFilter,
+    this.selectedFilter = "ข่าวทั้งหมด",
+  }) : super(key: key);
 
   final Function itemOnPressed, setFilter;
   final String selectedFilter;
@@ -20,13 +21,8 @@ class NewsFeedPage extends StatefulWidget {
 }
 
 class _NewsFeedPageState extends State<NewsFeedPage> {
-  final newsData = MOCK_NEWS;
-  final newsType = MOCK_NEWSTYPES;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  final newsData = Storage.news;
+  final newsType = Storage.newsTypes;
 
   @override
   Widget build(BuildContext context) {

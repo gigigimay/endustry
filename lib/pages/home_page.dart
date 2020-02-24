@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/storage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.changePage}) : super(key: key);

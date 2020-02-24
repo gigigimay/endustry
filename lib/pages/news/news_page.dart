@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/pages/news/news_feed.dart';
 import 'package:endustry/pages/news/news_in.dart';
+import 'package:endustry/storage.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage({Key key, this.changePage}) : super(key: key);
@@ -50,6 +51,11 @@ class _NewsPageState extends State<NewsPage> {
         _selectedFilter = newFilter;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

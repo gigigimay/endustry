@@ -1,18 +1,21 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledge_page.dart';
 import 'package:endustry/pages/service/service_in.dart';
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
 
 class HomeFeedPage extends StatelessWidget {
-  const HomeFeedPage({Key key, this.changePage}) : super(key: key);
+  //TODO: TRY TO REMOVE CONST
+  // const
+  HomeFeedPage({Key key, this.changePage}) : super(key: key);
 
-  final List<Service> recentServicesData = MOCK_SERVICES;
-  final List<Service> suggestedServicesData = MOCK_SERVICES;
-  final List<Knowledge> suggestedKnowledgesData = MOCK_KNOWLEDGES;
+  final List<Service> recentServicesData = Storage.services;
+  final List<Service> suggestedServicesData =
+      Storage.services.reversed.toList();
+  final List<Knowledge> suggestedKnowledgesData = Storage.knowledges;
 
   final Function changePage;
 
@@ -94,24 +97,24 @@ class HomeFeedPage extends StatelessWidget {
                                   ))
                               .toList(),
                         ),
-                        // ContentGroup(
-                        //   title: 'คลังความรู้แนะนำสำหรับคุณ',
-                        //   spacing: 0,
-                        //   runSpacing: 0,
-                        //   onSeeAll: () {
-                        //     Utils.navigatePush(context, KnowledgePage());
-                        //   },
-                        //   children: suggestedKnowledgesData
-                        //       .sublist(0, 3)
-                        //       .map((Knowledge item) => KnowledgeItem(
-                        //             favStatus: userData.favKnowledges
-                        //                 .contains(item.id),
-                        //             knowledgeData: item,
-                        //             // TODO: fix it
-                        //             // itemOnPressed: ,
-                        //           ))
-                        //       .toList(),
-                        // ),
+                        ContentGroup(
+                          title: 'คลังความรู้แนะนำสำหรับคุณ',
+                          spacing: 0,
+                          runSpacing: 0,
+                          onSeeAll: () {
+                            Utils.navigatePush(context, KnowledgePage());
+                          },
+                          children: suggestedKnowledgesData
+                              .sublist(0, 3)
+                              .map((Knowledge item) => KnowledgeItem(
+                                    favStatus: userData.favKnowledges
+                                        .contains(item.id),
+                                    knowledgeData: item,
+                                    // TODO: fix it
+                                    // itemOnPressed: ,
+                                  ))
+                              .toList(),
+                        ),
                         SizedBox(height: CONSTANT.SIZE_XL)
                       ],
                     ),

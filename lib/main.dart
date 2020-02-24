@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/registry/register_page.dart';
+import 'package:endustry/pages/splash.dart';
 
 void main() => runApp(MyApp());
 

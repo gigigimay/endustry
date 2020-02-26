@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/service/department_in.dart';
 
 class ServiceInPage extends StatelessWidget {
   const ServiceInPage({
@@ -23,6 +24,7 @@ class ServiceInPage extends StatelessWidget {
         departmentsData.firstWhere((Department d) => d.id == serviceData.depId);
 
     return BgLayout(
+      navbar: NavigationBar(currentpage: 'service'),
       child: Column(
         children: <Widget>[
           PageAppBar(title: 'บริการ', hasBackArrow: true),
@@ -45,13 +47,8 @@ class ServiceInPage extends StatelessWidget {
                                 style: CONSTANT.TEXT_STYLE_HEADING,
                               ),
                               FlatButton(
-                                onPressed: () {
-                                  Utils.navigatePushNamed(
-                                    context,
-                                    'service/department_in',
-                                    arguments: DepartmentInArgs(dep),
-                                  );
-                                },
+                                onPressed: () => Utils.navigatePush(context,
+                                    DepartmentInPage(departmentData: dep)),
                                 child: Text(
                                   dep.name,
                                   textAlign: TextAlign.center,

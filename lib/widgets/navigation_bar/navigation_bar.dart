@@ -1,22 +1,16 @@
 import 'package:endustry/export.dart';
 import './navigation_item.dart';
 
-class NavigationBar extends StatefulWidget {
+class NavigationBar extends StatelessWidget {
   NavigationBar({
     Key key,
     @required this.currentpage,
-    this.changeTopicPage,
+    this.isOnRoot = false,
   }) : super(key: key);
 
   final currentpage;
-  final Function changeTopicPage;
+  final bool isOnRoot;
 
-  @override
-  _NavigationBarState createState() => _NavigationBarState();
-}
-
-class _NavigationBarState extends State<NavigationBar> {
-  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Align(
@@ -43,40 +37,40 @@ class _NavigationBarState extends State<NavigationBar> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 NavItem(
-                    title: 'หน้าแรก',
-                    icon: AssetImage('assets/images/home_white.png'),
-                    isOnPage: widget.currentpage == 0,
-                    changeTopicPage: () => widget.changeTopicPage(0),
-                    backToMainTopicPage: () =>
-                        Utils.navigatePushAndPopAll(context, HomePage())),
-                // NavItem(
-                //     title: 'ข่าว',
-                //     icon: AssetImage('assets/images/news_white.png'),
-                //     isOnPage: widget.currentpage == 1,
-                //     changeTopicPage: () => widget.changeTopicPage(1),
-                //     backToMainTopicPage: () =>
-                //         Utils.navigatePushAndPopAll(context, NewsPage())),
+                  title: 'หน้าแรก',
+                  icon: AssetImage('assets/images/home_white.png'),
+                  isOnPage: currentpage == 'home',
+                  isOnRoot: isOnRoot,
+                  targetPage: HomePage(),
+                ),
                 NavItem(
-                    title: 'บริการ',
-                    icon: AssetImage('assets/images/service_white.png'),
-                    isOnPage: widget.currentpage == 2,
-                    changeTopicPage: () => widget.changeTopicPage(2),
-                    backToMainTopicPage: () =>
-                        Utils.navigatePushAndPopAll(context, ServicePage())),
-                // NavItem(
-                //     title: 'คลังความรู้',
-                //     icon: AssetImage('assets/images/know_white.png'),
-                //     isOnPage: widget.currentpage == 3,
-                //     changeTopicPage: () => widget.changeTopicPage(3),
-                //     backToMainTopicPage: () =>
-                //         Utils.navigatePushAndPopAll(context, KnowledgePage())),
-                // NavItem(
-                //     title: 'โปรไฟล์',
-                //     icon: Icons.menu,
-                //     isOnPage: widget.currentpage == 4,
-                //     changeTopicPage: () => widget.changeTopicPage(4),
-                //     backToMainTopicPage: () =>
-                //         Utils.navigatePushAndPopAll(context, MenuPage())),
+                  title: 'ข่าว',
+                  icon: AssetImage('assets/images/news_white.png'),
+                  isOnPage: currentpage == 'news',
+                  isOnRoot: isOnRoot,
+                  targetPage: NewsFeedPage(),
+                ),
+                NavItem(
+                  title: 'บริการ',
+                  icon: AssetImage('assets/images/service_white.png'),
+                  isOnPage: currentpage == 'service',
+                  isOnRoot: isOnRoot,
+                  targetPage: ServiceHomePage(),
+                ),
+                NavItem(
+                  title: 'คลังความรู้',
+                  icon: AssetImage('assets/images/know_white.png'),
+                  isOnPage: currentpage == 'knowledges',
+                  isOnRoot: isOnRoot,
+                  targetPage: KnowledgePage(),
+                ),
+                NavItem(
+                  title: 'โปรไฟล์',
+                  icon: Icons.menu,
+                  isOnPage: currentpage == 'menu',
+                  isOnRoot: isOnRoot,
+                  targetPage: MenuPage(),
+                ),
               ],
             ),
           ),

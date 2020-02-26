@@ -1,5 +1,4 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/registry/register_layout.dart';
 import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';
@@ -34,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   submitData() {
     // TODO: save all data & update db
-    Utils.navigatePushAndPopAll(context, '/app');
+    Utils.navigatePushAndPopAll(context, HomePage());
   }
 
   // TODO: change next text after some activity 1,2,3

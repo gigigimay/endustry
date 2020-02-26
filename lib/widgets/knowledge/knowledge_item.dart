@@ -1,28 +1,29 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/knowledge/knowledge_in.dart';
 
 class KnowledgeItem extends StatelessWidget {
-  const KnowledgeItem(
-      {Key key,
-      this.knowledgeData,
-      @required this.favStatus,
-      this.itemOnPressed
-      })
-      : super(key: key);
+  const KnowledgeItem({
+    Key key,
+    this.knowledgeData,
+    @required this.favStatus,
+    this.itemOnPressed,
+  }) : super(key: key);
 
   final Knowledge knowledgeData;
   final bool favStatus;
 
   final Function itemOnPressed;
 
-  onTap() {
-    itemOnPressed(knowledgeData);
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: ()=> onTap(),
+        onTap: () => Utils.navigatePush(
+              context,
+              KnowledgeInPage(
+                knowledgeData: knowledgeData,
+              ),
+            ),
         child: Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_MD),
           margin: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_SM),

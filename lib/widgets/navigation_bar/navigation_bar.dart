@@ -1,24 +1,16 @@
 import 'package:endustry/export.dart';
 import './navigation_item.dart';
 
-class NavigationBar extends StatefulWidget {
-  NavigationBar(
-      {Key key,
-      @required this.currentpage,
-      this.changeTopicPage,
-      this.backToFirstPage})
-      : super(key: key);
+class NavigationBar extends StatelessWidget {
+  NavigationBar({
+    Key key,
+    @required this.currentTab,
+    this.isOnRoot = false,
+  }) : super(key: key);
 
-  final currentpage;
-  final Function backToFirstPage;
-  final Function changeTopicPage;
+  final currentTab;
+  final bool isOnRoot;
 
-  @override
-  _NavigationBarState createState() => _NavigationBarState();
-}
-
-class _NavigationBarState extends State<NavigationBar> {
-  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Align(
@@ -45,35 +37,40 @@ class _NavigationBarState extends State<NavigationBar> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 NavItem(
-                    title: 'หน้าแรก',
-                    icon: AssetImage('assets/images/home_white.png'),
-                    isOnPage: widget.currentpage == 'home',
-                    changeTopicPage: () => widget.changeTopicPage(0),
-                    backToMainTopicPage: widget.backToFirstPage),
+                  title: 'หน้าแรก',
+                  icon: AssetImage('assets/images/home_white.png'),
+                  isOnPage: currentTab == 'home',
+                  isOnRoot: isOnRoot,
+                  targetPage: HomePage(),
+                ),
                 NavItem(
-                    title: 'ข่าว',
-                    icon: AssetImage('assets/images/news_white.png'),
-                    isOnPage: widget.currentpage == 'news',
-                    changeTopicPage: () => widget.changeTopicPage(1),
-                    backToMainTopicPage: widget.backToFirstPage),
+                  title: 'ข่าว',
+                  icon: AssetImage('assets/images/news_white.png'),
+                  isOnPage: currentTab == 'news',
+                  isOnRoot: isOnRoot,
+                  targetPage: NewsFeedPage(),
+                ),
                 NavItem(
-                    title: 'บริการ',
-                    icon: AssetImage('assets/images/service_white.png'),
-                    isOnPage: widget.currentpage == 'service',
-                    changeTopicPage: () => widget.changeTopicPage(2),
-                    backToMainTopicPage: widget.backToFirstPage),
+                  title: 'บริการ',
+                  icon: AssetImage('assets/images/service_white.png'),
+                  isOnPage: currentTab == 'service',
+                  isOnRoot: isOnRoot,
+                  targetPage: ServiceHomePage(),
+                ),
                 NavItem(
-                    title: 'คลังความรู้',
-                    icon: AssetImage('assets/images/know_white.png'),
-                    isOnPage: widget.currentpage == 'knowledge',
-                    changeTopicPage: () => widget.changeTopicPage(3),
-                    backToMainTopicPage: widget.backToFirstPage),
+                  title: 'คลังความรู้',
+                  icon: AssetImage('assets/images/know_white.png'),
+                  isOnPage: currentTab == 'knowledge',
+                  isOnRoot: isOnRoot,
+                  targetPage: KnowledgePage(),
+                ),
                 NavItem(
-                    title: 'โปรไฟล์',
-                    icon: Icons.menu,
-                    isOnPage: widget.currentpage == 'menu',
-                    changeTopicPage: () => widget.changeTopicPage(4),
-                    backToMainTopicPage: widget.backToFirstPage),
+                  title: 'โปรไฟล์',
+                  icon: Icons.menu,
+                  isOnPage: currentTab == 'menu',
+                  isOnRoot: isOnRoot,
+                  targetPage: MenuPage(),
+                ),
               ],
             ),
           ),

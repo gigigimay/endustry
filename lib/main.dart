@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/app.dart';
 import 'package:endustry/pages/registry/register_page.dart';
 
 void main() => runApp(MyApp());
@@ -30,13 +29,13 @@ class MyApp extends StatelessWidget {
           size: CONSTANT.SIZE_XX,
         ),
       ),
-      // TODO: add all need route
+      // TODO: add all needed route
       routes: <String, WidgetBuilder>{
-        '/app': (BuildContext context) => new AppLayout(),
+        '/home': (BuildContext context) => new HomePage(),
         '/register': (BuildContext context) => new RegisterPage(),
       },
       //TODO: change back to AppLayout
-      home: AppLayout(),
+      home: HomePage(),
     );
   }
 }

@@ -10,12 +10,10 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButtonInk(
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => SearchPage(
-                      initMode: this.initMode,
-                    )));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => SearchPage(
+                  initMode: this.initMode,
+                )));
       },
       icon: Icon(Icons.search),
     );

@@ -2,22 +2,26 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class NavItem extends StatelessWidget {
-  const NavItem(
-      {Key key,
-      this.title,
-      this.icon,
-      this.backToMainTopicPage,
-      this.changeTopicPage,
-      @required this.isOnPage})
-      : super(key: key);
+  const NavItem({
+    Key key,
+    this.title,
+    this.icon,
+    this.isOnPage = false,
+    this.isOnRoot = true,
+    this.targetPage,
+  }) : super(key: key);
   final String title;
   final icon;
-  final Function backToMainTopicPage, changeTopicPage;
-  final bool isOnPage;
+  final Widget targetPage;
+  final bool isOnPage, isOnRoot;
 
   getIconColor() {
     return isOnPage ? Colors.white : CONSTANT.COLOR_PRIMARY;
   }
+
+  Function onPressed(context) => () {
+        if (!isOnPage || !isOnRoot) Utils.navigatePushAndPopAll(context, targetPage);
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class NavItem extends StatelessWidget {
     var dy = isOnPage ? -20.0 : 0.0;
 
     return InkWell(
-      onTap: isOnPage ? backToMainTopicPage : changeTopicPage,
+      onTap: onPressed(context),
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[

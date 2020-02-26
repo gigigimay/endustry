@@ -5,16 +5,18 @@ import 'package:endustry/widgets/home/content_group.dart';
 import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/service/service_list.dart';
 
-class ServiceFeedPage extends StatelessWidget {
-  const ServiceFeedPage({Key key, this.goBackToFirst, this.changePage})
-      : super(key: key);
+class ServiceHomePage extends StatelessWidget {
+  const ServiceHomePage({
+    Key key,
+    this.changePage,
+  }) : super(key: key);
 
   final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = MOCK_SERVICES;
   final List<Service> servicesData = MOCK_SERVICES;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
 
-  final Function goBackToFirst, changePage;
+  final Function changePage;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class ServiceFeedPage extends StatelessWidget {
     double itemWidth = ((width - CONSTANT.SIZE_XL) / 2) - CONSTANT.SIZE_XL;
 
     return BgLayout(
+      navbar: NavigationBar(currentTab: 'service', isOnRoot: true),
       child: Column(
         children: <Widget>[
           PageAppBar(
@@ -47,14 +50,12 @@ class ServiceFeedPage extends StatelessWidget {
                               imageUrl: service.image,
                               padding: EdgeInsets.all(0),
                               onPressed: () => Utils.navigatePush(
-                                context,
-                                ServiceInPage(serviceData: service),
-                              ),
+                                  context, ServiceInPage(serviceData: service)),
                             ))
                         .toList(),
                   ),
                   ContentGroup(
-                    title: 'บริการแนะนำสำหรับคุณ',
+                    title: 'บริการแนะนำ',
                     // TODO: add onSeeAll
                     children: suggestedServicesData
                         .sublist(0, 4)
@@ -65,9 +66,7 @@ class ServiceFeedPage extends StatelessWidget {
                               imageUrl: service.image,
                               padding: EdgeInsets.all(0),
                               onPressed: () => Utils.navigatePush(
-                                context,
-                                ServiceInPage(serviceData: service),
-                              ),
+                                  context, ServiceInPage(serviceData: service)),
                             ))
                         .toList(),
                   ),

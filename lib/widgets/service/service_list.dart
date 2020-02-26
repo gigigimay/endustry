@@ -38,7 +38,6 @@ class _ServiceListState extends State<ServiceList> {
                     text: item.name,
                     onPressed: () => Utils.navigatePush(
                         context, DepartmentInPage(departmentData: item)),
-                    imageUrl: item.image,
                   ))
               .toList();
         case CONSTANT.WORD_SERVICE_ALL_TH: // บริการทั้งหมด

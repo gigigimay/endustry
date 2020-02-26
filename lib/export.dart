@@ -9,9 +9,9 @@ export './mock_data.dart';
 
 // ==========  pages  ==========
 export 'pages/home.dart';
-export 'pages/news/news_page.dart';
+export 'pages/news/news_feed.dart';
 export 'pages/service/service.dart';
-export 'pages/knowledge/knowledge_page.dart';
+export 'pages/knowledge/knowledge.dart';
 export 'pages/menu/menu.dart';
 
 // ==========  shared widgets  ==========
@@ -19,6 +19,7 @@ export 'pages/menu/menu.dart';
 export 'widgets/bg_layout.dart';
 
 // container / part of layout
+export 'widgets/page_route.dart';
 export 'widgets/page_padding.dart';
 export 'widgets/page_scroll_body.dart';
 export 'widgets/page_appbar.dart';

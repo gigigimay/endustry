@@ -19,6 +19,7 @@ export 'pages/menu/menu.dart';
 export 'widgets/bg_layout.dart';
 
 // container / part of layout
+export 'widgets/page_route.dart';
 export 'widgets/page_padding.dart';
 export 'widgets/page_scroll_body.dart';
 export 'widgets/page_appbar.dart';

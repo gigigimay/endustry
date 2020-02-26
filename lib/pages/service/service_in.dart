@@ -6,10 +6,12 @@ class ServiceInPage extends StatelessWidget {
   const ServiceInPage({
     Key key,
     @required this.serviceData,
+    this.currentTab = 'service',
   }) : super(key: key);
 
   final Service serviceData;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
+  final String currentTab;
 
   gotoUrl() {
     Utils.launchURL(serviceData.url);
@@ -24,7 +26,7 @@ class ServiceInPage extends StatelessWidget {
         departmentsData.firstWhere((Department d) => d.id == serviceData.depId);
 
     return BgLayout(
-      navbar: NavigationBar(currentTab: 'service'),
+      navbar: NavigationBar(currentTab: currentTab),
       child: Column(
         children: <Widget>[
           PageAppBar(title: 'บริการ', hasBackArrow: true),
@@ -47,8 +49,12 @@ class ServiceInPage extends StatelessWidget {
                                 style: CONSTANT.TEXT_STYLE_HEADING,
                               ),
                               FlatButton(
-                                onPressed: () => Utils.navigatePush(context,
-                                    DepartmentInPage(departmentData: dep)),
+                                onPressed: () => Utils.navigatePush(
+                                    context,
+                                    DepartmentInPage(
+                                      departmentData: dep,
+                                      currentTab: currentTab,
+                                    )),
                                 child: Text(
                                   dep.name,
                                   textAlign: TextAlign.center,

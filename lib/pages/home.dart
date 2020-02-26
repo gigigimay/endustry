@@ -72,7 +72,10 @@ class HomePage extends StatelessWidget {
                                       padding: EdgeInsets.all(0),
                                       onPressed: () => Utils.navigatePush(
                                           context,
-                                          ServiceInPage(serviceData: service)),
+                                          ServiceInPage(
+                                            serviceData: service,
+                                            currentTab: 'home',
+                                          )),
                                     ))
                                 .toList(),
                           ),
@@ -89,7 +92,10 @@ class HomePage extends StatelessWidget {
                                       padding: EdgeInsets.all(0),
                                       onPressed: () => Utils.navigatePush(
                                           context,
-                                          ServiceInPage(serviceData: service)),
+                                          ServiceInPage(
+                                            serviceData: service,
+                                            currentTab: 'home',
+                                          )),
                                     ))
                                 .toList(),
                           ),
@@ -108,7 +114,10 @@ class HomePage extends StatelessWidget {
                                       knowledgeData: item,
                                       itemOnPressed: () => Utils.navigatePush(
                                           context,
-                                          KnowledgeInPage(knowledgeData: item)),
+                                          KnowledgeInPage(
+                                            knowledgeData: item,
+                                            currentTab: 'home',
+                                          )),
                                     ))
                                 .toList(),
                           ),

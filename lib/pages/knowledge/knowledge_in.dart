@@ -5,9 +5,11 @@ class KnowledgeInPage extends StatefulWidget {
   KnowledgeInPage({
     Key key,
     @required this.knowledgeData,
+    this.currentTab = 'knowledge',
   }) : super(key: key);
 
   final Knowledge knowledgeData;
+  final String currentTab;
 
   @override
   _KnowledgeInPageState createState() => _KnowledgeInPageState();
@@ -28,7 +30,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return BgLayout(
-      navbar: NavigationBar(currentTab: 'knowledge'),
+      navbar: NavigationBar(currentTab: widget.currentTab),
       child: Column(
         children: <Widget>[
           PageAppBar(

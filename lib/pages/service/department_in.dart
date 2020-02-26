@@ -6,10 +6,12 @@ class DepartmentInPage extends StatelessWidget {
   const DepartmentInPage({
     Key key,
     @required this.departmentData,
+    this.currentTab = 'service',
   }) : super(key: key);
 
   final Department departmentData;
   final List<Service> servicesData = MOCK_SERVICES;
+  final String currentTab;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class DepartmentInPage extends StatelessWidget {
         .toList();
 
     return BgLayout(
-      navbar: NavigationBar(currentTab: 'service'),
+      navbar: NavigationBar(currentTab: currentTab),
       child: Column(
         children: <Widget>[
           PageAppBar(title: CONSTANT.WORD_DEPARTMENT_TH, hasBackArrow: true),
@@ -97,7 +99,11 @@ class DepartmentInPage extends StatelessWidget {
                             EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_SM),
                         child: GradientButton(
                           onPressed: () => Utils.navigatePush(
-                              context, ServiceInPage(serviceData: s)),
+                              context,
+                              ServiceInPage(
+                                serviceData: s,
+                                currentTab: currentTab,
+                              )),
                           padding: EdgeInsets.symmetric(
                             vertical: CONSTANT.SIZE_SM,
                             horizontal: CONSTANT.SIZE_MD,

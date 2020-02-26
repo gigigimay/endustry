@@ -60,7 +60,7 @@ class NavigationBar extends StatelessWidget {
                 NavItem(
                   title: 'คลังความรู้',
                   icon: AssetImage('assets/images/know_white.png'),
-                  isOnPage: currentpage == 'knowledges',
+                  isOnPage: currentpage == 'knowledge',
                   isOnRoot: isOnRoot,
                   targetPage: KnowledgePage(),
                 ),

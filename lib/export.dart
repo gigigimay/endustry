@@ -9,9 +9,9 @@ export './mock_data.dart';
 
 // ==========  pages  ==========
 export 'pages/home.dart';
-export 'pages/news/news_page.dart';
+export 'pages/news/news_feed.dart';
 export 'pages/service/service.dart';
-export 'pages/knowledge/knowledge_page.dart';
+export 'pages/knowledge/knowledge.dart';
 export 'pages/menu/menu.dart';
 
 // ==========  shared widgets  ==========

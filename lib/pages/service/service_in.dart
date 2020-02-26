@@ -24,7 +24,7 @@ class ServiceInPage extends StatelessWidget {
         departmentsData.firstWhere((Department d) => d.id == serviceData.depId);
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service'),
+      navbar: NavigationBar(currentTab: 'service'),
       child: Column(
         children: <Widget>[
           PageAppBar(title: 'บริการ', hasBackArrow: true),

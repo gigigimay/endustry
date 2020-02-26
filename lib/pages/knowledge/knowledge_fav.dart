@@ -18,7 +18,7 @@ class KnowledgeFavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'knowledge'),
+      navbar: NavigationBar(currentTab: 'knowledge'),
       child: Column(
         children: <Widget>[
           PageAppBar(

@@ -28,7 +28,7 @@ class _KnowledgePageState extends State<KnowledgePage> {
     double width = MediaQuery.of(context).size.width;
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'knowledge', isOnRoot: true),
+      navbar: NavigationBar(currentTab: 'knowledge', isOnRoot: true),
       child: Column(
         children: <Widget>[
           PageAppBar(

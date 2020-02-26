@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   submitData() {
     // TODO: save all data & update db
-    Utils.navigatePushAndPopAll(context, '/app');
+    Utils.navigatePushAndPopAll(context, HomePage());
   }
 
   // TODO: change next text after some activity 1,2,3

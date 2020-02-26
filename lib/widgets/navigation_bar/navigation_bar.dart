@@ -4,11 +4,11 @@ import './navigation_item.dart';
 class NavigationBar extends StatelessWidget {
   NavigationBar({
     Key key,
-    @required this.currentpage,
+    @required this.currentTab,
     this.isOnRoot = false,
   }) : super(key: key);
 
-  final currentpage;
+  final currentTab;
   final bool isOnRoot;
 
   Widget build(BuildContext context) {
@@ -39,35 +39,35 @@ class NavigationBar extends StatelessWidget {
                 NavItem(
                   title: 'หน้าแรก',
                   icon: AssetImage('assets/images/home_white.png'),
-                  isOnPage: currentpage == 'home',
+                  isOnPage: currentTab == 'home',
                   isOnRoot: isOnRoot,
                   targetPage: HomePage(),
                 ),
                 NavItem(
                   title: 'ข่าว',
                   icon: AssetImage('assets/images/news_white.png'),
-                  isOnPage: currentpage == 'news',
+                  isOnPage: currentTab == 'news',
                   isOnRoot: isOnRoot,
                   targetPage: NewsFeedPage(),
                 ),
                 NavItem(
                   title: 'บริการ',
                   icon: AssetImage('assets/images/service_white.png'),
-                  isOnPage: currentpage == 'service',
+                  isOnPage: currentTab == 'service',
                   isOnRoot: isOnRoot,
                   targetPage: ServiceHomePage(),
                 ),
                 NavItem(
                   title: 'คลังความรู้',
                   icon: AssetImage('assets/images/know_white.png'),
-                  isOnPage: currentpage == 'knowledge',
+                  isOnPage: currentTab == 'knowledge',
                   isOnRoot: isOnRoot,
                   targetPage: KnowledgePage(),
                 ),
                 NavItem(
                   title: 'โปรไฟล์',
                   icon: Icons.menu,
-                  isOnPage: currentpage == 'menu',
+                  isOnPage: currentTab == 'menu',
                   isOnRoot: isOnRoot,
                   targetPage: MenuPage(),
                 ),

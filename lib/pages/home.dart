@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
 
     return BgLayout(
       safeTop: false,
-      navbar: NavigationBar(currentpage: 'home'),
+      navbar: NavigationBar(currentTab: 'home'),
       child: Stack(
         children: <Widget>[
           Container(

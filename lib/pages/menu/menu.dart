@@ -15,11 +15,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final User userData = MOCK_USER;
     return BgLayout(
-      navbar: NavigationBar(
-        currentpage: 'menu',
-        backToFirstPage: goBackToFirst,
-        changeTopicPage: changePage,
-      ),
+      navbar: NavigationBar(currentTab: 'menu', isOnRoot: true),
       child: Column(
         children: <Widget>[
           PagePadding(

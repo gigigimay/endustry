@@ -24,7 +24,7 @@ class ServiceHomePage extends StatelessWidget {
     double itemWidth = ((width - CONSTANT.SIZE_XL) / 2) - CONSTANT.SIZE_XL;
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service', isOnRoot: true),
+      navbar: NavigationBar(currentTab: 'service', isOnRoot: true),
       child: Column(
         children: <Widget>[
           PageAppBar(

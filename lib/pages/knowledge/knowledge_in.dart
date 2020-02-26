@@ -28,7 +28,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'knowledge'),
+      navbar: NavigationBar(currentTab: 'knowledge'),
       child: Column(
         children: <Widget>[
           PageAppBar(

@@ -22,7 +22,7 @@ class DepartmentInPage extends StatelessWidget {
         .toList();
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service'),
+      navbar: NavigationBar(currentTab: 'service'),
       child: Column(
         children: <Widget>[
           PageAppBar(title: CONSTANT.WORD_DEPARTMENT_TH, hasBackArrow: true),

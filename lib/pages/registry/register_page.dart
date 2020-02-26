@@ -1,5 +1,4 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/pages/registry/register_layout.dart';
 import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';

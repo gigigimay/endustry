@@ -1,5 +1,4 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/constants.dart' as CONSTANT;
 
 class MenuSettingPage extends StatelessWidget {
   const MenuSettingPage({Key key}) : super(key: key);

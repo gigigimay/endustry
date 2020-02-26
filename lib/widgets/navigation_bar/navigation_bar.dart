@@ -2,15 +2,13 @@ import 'package:endustry/export.dart';
 import './navigation_item.dart';
 
 class NavigationBar extends StatefulWidget {
-  NavigationBar(
-      {Key key,
-      @required this.currentpage,
-      this.changeTopicPage,
-      this.backToFirstPage})
-      : super(key: key);
+  NavigationBar({
+    Key key,
+    @required this.currentpage,
+    this.changeTopicPage,
+  }) : super(key: key);
 
   final currentpage;
-  final Function backToFirstPage;
   final Function changeTopicPage;
 
   @override
@@ -47,33 +45,38 @@ class _NavigationBarState extends State<NavigationBar> {
                 NavItem(
                     title: 'หน้าแรก',
                     icon: AssetImage('assets/images/home_white.png'),
-                    isOnPage: widget.currentpage == 'home',
+                    isOnPage: widget.currentpage == 0,
                     changeTopicPage: () => widget.changeTopicPage(0),
-                    backToMainTopicPage: widget.backToFirstPage),
-                NavItem(
-                    title: 'ข่าว',
-                    icon: AssetImage('assets/images/news_white.png'),
-                    isOnPage: widget.currentpage == 'news',
-                    changeTopicPage: () => widget.changeTopicPage(1),
-                    backToMainTopicPage: widget.backToFirstPage),
+                    backToMainTopicPage: () =>
+                        Utils.navigatePushAndPopAll(context, HomePage())),
+                // NavItem(
+                //     title: 'ข่าว',
+                //     icon: AssetImage('assets/images/news_white.png'),
+                //     isOnPage: widget.currentpage == 1,
+                //     changeTopicPage: () => widget.changeTopicPage(1),
+                //     backToMainTopicPage: () =>
+                //         Utils.navigatePushAndPopAll(context, NewsPage())),
                 NavItem(
                     title: 'บริการ',
                     icon: AssetImage('assets/images/service_white.png'),
-                    isOnPage: widget.currentpage == 'service',
+                    isOnPage: widget.currentpage == 2,
                     changeTopicPage: () => widget.changeTopicPage(2),
-                    backToMainTopicPage: widget.backToFirstPage),
-                NavItem(
-                    title: 'คลังความรู้',
-                    icon: AssetImage('assets/images/know_white.png'),
-                    isOnPage: widget.currentpage == 'knowledge',
-                    changeTopicPage: () => widget.changeTopicPage(3),
-                    backToMainTopicPage: widget.backToFirstPage),
-                NavItem(
-                    title: 'โปรไฟล์',
-                    icon: Icons.menu,
-                    isOnPage: widget.currentpage == 'menu',
-                    changeTopicPage: () => widget.changeTopicPage(4),
-                    backToMainTopicPage: widget.backToFirstPage),
+                    backToMainTopicPage: () =>
+                        Utils.navigatePushAndPopAll(context, ServicePage())),
+                // NavItem(
+                //     title: 'คลังความรู้',
+                //     icon: AssetImage('assets/images/know_white.png'),
+                //     isOnPage: widget.currentpage == 3,
+                //     changeTopicPage: () => widget.changeTopicPage(3),
+                //     backToMainTopicPage: () =>
+                //         Utils.navigatePushAndPopAll(context, KnowledgePage())),
+                // NavItem(
+                //     title: 'โปรไฟล์',
+                //     icon: Icons.menu,
+                //     isOnPage: widget.currentpage == 4,
+                //     changeTopicPage: () => widget.changeTopicPage(4),
+                //     backToMainTopicPage: () =>
+                //         Utils.navigatePushAndPopAll(context, MenuPage())),
               ],
             ),
           ),

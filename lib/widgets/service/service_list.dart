@@ -1,7 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/service/department_in.dart';
-import 'package:endustry/pages/service/service_in.dart';
 import './tab_menu.dart';
 import './service_list_item.dart';
 
@@ -36,8 +34,8 @@ class _ServiceListState extends State<ServiceList> {
           return widget.departmentsData
               .map((Department item) => ServiceItem(
                     text: item.name,
-                    onPressed: () => Utils.navigatePush(
-                        context, DepartmentInPage(departmentData: item)),
+                    onPressed: () => Utils.navigatePushNamed(
+                        context, 'service/department_in', arguments: DepartmentInArgs(item)),
                     imageUrl: item.image,
                   ))
               .toList();
@@ -47,8 +45,8 @@ class _ServiceListState extends State<ServiceList> {
               .map((Service item) => ServiceItem(
                     text: item.name,
                     imageUrl: item.image,
-                    onPressed: () => Utils.navigatePush(
-                        context, ServiceInPage(serviceData: item)),
+                    onPressed: () => Utils.navigatePushNamed(
+                        context, 'service/service_in', arguments: ServiceInArgs(item)),
                   ))
               .toList();
       }

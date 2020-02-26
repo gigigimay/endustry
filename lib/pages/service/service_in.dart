@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/service/department_in.dart';
 
 class ServiceInPage extends StatelessWidget {
   const ServiceInPage({
@@ -11,6 +10,10 @@ class ServiceInPage extends StatelessWidget {
   final Service serviceData;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
 
+  gotoUrl() {
+    Utils.launchURL(serviceData.url);
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -20,7 +23,6 @@ class ServiceInPage extends StatelessWidget {
         departmentsData.firstWhere((Department d) => d.id == serviceData.depId);
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service'),
       child: Column(
         children: <Widget>[
           PageAppBar(title: 'บริการ', hasBackArrow: true),
@@ -44,8 +46,11 @@ class ServiceInPage extends StatelessWidget {
                               ),
                               FlatButton(
                                 onPressed: () {
-                                  Utils.navigatePush(context,
-                                      DepartmentInPage(departmentData: dep));
+                                  Utils.navigatePushNamed(
+                                    context,
+                                    'service/department_in',
+                                    arguments: DepartmentInArgs(dep),
+                                  );
                                 },
                                 child: Text(
                                   dep.name,
@@ -55,9 +60,7 @@ class ServiceInPage extends StatelessWidget {
                               ),
                               SizedBox(height: CONSTANT.SIZE_XS),
                               GradientButton(
-                                onPressed: () {
-                                  Utils.launchURL(serviceData.url);
-                                },
+                                onPressed: gotoUrl,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: CONSTANT.SIZE_XS),

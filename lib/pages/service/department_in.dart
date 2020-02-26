@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/service/service_in.dart';
 
 class DepartmentInPage extends StatelessWidget {
   const DepartmentInPage({
@@ -22,7 +21,6 @@ class DepartmentInPage extends StatelessWidget {
         .toList();
 
     return BgLayout(
-      navbar: NavigationBar(currentpage: 'service'),
       child: Column(
         children: <Widget>[
           PageAppBar(title: CONSTANT.WORD_DEPARTMENT_TH, hasBackArrow: true),
@@ -96,10 +94,11 @@ class DepartmentInPage extends StatelessWidget {
                         padding:
                             EdgeInsets.symmetric(horizontal: CONSTANT.SIZE_SM),
                         child: GradientButton(
-                          onPressed: () {
-                            Utils.navigatePush(
-                                context, ServiceInPage(serviceData: s));
-                          },
+                          onPressed: () => Utils.navigatePushNamed(
+                            context,
+                            'service/service_in',
+                            arguments: ServiceInArgs(s),
+                          ),
                           padding: EdgeInsets.symmetric(
                             vertical: CONSTANT.SIZE_SM,
                             horizontal: CONSTANT.SIZE_MD,

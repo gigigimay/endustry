@@ -1,7 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_fav.dart';
-import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
+import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 
 class KnowledgeFeedPage extends StatefulWidget {
   KnowledgeFeedPage({Key key, this.itemOnPressed, this.goToKnowFavPage})

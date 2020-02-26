@@ -3,7 +3,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_page.dart';
 import 'package:endustry/pages/service/service_in.dart';
 import 'package:endustry/widgets/home/list_item.dart';
-import 'package:endustry/widgets/knowledge.dart/knowledge_item.dart';
+import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
 

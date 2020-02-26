@@ -54,7 +54,7 @@ class ServiceFeedPage extends StatelessWidget {
                         .toList(),
                   ),
                   ContentGroup(
-                    title: 'บริการแนะนำสำหรับคุณ',
+                    title: 'บริการแนะนำ',
                     // TODO: add onSeeAll
                     children: suggestedServicesData
                         .sublist(0, 4)

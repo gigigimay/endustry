@@ -77,7 +77,7 @@ class HomeFeedPage extends StatelessWidget {
                               .toList(),
                         ),
                         ContentGroup(
-                          title: 'บริการแนะนำสำหรับคุณ',
+                          title: 'บริการแนะนำ',
                           // TODO: add onSeeAll
                           children: suggestedServicesData
                               .sublist(0, 4)
@@ -95,7 +95,7 @@ class HomeFeedPage extends StatelessWidget {
                               .toList(),
                         ),
                         // ContentGroup(
-                        //   title: 'คลังความรู้แนะนำสำหรับคุณ',
+                        //   title: 'คลังความรู้แนะนำ',
                         //   spacing: 0,
                         //   runSpacing: 0,
                         //   onSeeAll: () {

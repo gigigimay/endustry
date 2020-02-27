@@ -1,9 +1,9 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_in.dart';
-import 'package:endustry/pages/service/service_in.dart';
-import 'package:endustry/widgets/home/list_item.dart';
 import 'package:endustry/widgets/knowledge/knowledge_item.dart';
+import 'package:endustry/widgets/service/recent_service_group.dart';
+import 'package:endustry/widgets/service/suggested_service_group.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
 
@@ -13,17 +13,17 @@ class HomePage extends StatelessWidget {
   final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = MOCK_SERVICES;
   final List<Knowledge> suggestedKnowledgesData = MOCK_KNOWLEDGES;
+  final User userData = MOCK_USER;
+
+  final String currentTab = 'home';
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
-
-    final User userData = MOCK_USER;
 
     return BgLayout(
       safeTop: false,
-      navbar: NavigationBar(currentTab: 'home'),
+      navbar: NavigationBar(currentTab: currentTab),
       child: Stack(
         children: <Widget>[
           Container(
@@ -58,46 +58,13 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: CONSTANT.SIZE_MD),
-                          ContentGroup(
-                            title: 'การใช้งานล่าสุด',
-                            // TODO: add onSeeAll
-                            children: recentServicesData.reversed
-                                .toList()
-                                .sublist(0, 4)
-                                .map((Service service) => ListItem(
-                                      label: service.name,
-                                      itemWidth: itemWidth,
-                                      imageHeight: itemWidth * 2 / 3,
-                                      imageUrl: service.image,
-                                      padding: EdgeInsets.all(0),
-                                      onPressed: () => Utils.navigatePush(
-                                          context,
-                                          ServiceInPage(
-                                            serviceData: service,
-                                            currentTab: 'home',
-                                          )),
-                                    ))
-                                .toList(),
+                          RecentServiceGroup(
+                            recentServicesData: recentServicesData,
+                            currentTab: currentTab,
                           ),
-                          ContentGroup(
-                            title: 'บริการแนะนำ',
-                            // TODO: add onSeeAll
-                            children: suggestedServicesData
-                                .sublist(0, 4)
-                                .map((Service service) => ListItem(
-                                      label: service.name,
-                                      itemWidth: itemWidth,
-                                      imageHeight: itemWidth * 2 / 3,
-                                      imageUrl: service.image,
-                                      padding: EdgeInsets.all(0),
-                                      onPressed: () => Utils.navigatePush(
-                                          context,
-                                          ServiceInPage(
-                                            serviceData: service,
-                                            currentTab: 'home',
-                                          )),
-                                    ))
-                                .toList(),
+                          SuggestedServiceGroup(
+                            suggestedServicesData: suggestedServicesData,
+                            currentTab: currentTab,
                           ),
                           ContentGroup(
                             title: 'คลังความรู้แนะนำ',
@@ -116,7 +83,7 @@ class HomePage extends StatelessWidget {
                                           context,
                                           KnowledgeInPage(
                                             knowledgeData: item,
-                                            currentTab: 'home',
+                                            currentTab: currentTab,
                                           )),
                                     ))
                                 .toList(),

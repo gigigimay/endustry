@@ -8,11 +8,13 @@ class ServiceRowItem extends StatelessWidget {
     @required this.serviceData,
     @required this.departmentData,
     this.extraWidgets,
+    this.currentTab = 'service',
   }) : super(key: key);
 
   final Service serviceData;
   final Department departmentData;
-  final Function(Service) extraWidgets;
+  final List<Widget> Function(Service) extraWidgets;
+  final String currentTab;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,11 @@ class ServiceRowItem extends StatelessWidget {
     return FlatButton(
         padding: EdgeInsets.all(CONSTANT.SIZE_MD),
         onPressed: () => Utils.navigatePush(
-            context, ServiceInPage(serviceData: serviceData)),
+            context,
+            ServiceInPage(
+              serviceData: serviceData,
+              currentTab: currentTab,
+            )),
         child: Row(
           children: <Widget>[
             CircleFadeInImage(

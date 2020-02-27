@@ -8,17 +8,18 @@ class ServiceListPage extends StatelessWidget {
     @required this.servicesData,
     @required this.title,
     this.extraWidgets,
+    this.currentTab = 'service',
   }) : super(key: key);
 
   final List<Service> servicesData;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
-  final String title;
   final List<Widget> Function(Service) extraWidgets;
+  final String title, currentTab;
 
   @override
   Widget build(BuildContext context) {
     return BgLayout(
-      navbar: NavigationBar(currentTab: 'service'),
+      navbar: NavigationBar(currentTab: currentTab),
       child: Column(
         children: <Widget>[
           PageAppBar(
@@ -35,6 +36,7 @@ class ServiceListPage extends StatelessWidget {
                     .map((Service service) => ServiceRowItem(
                           serviceData: service,
                           extraWidgets: extraWidgets,
+                          currentTab: currentTab,
                           departmentData: departmentsData.firstWhere(
                               (Department d) => d.id == service.depId),
                         ))

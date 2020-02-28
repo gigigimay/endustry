@@ -42,8 +42,11 @@ class _KnowledgePageState extends State<KnowledgePage> {
                     color: CONSTANT.COLOR_PRIMARY,
                   ),
                   onPressed: () {
-                    Utils.navigatePush(context,
-                        KnowledgeFavPage(knowledgeData: widget.knowledgeData));
+                    Utils.navigatePush(
+                        context,
+                        KnowledgeFavPage(
+                            knowledgeData: widget.knowledgeData.where((item) =>
+                                Storage.user.favKnowledges.contains(item.id)).toList()));
                   },
                 ),
               ],

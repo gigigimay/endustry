@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'dart:convert';
 
 class Service {
   final String id, name, description, image, url, depId;
@@ -10,6 +11,15 @@ class Service {
     this.url,
     this.depId,
   });
+
+  factory Service.fromJson(Map<String, dynamic> json) => Service(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        url: json["url"],
+        depId: json["depId"],
+      );
 }
 
 class News {
@@ -23,6 +33,16 @@ class News {
     this.author,
     this.typeId,
   });
+
+  factory News.fromJson(Map<String, dynamic> json) => News(
+        id: json["id"],
+        title: json["title"],
+        content: json["content"],
+        imgurl: json["imgurl"],
+        date: json["date"],
+        author: json["author"],
+        typeId: json["typeId"],
+      );
 
   static getDateTimeString(datetime) {
     final dateData = DateTime.parse(datetime);
@@ -38,6 +58,11 @@ class News {
 class NewsType {
   final String id, typeName;
   const NewsType({@required this.id, this.typeName});
+
+  factory NewsType.fromJson(Map<String, dynamic> json) => NewsType(
+        id: json["id"],
+        typeName: json["typeName"],
+      );
 }
 
 class User {
@@ -54,6 +79,22 @@ class User {
     this.favKnowledges,
     this.interestedTopics,
   });
+
+  factory User.fromJson(Map<String, dynamic> jsondata) {
+    final List<String> favKnowledgesData =
+        List<String>.from(json.decode(jsondata['favKnowledges']));
+    final List<String> interestedTopics =
+        List<String>.from(json.decode(jsondata['interestedTopics']));
+    return User(
+        id: jsondata["id"],
+        email: jsondata["email"],
+        firstName: jsondata["firstName"],
+        lastName: jsondata["lastName"],
+        imgUrl: jsondata["imgUrl"],
+        typeId: jsondata["typeId"],
+        favKnowledges: favKnowledgesData,
+        interestedTopics: interestedTopics);
+  }
 }
 
 class UserType {
@@ -62,6 +103,11 @@ class UserType {
     @required this.id,
     @required this.name,
   });
+
+  factory UserType.fromJson(Map<String, dynamic> json) => UserType(
+        id: json["id"],
+        name: json["name"],
+      );
 }
 
 class Knowledge {
@@ -74,6 +120,15 @@ class Knowledge {
     this.date,
     this.author,
   });
+
+  factory Knowledge.fromJson(Map<String, dynamic> json) => Knowledge(
+        id: json["id"],
+        title: json["title"],
+        content: json["content"],
+        attachUrl: json["imgurl"],
+        date: json["date"],
+        author: json["author"],
+      );
 }
 
 class Keyword {
@@ -82,6 +137,11 @@ class Keyword {
     @required this.id,
     @required this.name,
   });
+
+  factory Keyword.fromJson(Map<String, dynamic> json) => Keyword(
+        id: json["id"],
+        name: json["name"],
+      );
 }
 
 class Department {
@@ -93,4 +153,12 @@ class Department {
     this.image,
     this.url,
   });
+
+  factory Department.fromJson(Map<String, dynamic> json) => Department(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        url: json["url"],
+      );
 }

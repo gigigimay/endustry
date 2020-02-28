@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/registry/register_layout.dart';
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/registry/prefer_chip.dart';
 
 class RegisterPage4 extends StatefulWidget {

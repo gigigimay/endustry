@@ -125,7 +125,7 @@ const List<NewsType> MOCK_NEWSTYPES = [
 const User MOCK_USER = User(
   id: 'user01',
   email: 'nani@gmail.com',
-  firstName: 'แพร',
+  firstName: 'แพรร',
   lastName: 'อ้วนนะ!',
   typeId: 'ust01',
   imgUrl: 'https://picsum.photos/200',

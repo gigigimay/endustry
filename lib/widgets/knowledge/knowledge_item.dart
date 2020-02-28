@@ -7,6 +7,7 @@ import 'package:endustry/widgets/knowledge/fav_button.dart';
 class KnowledgeItem extends StatelessWidget {
   const KnowledgeItem(
       {Key key,
+      this.knowledgeData,
       @required this.favStatus,
       this.itemOnPressed,
       this.favOnPressed})

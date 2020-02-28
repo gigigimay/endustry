@@ -1,10 +1,16 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:endustry/export.dart';
+import 'package:flutter/services.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Storage {
-  Database db;
+Database db;
 
+class Storage {
   static List<Service> services;
   static List<Department> department;
   static List<News> news;
@@ -12,17 +18,27 @@ class Storage {
   static List<Knowledge> knowledges;
   static List<Keyword> keywords;
 
-  Future openDB() async {
-    db = await openDatabase(
-      'tst.db',
-    );
+  initDB() async {
+    // Construct a file path to copy database to
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, "asset_database.db");
 
-    // createTable();
-    // dropTable();
+    // Only copy if the database doesn't exist
+    if (FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound) {
+      // Load database from asset and copy
+      ByteData data = await rootBundle.load(join('assets', 'database.db'));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
-    // insertData();
-    // clearTable();
+      // Save copied asset to documents
+      await new File(path).writeAsBytes(bytes);
+    }
 
+    db = await openDatabase(path);
+    loadDB();
+  }
+
+  loadDB() async {
     services = await getServices();
     department = await getDepartments();
     news = await getNews();
@@ -43,75 +59,6 @@ class Storage {
     db.execute(
         'CREATE TABLE Knowledges (id String PRIMARY KEY, title TEXT,content TEXT,date Date,author TEXT,attachUrl TEXT);');
     db.execute('CREATE TABLE Keywords (id String PRIMARY KEY, name TEXT);');
-  }
-
-  dropTable() async {
-    db.execute('DROP TABLE Services;');
-    db.execute('DROP TABLE Departments;');
-    db.execute('DROP TABLE News;');
-    db.execute('DROP TABLE NewsTypes;');
-    db.execute('DROP TABLE Knowledges;');
-    db.execute('DROP TABLE Keywords;');
-  }
-
-  clearTable() async {
-    db.execute('DELETE FROM Services;');
-    db.execute('DELETE FROM Departments;');
-    db.execute('DELETE FROM News;');
-    db.execute('DELETE FROM NewsTypes;');
-    db.execute('DELETE FROM Knowledges;');
-    db.execute('DELETE FROM Keywords;');
-  }
-
-  insertData() {
-    insertServices();
-    insertDepartments();
-    insertNews();
-    insertNewsTypes();
-    insertKnowledges();
-    insertKeywords();
-  }
-
-  insertServices() async {
-    MOCK_SERVICES.forEach((item) {
-      db.execute(
-          """INSERT INTO Services VALUES( '${item.id}', '${item.name}', '${item.description}', '${item.url}', '${item.image}', '${item.depId}'); """);
-    });
-  }
-
-  insertDepartments() async {
-    MOCK_DEPARTMENT.forEach((item) {
-      db.execute(
-          """INSERT INTO Departments VALUES( '${item.id}', '${item.name}', '${item.description}', '${item.url}', '${item.image}'); """);
-    });
-  }
-
-  insertNews() async {
-    MOCK_NEWS.forEach((item) {
-      db.execute(
-          """INSERT INTO News VALUES( '${item.id}', '${item.title}', '${item.content}', '${item.date}', '${item.author}', '${item.imgurl}', '${item.typeId}'); """);
-    });
-  }
-
-  insertNewsTypes() async {
-    MOCK_NEWSTYPES.forEach((item) {
-      db.execute(
-          """INSERT INTO NewsTypes VALUES( '${item.id}', '${item.typeName}'); """);
-    });
-  }
-
-  insertKnowledges() async {
-    MOCK_KNOWLEDGES.forEach((item) {
-      db.execute(
-          """INSERT INTO Knowledges VALUES( '${item.id}', '${item.title}', '${item.content}', '${item.date}', '${item.author}', '${item.attachUrl}'); """);
-    });
-  }
-
-  insertKeywords() async {
-    MOCK_KEYWORDS.forEach((item) {
-      db.execute(
-          """INSERT INTO Keywords VALUES( '${item.id}', '${item.name}'); """);
-    });
   }
 
   closeDB() async {

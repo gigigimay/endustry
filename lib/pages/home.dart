@@ -76,8 +76,6 @@ class HomePage extends StatelessWidget {
                             children: suggestedKnowledgesData
                                 .sublist(0, 3)
                                 .map((Knowledge item) => KnowledgeItem(
-                                      favStatus: userData.favKnowledges
-                                          .contains(item.id),
                                       knowledgeData: item,
                                       itemOnPressed: () => Utils.navigatePush(
                                           context,

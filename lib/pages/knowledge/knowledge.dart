@@ -23,14 +23,6 @@ class KnowledgePage extends StatefulWidget {
 class _KnowledgePageState extends State<KnowledgePage> {
   bool isSuggest = true;
 
-  List _favList = Storage.user.favKnowledges;
-
-  addFavKnow(Knowledge knowledgeData) {
-    _favList.contains(knowledgeData.id)
-        ? _favList.remove(knowledgeData.id)
-        : _favList.add(knowledgeData.id);
-  }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -50,12 +42,8 @@ class _KnowledgePageState extends State<KnowledgePage> {
                     color: CONSTANT.COLOR_PRIMARY,
                   ),
                   onPressed: () {
-                    Utils.navigatePush(
-                        context,
-                        KnowledgeFavPage(
-                          knowledgeData: widget.knowledgeData,
-                          favList: _favList,
-                        ));
+                    Utils.navigatePush(context,
+                        KnowledgeFavPage(knowledgeData: widget.knowledgeData));
                   },
                 ),
               ],
@@ -125,8 +113,6 @@ class _KnowledgePageState extends State<KnowledgePage> {
                               : widget.knowledgeData)
                           .map((item) => KnowledgeItem(
                                 knowledgeData: item,
-                                favStatus: _favList.contains(item.id),
-                                favOnPressed: addFavKnow(item),
                               ))
                           .toList(),
                     ))

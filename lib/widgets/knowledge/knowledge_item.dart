@@ -1,20 +1,14 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_in.dart';
-import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/knowledge/fav_button.dart';
 
 class KnowledgeItem extends StatelessWidget {
   const KnowledgeItem(
-      {Key key,
-      this.knowledgeData,
-      @required this.favStatus,
-      this.itemOnPressed,
-      this.favOnPressed})
+      {Key key, this.knowledgeData, this.itemOnPressed, this.favOnPressed})
       : super(key: key);
 
   final Knowledge knowledgeData;
-  final bool favStatus;
 
   final Function itemOnPressed;
   final Function favOnPressed;
@@ -48,7 +42,9 @@ class KnowledgeItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  FavButton()
+                  FavButton(
+                    knwId: knowledgeData.id,
+                  )
                 ],
               ),
               Container(

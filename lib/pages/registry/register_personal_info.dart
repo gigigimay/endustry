@@ -6,7 +6,7 @@ class RegisterPage1 extends StatefulWidget {
   RegisterPage1({Key key, this.nextBtnFuntion, this.prevBtnFuntion})
       : super(key: key);
 
-  Function prevBtnFuntion, nextBtnFuntion;
+  final Function prevBtnFuntion, nextBtnFuntion;
 
   @override
   _RegisterPage1State createState() => _RegisterPage1State();

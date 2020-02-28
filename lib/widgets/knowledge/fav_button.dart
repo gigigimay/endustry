@@ -1,12 +1,10 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledge_in.dart';
 import 'package:endustry/storage.dart';
-import 'package:endustry/widgets/knowledge/fav_button.dart';
 
 class FavButton extends StatefulWidget {
-  FavButton({Key key,this.knwId}) : super(key: key);
-  
+  FavButton({Key key, this.knwId}) : super(key: key);
+
   final knwId;
 
   @override
@@ -14,19 +12,34 @@ class FavButton extends StatefulWidget {
 }
 
 class _FavButtonState extends State<FavButton> {
-
   bool _favStatus = false;
+
+  onPressed() {
+    setState(() {
+      _favStatus
+          ? Storage.user.favKnowledges.remove(widget.knwId)
+          : Storage.user.favKnowledges.add(widget.knwId);
+    });
+    // TODO: update database
+    print(Storage.user.favKnowledges);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    
-    return IconButton(
+    _favStatus = Storage.user.favKnowledges.contains(widget.knwId);
+
+    return IconButtonInk(
       icon: Icon(
         _favStatus ? Icons.star : Icons.star_border,
         color: CONSTANT.COLOR_PRIMARY,
         size: CONSTANT.SIZE_LG + 2.0,
       ),
-      onPressed: (){},
+      onPressed: onPressed,
     );
   }
 }

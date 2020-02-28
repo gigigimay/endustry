@@ -5,14 +5,12 @@ import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 class KnowledgeFavPage extends StatelessWidget {
   const KnowledgeFavPage(
       {Key key,
-      @required this.favList,
       @required this.knowledgeData,
       this.itemOnPressed,
       this.backArrowFunction})
       : super(key: key);
 
   final List<Knowledge> knowledgeData;
-  final favList;
   final Function itemOnPressed, backArrowFunction;
 
   @override
@@ -35,7 +33,6 @@ class KnowledgeFavPage extends StatelessWidget {
                   children: knowledgeData
                       .map((item) => KnowledgeItem(
                             knowledgeData: item,
-                            favStatus: favList.contains(item.id),
                             itemOnPressed: itemOnPressed,
                           ))
                       .toList(),

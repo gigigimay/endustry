@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/knowledge/fav_button.dart';
 
 class KnowledgeInPage extends StatefulWidget {
   KnowledgeInPage({
@@ -17,16 +18,6 @@ class KnowledgeInPage extends StatefulWidget {
 
 class _KnowledgeInPageState extends State<KnowledgeInPage> {
   @override
-  void initState() {
-    // _fav = widget.favStatus;
-    super.initState();
-    // TODO: change to get data from real user
-    _fav = MOCK_USER.favKnowledges.contains(widget.knowledgeData.id);
-  }
-
-  bool _fav;
-
-  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return BgLayout(
@@ -34,22 +25,11 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
       child: Column(
         children: <Widget>[
           PageAppBar(
-            title: 'คลังความรู้',
-            hasBackArrow: true,
-            actionWidget: IconButtonInk(
-              icon: Icon(
-                _fav ? Icons.star : Icons.star_border,
-                color: CONSTANT.COLOR_PRIMARY,
-                size: CONSTANT.SIZE_XL,
-              ),
-              onPressed: () {
-                setState(() {
-                  _fav = !_fav;
-                });
-                // TODO: update fav status
-              },
-            ),
-          ),
+              title: 'คลังความรู้',
+              hasBackArrow: true,
+              actionWidget: FavButton(
+                knwId: widget.knowledgeData.id,
+              )),
           PageScrollBody(
             child: PagePadding(
               child: Container(

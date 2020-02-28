@@ -1,6 +1,4 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/app.dart';
 import 'package:endustry/storage.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,7 +10,10 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   setUp() async {
-    await Storage().openDB();
+    await Storage().initDB();
+    await Storage().loadDB();
+    
+
     Navigator.pushNamed(context, '/app');
     print('start');
   }

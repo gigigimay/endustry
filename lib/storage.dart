@@ -17,6 +17,8 @@ class Storage {
   static List<NewsType> newsTypes;
   static List<Knowledge> knowledges;
   static List<Keyword> keywords;
+  static List<UserType> userType;
+  static User user;
 
   initDB() async {
     // Construct a file path to copy database to
@@ -45,6 +47,9 @@ class Storage {
     newsTypes = await getNewsTypes();
     knowledges = await getKnowledges();
     keywords = await getKeywords();
+    userType = await getUsertypes();
+
+    user = await getUserData();
   }
 
   createTable() async {
@@ -117,5 +122,24 @@ class Storage {
     });
     print(list);
     return list;
+  }
+
+  getUsertypes() async {
+    List<UserType> list = [];
+    await db.rawQuery('SELECT * FROM UserTypes').then((data) {
+      data.forEach((item) => list.add(UserType.fromJson(item)));
+    });
+    print(list);
+    return list;
+  }
+
+  getUserData() async {
+    List<User> list = [];
+    await db.rawQuery('SELECT * FROM Users').then((data) {
+      data.forEach((item) => list.add(User.fromJson(item)));
+    });
+    // user = list[0];
+    print(list[0]);
+    return list[0];
   }
 }

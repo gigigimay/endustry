@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'dart:convert';
 
 class Service {
   final String id, name, description, image, url, depId;
@@ -78,6 +79,22 @@ class User {
     this.favKnowledges,
     this.interestedTopics,
   });
+
+  factory User.fromJson(Map<String, dynamic> jsondata) {
+    final List<String> favKnowledgesData =
+        List<String>.from(json.decode(jsondata['favKnowledges']));
+    final List<String> interestedTopics =
+        List<String>.from(json.decode(jsondata['interestedTopics']));
+    return User(
+        id: jsondata["id"],
+        email: jsondata["email"],
+        firstName: jsondata["firstName"],
+        lastName: jsondata["lastName"],
+        imgUrl: jsondata["imgUrl"],
+        typeId: jsondata["typeId"],
+        favKnowledges: favKnowledgesData,
+        interestedTopics: interestedTopics);
+  }
 }
 
 class UserType {
@@ -86,6 +103,11 @@ class UserType {
     @required this.id,
     @required this.name,
   });
+
+  factory UserType.fromJson(Map<String, dynamic> json) => UserType(
+        id: json["id"],
+        name: json["name"],
+      );
 }
 
 class Knowledge {

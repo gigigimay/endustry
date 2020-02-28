@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_fav.dart';
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 
 class KnowledgePage extends StatefulWidget {
@@ -12,7 +13,6 @@ class KnowledgePage extends StatefulWidget {
 // รอรับค่าจากข้างนอก
   final suggestKnowledgeData = MOCK_KNOWLEDGES.reversed.toList();
   final knowledgeData = MOCK_KNOWLEDGES;
-  final List favList = MOCK_USER.favKnowledges;
 
   final Function itemOnPressed;
 
@@ -22,6 +22,14 @@ class KnowledgePage extends StatefulWidget {
 
 class _KnowledgePageState extends State<KnowledgePage> {
   bool isSuggest = true;
+
+  List _favList = Storage.user.favKnowledges;
+
+  addFavKnow(Knowledge knowledgeData) {
+    _favList.contains(knowledgeData.id)
+        ? _favList.remove(knowledgeData.id)
+        : _favList.add(knowledgeData.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,7 @@ class _KnowledgePageState extends State<KnowledgePage> {
                         context,
                         KnowledgeFavPage(
                           knowledgeData: widget.knowledgeData,
-                          favList: widget.favList,
+                          favList: _favList,
                         ));
                   },
                 ),
@@ -117,7 +125,8 @@ class _KnowledgePageState extends State<KnowledgePage> {
                               : widget.knowledgeData)
                           .map((item) => KnowledgeItem(
                                 knowledgeData: item,
-                                favStatus: widget.favList.contains(item.id),
+                                favStatus: _favList.contains(item.id),
+                                favOnPressed: addFavKnow(item),
                               ))
                           .toList(),
                     ))

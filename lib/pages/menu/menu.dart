@@ -2,6 +2,7 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/menu/menu_about.dart';
 import 'package:endustry/pages/menu/menu_settings.dart';
+import 'package:endustry/storage.dart';
 import '../../widgets/menu/menu_item.dart';
 import '../../widgets/menu/user_profile.dart';
 
@@ -13,7 +14,7 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User userData = MOCK_USER;
+    final User userData = Storage.user;
     return BgLayout(
       navbar: NavigationBar(currentTab: 'menu', isOnRoot: true),
       child: Column(

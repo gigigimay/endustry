@@ -35,7 +35,7 @@ class Storage {
     }
 
     db = await openDatabase(path);
-    loadDB();
+    await loadDB();
   }
 
   loadDB() async {

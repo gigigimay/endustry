@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/register': (BuildContext context) => new RegisterPage(),
       },
       //TODO: change back to AppLayout
-      home: HomePage(),
+      home: SplashPage(),
     );
   }
 }

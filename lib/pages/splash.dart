@@ -11,10 +11,9 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   setUp() async {
     await Storage().initDB();
-    await Storage().loadDB();
     
 
-    Navigator.pushNamed(context, '/app');
+    Navigator.pushNamed(context, '/home');
     print('start');
   }
 

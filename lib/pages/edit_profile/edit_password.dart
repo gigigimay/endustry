@@ -29,13 +29,14 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
   }
 
   void clearField(String key, TextEditingController controller) {
-    controller.clear();
+    controller?.clear();
     setState(() {
       _form.remove(key);
     });
   }
 
   void submitForm() async {
+    // TODO: encrypt password
     if (_formKey.currentState.validate()) {
       await Storage()
           .editUserPassword(widget.userData.id, _form['newPassword']);
@@ -44,7 +45,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
         _form['newPassword'] == _form['confirmNewPassword'] &&
         _form['oldPassword'] != Storage.user.password) {
       print('password >> ' + widget.userData.password);
-      // TODO: grant focus to oldPassword field
+      // TODO: grant focus to oldPassword field when clear field 
       clearField('oldPassword', _oldPwdCtrl);
     }
   }

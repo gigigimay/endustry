@@ -48,8 +48,6 @@ class Storage {
     knowledges = await getKnowledges();
     keywords = await getKeywords();
     userType = await getUsertypes();
-
-    user = await getUserData();
   }
 
   createTable() async {
@@ -133,13 +131,42 @@ class Storage {
     return list;
   }
 
-  getUserData() async {
-    List<User> list = [];
-    await db.rawQuery('SELECT * FROM Users').then((data) {
-      data.forEach((item) => list.add(User.fromJson(item)));
-    });
-    // user = list[0];
-    print(list[0]);
-    return list[0];
+  /// get userData from user id and return the data
+  getUserDataFromId(String uid) async {
+    var result = await db.rawQuery('SELECT * FROM Users WHERE id = "$uid";');
+    return result.isNotEmpty ? User.fromJson(result.first) : null;
+  }
+
+  /// get userData from email and password and return the data
+  getUserDataFromEmailPassword(String email, String password) async {
+    var result = await db.rawQuery(
+        'SELECT * FROM Users WHERE email = "$email" AND password = "$password";');
+    return result.isNotEmpty ? User.fromJson(result.first) : null;
+  }
+
+  /// check if 'uid' exists and return boolean. and also set userData of the storage.
+  checkUidPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    var uid = prefs.getString('uid');
+    if (uid != null) {
+      var userData = await getUserDataFromId(uid);
+      Storage.user = userData;
+      return true;
+    }
+    return false;
+  }
+
+  /// set uid in preference, and set user data variable
+  login(User userData) async {
+    user = userData;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('uid', userData.id);
+  }
+
+  /// remove uid from preference, and clear user data variable
+  logout() async {
+    user = null;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('uid');
   }
 }

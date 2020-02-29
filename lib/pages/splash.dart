@@ -10,8 +10,11 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   setUp() async {
-    await Storage().initDB();
-    Navigator.pushNamed(context, '/login');
+    final storage = Storage();
+    await storage.initDB();
+    final String pageName = await storage.checkUidPrefs() ? '/home' : '/login';
+    // TODO: add some delay time before pushing to make it feels smoother
+    Navigator.pushNamed(context, pageName);
   }
 
   @override

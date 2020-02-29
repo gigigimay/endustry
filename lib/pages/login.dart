@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/storage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   var _form = {};
+  bool _loginFailed = false;
 
   Function saveForm(key) => (value) {
         setState(() {
@@ -18,18 +20,27 @@ class _LoginPageState extends State<LoginPage> {
         });
       };
 
-  Function onLogin(context) => () {
+  Function onSubmit(context) => () async {
         if (_formKey.currentState.validate()) {
-          // TODO: check db
-          print('_form >> ' + _form.toString());
-          // Navigator.pushNamedAndRemoveUntil(
-          //     context, '/home', (Route<dynamic> route) => false);
+          final storage = Storage();
+          var user = await storage.getUserDataFromEmailPassword(
+            _form['email'],
+            _form['password'],
+          );
+          if (user != null) {
+            storage.login(user);
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/home', (Route<dynamic> route) => false);
+          } else {
+            setState(() {
+              _loginFailed = true;
+            });
+          }
         }
       };
 
   @override
   Widget build(BuildContext context) {
-    print('_form >> ' + _form.length.toString());
     return Scaffold(
       body: Container(
         color: CONSTANT.COLOR_PRIMARY,
@@ -75,7 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: 'รหัสผ่าน',
                             prefixIcon: Icon(Icons.lock),
                             onChanged: saveForm('password'),
+                            obscureText: true,
                           ),
+                          _loginFailed
+                              ? Text(
+                                  'อีเมลล์หรือรหัสผ่านไม่ถูกต้อง',
+                                  style: TextStyle(
+                                      color: Theme.of(context).errorColor),
+                                )
+                              : Container(),
                           FlatButton(
                             onPressed: () => print('forget'),
                             child: Text(
@@ -88,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             width: double.infinity,
                             child: GradientButton(
-                              onPressed: onLogin(context),
+                              onPressed: onSubmit(context),
                               text: 'เข้าสู่ระบบ',
                             ),
                           ),

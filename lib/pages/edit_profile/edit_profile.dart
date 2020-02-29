@@ -13,7 +13,7 @@ class EditProfilePage extends StatelessWidget {
 }
 
 class EditProfileForm extends StatefulWidget {
-  final User userData = MOCK_USER;
+  final User userData = Storage.user;
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
 

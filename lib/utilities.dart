@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:endustry/export.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -43,5 +48,31 @@ class Utils {
       fontSize: 16,
       gravity: ToastGravity.BOTTOM,
     );
+  }
+
+  static Future getImageByCamera() async {
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    print(image.runtimeType);
+  }
+
+// take a photo? can but cant both in one btn
+  static getImageByGallery() async {
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      return image.readAsBytesSync();
+    }
+    return kTransparentImage;
+  }
+
+  static convertByteCodeToString(imageBytes) {
+    String imageStr = base64Encode(imageBytes);
+    return imageStr;
+  }
+
+  static convertStringToByteCode(str) {
+    Uint8List imageBytes = base64Decode(str);
+    return imageBytes;
   }
 }

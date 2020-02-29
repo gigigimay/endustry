@@ -53,11 +53,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       // "interestedTopics": widget.userData.interestedTopics,
       // "img": widget.userData.img,
     };
-
-    bool _isPickImage = widget.userData.img != '';
-    _imgByteCode = _isPickImage
-        ? convertStringToByteCode(widget.userData.img)
-        : kTransparentImage;
+    _imgByteCode = Utils.convertStringToByteCode(widget.userData.img);
     super.initState();
   }
 
@@ -83,37 +79,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   File _file;
   Uint8List _imgByteCode = kTransparentImage;
-
-  Future getImageByCamera() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    print(image.runtimeType);
-  }
-
-// take a photo? can but cant both in one btn
-  Future getImageByGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _file = image;
-
-    if (_file != null) {
-      _imgByteCode = convertFileToByteCode(_file);
-    }
-  }
-
-  convertFileToByteCode(file) {
-    List<int> imageBytes = file.readAsBytesSync();
-    return imageBytes;
-  }
-
-  convertByteCodeToString(imageBytes) {
-    String imageStr = base64Encode(imageBytes);
-    return imageStr;
-  }
-
-  convertStringToByteCode(str) {
-    Uint8List imageBytes = base64Decode(str);
-    return imageBytes;
-  }
 
   Function saveForm(key) => (value) {
         setState(() {
@@ -167,7 +132,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
           Icons.camera_alt,
           size: CONSTANT.SIZE_XL,
         ),
-        fabAction: () => print('edit image!'),
+        fabAction: () async {
+          _imgByteCode = await Utils.getImageByGallery();
+          setState(() {
+            _imgByteCode = _imgByteCode;
+          });
+        },
       ),
       bottomWidget: GradientButton(
         text: 'บันทึก',

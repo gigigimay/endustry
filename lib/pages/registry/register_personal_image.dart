@@ -23,42 +23,7 @@ class RegisterPage2 extends StatefulWidget {
 class _RegisterPage2State extends State<RegisterPage2> {
   bool _valid;
 
-  File _file;
   Uint8List _imgByteCode = kTransparentImage;
-
-  Future getImageByCamera() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    print(image.runtimeType);
-  }
-
-// take a photo? can but cant both in one btn
-  Future getImageByGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _file = image;
-
-    if (_file != null) {
-      _imgByteCode = convertFileToByteCode(_file);
-      setState(() {
-        _valid = true;
-      });
-    }
-  }
-
-  convertFileToByteCode(file) {
-    List<int> imageBytes = file.readAsBytesSync();
-    return imageBytes;
-  }
-
-  convertByteCodeToString(imageBytes) {
-    String imageStr = base64Encode(imageBytes);
-    return imageStr;
-  }
-
-  convertStringToByteCode(str) {
-    Uint8List imageBytes = base64Decode(str);
-    return imageBytes;
-  }
 
   @override
   void initState() {
@@ -66,7 +31,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
     bool _isPickImage = widget.initData['img'] != '';
     _valid = _isPickImage;
     _imgByteCode = _isPickImage
-        ? convertStringToByteCode(widget.initData['img'])
+        ? Utils.convertStringToByteCode(widget.initData['img'])
         : kTransparentImage;
   }
 
@@ -79,7 +44,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
       stateTitle: 'เลือกรูปโปรไฟล์',
       prevBtnFuntion: widget.prevBtnFuntion,
       nextBtnFuntion: () =>
-          widget.nextBtnFuntion(convertByteCodeToString(_imgByteCode)),
+          widget.nextBtnFuntion(Utils.convertByteCodeToString(_imgByteCode)),
       nextText: _valid ? 'ต่อไป' : 'ข้าม',
       child: SizedBox(
         width: width,
@@ -93,8 +58,11 @@ class _RegisterPage2State extends State<RegisterPage2> {
                 Icons.camera_alt,
                 size: CONSTANT.SIZE_XL,
               ),
-              fabAction: () {
-                getImageByGallery();
+              fabAction: () async {
+                _imgByteCode = await Utils.getImageByGallery();
+                setState(() {
+                  _imgByteCode = _imgByteCode;
+                });
               },
             ),
           ],

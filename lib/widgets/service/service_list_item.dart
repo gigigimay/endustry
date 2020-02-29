@@ -21,7 +21,7 @@ class ServiceItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-        onTap: onPressed ?? () => print('tap: ' + text),
+        onTap: onPressed,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: CONSTANT.SIZE_SM),
           width: itemWidth,

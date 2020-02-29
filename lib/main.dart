@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
-import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/theme.dart';
+import 'package:endustry/pages/login.dart';
 import 'package:endustry/pages/registry/register_page.dart';
 import 'package:endustry/pages/splash.dart';
 
@@ -10,32 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Endustry',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        primaryColor: CONSTANT.COLOR_PRIMARY,
-        backgroundColor: CONSTANT.COLOR_BACKGROUND,
-        dividerColor: CONSTANT.COLOR_DISABLED,
-        disabledColor: CONSTANT.COLOR_DISABLED,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.purple[100],
-        fontFamily: 'CloudSoft',
-        textTheme: TextTheme(
-          body1: CONSTANT.TEXT_STYLE_BODY,
-          title: CONSTANT.TEXT_STYLE_TITLE,
-          button: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
-          subhead: CONSTANT.TEXT_STYLE_HEADING,
-        ),
-        iconTheme: IconThemeData(
-          color: CONSTANT.COLOR_PRIMARY,
-          size: CONSTANT.SIZE_XX,
-        ),
-      ),
-      // TODO: add all needed route
+      theme: themeData,
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new HomePage(),
-        '/register': (BuildContext context) => new RegisterPage(),
+        '/home': (BuildContext context) => HomePage(),
+        '/login': (BuildContext context) => LoginPage(),
+        '/register': (BuildContext context) => RegisterPage(),
       },
-      //TODO: change back to AppLayout
       home: SplashPage(),
     );
   }

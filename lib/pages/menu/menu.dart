@@ -12,6 +12,12 @@ class MenuPage extends StatelessWidget {
 
   final Function goBackToFirst, changePage;
 
+  Function onLogout(context) => () async {
+        await Storage().logout();
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/login', (Route<dynamic> route) => false);
+      };
+
   @override
   Widget build(BuildContext context) {
     final User userData = Storage.user;
@@ -50,9 +56,7 @@ class MenuPage extends StatelessWidget {
               child: ImageIcon(AssetImage('assets/images/logout.png')),
             ),
             text: 'ออกจากระบบ',
-            // TODO: change destination to login page
-            onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                context, '/register', (Route<dynamic> route) => false),
+            onPressed: onLogout(context),
           )
         ],
       ),

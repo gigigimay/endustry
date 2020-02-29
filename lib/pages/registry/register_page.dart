@@ -69,14 +69,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(ModalRoute.of(context).isCurrent);
     return BgLayout(
         child: PageView(
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         RegisterPage1(
-          prevBtnFuntion: () => goToPrevPage(_pageController),
+          prevBtnFuntion: () => Navigator.pop(context),
           nextBtnFuntion: () => goToNextPage(_pageController),
         ),
         RegisterPage2(

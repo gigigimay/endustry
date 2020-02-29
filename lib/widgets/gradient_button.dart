@@ -7,6 +7,8 @@ class GradientButton extends StatelessWidget {
     @required this.onPressed,
     this.text,
     this.child,
+    this.width,
+    this.height,
     this.disabled = false,
     this.colors = const [
       CONSTANT.COLOR_PRIMARY,
@@ -17,8 +19,6 @@ class GradientButton extends StatelessWidget {
       CONSTANT.COLOR_DISABLED,
     ],
     this.borderRadius = 999.0,
-    this.width,
-    this.height,
     this.padding = const EdgeInsets.symmetric(
       vertical: CONSTANT.SIZE_SM,
       horizontal: CONSTANT.SIZE_XX,
@@ -59,6 +59,7 @@ class GradientButton extends StatelessWidget {
             child: child ??
                 Text(
                   text,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: CONSTANT.FONT_SIZE_HEAD,

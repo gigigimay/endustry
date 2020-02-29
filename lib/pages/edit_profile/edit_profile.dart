@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/edit_profile/edit_password.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
@@ -28,11 +29,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   @override
   void initState() {
-    print('_form000 >> ' + _form.runtimeType.toString());
     _form = {
       'firstName': widget.userData.firstName,
       'lastName': widget.userData.lastName,
-      'password'
       'email': widget.userData.email,
       'typeId': widget.userData.typeId,
       'interestedTopics': widget.userData.interestedTopics,
@@ -102,7 +101,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         disabled: !_isValid,
         onPressed: submitForm,
       ),
-      // TODO: submit form
       child: Form(
         key: _formKey,
         autovalidate: true,
@@ -118,18 +116,24 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
+                    // TODO: implement keyboard action
+                    textInputAction: TextInputAction.next,
                   ),
                   Input(
                     hintText: 'นามสกุล',
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
+                    // TODO: implement keyboard action
+                    textInputAction: TextInputAction.next,
                   ),
                   Input(
                     hintText: 'อีเมล',
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.done,
                     validator: (String value) =>
                         CONSTANT.REGEX_EMAIL.hasMatch(value)
                             ? null
@@ -144,7 +148,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     suffixText: 'เปลี่ยนรหัสผ่าน',
                     suffixIcon: IconButtonInk(
                       padding: EdgeInsets.all(0),
-                      onPressed: () => print('edit!'),
+                      onPressed: () => Utils.navigatePush(
+                        context,
+                        EditPasswordPage(),
+                        animate: true,
+                      ),
                       icon: Icon(
                         Icons.edit,
                         color: CONSTANT.COLOR_PRIMARY,

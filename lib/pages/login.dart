@@ -78,6 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                             autofocus: true,
                             hintText: 'อีเมล',
                             prefixIcon: Icon(Icons.email),
+                            keyboardType: TextInputType.emailAddress,
+                            // TODO: implement keyboard action
+                            textInputAction: TextInputAction.next,
                             onChanged: saveForm('email'),
                             validator: (String value) =>
                                 CONSTANT.REGEX_EMAIL.hasMatch(value)
@@ -87,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           Input(
                             hintText: 'รหัสผ่าน',
                             prefixIcon: Icon(Icons.lock),
+                            textInputAction: TextInputAction.done,
                             onChanged: saveForm('password'),
                             obscureText: true,
                           ),

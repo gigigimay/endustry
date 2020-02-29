@@ -20,7 +20,6 @@ class EditKeywordForm extends StatefulWidget {
 }
 
 class _EditKeywordFormState extends State<EditKeywordForm> {
-  final _formKey = GlobalKey<FormState>();
   String _searchValue;
   List<String> _preferList;
 

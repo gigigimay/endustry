@@ -170,7 +170,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.done,
                     validator: (String value) =>
                         CONSTANT.REGEX_EMAIL.hasMatch(value)
                             ? null
@@ -192,10 +191,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       ),
                     ),
                   ),
-                  SizedBox(height: CONSTANT.SIZE_XX),
+                  SizedBox(height: CONSTANT.SIZE_LG),
                   // TODO: click to open dropdown
                   Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
-                  SizedBox(height: CONSTANT.SIZE_XL),
+                  SizedBox(height: CONSTANT.SIZE_LG),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[

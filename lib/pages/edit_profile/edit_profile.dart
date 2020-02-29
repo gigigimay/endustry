@@ -7,13 +7,17 @@ import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
 class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({Key key, this.successMessage}) : super(key: key);
+  final String successMessage;
   @override
   Widget build(BuildContext context) {
-    return EditProfileForm();
+    return EditProfileForm(successMessage: successMessage);
   }
 }
 
 class EditProfileForm extends StatefulWidget {
+  EditProfileForm({Key key, this.successMessage}) : super(key: key);
+  final String successMessage;
   final User userData = Storage.user;
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
@@ -26,6 +30,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
   final _formKey = GlobalKey<FormState>();
   bool _isValid = true;
   var _form = {};
+  String _successMessage;
 
   @override
   void initState() {
@@ -37,6 +42,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       'interestedTopics': widget.userData.interestedTopics,
       'img': widget.userData.img,
     };
+    _successMessage = widget.successMessage;
     super.initState();
   }
 
@@ -65,6 +71,18 @@ class _EditProfileFormState extends State<EditProfileForm> {
           _form[key] = value;
         });
       };
+
+  void onEditPasswordPressed() async {
+    var success = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => EditPasswordPage()));
+    if (success ?? false) {
+      setState(() {
+        _successMessage = 'เปลี่ยนรหัสผ่านแล้ว';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +129,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  _successMessage != null
+                      ? AlertBox.success(text: _successMessage)
+                      : Container(),
                   Input(
                     hintText: 'ชื่อ',
                     style: TextStyle(fontSize: width * 0.05),
@@ -148,11 +169,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     suffixText: 'เปลี่ยนรหัสผ่าน',
                     suffixIcon: IconButtonInk(
                       padding: EdgeInsets.all(0),
-                      onPressed: () => Utils.navigatePush(
-                        context,
-                        EditPasswordPage(),
-                        animate: true,
-                      ),
+                      onPressed: onEditPasswordPressed,
                       icon: Icon(
                         Icons.edit,
                         color: CONSTANT.COLOR_PRIMARY,

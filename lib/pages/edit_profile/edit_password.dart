@@ -40,16 +40,14 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
 
   void submitForm() async {
     if (_formKey.currentState.validate()) {
-      if (_form['oldPassword'] == widget.userData.password) {
-        await Storage().editUserPassword(widget.userData.id, _form['newPassword']);
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => EditProfilePage()));
-      } else {
-        print('password >> ' + widget.userData.password);
-        clearField('oldPassword', _oldPwdCtrl);
-      }
+      await Storage()
+          .editUserPassword(widget.userData.id, _form['newPassword']);
+      Navigator.pop(context, true);
+    } else if (_form.length == 3 &&
+        _form['newPassword'] == _form['confirmNewPassword'] &&
+        _form['oldPassword'] != Storage.user.password) {
+      print('password >> ' + widget.userData.password);
+      clearField('oldPassword', _oldPwdCtrl);
     }
   }
 

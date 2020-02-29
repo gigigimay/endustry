@@ -25,8 +25,16 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       color: Colors.white,
+      child: Center(
+        child: Container(
+          width: width * 0.5,
+          child: Image(image: AssetImage('assets/images/LOGO.png')),
+        ),
+      ),
     );
   }
 }

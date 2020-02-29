@@ -31,7 +31,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
     super.initState();
   }
 
-  clearField(String key, TextEditingController controller) {
+  void clearField(String key, TextEditingController controller) {
     controller.clear();
     setState(() {
       _form.remove(key);
@@ -40,13 +40,16 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
 
   void submitForm() async {
     if (_formKey.currentState.validate()) {
-      if (_form['oldPassword'] == Storage.user.password)
+      if (_form['oldPassword'] == widget.userData.password) {
+        await Storage().editUserPassword(widget.userData.id, _form['newPassword']);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (BuildContext context) => EditProfilePage()));
-      else
+      } else {
+        print('password >> ' + widget.userData.password);
         clearField('oldPassword', _oldPwdCtrl);
+      }
     }
   }
 
@@ -89,12 +92,12 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                     onChanged: saveForm('oldPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
-                    validator: (String v) =>
-                        _form['newPassword'] == _form['confirmNewPassword']
-                            ? v != Storage.user.password
-                                ? 'รหัสผ่านปัจจุบันไม่ถูกต้อง'
-                                : null
-                            : null,
+                    validator: (String v) => (_form.length == 3 &&
+                            _form['newPassword'] == _form['confirmNewPassword'])
+                        ? v != Storage.user.password
+                            ? 'รหัสผ่านปัจจุบันไม่ถูกต้อง'
+                            : null
+                        : null,
                   ),
                   Input(
                     obscureText: true,

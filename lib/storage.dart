@@ -172,7 +172,6 @@ class Storage {
   }
 
   editUserProfile(User userData) async {
-    user = userData;
     // TODO: update interestedTopic
     var result = await db.rawQuery('''UPDATE Users
         SET
@@ -183,5 +182,13 @@ class Storage {
         WHERE id="${userData.id}";''');
     // interestedTopics="${json.encode(userData.interestedTopics)}"
     print('editUserProfile: ' + result.toString());
+    user = await getUserDataFromId(userData.id);
+  }
+
+  editUserPassword(String uid, String newPassword) async {
+    var result = await db
+        .rawQuery('UPDATE Users SET password="$newPassword" WHERE id="$uid";');
+    print('editUserPassword: ' + result.toString());
+    user = await getUserDataFromId(uid);
   }
 }

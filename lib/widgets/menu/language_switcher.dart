@@ -27,17 +27,23 @@ class LanguageSwitcher extends StatelessWidget {
                 : TextStyle(color: CONSTANT.COLOR_PRIMARY),
           ),
         );
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-        border: Border.all(color: CONSTANT.COLOR_PRIMARY),
-      ),
-      child: Row(
-        children: <Widget>[
-          item('TH', true),
-          item('EN', false),
-        ],
-      ),
+    return Stack(
+      children: <Widget>[
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+              border: Border.all(color: CONSTANT.COLOR_PRIMARY),
+            ),
+          ),
+        ),
+        Row(
+          children: <Widget>[
+            item('TH', true),
+            item('EN', false),
+          ],
+        ),
+      ],
     );
   }
 }

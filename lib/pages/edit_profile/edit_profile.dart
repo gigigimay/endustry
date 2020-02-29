@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/edit_profile/edit_keywords.dart';
 import 'package:endustry/pages/edit_profile/edit_password.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
@@ -18,7 +19,6 @@ class EditProfilePage extends StatelessWidget {
 class EditProfileForm extends StatefulWidget {
   EditProfileForm({Key key, this.successMessage}) : super(key: key);
   final String successMessage;
-  final User userData = Storage.user;
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
 
@@ -28,19 +28,20 @@ class EditProfileForm extends StatefulWidget {
 
 class _EditProfileFormState extends State<EditProfileForm> {
   final _formKey = GlobalKey<FormState>();
+  User _userData;
   bool _isValid = true;
   var _form = {};
   String _successMessage;
 
   @override
   void initState() {
+    _userData = Storage.user;
     _form = {
-      'firstName': widget.userData.firstName,
-      'lastName': widget.userData.lastName,
-      'email': widget.userData.email,
-      'typeId': widget.userData.typeId,
-      'interestedTopics': widget.userData.interestedTopics,
-      'img': widget.userData.img,
+      'firstName': _userData.firstName,
+      'lastName': _userData.lastName,
+      'email': _userData.email,
+      'typeId': _userData.typeId,
+      'img': _userData.img,
     };
     _successMessage = widget.successMessage;
     super.initState();
@@ -54,13 +55,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void submitForm() async {
     final User newUser = User.fromUser(
-      widget.userData,
+      _userData,
       email: _form['email'],
       firstName: _form['firstName'],
       lastName: _form['lastName'],
       typeId: _form['typeId'],
       img: _form['img'],
-      interestedTopics: _form['interestedTopics'],
     );
     await Storage().editUserProfile(newUser);
     Utils.navigatePushAndPopAll(context, MenuPage());
@@ -72,14 +72,30 @@ class _EditProfileFormState extends State<EditProfileForm> {
         });
       };
 
+  openAwaitPage(Widget page) async => await Navigator.push(
+      context, MaterialPageRoute(builder: (BuildContext context) => page));
+
   void onEditPasswordPressed() async {
-    var success = await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => EditPasswordPage()));
+    setState(() {
+      _successMessage = null;
+    });
+    var success = await openAwaitPage(EditPasswordPage());
     if (success ?? false) {
       setState(() {
         _successMessage = 'เปลี่ยนรหัสผ่านแล้ว';
+      });
+    }
+  }
+
+  void onEditKeywordPressed() async {
+    setState(() {
+      _successMessage = null;
+    });
+    var success = await openAwaitPage(EditKeywordPage());
+    if (success ?? false) {
+      setState(() {
+        _successMessage = 'ตั้งค่าสิ่งที่สนใจแล้ว';
+        _userData = Storage.user;
       });
     }
   }
@@ -93,7 +109,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
         .firstWhere((UserType t) => t.id == _form['typeId'])
         .name;
 
-    List keywords = _form['interestedTopics'].map((String id) {
+    List keywords = _userData.interestedTopics.map((String id) {
       Keyword keyword =
           widget.keywordsData.firstWhere((Keyword k) => k.id == id);
       return keyword?.name;
@@ -188,7 +204,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       EditButton(
-                        onTap: () => print('edit interested topic'),
+                        onTap: onEditKeywordPressed,
                         icon: keywords.isEmpty ? Icons.add : Icons.edit,
                         text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
                       )

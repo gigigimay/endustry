@@ -15,13 +15,13 @@ class PreferChip extends StatelessWidget {
     return ActionChip(
       onPressed: onPressed,
       pressElevation: 0,
-      backgroundColor:
-          isSelected ? CONSTANT.COLOR_PRIMARY : CONSTANT.COLOR_BACKGROUND,
+      backgroundColor: isSelected ? CONSTANT.COLOR_PRIMARY : Colors.transparent,
       shape: StadiumBorder(side: BorderSide(color: CONSTANT.COLOR_PRIMARY)),
       label: Text(
         text,
         style: TextStyle(
-            color: isSelected ? Colors.white : CONSTANT.COLOR_PRIMARY),
+          color: isSelected ? Colors.white : CONSTANT.COLOR_PRIMARY,
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/edit_profile/edit_profile.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 
@@ -13,8 +12,6 @@ class EditPasswordPage extends StatelessWidget {
 
 class EditPasswordForm extends StatefulWidget {
   final User userData = Storage.user;
-  final List<Keyword> keywordsData = MOCK_KEYWORDS;
-  final List<UserType> userTypesData = MOCK_USERTYPES;
 
   @override
   _EditPasswordFormState createState() => _EditPasswordFormState();
@@ -47,6 +44,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
         _form['newPassword'] == _form['confirmNewPassword'] &&
         _form['oldPassword'] != Storage.user.password) {
       print('password >> ' + widget.userData.password);
+      // TODO: grant focus to oldPassword field
       clearField('oldPassword', _oldPwdCtrl);
     }
   }

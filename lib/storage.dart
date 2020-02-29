@@ -180,15 +180,19 @@ class Storage {
           typeId="${userData.typeId}",
           img="${userData.img ?? ''}"
         WHERE id="${userData.id}";''');
-    // interestedTopics="${json.encode(userData.interestedTopics)}"
     print('editUserProfile: ' + result.toString());
     user = await getUserDataFromId(userData.id);
   }
 
   editUserPassword(String uid, String newPassword) async {
-    var result = await db
+    await db
         .rawQuery('UPDATE Users SET password="$newPassword" WHERE id="$uid";');
-    print('editUserPassword: ' + result.toString());
+    user = await getUserDataFromId(uid);
+  }
+
+  editUserKeyword(String uid, List<String> value) async {
+    await db.rawQuery(
+        '''UPDATE Users SET interestedTopics='${json.encode(value)}' WHERE id="$uid";''');
     user = await getUserDataFromId(uid);
   }
 }

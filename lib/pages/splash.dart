@@ -13,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
     final storage = Storage();
     await storage.initDB();
     final String pageName = await storage.checkUidPrefs() ? '/home' : '/login';
-    // TODO: add some delay time before pushing to make it feels smoother
+    await Future.delayed(Duration(milliseconds: 700));
     Navigator.pushReplacementNamed(context, pageName);
   }
 

@@ -116,14 +116,14 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     onChanged: saveForm('lastName'),
                   ),
                   Input(
-                    hintText: 'อีเมล์',
+                    hintText: 'อีเมล',
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     validator: (String value) =>
                         CONSTANT.REGEX_EMAIL.hasMatch(value)
                             ? null
-                            : 'อีเมล์ไม่ถูกต้อง',
+                            : 'อีเมลไม่ถูกต้อง',
                   ),
                   // TODO: edit password
                   Input(

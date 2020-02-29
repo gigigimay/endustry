@@ -25,7 +25,7 @@ class ListItem extends StatelessWidget {
     double height = imageHeight ?? itemWidth;
     return FlatButton(
       padding: padding,
-      onPressed: onPressed ?? () => print('pressed! ${this.label}'),
+      onPressed: onPressed,
       child: Container(
         width: itemWidth,
         child: Column(

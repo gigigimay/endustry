@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:endustry/export.dart';
 import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';
 import 'package:endustry/pages/registry/register_personal_status.dart';
+import 'package:endustry/storage.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
@@ -12,12 +16,23 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // TODO: STORE ALL SELECTED DATA
-  bool validStep1, validStep2, validStep3, validStep4;
-
   PageController _pageController = PageController(initialPage: 0);
 
   checkPageCtrl() => _pageController.hasClients;
+
+  var userInfo = {
+    'firstName': '',
+    'lastName': '',
+    'email': '',
+    'password': '',
+    'typeId': '',
+    'img': '',
+    'interestTopic': []
+  };
+
+  goToLoginPage() {
+    Navigator.pop(context);
+  }
 
   goToPrevPage(PageController controller) {
     if (checkPageCtrl() && controller.page > 0) {
@@ -31,34 +46,55 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  nextP1({firstname, lastname, email, password}) {
+    userInfo['firstName'] = firstname;
+    userInfo['lastName'] = lastname;
+    userInfo['email'] = email;
+    userInfo['password'] = password;
+
+    goToNextPage(_pageController);
+  }
+
+  nextP2(img) {
+    userInfo['img'] = img;
+    goToNextPage(_pageController);
+  }
+
+  nextP3(typeId) {
+    userInfo['typeId'] = typeId;
+    goToNextPage(_pageController);
+  }
+
+  saveP4(interestTopic) {
+    userInfo['interestTopic'] = interestTopic;
+    print("intrst> ${userInfo['interestTopic']}");
+  }
+
   submitData() {
-    // TODO: save all data & update db
+    User newUser = User(
+        id: null,
+        firstName: userInfo['firstName'],
+        lastName: userInfo['lastName'],
+        email: userInfo['email'],
+        img: userInfo['img'],
+        typeId: userInfo['typeId'],
+        interestedTopics: List<String>.from(userInfo['interestTopic']));
+
+    print("${newUser.firstName} ${newUser.lastName}");
+    print("${newUser.email}");
+    print("${newUser.img}");
+    print("${newUser.typeId}");
+    print("${newUser.interestedTopics}");
+
+    Storage().insertNewUser(
+        newUser, md5.convert(utf8.encode(userInfo['password'])).toString());
+
     Utils.navigatePushAndPopAll(context, HomePage());
-  }
-
-  // TODO: change next text after some activity 1,2,3
-  setValid1(bool boolean) {
-    setState(() {
-      validStep1 = boolean;
-    });
-  }
-
-  setValid3(bool boolean) {
-    setState(() {
-      validStep3 = boolean;
-    });
-  }
-
-  setValid4(bool boolean) {
-    setState(() {
-      validStep4 = boolean;
-    });
   }
 
   @override
   void initState() {
     super.initState();
-    validStep1 = validStep2 = validStep3 = validStep4 = false;
 
     _pageController.addListener(() {
       setState(() {
@@ -75,20 +111,25 @@ class _RegisterPageState extends State<RegisterPage> {
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         RegisterPage1(
+          initData: userInfo,
           prevBtnFuntion: () => Navigator.pop(context),
-          nextBtnFuntion: () => goToNextPage(_pageController),
+          nextBtnFuntion: nextP1,
         ),
         RegisterPage2(
+          initData: userInfo,
           prevBtnFuntion: () => goToPrevPage(_pageController),
-          nextBtnFuntion: () => goToNextPage(_pageController),
+          nextBtnFuntion: nextP2,
         ),
         RegisterPage3(
+          initData: userInfo,
           prevBtnFuntion: () => goToPrevPage(_pageController),
-          nextBtnFuntion: () => goToNextPage(_pageController),
+          nextBtnFuntion: nextP3,
         ),
         RegisterPage4(
+          initData: userInfo,
+          onPressed: saveP4,
           prevBtnFuntion: () => goToPrevPage(_pageController),
-          nextBtnFuntion: () => submitData(),
+          nextBtnFuntion: submitData,
         ),
       ],
     ));

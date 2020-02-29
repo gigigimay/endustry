@@ -73,7 +73,7 @@ class DepartmentInPage extends StatelessWidget {
                       Center(
                         child: CircleFadeInImage(
                           size: imageSize,
-                          imageUrl: departmentData.image,
+                          image: NetworkImage(departmentData.image),
                         ),
                       )
                     ],
@@ -119,7 +119,8 @@ class DepartmentInPage extends StatelessWidget {
                                 size: serviceButtonWidth * 0.6,
                                 borderWidth: CONSTANT.BORDER_WIDTH_MEDIUM,
                                 borderColor: Colors.white,
-                                imageUrl: s.image,
+                                // TODO: Change NetworkImage to AssetImage
+                                image: NetworkImage(s.image),
                               ),
                               SizedBox(height: CONSTANT.SIZE_SM),
                               Text(

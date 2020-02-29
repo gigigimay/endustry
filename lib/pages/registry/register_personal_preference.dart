@@ -1,14 +1,19 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/registry/register_layout.dart';
-import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/registry/prefer_chip.dart';
 
 class RegisterPage4 extends StatefulWidget {
-  RegisterPage4({Key key, this.prevBtnFuntion, this.nextBtnFuntion})
+  RegisterPage4(
+      {Key key,
+      this.initData,
+      this.onPressed,
+      this.prevBtnFuntion,
+      this.nextBtnFuntion})
       : super(key: key);
 
-  final Function prevBtnFuntion, nextBtnFuntion;
+  final Function onPressed, prevBtnFuntion, nextBtnFuntion;
+  final initData;
 
   @override
   _RegisterPage4State createState() => _RegisterPage4State();
@@ -19,11 +24,16 @@ class _RegisterPage4State extends State<RegisterPage4> {
   var searchword = '';
   final _textEditingController = TextEditingController();
 
-  List<String> _preferList = [];
+  List _preferList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _preferList = widget.initData['interestTopic'];
+  }
 
   @override
   Widget build(BuildContext context) {
-    print(_preferList);
     return RegisterLayout(
       registerStep: 3,
       stateTitle: 'เลือกสิ่งที่คุณสนใจ',
@@ -77,14 +87,16 @@ class _RegisterPage4State extends State<RegisterPage4> {
                       .map((item) {
                     bool isSelected = _preferList.contains(item.id);
                     return PreferChip(
-                      text: item.name,
-                      isSelected: isSelected,
-                      onPressed: () => setState(() {
-                        isSelected
-                            ? _preferList.remove(item.id)
-                            : _preferList.add(item.id);
-                      }),
-                    );
+                        text: item.name,
+                        isSelected: isSelected,
+                        onPressed: () {
+                          setState(() {
+                            isSelected
+                                ? _preferList.remove(item.id)
+                                : _preferList.add(item.id);
+                          });
+                          widget.onPressed(_preferList);
+                        });
                   }).toList(),
                 ),
               ),

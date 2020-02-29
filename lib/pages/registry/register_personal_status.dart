@@ -4,9 +4,11 @@ import 'package:endustry/pages/registry/register_layout.dart';
 import 'package:endustry/widgets/registry/register_status_btn.dart';
 
 class RegisterPage3 extends StatefulWidget {
-  RegisterPage3({Key key, this.nextBtnFuntion, this.prevBtnFuntion})
+  RegisterPage3(
+      {Key key, this.initData, this.nextBtnFuntion, this.prevBtnFuntion})
       : super(key: key);
   final Function prevBtnFuntion, nextBtnFuntion;
+  final initData;
   @override
   _RegisterPage3State createState() => _RegisterPage3State();
 }
@@ -22,8 +24,10 @@ class _RegisterPage3State extends State<RegisterPage3> {
   @override
   void initState() {
     super.initState();
-    _selectIndex = null;
-    _valid = false;
+    _selectIndex = MOCK_USERTYPES
+        .indexWhere((item) => item.id == widget.initData['typeId']);
+    print('>>$_selectIndex');
+    _valid = [0, 1].contains(_selectIndex);
   }
 
   @override
@@ -32,7 +36,8 @@ class _RegisterPage3State extends State<RegisterPage3> {
       registerStep: 2,
       stateTitle: 'คุณคือ...?',
       prevBtnFuntion: widget.prevBtnFuntion,
-      nextBtnFuntion: widget.nextBtnFuntion,
+      nextBtnFuntion: () =>
+          widget.nextBtnFuntion(MOCK_USERTYPES[_selectIndex].id),
       nextText: 'ต่อไป',
       disabled: !_valid,
       child: Column(

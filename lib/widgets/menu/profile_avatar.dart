@@ -11,7 +11,7 @@ class ProfileAvatar extends StatelessWidget {
     this.fabAction,
   }) : super(key: key);
 
-  final String img;
+  final ImageProvider img;
   final double avatarSize;
   final double fabSize;
   final Function fabAction;
@@ -23,7 +23,7 @@ class ProfileAvatar extends StatelessWidget {
       CircleFadeInImage(
           size: avatarSize,
           borderColor: CONSTANT.COLOR_BORDER_LIGHT,
-          imageUrl: img,
+          image: img,
           placeholderImage: CircleAvatar(
             radius: avatarSize / 2,
             child: Image.asset('assets/images/select_profile_pic.png'),

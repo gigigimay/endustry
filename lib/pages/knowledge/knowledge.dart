@@ -10,7 +10,6 @@ class KnowledgePage extends StatefulWidget {
     this.itemOnPressed,
   }) : super(key: key);
 
-// รอรับค่าจากข้างนอก
   final suggestKnowledgeData = MOCK_KNOWLEDGES.reversed.toList();
   final knowledgeData = MOCK_KNOWLEDGES;
 

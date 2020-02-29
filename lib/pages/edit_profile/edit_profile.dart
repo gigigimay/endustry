@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/edit_profile/edit_keywords.dart';
@@ -6,6 +10,7 @@ import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key key, this.successMessage}) : super(key: key);
@@ -41,7 +46,18 @@ class _EditProfileFormState extends State<EditProfileForm> {
       'email': _userData.email,
       'typeId': _userData.typeId,
       'img': _userData.img,
+      // "firstName": widget.userData.firstName,
+      // "lastName": widget.userData.lastName,
+      // "email": widget.userData.email,
+      // "typeId": widget.userData.typeId,
+      // "interestedTopics": widget.userData.interestedTopics,
+      // "img": widget.userData.img,
     };
+
+    bool _isPickImage = widget.userData.img != '';
+    _imgByteCode = _isPickImage
+        ? convertStringToByteCode(widget.userData.img)
+        : kTransparentImage;
     super.initState();
   }
 
@@ -63,6 +79,40 @@ class _EditProfileFormState extends State<EditProfileForm> {
     );
     await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
+  }
+
+  File _file;
+  Uint8List _imgByteCode = kTransparentImage;
+
+  Future getImageByCamera() async {
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    print(image.runtimeType);
+  }
+
+// take a photo? can but cant both in one btn
+  Future getImageByGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _file = image;
+
+    if (_file != null) {
+      _imgByteCode = convertFileToByteCode(_file);
+    }
+  }
+
+  convertFileToByteCode(file) {
+    List<int> imageBytes = file.readAsBytesSync();
+    return imageBytes;
+  }
+
+  convertByteCodeToString(imageBytes) {
+    String imageStr = base64Encode(imageBytes);
+    return imageStr;
+  }
+
+  convertStringToByteCode(str) {
+    Uint8List imageBytes = base64Decode(str);
+    return imageBytes;
   }
 
   Function saveForm(key) => (value) {
@@ -110,7 +160,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        img: _form['img'],
+        img: MemoryImage(_imgByteCode),
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(

@@ -85,7 +85,8 @@ class ServiceInPage extends StatelessWidget {
                       Center(
                         child: CircleFadeInImage(
                           size: imageSize,
-                          imageUrl: serviceData.image,
+                          // TODO: Change NetworkImage to AssetImage
+                          image: NetworkImage(serviceData.image),
                         ),
                       )
                     ],

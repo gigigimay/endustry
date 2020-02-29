@@ -30,12 +30,13 @@ class _EditProfileFormState extends State<EditProfileForm> {
   void initState() {
     print('_form000 >> ' + _form.runtimeType.toString());
     _form = {
-      "firstName": widget.userData.firstName,
-      "lastName": widget.userData.lastName,
-      "email": widget.userData.email,
-      "typeId": widget.userData.typeId,
-      "interestedTopics": widget.userData.interestedTopics,
-      "img": widget.userData.img,
+      'firstName': widget.userData.firstName,
+      'lastName': widget.userData.lastName,
+      'password'
+      'email': widget.userData.email,
+      'typeId': widget.userData.typeId,
+      'interestedTopics': widget.userData.interestedTopics,
+      'img': widget.userData.img,
     };
     super.initState();
   }
@@ -46,9 +47,18 @@ class _EditProfileFormState extends State<EditProfileForm> {
     });
   }
 
-  void submitForm() {
-    print('_form >> ' + _form.toString());
-    // TODO: update profile
+  void submitForm() async {
+    final User newUser = User.fromUser(
+      widget.userData,
+      email: _form['email'],
+      firstName: _form['firstName'],
+      lastName: _form['lastName'],
+      typeId: _form['typeId'],
+      img: _form['img'],
+      interestedTopics: _form['interestedTopics'],
+    );
+    await Storage().editUserProfile(newUser);
+    Utils.navigatePushAndPopAll(context, MenuPage());
   }
 
   Function saveForm(key) => (value) {
@@ -152,7 +162,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         'สิ่งที่คุณสนใจ',
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
-                      EditButton(onTap: () => print('edit interested topic'))
+                      EditButton(
+                        onTap: () => print('edit interested topic'),
+                        icon: keywords.isEmpty ? Icons.add : Icons.edit,
+                        text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
+                      )
                     ],
                   ),
                   Wrap(

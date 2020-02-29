@@ -86,14 +86,37 @@ class User {
     final List<String> interestedTopics =
         List<String>.from(json.decode(jsondata['interestedTopics']));
     return User(
-        id: jsondata["id"],
-        email: jsondata["email"],
-        firstName: jsondata["firstName"],
-        lastName: jsondata["lastName"],
-        img: jsondata["img"],
-        typeId: jsondata["typeId"],
-        favKnowledges: favKnowledgesData,
-        interestedTopics: interestedTopics);
+      id: jsondata['id'],
+      email: jsondata['email'],
+      firstName: jsondata['firstName'],
+      lastName: jsondata['lastName'],
+      img: jsondata['img'],
+      typeId: jsondata['typeId'],
+      favKnowledges: favKnowledgesData,
+      interestedTopics: interestedTopics,
+    );
+  }
+
+  factory User.fromUser(
+    User oldUser, {
+    @required String email,
+    String firstName,
+    String lastName,
+    String img,
+    String typeId,
+    List<String> favKnowledges,
+    List<String> interestedTopics,
+  }) {
+    return User(
+      id: oldUser.id,
+      email: email ?? oldUser.email,
+      firstName: firstName ?? oldUser.firstName,
+      lastName: lastName ?? oldUser.lastName,
+      img: img ?? oldUser.img,
+      typeId: typeId ?? oldUser.typeId,
+      favKnowledges: favKnowledges ?? oldUser.favKnowledges,
+      interestedTopics: interestedTopics ?? oldUser.interestedTopics,
+    );
   }
 }
 

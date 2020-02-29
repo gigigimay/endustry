@@ -75,7 +75,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM Services').then((data) {
       data.forEach((item) => list.add(Service.fromJson(item)));
     });
-    print(list);
+    print('getServices: ' + list.toString());
     return list;
   }
 
@@ -84,7 +84,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM Departments').then((data) {
       data.forEach((item) => list.add(Department.fromJson(item)));
     });
-    print(list);
+    print('getDepartments: ' + list.toString());
     return list;
   }
 
@@ -93,7 +93,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM News').then((data) {
       data.forEach((item) => list.add(News.fromJson(item)));
     });
-    print(list);
+    print('getNews: ' + list.toString());
     return list;
   }
 
@@ -102,7 +102,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM NewsTypes').then((data) {
       data.forEach((item) => list.add(NewsType.fromJson(item)));
     });
-    print(list);
+    print('getNewsTypes: ' + list.toString());
     return list;
   }
 
@@ -111,7 +111,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM Knowledges').then((data) {
       data.forEach((item) => list.add(Knowledge.fromJson(item)));
     });
-    print(list);
+    print('getKnowledges: ' + list.toString());
     return list;
   }
 
@@ -120,7 +120,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM Keywords').then((data) {
       data.forEach((item) => list.add(Keyword.fromJson(item)));
     });
-    print(list);
+    print('getKeywords: ' + list.toString());
     return list;
   }
 
@@ -129,7 +129,7 @@ class Storage {
     await db.rawQuery('SELECT * FROM UserTypes').then((data) {
       data.forEach((item) => list.add(UserType.fromJson(item)));
     });
-    print(list);
+    print('getUsertypes: ' + list.toString());
     return list;
   }
 

@@ -42,6 +42,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       body: Container(
         color: CONSTANT.COLOR_PRIMARY,
         child: Stack(

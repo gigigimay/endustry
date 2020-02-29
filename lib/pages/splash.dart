@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
     await storage.initDB();
     final String pageName = await storage.checkUidPrefs() ? '/home' : '/login';
     // TODO: add some delay time before pushing to make it feels smoother
-    Navigator.pushNamed(context, pageName);
+    Navigator.pushReplacementNamed(context, pageName);
   }
 
   @override

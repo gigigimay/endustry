@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/edit_profile/edit_profile.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 
@@ -21,30 +22,37 @@ class EditPasswordForm extends StatefulWidget {
 
 class _EditPasswordFormState extends State<EditPasswordForm> {
   final _formKey = GlobalKey<FormState>();
-  bool _isValid = true;
   var _form = {};
-  var _touched = {};
+
+  TextEditingController _oldPwdCtrl = TextEditingController();
 
   @override
   void initState() {
-    _touched['oldPassword'] = false;
-    _touched['newPassword'] = false;
-    _touched['confirmNewPassword'] = false;
     super.initState();
   }
 
-  void validateForm() {
-    this.setState(() {
-      _isValid = _formKey.currentState.validate();
+  clearField(String key, TextEditingController controller) {
+    controller.clear();
+    setState(() {
+      _form.remove(key);
     });
   }
 
-  void submitForm() async {}
+  void submitForm() async {
+    if (_formKey.currentState.validate()) {
+      if (_form['oldPassword'] == Storage.user.password)
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => EditProfilePage()));
+      else
+        clearField('oldPassword', _oldPwdCtrl);
+    }
+  }
 
   Function saveForm(key) => (value) {
         setState(() {
           _form[key] = value;
-          _touched[key] = true;
         });
       };
 
@@ -63,12 +71,10 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
       ),
       bottomWidget: GradientButton(
         text: 'ยืนยัน',
-        disabled: _form.length < 3 || !_isValid,
         onPressed: submitForm,
       ),
       child: Form(
         key: _formKey,
-        onChanged: validateForm,
         child: Column(
           children: <Widget>[
             PageScrollBody(
@@ -76,19 +82,24 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Input(
+                    controller: _oldPwdCtrl,
                     obscureText: true,
                     hintText: 'รหัสผ่านปัจจุบัน',
                     style: TextStyle(fontSize: width * 0.05),
-                    touched: _touched['oldPassword'],
                     onChanged: saveForm('oldPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
+                    validator: (String v) =>
+                        _form['newPassword'] == _form['confirmNewPassword']
+                            ? v != Storage.user.password
+                                ? 'รหัสผ่านปัจจุบันไม่ถูกต้อง'
+                                : null
+                            : null,
                   ),
                   Input(
                     obscureText: true,
                     hintText: 'รหัสผ่านใหม่',
                     style: TextStyle(fontSize: width * 0.05),
-                    touched: _touched['newPassword'],
                     onChanged: saveForm('newPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
@@ -97,7 +108,6 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                     obscureText: true,
                     hintText: 'ยืนยันรหัสผ่านใหม่',
                     style: TextStyle(fontSize: width * 0.05),
-                    touched: _touched['confirmNewPassword'],
                     onChanged: saveForm('confirmNewPassword'),
                     textInputAction: TextInputAction.done,
                     validator: (String v) => v != _form['newPassword']

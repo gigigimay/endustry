@@ -66,7 +66,7 @@ class NewsType {
 }
 
 class User {
-  final String id, firstName, lastName, email, img, typeId;
+  final String id, firstName, lastName, email, img, typeId, password;
   final List<String> favKnowledges, interestedTopics;
 
   const User({
@@ -78,6 +78,7 @@ class User {
     this.typeId,
     this.favKnowledges,
     this.interestedTopics,
+    this.password,
   });
 
   factory User.fromJson(Map<String, dynamic> jsondata) {
@@ -88,6 +89,7 @@ class User {
     return User(
       id: jsondata['id'],
       email: jsondata['email'],
+      password: jsondata['password'],
       firstName: jsondata['firstName'],
       lastName: jsondata['lastName'],
       img: jsondata['img'],

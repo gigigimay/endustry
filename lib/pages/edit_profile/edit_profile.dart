@@ -35,7 +35,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       "email": widget.userData.email,
       "typeId": widget.userData.typeId,
       "interestedTopics": widget.userData.interestedTopics,
-      "imgUrl": widget.userData.imgUrl,
+      "img": widget.userData.img,
     };
     super.initState();
   }
@@ -78,7 +78,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        imgUrl: _form['imgUrl'],
+        img: _form['img'],
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(

@@ -66,7 +66,7 @@ class NewsType {
 }
 
 class User {
-  final String id, firstName, lastName, email, imgUrl, typeId;
+  final String id, firstName, lastName, email, img, typeId;
   final List<String> favKnowledges, interestedTopics;
 
   const User({
@@ -74,7 +74,7 @@ class User {
     @required this.email,
     this.firstName,
     this.lastName,
-    this.imgUrl,
+    this.img,
     this.typeId,
     this.favKnowledges,
     this.interestedTopics,
@@ -90,7 +90,7 @@ class User {
         email: jsondata["email"],
         firstName: jsondata["firstName"],
         lastName: jsondata["lastName"],
-        imgUrl: jsondata["imgUrl"],
+        img: jsondata["img"],
         typeId: jsondata["typeId"],
         favKnowledges: favKnowledgesData,
         interestedTopics: interestedTopics);

@@ -128,7 +128,7 @@ const User MOCK_USER = User(
   firstName: 'แพรร',
   lastName: 'อ้วนนะ!',
   typeId: 'ust01',
-  imgUrl: 'https://picsum.photos/200',
+  img: 'https://picsum.photos/200',
   favKnowledges: ['knw02', 'knw03', 'knw05'],
   interestedTopics: ['kw02', 'kw08', 'kw04', 'kw06', 'kw10', 'kw13'],
 );

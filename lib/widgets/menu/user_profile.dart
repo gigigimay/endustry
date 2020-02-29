@@ -21,7 +21,7 @@ class UserProfile extends StatelessWidget {
           padding: EdgeInsets.all(CONSTANT.SIZE_SM),
           child: ProfileAvatar(
             fabIcon: Icon(Icons.edit, size: CONSTANT.SIZE_XL,),
-            imgUrl: userData.imgUrl,
+            img: userData.img,
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
             fabAction: () {

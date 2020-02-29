@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/login.dart';
 import 'package:endustry/pages/registry/register_page.dart';
 import 'package:endustry/pages/splash.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       // TODO: add all needed route
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => new HomePage(),
+        '/login': (BuildContext context) => new LoginPage(),
         '/register': (BuildContext context) => new RegisterPage(),
       },
       //TODO: change back to AppLayout

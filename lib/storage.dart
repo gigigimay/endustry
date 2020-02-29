@@ -177,6 +177,7 @@ class Storage {
         SET
           firstName="${userData.firstName}",
           lastName="${userData.lastName}",
+          email="${userData.email}",
           typeId="${userData.typeId}",
           img="${userData.img ?? ''}"
         WHERE id="${userData.id}";''');

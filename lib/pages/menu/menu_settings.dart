@@ -1,4 +1,6 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/widgets/menu/language_switcher.dart';
 
 class MenuSettingPage extends StatelessWidget {
   const MenuSettingPage({Key key}) : super(key: key);
@@ -14,6 +16,65 @@ class MenuSettingPage extends StatelessWidget {
             backArrowFunction: () {
               Navigator.pop(context);
             },
+          ),
+          PagePadding(
+            child: RoundedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(CONSTANT.SIZE_XL),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.language, color: CONSTANT.COLOR_BODY),
+                        SizedBox(width: CONSTANT.SIZE_MD),
+                        Expanded(
+                            child: Text(
+                          'ภาษา',
+                          style: CONSTANT.TEXT_STYLE_HEADING,
+                        )),
+                        LanguageSwitcher(),
+                      ],
+                    ),
+                  ),
+                  Divider(height: 1),
+                  Padding(
+                    padding: EdgeInsets.all(CONSTANT.SIZE_XL),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.build, color: CONSTANT.COLOR_BODY),
+                            SizedBox(width: CONSTANT.SIZE_MD),
+                            Text(
+                              'เกี่ยวกับแอปพลิเคชั่น',
+                              style: CONSTANT.TEXT_STYLE_HEADING,
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                            top: CONSTANT.SIZE_SM,
+                            left: CONSTANT.SIZE_XX + CONSTANT.SIZE_MD,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Version 1.0.0\n10 MB\nอัพเดทล่าสุด: 12.12.2020\nผู้พัฒนา: สงสัย.',
+                                style:
+                                    TextStyle(color: CONSTANT.COLOR_DISABLED),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           )
         ],
       ),

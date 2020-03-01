@@ -24,9 +24,10 @@ class UserProfile extends StatelessWidget {
             img: userData.img,
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
-            fabAction: () {
-              Navigator.push(context,
+            fabAction: () async {
+              bool edited = await Navigator.push(context,
                   MaterialPageRoute(builder: (context) => EditProfilePage()));
+              if (edited ?? false) Utils.showToast('แก้ไขโปรไฟล์แล้ว');
             },
           ),
         ),

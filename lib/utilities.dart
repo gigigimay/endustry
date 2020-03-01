@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -12,7 +13,7 @@ class Utils {
   }
 
   static void navigatePushAndPopAll(BuildContext context, Widget page,
-      {animate = false}) {
+      {animate = false, value}) {
     if (animate)
       Navigator.pushAndRemoveUntil(
         context,
@@ -33,5 +34,14 @@ class Utils {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  static void showToast(String text) {
+    Fluttertoast.showToast(
+      msg: text,
+      backgroundColor: Color(0x77000000),
+      fontSize: 16,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 }

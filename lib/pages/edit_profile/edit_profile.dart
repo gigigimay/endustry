@@ -31,7 +31,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
   User _userData;
   bool _isValid = true;
   var _form = {};
-  String _successMessage;
 
   @override
   void initState() {
@@ -43,7 +42,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
       'typeId': _userData.typeId,
       'img': _userData.img,
     };
-    _successMessage = widget.successMessage;
     super.initState();
   }
 
@@ -64,7 +62,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       img: _form['img'],
     );
     await Storage().editUserProfile(newUser);
-    Utils.navigatePushAndPopAll(context, MenuPage());
+    Navigator.pop(context, true);
   }
 
   Function saveForm(key) => (value) {
@@ -77,25 +75,15 @@ class _EditProfileFormState extends State<EditProfileForm> {
       context, MaterialPageRoute(builder: (BuildContext context) => page));
 
   void onEditPasswordPressed() async {
-    setState(() {
-      _successMessage = null;
-    });
-    var success = await openAwaitPage(EditPasswordPage());
-    if (success ?? false) {
-      setState(() {
-        _successMessage = 'เปลี่ยนรหัสผ่านแล้ว';
-      });
-    }
+    final bool success = await openAwaitPage(EditPasswordPage());
+    if (success ?? false) Utils.showToast('เปลี่ยนรหัสผ่านแล้ว');
   }
 
   void onEditKeywordPressed() async {
-    setState(() {
-      _successMessage = null;
-    });
-    var success = await openAwaitPage(EditKeywordPage());
+    final bool success = await openAwaitPage(EditKeywordPage());
     if (success ?? false) {
+      Utils.showToast('ตั้งค่าสิ่งที่สนใจแล้ว');
       setState(() {
-        _successMessage = 'ตั้งค่าสิ่งที่สนใจแล้ว';
         _userData = Storage.user;
       });
     }
@@ -146,9 +134,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _successMessage != null
-                      ? AlertBox.success(text: _successMessage)
-                      : Container(),
                   Input(
                     hintText: 'ชื่อ',
                     style: TextStyle(fontSize: width * 0.05),

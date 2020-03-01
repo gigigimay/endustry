@@ -53,7 +53,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       // "interestedTopics": widget.userData.interestedTopics,
       // "img": widget.userData.img,
     };
-    _imgByteCode = Utils.convertStringToByteCode(widget.userData.img);
+    _imgByteCode = Utils.convertStringToByteCode(_userData.img);
     super.initState();
   }
 
@@ -127,10 +127,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        img: MemoryImage(widget.userData.img !=
-                Utils.convertByteCodeToString(kTransparentImage)
-            ? Utils.convertStringToByteCode(widget.userData.img)
-            : kTransparentImage),
+        img: MemoryImage(
+            _userData.img != Utils.convertByteCodeToString(kTransparentImage)
+                ? Utils.convertStringToByteCode(_userData.img)
+                : kTransparentImage),
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(

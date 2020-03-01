@@ -1,19 +1,24 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/pages/edit_profile/edit_keywords.dart';
+import 'package:endustry/pages/edit_profile/edit_password.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
 class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({Key key, this.successMessage}) : super(key: key);
+  final String successMessage;
   @override
   Widget build(BuildContext context) {
-    return EditProfileForm();
+    return EditProfileForm(successMessage: successMessage);
   }
 }
 
 class EditProfileForm extends StatefulWidget {
-  final User userData = Storage.user;
+  EditProfileForm({Key key, this.successMessage}) : super(key: key);
+  final String successMessage;
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
 
@@ -23,19 +28,19 @@ class EditProfileForm extends StatefulWidget {
 
 class _EditProfileFormState extends State<EditProfileForm> {
   final _formKey = GlobalKey<FormState>();
+  User _userData;
   bool _isValid = true;
   var _form = {};
 
   @override
   void initState() {
-    print('_form000 >> ' + _form.runtimeType.toString());
+    _userData = Storage.user;
     _form = {
-      "firstName": widget.userData.firstName,
-      "lastName": widget.userData.lastName,
-      "email": widget.userData.email,
-      "typeId": widget.userData.typeId,
-      "interestedTopics": widget.userData.interestedTopics,
-      "imgUrl": widget.userData.imgUrl,
+      'firstName': _userData.firstName,
+      'lastName': _userData.lastName,
+      'email': _userData.email,
+      'typeId': _userData.typeId,
+      'img': _userData.img,
     };
     super.initState();
   }
@@ -46,9 +51,18 @@ class _EditProfileFormState extends State<EditProfileForm> {
     });
   }
 
-  void submitForm() {
-    print('_form >> ' + _form.toString());
-    // TODO: update profile
+  void submitForm() async {
+    // TODO: check if the email is already used.
+    final User newUser = User.fromUser(
+      _userData,
+      email: _form['email'],
+      firstName: _form['firstName'],
+      lastName: _form['lastName'],
+      typeId: _form['typeId'],
+      img: _form['img'],
+    );
+    await Storage().editUserProfile(newUser);
+    Navigator.pop(context, true);
   }
 
   Function saveForm(key) => (value) {
@@ -56,6 +70,24 @@ class _EditProfileFormState extends State<EditProfileForm> {
           _form[key] = value;
         });
       };
+
+  openAwaitPage(Widget page) async => await Navigator.push(
+      context, MaterialPageRoute(builder: (BuildContext context) => page));
+
+  void onEditPasswordPressed() async {
+    final bool success = await openAwaitPage(EditPasswordPage());
+    if (success ?? false) Utils.showToast('เปลี่ยนรหัสผ่านแล้ว');
+  }
+
+  void onEditKeywordPressed() async {
+    final bool success = await openAwaitPage(EditKeywordPage());
+    if (success ?? false) {
+      Utils.showToast('ตั้งค่าสิ่งที่สนใจแล้ว');
+      setState(() {
+        _userData = Storage.user;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +98,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
         .firstWhere((UserType t) => t.id == _form['typeId'])
         .name;
 
-    List keywords = _form['interestedTopics'].map((String id) {
+    List keywords = _userData.interestedTopics.map((String id) {
       Keyword keyword =
           widget.keywordsData.firstWhere((Keyword k) => k.id == id);
       return keyword?.name;
@@ -78,7 +110,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        imgUrl: _form['imgUrl'],
+        img: _form['img'],
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(
@@ -92,7 +124,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         disabled: !_isValid,
         onPressed: submitForm,
       ),
-      // TODO: submit form
       child: Form(
         key: _formKey,
         autovalidate: true,
@@ -108,22 +139,27 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
+                    // TODO: implement keyboard action
+                    textInputAction: TextInputAction.next,
                   ),
                   Input(
                     hintText: 'นามสกุล',
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
+                    // TODO: implement keyboard action
+                    textInputAction: TextInputAction.next,
                   ),
                   Input(
-                    hintText: 'อีเมล์',
+                    hintText: 'อีเมล',
                     style: TextStyle(fontSize: width * 0.05),
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
+                    keyboardType: TextInputType.emailAddress,
                     validator: (String value) =>
                         CONSTANT.REGEX_EMAIL.hasMatch(value)
                             ? null
-                            : 'อีเมล์ไม่ถูกต้อง',
+                            : 'อีเมลไม่ถูกต้อง',
                   ),
                   // TODO: edit password
                   Input(
@@ -134,17 +170,17 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     suffixText: 'เปลี่ยนรหัสผ่าน',
                     suffixIcon: IconButtonInk(
                       padding: EdgeInsets.all(0),
-                      onPressed: () => print('edit!'),
+                      onPressed: onEditPasswordPressed,
                       icon: Icon(
                         Icons.edit,
                         color: CONSTANT.COLOR_PRIMARY,
                       ),
                     ),
                   ),
-                  SizedBox(height: CONSTANT.SIZE_XX),
+                  SizedBox(height: CONSTANT.SIZE_LG),
                   // TODO: click to open dropdown
                   Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
-                  SizedBox(height: CONSTANT.SIZE_XL),
+                  SizedBox(height: CONSTANT.SIZE_LG),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -152,7 +188,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         'สิ่งที่คุณสนใจ',
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
-                      EditButton(onTap: () => print('edit interested topic'))
+                      EditButton(
+                        onTap: onEditKeywordPressed,
+                        icon: keywords.isEmpty ? Icons.add : Icons.edit,
+                        text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
+                      )
                     ],
                   ),
                   Wrap(

@@ -4,14 +4,14 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
     Key key,
-    @required this.imgUrl,
+    @required this.img,
     @required this.avatarSize,
     @required this.fabSize,
     @required this.fabIcon,
     this.fabAction,
   }) : super(key: key);
 
-  final String imgUrl;
+  final String img;
   final double avatarSize;
   final double fabSize;
   final Function fabAction;
@@ -23,7 +23,7 @@ class ProfileAvatar extends StatelessWidget {
       CircleFadeInImage(
           size: avatarSize,
           borderColor: CONSTANT.COLOR_BORDER_LIGHT,
-          imageUrl: imgUrl,
+          imageUrl: img,
           placeholderImage: CircleAvatar(
             radius: avatarSize / 2,
             child: Image.asset('assets/images/select_profile_pic.png'),

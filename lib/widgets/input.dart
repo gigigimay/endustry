@@ -4,27 +4,34 @@ import 'package:endustry/constants.dart' as CONSTANT;
 class Input extends StatelessWidget {
   const Input({
     Key key,
+    this.obscureText = false,
+    this.readOnly = false,
+    this.autofocus = false,
+    this.initialValue,
     this.onChanged,
     this.onSaved,
     this.hintText,
     this.labelText,
-    this.initialValue = '',
     this.validator,
     this.suffixIcon,
     this.suffixText,
-    this.obscureText = false,
-    this.readOnly = false,
     this.style,
     this.prefixIcon,
-    this.autofocus = false,
+    this.textInputAction,
+    this.keyboardType,
+    this.onEditingComplete,
+    this.controller,
   }) : super(key: key);
 
   final String hintText, labelText, initialValue, suffixText;
   final bool obscureText, readOnly, autofocus;
-  final Function validator, onChanged, onSaved;
+  final Function validator, onChanged, onSaved, onEditingComplete;
   final Widget suffixIcon;
   final TextStyle style;
   final Widget prefixIcon;
+  final TextInputAction textInputAction;
+  final TextInputType keyboardType;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +43,10 @@ class Input extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(bottom: CONSTANT.SIZE_MD),
       child: TextFormField(
+        controller: controller,
+        onEditingComplete: onEditingComplete,
+        keyboardType: keyboardType,
+        textInputAction: textInputAction,
         autofocus: autofocus,
         onChanged: onChanged,
         onSaved: onSaved,

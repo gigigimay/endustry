@@ -66,7 +66,7 @@ class NewsType {
 }
 
 class User {
-  final String id, firstName, lastName, email, imgUrl, typeId;
+  final String id, firstName, lastName, email, img, typeId, password;
   final List<String> favKnowledges, interestedTopics;
 
   const User({
@@ -74,10 +74,11 @@ class User {
     @required this.email,
     this.firstName,
     this.lastName,
-    this.imgUrl,
+    this.img,
     this.typeId,
     this.favKnowledges,
     this.interestedTopics,
+    this.password,
   });
 
   factory User.fromJson(Map<String, dynamic> jsondata) {
@@ -86,14 +87,38 @@ class User {
     final List<String> interestedTopics =
         List<String>.from(json.decode(jsondata['interestedTopics']));
     return User(
-        id: jsondata["id"],
-        email: jsondata["email"],
-        firstName: jsondata["firstName"],
-        lastName: jsondata["lastName"],
-        imgUrl: jsondata["imgUrl"],
-        typeId: jsondata["typeId"],
-        favKnowledges: favKnowledgesData,
-        interestedTopics: interestedTopics);
+      id: jsondata['id'],
+      email: jsondata['email'],
+      password: jsondata['password'],
+      firstName: jsondata['firstName'],
+      lastName: jsondata['lastName'],
+      img: jsondata['img'],
+      typeId: jsondata['typeId'],
+      favKnowledges: favKnowledgesData,
+      interestedTopics: interestedTopics,
+    );
+  }
+
+  factory User.fromUser(
+    User oldUser, {
+    @required String email,
+    String firstName,
+    String lastName,
+    String img,
+    String typeId,
+    List<String> favKnowledges,
+    List<String> interestedTopics,
+  }) {
+    return User(
+      id: oldUser.id,
+      email: email ?? oldUser.email,
+      firstName: firstName ?? oldUser.firstName,
+      lastName: lastName ?? oldUser.lastName,
+      img: img ?? oldUser.img,
+      typeId: typeId ?? oldUser.typeId,
+      favKnowledges: favKnowledges ?? oldUser.favKnowledges,
+      interestedTopics: interestedTopics ?? oldUser.interestedTopics,
+    );
   }
 }
 

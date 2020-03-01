@@ -10,10 +10,11 @@ class EditProfileLayout extends StatelessWidget {
     this.bottomWidget,
     this.topOverlap = 0.0,
     this.bottomOverlap = 0.0,
+    this.marginTop = 0.0,
   }) : super(key: key);
 
   final Widget child, topWidget, bottomWidget;
-  final double topOverlap, bottomOverlap;
+  final double topOverlap, bottomOverlap, marginTop;
   final String title;
 
   @override
@@ -38,7 +39,7 @@ class EditProfileLayout extends StatelessWidget {
                   // content of page
                   RoundedBox(
                     margin: EdgeInsets.only(
-                      top: topOverlap,
+                      top: topOverlap + marginTop,
                       bottom: bottomOverlap,
                     ),
                     padding: EdgeInsets.only(
@@ -59,7 +60,7 @@ class EditProfileLayout extends StatelessWidget {
                       : Container(),
 
                   // bottom content (button/etc.)
-                  topWidget != null
+                  bottomWidget != null
                       ? Positioned(
                           bottom: 0,
                           left: 0,

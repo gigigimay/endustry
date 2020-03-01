@@ -70,7 +70,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 onChanged: saveForm('lastName'),
               ),
               Input(
-                hintText: 'อีเมล์',
+                hintText: 'อีเมล',
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_BODY,
                     fontWeight: FontWeight.w300),
@@ -78,7 +78,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 validator: (String value) =>
                     CONSTANT.REGEX_EMAIL.hasMatch(value)
                         ? null
-                        : 'อีเมล์ไม่ถูกต้อง',
+                        : 'อีเมลไม่ถูกต้อง',
               ),
               Input(
                 hintText: 'รหัสผ่าน',

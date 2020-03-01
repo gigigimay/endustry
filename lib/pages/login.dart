@@ -76,17 +76,21 @@ class _LoginPageState extends State<LoginPage> {
                         children: <Widget>[
                           Input(
                             autofocus: true,
-                            hintText: 'อีเมล์',
+                            hintText: 'อีเมล',
                             prefixIcon: Icon(Icons.email),
+                            keyboardType: TextInputType.emailAddress,
+                            // TODO: implement keyboard action
+                            textInputAction: TextInputAction.next,
                             onChanged: saveForm('email'),
                             validator: (String value) =>
                                 CONSTANT.REGEX_EMAIL.hasMatch(value)
                                     ? null
-                                    : 'อีเมล์ไม่ถูกต้อง',
+                                    : 'อีเมลไม่ถูกต้อง',
                           ),
                           Input(
                             hintText: 'รหัสผ่าน',
                             prefixIcon: Icon(Icons.lock),
+                            textInputAction: TextInputAction.done,
                             onChanged: saveForm('password'),
                             obscureText: true,
                           ),

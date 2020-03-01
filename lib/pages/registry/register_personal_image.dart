@@ -14,7 +14,7 @@ class RegisterPage2 extends StatefulWidget {
 }
 
 class _RegisterPage2State extends State<RegisterPage2> {
-  var imgUrl;
+  var img;
   bool _valid;
 
   setValid(bool boolean) {
@@ -26,7 +26,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
   @override
   void initState() {
     super.initState();
-    imgUrl = null;
+    img = null;
     _valid = false;
   }
 
@@ -45,7 +45,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
         child: Column(
           children: <Widget>[
             ProfileAvatar(
-              imgUrl: imgUrl,
+              img: img,
               avatarSize: avatarSize,
               fabSize: avatarSize * 0.3,
               fabIcon: Icon(
@@ -55,7 +55,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
               fabAction: () {
                 setState(() {
                   //TODO: pick image or take a shot now
-                  imgUrl = MOCK_USER.imgUrl;
+                  img = MOCK_USER.img;
                   setValid(true);
                 });
               },

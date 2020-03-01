@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -168,5 +169,31 @@ class Storage {
     user = null;
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('uid');
+  }
+
+  editUserProfile(User userData) async {
+    // TODO: update interestedTopic
+    var result = await db.rawQuery('''UPDATE Users
+        SET
+          firstName="${userData.firstName}",
+          lastName="${userData.lastName}",
+          email="${userData.email}",
+          typeId="${userData.typeId}",
+          img="${userData.img ?? ''}"
+        WHERE id="${userData.id}";''');
+    print('editUserProfile: ' + result.toString());
+    user = await getUserDataFromId(userData.id);
+  }
+
+  editUserPassword(String uid, String newPassword) async {
+    await db
+        .rawQuery('UPDATE Users SET password="$newPassword" WHERE id="$uid";');
+    user = await getUserDataFromId(uid);
+  }
+
+  editUserKeyword(String uid, List<String> value) async {
+    await db.rawQuery(
+        '''UPDATE Users SET interestedTopics='${json.encode(value)}' WHERE id="$uid";''');
+    user = await getUserDataFromId(uid);
   }
 }

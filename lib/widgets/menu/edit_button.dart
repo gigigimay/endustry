@@ -2,11 +2,16 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class EditButton extends StatelessWidget {
-  const EditButton({Key key, @required this.onTap, this.text = 'แก้ไข'})
-      : super(key: key);
+  const EditButton({
+    Key key,
+    @required this.onTap,
+    this.text = 'แก้ไข',
+    this.icon = Icons.edit,
+  }) : super(key: key);
 
   final Function onTap;
   final String text;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class EditButton extends StatelessWidget {
         IconButtonInk(
           onPressed: onTap,
           icon: Icon(
-            Icons.edit,
+            icon,
             color: CONSTANT.COLOR_PRIMARY,
             size: CONSTANT.SIZE_XL,
           ),

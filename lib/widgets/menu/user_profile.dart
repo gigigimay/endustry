@@ -20,13 +20,14 @@ class UserProfile extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_SM),
           child: ProfileAvatar(
-            fabIcon: Icon(Icons.edit, size: CONSTANT.SIZE_XL,),
-            imgUrl: userData.imgUrl,
+            fabIcon: Icon(Icons.edit, size: CONSTANT.SIZE_XL),
+            img: userData.img,
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
-            fabAction: () {
-              Navigator.push(context,
+            fabAction: () async {
+              bool edited = await Navigator.push(context,
                   MaterialPageRoute(builder: (context) => EditProfilePage()));
+              if (edited ?? false) Utils.showToast('แก้ไขโปรไฟล์แล้ว');
             },
           ),
         ),

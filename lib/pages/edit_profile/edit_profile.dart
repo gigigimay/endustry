@@ -120,12 +120,17 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
+    print('editpage img: $_imgByteCode');
+    print('editpage img: ${_imgByteCode == kTransparentImage}');
     return EditProfileLayout(
       title: 'แก้ไขโปรไฟล์',
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        img: MemoryImage(_imgByteCode),
+        img: MemoryImage(widget.userData.img !=
+                Utils.convertByteCodeToString(kTransparentImage)
+            ? Utils.convertStringToByteCode(widget.userData.img)
+            : kTransparentImage),
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(

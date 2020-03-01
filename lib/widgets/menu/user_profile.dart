@@ -26,8 +26,10 @@ class UserProfile extends StatelessWidget {
               Icons.edit,
               size: CONSTANT.SIZE_XL,
             ),
-            // TODO: Change NetworkImage to AssetImage
-            img: MemoryImage(base64Decode(userData.img)),
+            img: MemoryImage(
+                userData.img != Utils.convertByteCodeToString(kTransparentImage)
+                    ? Utils.convertStringToByteCode(userData.img)
+                    : kTransparentImage),
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
             fabAction: () async {

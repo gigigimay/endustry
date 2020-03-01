@@ -47,17 +47,19 @@ class _RegisterPage1State extends State<RegisterPage1> {
       stateTitle: 'ข้อมูลส่วนตัว',
       prevBtnFuntion: widget.prevBtnFuntion,
       nextBtnFuntion: () {
-        widget.nextBtnFuntion(
-            firstname: _form['firstName'],
-            lastname: _form['lastName'],
-            email: _form['email'],
-            password: _form['password']);
+        validateForm();
+        if (_isValid) {
+          widget.nextBtnFuntion(
+              firstname: _form['firstName'],
+              lastname: _form['lastName'],
+              email: _form['email'],
+              password: _form['password']);
+        }
       },
-      disabled: !_isValid,
+      // disabled: !_isValid,
       child: Form(
         key: _registFormKey,
         autovalidate: false,
-        onChanged: validateForm,
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,

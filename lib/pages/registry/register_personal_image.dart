@@ -28,7 +28,8 @@ class _RegisterPage2State extends State<RegisterPage2> {
   @override
   void initState() {
     super.initState();
-    bool _isPickImage = widget.initData['img'] != '';
+    bool _isPickImage = widget.initData['img'] !=
+        Utils.convertByteCodeToString(kTransparentImage);
     _valid = _isPickImage;
     _imgByteCode = _isPickImage
         ? Utils.convertStringToByteCode(widget.initData['img'])
@@ -51,7 +52,9 @@ class _RegisterPage2State extends State<RegisterPage2> {
         child: Column(
           children: <Widget>[
             ProfileAvatar(
-              img: MemoryImage(_imgByteCode),
+              img: MemoryImage(_imgByteCode != kTransparentImage
+                  ? _imgByteCode
+                  : kTransparentImage),
               avatarSize: avatarSize,
               fabSize: avatarSize * 0.3,
               fabIcon: Icon(
@@ -60,9 +63,12 @@ class _RegisterPage2State extends State<RegisterPage2> {
               ),
               fabAction: () async {
                 _imgByteCode = await Utils.getImageByGallery();
-                setState(() {
-                  _imgByteCode = _imgByteCode;
-                });
+                if (_imgByteCode != kTransparentImage) {
+                  setState(() {
+                    _imgByteCode = _imgByteCode;
+                    _valid = true;
+                  });
+                }
               },
             ),
           ],

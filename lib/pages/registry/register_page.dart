@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
     'email': '',
     'password': '',
     'typeId': '',
-    'img': '',
+    'img': Utils.convertByteCodeToString(kTransparentImage),
     'interestTopic': []
   };
 
@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
     Storage().insertNewUser(
         newUser, md5.convert(utf8.encode(userInfo['password'])).toString());
 
-    Utils.navigatePushAndPopAll(context, HomePage());
+    Navigator.pop(context);
   }
 
   @override

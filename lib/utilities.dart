@@ -71,7 +71,7 @@ class Utils {
     return imageStr;
   }
 
-  static convertStringToByteCode(str) {
+  static Uint8List convertStringToByteCode(str) {
     Uint8List imageBytes = base64Decode(str);
     return imageBytes;
   }

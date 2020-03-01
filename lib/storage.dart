@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:endustry/export.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
@@ -138,8 +139,9 @@ class Storage {
 
   /// get userData from email and password and return the data
   getUserDataFromEmailPassword(String email, String password) async {
+    String encodePassword = md5.convert(utf8.encode(password)).toString();
     var result = await db.rawQuery(
-        'SELECT * FROM Users WHERE email = "$email" AND password = "$password";');
+        'SELECT * FROM Users WHERE email = "$email" AND password = "$encodePassword";');
     return result.isNotEmpty ? User.fromJson(result.first) : null;
   }
 

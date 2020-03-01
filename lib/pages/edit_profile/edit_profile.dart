@@ -160,7 +160,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: saveForm('email'),
                     keyboardType: TextInputType.emailAddress,
                     validator: (String value) =>
-                        CONSTANT.REGEX_EMAIL.hasMatch(value)
+                        CONSTANT.REGEX.email.hasMatch(value)
                             ? null
                             : 'อีเมลไม่ถูกต้อง',
                   ),

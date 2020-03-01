@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                               textInputAction: TextInputAction.next,
                               onChanged: saveForm('email'),
                               validator: (String value) =>
-                                  CONSTANT.REGEX_EMAIL.hasMatch(value)
+                                  CONSTANT.REGEX.email.hasMatch(value)
                                       ? null
                                       : 'อีเมลไม่ถูกต้อง',
                             ),
@@ -112,12 +112,12 @@ class _LoginPageState extends State<LoginPage> {
                                 : Container(),
                             FlatButton(
                               onPressed: () => print('forget'),
+                              padding: EdgeInsets.all(0.0),
                               child: Text(
                                 'ลืมรหัสผ่าน?',
                                 textAlign: TextAlign.end,
                                 style: TextStyle(color: CONSTANT.COLOR_PRIMARY),
                               ),
-                              padding: EdgeInsets.all(0.0),
                             ),
                             SizedBox(
                               width: double.infinity,

@@ -77,11 +77,13 @@ const BoxShadow BOX_SHADOW = BoxShadow(
 );
 
 // -------------------- regex --------------------
-RegExp REGEX_EMAIL = RegExp(
-  r'[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$',
-  caseSensitive: false,
-  multiLine: false,
-);
+class REGEX {
+  static RegExp email = RegExp(
+    r'[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$',
+    caseSensitive: false,
+    multiLine: false,
+  );
+}
 
 // -------------------- word --------------------
 const WORD_SERVICE_TH = 'บริการ';

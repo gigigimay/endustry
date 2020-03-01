@@ -3,21 +3,14 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 
-class EditPasswordPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return EditPasswordForm();
-  }
-}
-
-class EditPasswordForm extends StatefulWidget {
+class EditPasswordPage extends StatefulWidget {
   final User userData = Storage.user;
 
   @override
-  _EditPasswordFormState createState() => _EditPasswordFormState();
+  _EditPasswordPageState createState() => _EditPasswordPageState();
 }
 
-class _EditPasswordFormState extends State<EditPasswordForm> {
+class _EditPasswordPageState extends State<EditPasswordPage> {
   final _formKey = GlobalKey<FormState>();
   var _form = {};
 
@@ -69,15 +62,19 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    final double avatarSize = width * 0.4;
+    final double avatarSize = width * 0.25;
 
     return EditProfileLayout(
       title: 'เปลี่ยนรหัสผ่าน',
+      marginTop: CONSTANT.SIZE_XL,
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
-      topWidget: Icon(
-        Icons.lock,
-        size: avatarSize,
+      topWidget: Padding(
+        padding: const EdgeInsets.only(top: CONSTANT.SIZE_XL),
+        child: Icon(
+          Icons.lock,
+          size: avatarSize,
+        ),
       ),
       bottomWidget: GradientButton(
         text: 'ยืนยัน',

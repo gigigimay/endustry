@@ -54,6 +54,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
   }
 
   void submitForm() async {
+    // TODO: check if the email is already used.
     final User newUser = User.fromUser(
       _userData,
       email: _form['email'],

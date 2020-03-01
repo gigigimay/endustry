@@ -9,26 +9,16 @@ import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
-class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key key, this.successMessage}) : super(key: key);
-  final String successMessage;
-  @override
-  Widget build(BuildContext context) {
-    return EditProfileForm(successMessage: successMessage);
-  }
-}
-
-class EditProfileForm extends StatefulWidget {
-  EditProfileForm({Key key, this.successMessage}) : super(key: key);
-  final String successMessage;
+class EditProfilePage extends StatefulWidget {
+  EditProfilePage({Key key}) : super(key: key);
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
 
   @override
-  _EditProfileFormState createState() => _EditProfileFormState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _EditProfileFormState extends State<EditProfileForm> {
+class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
   User _userData;
   bool _isValid = true;

@@ -20,14 +20,13 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User userData = Storage.user;
     return BgLayout(
       navbar: NavigationBar(currentTab: 'menu', isOnRoot: true),
       child: Column(
         children: <Widget>[
           PagePadding(
             top: CONSTANT.SIZE_XX,
-            child: UserProfile(userData: userData),
+            child: UserProfile(),
           ),
           SizedBox(height: CONSTANT.SIZE_LG),
           Divider(color: CONSTANT.COLOR_DISABLED),

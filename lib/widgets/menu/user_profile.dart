@@ -5,9 +5,7 @@ import 'package:endustry/storage.dart';
 import '../../widgets/menu/profile_avatar.dart';
 
 class UserProfile extends StatefulWidget {
-  const UserProfile({Key key, @required this.userData}) : super(key: key);
-
-  final User userData;
+  const UserProfile({Key key}) : super(key: key);
 
   @override
   _UserProfileState createState() => _UserProfileState();
@@ -17,7 +15,7 @@ class _UserProfileState extends State<UserProfile> {
   User _userData;
   @override
   void initState() {
-    _userData = _userData;
+    _userData = Storage.user;
     super.initState();
   }
 

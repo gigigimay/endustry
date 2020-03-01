@@ -6,12 +6,7 @@ import 'package:endustry/widgets/news/news_filter_dialog.dart';
 import 'package:endustry/widgets/news/news_item.dart';
 
 class NewsFeedPage extends StatefulWidget {
-  NewsFeedPage({
-    Key key,
-    this.setFilter,
-  }) : super(key: key);
-
-  final Function setFilter;
+  NewsFeedPage({Key key}) : super(key: key);
 
   @override
   _NewsFeedPageState createState() => _NewsFeedPageState();
@@ -21,11 +16,6 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
   final newsData = MOCK_NEWS;
   final newsType = MOCK_NEWSTYPES;
   String _selectedFilter = 'ข่าวทั้งหมด';
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   setFilter(newFilter) {
     setState(() {
@@ -49,9 +39,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
             backArrowFunction: () => setFilter('ข่าวทั้งหมด'),
             actionWidget: Row(
               children: <Widget>[
-                SearchButton(
-                  initMode: CONSTANT.WORD_NEWS_TH,
-                ),
+                SearchButton(initMode: CONSTANT.WORD_NEWS_TH),
                 IconButtonInk(
                     icon: ImageIcon(
                       AssetImage('assets/images/filter.png'),
@@ -113,8 +101,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                                   return item.typeId ==
                                       newsType
                                           .firstWhere((item) =>
-                                              item.typeName ==
-                                              _selectedFilter)
+                                              item.typeName == _selectedFilter)
                                           .id;
                               })
                               .map((item) => NewsItem(

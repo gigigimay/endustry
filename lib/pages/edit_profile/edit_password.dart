@@ -38,7 +38,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
     } else if (_form.length == 3 &&
         _form['newPassword'] == _form['confirmNewPassword'] &&
         _form['oldPassword'] != Storage.user.password) {
-      print('password >> ' + widget.userData.password);
       // TODO: grant focus to oldPassword field when clear field
       clearField('oldPassword', _oldPwdCtrl);
     }

@@ -40,7 +40,7 @@ class ContentGroup extends StatelessWidget {
           children: <Widget>[
             Text('ดูทั้งหมด', style: CONSTANT.TEXT_STYLE_BODY_PRIMARY),
             IconButtonInk(
-              onPressed: onSeeAll ?? () => print('see all'),
+              onPressed: onSeeAll,
               icon: Transform.rotate(
                 angle: 22 / 7,
                 child: Icon(Icons.keyboard_backspace),

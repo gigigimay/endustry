@@ -54,7 +54,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final String descriptionText =
-        'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆที่เหมาะกับคุณได้มากขึ้น';
+        'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';
 
     return EditProfileLayout(
       title: 'ตั้งค่าสิ่งที่สนใจ',

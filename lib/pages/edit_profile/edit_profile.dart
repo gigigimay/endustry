@@ -88,10 +88,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.4;
+    final TextStyle textStyle = TextStyle(fontSize: width * 0.05);
 
-    String userType = widget.userTypesData
-        .firstWhere((UserType t) => t.id == _form['typeId'])
-        .name;
+    UserType userType = widget.userTypesData
+        .firstWhere((UserType t) => t.id == _form['typeId']);
 
     List keywords = _userData.interestedTopics.map((String id) {
       Keyword keyword =
@@ -139,7 +139,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
                     // TODO: implement keyboard action
@@ -147,7 +147,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   Input(
                     hintText: 'นามสกุล',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
                     // TODO: implement keyboard action
@@ -155,7 +155,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   Input(
                     hintText: 'อีเมล',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     keyboardType: TextInputType.emailAddress,
@@ -167,7 +167,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   // TODO: edit password
                   Input(
                     initialValue: '••••••••••',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     readOnly: true,
                     obscureText: true,
                     suffixText: 'เปลี่ยนรหัสผ่าน',
@@ -182,7 +182,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   SizedBox(height: CONSTANT.SIZE_LG),
                   // TODO: click to open dropdown
-                  Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
+                  Dropdown<UserType>(
+                    title: 'คุณคือ',
+                    initialValue: userType,
+                    items: widget.userTypesData,
+                    getLabel: (UserType item) => item.name,
+                    onChanged: (UserType value) => setState(() {
+                      _form['typeId'] = value.id;
+                    }),
+                  ),
                   SizedBox(height: CONSTANT.SIZE_LG),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,22 +206,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       )
                     ],
                   ),
-                  Wrap(
-                    spacing: CONSTANT.SIZE_XL,
-                    runSpacing: 0.0,
-                    children: keywords
-                        .map((word) => Chip(
-                              padding: EdgeInsets.all(0),
-                              label: Text(
-                                word,
-                                style: TextStyle(
-                                    fontSize: CONSTANT.FONT_SIZE_BODY),
-                              ),
-                              labelPadding: EdgeInsets.all(0),
-                              backgroundColor: Colors.white,
-                            ))
-                        .toList(),
-                  )
+                  keywords.isEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: CONSTANT.SIZE_MD),
+                          child: Text(
+                            'ยังไม่มีสิ่งที่สนใจ',
+                            style: TextStyle(color: CONSTANT.COLOR_DISABLED),
+                          ),
+                        )
+                      : Wrap(
+                          spacing: CONSTANT.SIZE_XL,
+                          runSpacing: 0.0,
+                          children: keywords
+                              .map((word) => Chip(
+                                    padding: EdgeInsets.all(0),
+                                    label: Text(
+                                      word,
+                                      style: TextStyle(
+                                          fontSize: CONSTANT.FONT_SIZE_BODY),
+                                    ),
+                                    labelPadding: EdgeInsets.all(0),
+                                    backgroundColor: Colors.white,
+                                  ))
+                              .toList(),
+                        )
                 ],
               ),
             ),

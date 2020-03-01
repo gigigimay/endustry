@@ -53,6 +53,8 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    final String descriptionText =
+        'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆที่เหมาะกับคุณได้มากขึ้น';
 
     return EditProfileLayout(
       title: 'ตั้งค่าสิ่งที่สนใจ',
@@ -69,9 +71,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
             'สิ่งที่คุณสนใจ',
             style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
           ),
-          Text(
-            'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆที่เหมาะกับคุณได้มากขึ้น',
-          ),
+          Text(descriptionText),
           SizedBox(height: CONSTANT.SIZE_LG),
           Input(
             controller: _searchFieldCtrl,

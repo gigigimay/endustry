@@ -181,7 +181,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   ),
                   SizedBox(height: CONSTANT.SIZE_LG),
-                  // TODO: click to open dropdown
                   Dropdown<UserType>(
                     title: 'คุณคือ',
                     initialValue: userType,

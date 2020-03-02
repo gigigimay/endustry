@@ -142,7 +142,7 @@ class Storage {
       List<ServiceHistory> list = [];
       await db
           .rawQuery('''SELECT serviceId, userId, max(datetime) as datetime FROM 
-          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId''')
+          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''')
           .then((data) {
         data.forEach((item) => list.add(ServiceHistory.fromJson(item)));
       });

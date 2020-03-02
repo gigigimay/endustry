@@ -90,7 +90,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
                     fontWeight: FontWeight.w300),
                 onChanged: saveForm('email'),
                 validator: (String value) =>
-                    CONSTANT.REGEX_EMAIL.hasMatch(value)
+                    CONSTANT.REGEX.email.hasMatch(value)
                         ? null
                         : 'อีเมลไม่ถูกต้อง',
               ),

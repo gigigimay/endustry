@@ -174,7 +174,6 @@ class Storage {
   }
 
   editUserProfile(User userData) async {
-    // TODO: update interestedTopic
     var result = await db.rawQuery('''UPDATE Users
         SET
           firstName="${userData.firstName}",

@@ -9,26 +9,16 @@ import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
 
-class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key key, this.successMessage}) : super(key: key);
-  final String successMessage;
-  @override
-  Widget build(BuildContext context) {
-    return EditProfileForm(successMessage: successMessage);
-  }
-}
-
-class EditProfileForm extends StatefulWidget {
-  EditProfileForm({Key key, this.successMessage}) : super(key: key);
-  final String successMessage;
+class EditProfilePage extends StatefulWidget {
+  EditProfilePage({Key key}) : super(key: key);
   final List<Keyword> keywordsData = MOCK_KEYWORDS;
   final List<UserType> userTypesData = MOCK_USERTYPES;
 
   @override
-  _EditProfileFormState createState() => _EditProfileFormState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _EditProfileFormState extends State<EditProfileForm> {
+class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
   User _userData;
   bool _isValid = true;
@@ -98,10 +88,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.4;
+    final TextStyle textStyle = TextStyle(fontSize: width * 0.05);
 
-    String userType = widget.userTypesData
-        .firstWhere((UserType t) => t.id == _form['typeId'])
-        .name;
+    UserType userType = widget.userTypesData
+        .firstWhere((UserType t) => t.id == _form['typeId']);
 
     List keywords = _userData.interestedTopics.map((String id) {
       Keyword keyword =
@@ -149,7 +139,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
                     // TODO: implement keyboard action
@@ -157,7 +147,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                   Input(
                     hintText: 'นามสกุล',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
                     // TODO: implement keyboard action
@@ -165,19 +155,19 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                   Input(
                     hintText: 'อีเมล',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     keyboardType: TextInputType.emailAddress,
                     validator: (String value) =>
-                        CONSTANT.REGEX_EMAIL.hasMatch(value)
+                        CONSTANT.REGEX.email.hasMatch(value)
                             ? null
                             : 'อีเมลไม่ถูกต้อง',
                   ),
                   // TODO: edit password
                   Input(
                     initialValue: '••••••••••',
-                    style: TextStyle(fontSize: width * 0.05),
+                    style: textStyle,
                     readOnly: true,
                     obscureText: true,
                     suffixText: 'เปลี่ยนรหัสผ่าน',
@@ -191,8 +181,15 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     ),
                   ),
                   SizedBox(height: CONSTANT.SIZE_LG),
-                  // TODO: click to open dropdown
-                  Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
+                  Dropdown<UserType>(
+                    title: 'คุณคือ',
+                    initialValue: userType,
+                    items: widget.userTypesData,
+                    getLabel: (UserType item) => item.name,
+                    onChanged: (UserType value) => setState(() {
+                      _form['typeId'] = value.id;
+                    }),
+                  ),
                   SizedBox(height: CONSTANT.SIZE_LG),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -208,22 +205,30 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       )
                     ],
                   ),
-                  Wrap(
-                    spacing: CONSTANT.SIZE_XL,
-                    runSpacing: 0.0,
-                    children: keywords
-                        .map((word) => Chip(
-                              padding: EdgeInsets.all(0),
-                              label: Text(
-                                word,
-                                style: TextStyle(
-                                    fontSize: CONSTANT.FONT_SIZE_BODY),
-                              ),
-                              labelPadding: EdgeInsets.all(0),
-                              backgroundColor: Colors.white,
-                            ))
-                        .toList(),
-                  )
+                  keywords.isEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: CONSTANT.SIZE_MD),
+                          child: Text(
+                            'ยังไม่มีสิ่งที่สนใจ',
+                            style: TextStyle(color: CONSTANT.COLOR_DISABLED),
+                          ),
+                        )
+                      : Wrap(
+                          spacing: CONSTANT.SIZE_XL,
+                          runSpacing: 0.0,
+                          children: keywords
+                              .map((word) => Chip(
+                                    padding: EdgeInsets.all(0),
+                                    label: Text(
+                                      word,
+                                      style: TextStyle(
+                                          fontSize: CONSTANT.FONT_SIZE_BODY),
+                                    ),
+                                    labelPadding: EdgeInsets.all(0),
+                                    backgroundColor: Colors.white,
+                                  ))
+                              .toList(),
+                        )
                 ],
               ),
             ),

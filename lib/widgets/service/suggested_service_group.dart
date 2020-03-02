@@ -10,10 +10,12 @@ class SuggestedServiceGroup extends StatelessWidget {
     Key key,
     @required this.suggestedServicesData,
     this.currentTab = 'service',
+    this.maxItems = 4,
   }) : super(key: key);
 
   final List<Service> suggestedServicesData;
   final String currentTab;
+  final int maxItems;
 
   final String title = 'บริการแนะนำ';
 
@@ -21,6 +23,8 @@ class SuggestedServiceGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
+
+    final int length = suggestedServicesData.length;
 
     return ContentGroup(
       title: title,
@@ -32,7 +36,7 @@ class SuggestedServiceGroup extends StatelessWidget {
             currentTab: currentTab,
           )),
       children: suggestedServicesData
-          .sublist(0, 4)
+          .sublist(0, length < maxItems ? length : maxItems)
           .map((Service service) => ListItem(
                 label: service.name,
                 itemWidth: itemWidth,

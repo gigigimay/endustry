@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_in.dart';
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 import 'package:endustry/widgets/service/recent_service_group.dart';
 import 'package:endustry/widgets/service/suggested_service_group.dart';
@@ -16,10 +17,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Service> recentServicesData = MOCK_SERVICES;
-  final List<Service> suggestedServicesData =
-      List<Service>.from(Utils.getSuggestList(MOCK_SERVICES));
-  List<Knowledge> suggestedKnowledgesData =
-      List<Knowledge>.from(Utils.getSuggestList(MOCK_KNOWLEDGES));
+  final List<Service> suggestedServicesData = Storage.suggestServices;
+  final List<Knowledge> suggestedKnowledgesData = Storage.suggestKnowledges;
   final User userData = MOCK_USER;
 
   final String currentTab = 'home';
@@ -32,8 +31,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    Utils.getSuggestList(MOCK_KNOWLEDGES);
-
     return BgLayout(
       safeTop: false,
       navbar: NavigationBar(currentTab: currentTab),

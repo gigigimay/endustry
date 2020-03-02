@@ -2,7 +2,6 @@ import 'package:endustry/export.dart';
 import 'package:endustry/theme.dart';
 import 'package:endustry/pages/login.dart';
 import 'package:endustry/pages/registry/register_page.dart';
-import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/splash.dart';
 
 void main() => runApp(MyApp());

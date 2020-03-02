@@ -28,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
             Utils.encode(_form['password']),
           );
           if (user != null) {
+            print('render Login');
+            storage.generateInterest();
             storage.login(user);
             Navigator.pushNamedAndRemoveUntil(
                 context, '/home', (Route<dynamic> route) => false);

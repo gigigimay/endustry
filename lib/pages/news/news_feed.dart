@@ -1,7 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/news/news_in.dart';
-import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/news/hilight_news_widget.dart';
 import 'package:endustry/widgets/news/news_filter_dialog.dart';
 import 'package:endustry/widgets/news/news_item.dart';

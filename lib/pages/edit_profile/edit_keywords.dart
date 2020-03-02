@@ -33,6 +33,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
 
   void submitForm() async {
     await Storage().editUserKeyword(widget.userData.id, _preferList);
+    Storage().generateInterest();
     Navigator.pop(context, true);
   }
 
@@ -76,10 +77,8 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
             controller: _searchFieldCtrl,
             hintText: 'ค้นหา',
             prefixIcon: Icon(Icons.search),
-            style: TextStyle(
-              fontSize: width * 0.05,
-              fontWeight: FontWeight.w300
-            ),
+            style:
+                TextStyle(fontSize: width * 0.05, fontWeight: FontWeight.w300),
             onChanged: onSearch,
             suffixIcon: _searchValue != null
                 ? IconButtonInk(
@@ -91,29 +90,29 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
           ),
           PageScrollBody(
               child: Center(
-                child: Wrap(
-                  runSpacing: 4,
-                  spacing: 8,
-                  direction: Axis.horizontal,
-                  alignment: WrapAlignment.center,
-                  children: widget.keywordsData
-                      .where((item) => _searchValue != null
-                          ? item.name.contains(_searchValue)
-                          : true)
-                      .map((item) {
-                    bool isSelected = _preferList.contains(item.id);
-                    return PreferChip(
-                      text: item.name,
-                      isSelected: isSelected,
-                      onPressed: () => setState(() {
-                        isSelected
-                            ? _preferList.remove(item.id)
-                            : _preferList.add(item.id);
-                      }),
-                    );
-                  }).toList(),
-                ),
-              )),
+            child: Wrap(
+              runSpacing: 4,
+              spacing: 8,
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
+              children: widget.keywordsData
+                  .where((item) => _searchValue != null
+                      ? item.name.contains(_searchValue)
+                      : true)
+                  .map((item) {
+                bool isSelected = _preferList.contains(item.id);
+                return PreferChip(
+                  text: item.name,
+                  isSelected: isSelected,
+                  onPressed: () => setState(() {
+                    isSelected
+                        ? _preferList.remove(item.id)
+                        : _preferList.add(item.id);
+                  }),
+                );
+              }).toList(),
+            ),
+          )),
         ],
       ),
     );

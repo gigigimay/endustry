@@ -10,7 +10,7 @@ class KnowledgePage extends StatefulWidget {
     this.itemOnPressed,
   }) : super(key: key);
 
-  final suggestKnowledgeData = MOCK_KNOWLEDGES.reversed.toList();
+  final suggestKnowledgeData = Storage.suggestKnowledges;
   final knowledgeData = MOCK_KNOWLEDGES;
 
   final Function itemOnPressed;
@@ -44,8 +44,10 @@ class _KnowledgePageState extends State<KnowledgePage> {
                     Utils.navigatePush(
                         context,
                         KnowledgeFavPage(
-                            knowledgeData: widget.knowledgeData.where((item) =>
-                                Storage.user.favKnowledges.contains(item.id)).toList()));
+                            knowledgeData: widget.knowledgeData
+                                .where((item) => Storage.user.favKnowledges
+                                    .contains(item.id))
+                                .toList()));
                   },
                 ),
               ],

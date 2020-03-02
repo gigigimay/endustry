@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
@@ -69,7 +68,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     Navigator.pop(context, true);
   }
 
-  File _file;
   Uint8List _imgByteCode = kTransparentImage;
 
   Function saveForm(key) => (value) {

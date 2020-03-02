@@ -93,7 +93,7 @@ class Utils {
     List _suggsetTierAsc = _suggsetTier.keys.toList()
       ..sort((i1, i2) => _suggsetTier[i1].compareTo(_suggsetTier[i2]));
     List _suggsetTierDesc = _suggsetTierAsc.reversed.toList();
-    print('sugg: $_suggsetTierDesc');
+    print('suggDesc: $_suggsetTierDesc');
 
     // create list of suggest item
     List _suggestList = [];

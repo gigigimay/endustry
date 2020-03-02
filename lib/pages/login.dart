@@ -1,10 +1,12 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/login/login_form.dart';
+import 'package:endustry/firebase.dart';
+import 'package:endustry/storage.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +37,20 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    RaisedButton(
+                      child: Text('register'),
+                      onPressed: () => _firebaseDB.register(
+                        _form['email'],
+                        Utils.encode(_form['password']),
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text('login'),
+                      onPressed: () => _firebaseDB.login(
+                        _form['email'],
+                        Utils.encode(_form['password']),
+                      ),
+                    ),
                     Text(
                       'ยินดีต้อนรับ',
                       style: TextStyle(

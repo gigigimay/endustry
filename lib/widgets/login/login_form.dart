@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 
 class LoginForm extends StatefulWidget {
@@ -13,6 +14,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   var _form = {};
   bool _loginFailed = false;
+  final _firebaseDB = FirebaseDB();
 
   Function saveForm(key) => (value) {
         setState(() {
@@ -23,14 +25,11 @@ class _LoginFormState extends State<LoginForm> {
   Function onSubmit(context) => () async {
         if (_formKey.currentState.validate()) {
           final storage = Storage();
-          var user = await storage.getUserDataFromEmailPassword(
-            _form['email'],
-            Utils.encode(_form['password']),
-          );
+          var user = await _firebaseDB.login(
+              _form['email'], Utils.encode(_form['password']));
+
           if (user != null) {
-            print('render Login');
             storage.login(user);
-            storage.generateInterest();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/home', (Route<dynamic> route) => false);
           } else {

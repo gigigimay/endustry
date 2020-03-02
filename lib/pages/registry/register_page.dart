@@ -1,4 +1,5 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/firebase.dart';
 import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';
@@ -76,7 +77,9 @@ class _RegisterPageState extends State<RegisterPage> {
         typeId: userInfo['typeId'],
         interestedTopics: List<String>.from(userInfo['interestTopic']));
 
-    Storage().insertNewUser(newUser, Utils.encode(userInfo['password']));
+    FirebaseDB firebasedb = FirebaseDB();
+    firebasedb.register(newUser, Utils.encode(userInfo['password']));
+
     Navigator.pop(context);
   }
 

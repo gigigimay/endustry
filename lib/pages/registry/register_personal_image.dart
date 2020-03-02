@@ -55,7 +55,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
               avatarSize: avatarSize,
               fabSize: avatarSize * 0.3,
               fabIcon: Icon(
-                Icons.camera_alt,
+                Icons.image,
                 size: CONSTANT.SIZE_XL,
               ),
               fabAction: () async {

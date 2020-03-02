@@ -6,6 +6,7 @@ import 'package:endustry/export.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:crypto/crypto.dart';
 
 class Utils {
   static void navigatePush(BuildContext context, Widget page,
@@ -54,8 +55,8 @@ class Utils {
     File image = await ImagePicker.pickImage(source: ImageSource.camera);
   }
 
-// take a photo? can but cant both in one btn
   static getImageByGallery() async {
+    // take a photo? can but cant both in one btn
     File image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
@@ -73,4 +74,7 @@ class Utils {
     Uint8List imageBytes = base64Decode(str);
     return imageBytes;
   }
+
+  static String encode(String text) =>
+      md5.convert(utf8.encode(text)).toString();
 }

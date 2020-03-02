@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/storage.dart';
@@ -28,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
           final storage = Storage();
           var user = await storage.getUserDataFromEmailPassword(
             _form['email'],
-            _form['password'],
+            Utils.encode(_form['password']),
           );
           if (user != null) {
             storage.login(user);

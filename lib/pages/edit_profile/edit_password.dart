@@ -36,18 +36,28 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
   }
 
   void submitForm() async {
-    // TODO: encrypt password
     if (_formKey.currentState.validate()) {
-      await Storage()
-          .editUserPassword(widget.userData.id, _form['newPassword']);
+      await Storage().editUserPassword(
+        widget.userData.id,
+        Utils.encode(_form['newPassword']),
+      );
       Navigator.pop(context, true);
     } else if (_form.length == 3 &&
         _form['newPassword'] == _form['confirmNewPassword'] &&
         _form['oldPassword'] != Storage.user.password) {
       print('password >> ' + widget.userData.password);
-      // TODO: grant focus to oldPassword field when clear field 
+      // TODO: grant focus to oldPassword field when clear field
       clearField('oldPassword', _oldPwdCtrl);
     }
+  }
+
+  validateOldPassword(String v) {
+    return (_form.length == 3 &&
+            _form['newPassword'] == _form['confirmNewPassword'])
+        ? Utils.encode(v) != Storage.user.password
+            ? 'รหัสผ่านปัจจุบันไม่ถูกต้อง'
+            : null
+        : null;
   }
 
   Function saveForm(key) => (value) {
@@ -89,12 +99,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                     onChanged: saveForm('oldPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
-                    validator: (String v) => (_form.length == 3 &&
-                            _form['newPassword'] == _form['confirmNewPassword'])
-                        ? v != Storage.user.password
-                            ? 'รหัสผ่านปัจจุบันไม่ถูกต้อง'
-                            : null
-                        : null,
+                    validator: validateOldPassword,
                   ),
                   Input(
                     obscureText: true,
@@ -110,9 +115,8 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                     style: TextStyle(fontSize: width * 0.05),
                     onChanged: saveForm('confirmNewPassword'),
                     textInputAction: TextInputAction.done,
-                    validator: (String v) => v != _form['newPassword']
-                        ? 'กรุณากรอกรหัสผ่านให้ตรงกัน'
-                        : null,
+                    validator: (String v) =>
+                        v != _form['newPassword'] ? 'รหัสผ่านไม่ตรงกัน' : null,
                   ),
                 ],
               ),

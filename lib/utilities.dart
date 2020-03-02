@@ -102,4 +102,16 @@ class Utils {
 
     return _suggestList;
   }
+
+  static padNumber(value, {length = 2}) => value.toString().padLeft(length, '0');
+
+  static String formatDateTime(datetime) {
+    final dateData = DateTime.parse(datetime);
+    final String day = padNumber(dateData.day);
+    final String month = padNumber(dateData.month);
+    final String year = padNumber(dateData.year + 543, length: 4);
+    final String hour = padNumber(dateData.hour);
+    final String minute = padNumber(dateData.minute);
+    return '$day.$month.$year | $hour.$minute น.';
+  }
 }

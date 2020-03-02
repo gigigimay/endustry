@@ -39,20 +39,20 @@ class RecentServiceGroup extends StatelessWidget {
       onSeeAll: () => Utils.navigatePush(
           context,
           ServiceListPage(
-            // servicesData: recentServicesData,
-            servicesData: [],
+            servicesData: recentServicesData,
             title: title,
             currentTab: currentTab,
             extraWidgets: (Service service) => [
               SizedBox(height: CONSTANT.SIZE_MD),
               Text(
-                // TODO: change to real history data
-                'ใช้งานเมื่อ 1 นาทีที่แล้ว',
+                Utils.formatDateTime(servicesHistoryData
+                    .firstWhere((ServiceHistory h) => h.serviceId == service.id)
+                    .datetime
+                    .toString()),
                 style: TextStyle(fontWeight: FontWeight.w300),
               )
             ],
           )),
-      //TODO: sort service by last used time
       children: recentServicesData
           .toList()
           .sublist(0, length < maxItems ? length : maxItems)

@@ -46,15 +46,8 @@ class News {
         typeId: json["typeId"],
       );
 
-  static getDateTimeString(datetime) {
-    final dateData = DateTime.parse(datetime);
-    return '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
-  }
-
-  static getDateString(datetime) {
-    final dateData = DateTime.parse(datetime);
-    return '${dateData.day}.${dateData.month}.${dateData.year}';
-  }
+  getDateTimeString() => Utils.formatDateTime(date);
+  getDateString() => Utils.formatDateTime(date).substring(0, 10);
 }
 
 class NewsType {

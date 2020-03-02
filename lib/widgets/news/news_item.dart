@@ -58,7 +58,7 @@ class NewsItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            News.getDateTimeString(newsData.date),
+                            newsData.getDateTimeString(),
                             style: TextStyle(
                                 fontSize: CONSTANT.FONT_SIZE_BODY,
                                 color: CONSTANT.COLOR_PRIMARY),

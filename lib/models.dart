@@ -46,15 +46,8 @@ class News {
         typeId: json["typeId"],
       );
 
-  static getDateTimeString(datetime) {
-    final dateData = DateTime.parse(datetime);
-    return '${dateData.day}.${dateData.month}.${dateData.year} | ${dateData.hour}.${dateData.minute} น.';
-  }
-
-  static getDateString(datetime) {
-    final dateData = DateTime.parse(datetime);
-    return '${dateData.day}.${dateData.month}.${dateData.year}';
-  }
+  getDateTimeString() => Utils.formatDateTime(date);
+  getDateString() => Utils.formatDateTime(date).substring(0, 10);
 }
 
 class NewsType {
@@ -189,4 +182,23 @@ class Department {
         image: json["image"],
         url: json["url"],
       );
+}
+
+class ServiceHistory {
+  final String userId, serviceId;
+  final DateTime datetime;
+  const ServiceHistory({
+    @required this.userId,
+    @required this.serviceId,
+    @required this.datetime,
+  });
+
+  factory ServiceHistory.fromJson(Map<String, dynamic> json) {
+    final DateTime dateTime = DateTime.parse(json['datetime']);
+    return ServiceHistory(
+      userId: json['userId'],
+      serviceId: json['serviceId'],
+      datetime: dateTime,
+    );
+  }
 }

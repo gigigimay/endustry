@@ -41,7 +41,7 @@ class _NewsInPageState extends State<NewsInPage> {
                         height: CONSTANT.SIZE_SM,
                       ),
                       Text(
-                        News.getDateTimeString(widget.newsData.date),
+                        widget.newsData.getDateTimeString(),
                         style: TextStyle(
                             color: CONSTANT.COLOR_PRIMARY,
                             fontSize: CONSTANT.FONT_SIZE_BODY),

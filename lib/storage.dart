@@ -20,6 +20,7 @@ class Storage {
   static List<Keyword> keywords;
   static List<UserType> userType;
   static User user;
+  static List<ServiceHistory> serviceHistory;
 
   static List<Service> suggestServices;
   static List<Knowledge> suggestKnowledges;
@@ -134,6 +135,31 @@ class Storage {
     return list;
   }
 
+  /// mush have user data in storage
+  updateServiceHistory() async {
+    print(DateTime.now());
+    if (user != null) {
+      List<ServiceHistory> list = [];
+      await db
+          .rawQuery('''SELECT serviceId, userId, max(datetime) as datetime FROM 
+          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''')
+          .then((data) {
+        data.forEach((item) => list.add(ServiceHistory.fromJson(item)));
+      });
+      Storage.serviceHistory = list;
+    }
+  }
+
+  /// mush have user data in storage
+  addServiceHistory(Service service) async {
+    if (user != null) {
+      await db
+          .rawQuery('''INSERT INTO ServiceHistory (userId, serviceId, datetime)
+        VALUES("${user.id}", "${service.id}", "${DateTime.now().toString()}");''');
+      updateServiceHistory();
+    }
+  }
+
   /// get userData from user id and return the data
   getUserDataFromId(String uid) async {
     var result = await db.rawQuery('SELECT * FROM Users WHERE id = "$uid";');
@@ -154,6 +180,7 @@ class Storage {
     if (uid != null) {
       var userData = await getUserDataFromId(uid);
       Storage.user = userData;
+      updateServiceHistory();
       return true;
     }
     return false;
@@ -162,6 +189,7 @@ class Storage {
   /// set uid in preference, and set user data variable
   login(User userData) async {
     user = userData;
+    updateServiceHistory();
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('uid', userData.id);
   }

@@ -49,7 +49,9 @@ class RecentServiceGroup extends StatelessWidget {
                     .firstWhere((ServiceHistory h) => h.serviceId == service.id)
                     .datetime
                     .toString()),
-                style: TextStyle(fontWeight: FontWeight.w300),
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: CONSTANT.FONT_SIZE_BODY * 0.8),
               )
             ],
           )),

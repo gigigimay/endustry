@@ -135,9 +135,6 @@ class Storage {
   /// get userData from user id and return the data
   getUserDataFromId(String uid) async {
     var result = await db.rawQuery('SELECT * FROM Users WHERE id = "$uid";');
-    // TODO: something wrong
-    print('result $result');
-    print('user from json: ${User.fromJson(result.first)}');
     return result.isNotEmpty ? User.fromJson(result.first) : null;
   }
 

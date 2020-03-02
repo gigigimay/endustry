@@ -30,7 +30,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
         setState(() {
           _form[key] = value;
         });
-        print(_form[key]);
       };
 
   @override

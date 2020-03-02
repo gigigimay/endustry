@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/registry/register_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
-import 'package:image_picker/image_picker.dart';
 
 class RegisterPage2 extends StatefulWidget {
   RegisterPage2(

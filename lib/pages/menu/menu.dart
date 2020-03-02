@@ -21,7 +21,6 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User userData = Storage.user;
-    print(userData.email);
     return BgLayout(
       navbar: NavigationBar(currentTab: 'menu', isOnRoot: true),
       child: Column(

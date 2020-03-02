@@ -67,7 +67,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   saveP4(interestTopic) {
     userInfo['interestTopic'] = interestTopic;
-    print("intrst> ${userInfo['interestTopic']}");
   }
 
   submitData() {
@@ -79,12 +78,6 @@ class _RegisterPageState extends State<RegisterPage> {
         img: userInfo['img'],
         typeId: userInfo['typeId'],
         interestedTopics: List<String>.from(userInfo['interestTopic']));
-
-    print("${newUser.firstName} ${newUser.lastName}");
-    print("${newUser.email}");
-    print("${newUser.img}");
-    print("${newUser.typeId}");
-    print("${newUser.interestedTopics}");
 
     Storage().insertNewUser(
         newUser, md5.convert(utf8.encode(userInfo['password'])).toString());

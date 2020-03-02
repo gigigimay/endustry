@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -10,7 +9,6 @@ import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
-import 'package:image_picker/image_picker.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key key, this.successMessage}) : super(key: key);
@@ -46,12 +44,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
       'email': _userData.email,
       'typeId': _userData.typeId,
       'img': _userData.img,
-      // "firstName": widget.userData.firstName,
-      // "lastName": widget.userData.lastName,
-      // "email": widget.userData.email,
-      // "typeId": widget.userData.typeId,
-      // "interestedTopics": widget.userData.interestedTopics,
-      // "img": widget.userData.img,
     };
     _imgByteCode = Utils.convertStringToByteCode(_userData.img);
     super.initState();
@@ -73,7 +65,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
       typeId: _form['typeId'],
       img: _form['img'],
     );
-    print(newUser.toString());
     await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }
@@ -121,8 +112,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
-    print('editpage img: $_imgByteCode');
-    print('editpage img: ${_imgByteCode == kTransparentImage}');
     return EditProfileLayout(
       title: 'แก้ไขโปรไฟล์',
       topOverlap: avatarSize / 2,

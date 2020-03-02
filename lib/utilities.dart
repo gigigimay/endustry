@@ -52,8 +52,6 @@ class Utils {
 
   static Future getImageByCamera() async {
     File image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    print(image.runtimeType);
   }
 
 // take a photo? can but cant both in one btn

@@ -23,6 +23,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   User _userData;
   bool _isValid = true;
   var _form = {};
+  Uint8List _imgByteCode = kTransparentImage;
 
   @override
   void initState() {
@@ -32,7 +33,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       'lastName': _userData.lastName,
       'email': _userData.email,
       'typeId': _userData.typeId,
-      'img': _userData.img,
     };
     _imgByteCode = Utils.convertStringToByteCode(_userData.img);
     super.initState();
@@ -52,13 +52,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
       firstName: _form['firstName'],
       lastName: _form['lastName'],
       typeId: _form['typeId'],
-      img: _form['img'],
+      img: Utils.convertByteCodeToString(_imgByteCode),
     );
     await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }
-
-  Uint8List _imgByteCode = kTransparentImage;
 
   Function saveForm(key) => (value) {
         setState(() {
@@ -106,20 +104,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
         img: MemoryImage(
-            _userData.img != Utils.convertByteCodeToString(kTransparentImage)
-                ? Utils.convertStringToByteCode(_userData.img)
+            _imgByteCode != Utils.convertByteCodeToString(kTransparentImage)
+                ? _imgByteCode
                 : kTransparentImage),
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(
-          Icons.camera_alt,
+          Icons.image,
           size: CONSTANT.SIZE_XL,
         ),
         fabAction: () async {
           _imgByteCode = await Utils.getImageByGallery();
-          setState(() {
-            _imgByteCode = _imgByteCode;
-          });
+          if (_imgByteCode != kTransparentImage) {
+            setState(() {
+              _imgByteCode = _imgByteCode;
+            });
+          }
         },
       ),
       bottomWidget: GradientButton(

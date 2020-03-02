@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/service/department_in.dart';
+import 'package:endustry/storage.dart';
 
 class ServiceInPage extends StatelessWidget {
   const ServiceInPage({
@@ -14,6 +15,7 @@ class ServiceInPage extends StatelessWidget {
   final String currentTab;
 
   gotoUrl() {
+    Storage().addServiceHistory(serviceData);
     Utils.launchURL(serviceData.url);
   }
 

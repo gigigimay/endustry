@@ -190,3 +190,22 @@ class Department {
         url: json["url"],
       );
 }
+
+class ServiceHistory {
+  final String userId, serviceId;
+  final DateTime datetime;
+  const ServiceHistory({
+    @required this.userId,
+    @required this.serviceId,
+    @required this.datetime,
+  });
+
+  factory ServiceHistory.fromJson(Map<String, dynamic> json) {
+    final DateTime dateTime = DateTime.parse(json['datetime']);
+    return ServiceHistory(
+      userId: json['userId'],
+      serviceId: json['serviceId'],
+      datetime: dateTime,
+    );
+  }
+}

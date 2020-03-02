@@ -33,7 +33,6 @@ class ServiceHomePage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   RecentServiceGroup(
-                    recentServicesData: recentServicesData,
                     currentTab: currentTab,
                   ),
                   SuggestedServiceGroup(

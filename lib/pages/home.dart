@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Service> recentServicesData = MOCK_SERVICES;
   final List<Service> suggestedServicesData = Storage.suggestServices;
   final List<Knowledge> suggestedKnowledgesData = Storage.suggestKnowledges;
   final User userData = MOCK_USER;
@@ -68,33 +67,14 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: CONSTANT.SIZE_MD),
-                          RecentServiceGroup(
-                            recentServicesData: recentServicesData,
-                            currentTab: currentTab,
-                          ),
+                          RecentServiceGroup(currentTab: currentTab),
                           SuggestedServiceGroup(
                             suggestedServicesData: suggestedServicesData,
                             currentTab: currentTab,
                           ),
-                          ContentGroup(
-                            title: 'คลังความรู้แนะนำ',
-                            spacing: 0,
-                            runSpacing: 0,
-                            onSeeAll: () {
-                              Utils.navigatePush(context, KnowledgePage());
-                            },
-                            children: suggestedKnowledgesData
-                                .sublist(0, 3)
-                                .map((Knowledge item) => KnowledgeItem(
-                                      knowledgeData: item,
-                                      itemOnPressed: () => Utils.navigatePush(
-                                          context,
-                                          KnowledgeInPage(
-                                            knowledgeData: item,
-                                            currentTab: currentTab,
-                                          )),
-                                    ))
-                                .toList(),
+                          SuggestedKnowledgeGroup(
+                            suggestedKnowledgesData: suggestedKnowledgesData,
+                            currentTab: currentTab,
                           ),
                           SizedBox(height: CONSTANT.SIZE_XL)
                         ],
@@ -107,6 +87,44 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SuggestedKnowledgeGroup extends StatelessWidget {
+  const SuggestedKnowledgeGroup({
+    Key key,
+    @required this.suggestedKnowledgesData,
+    @required this.currentTab,
+    this.maxItems = 3,
+  }) : super(key: key);
+
+  final List<Knowledge> suggestedKnowledgesData;
+  final String currentTab;
+  final int maxItems;
+
+  @override
+  Widget build(BuildContext context) {
+    final int length = suggestedKnowledgesData.length;
+    return ContentGroup(
+      title: 'คลังความรู้แนะนำ',
+      spacing: 0,
+      runSpacing: 0,
+      onSeeAll: () {
+        Utils.navigatePush(context, KnowledgePage());
+      },
+      children: suggestedKnowledgesData
+          .sublist(0, length < maxItems ? length : maxItems)
+          .map((Knowledge item) => KnowledgeItem(
+                knowledgeData: item,
+                itemOnPressed: () => Utils.navigatePush(
+                    context,
+                    KnowledgeInPage(
+                      knowledgeData: item,
+                      currentTab: currentTab,
+                    )),
+              ))
+          .toList(),
     );
   }
 }

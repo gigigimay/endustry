@@ -15,8 +15,8 @@ class RecentServiceGroup extends StatelessWidget {
 
   final List<Service> recentServicesData;
   final String currentTab;
-
   final int maxItems;
+  
   final String title = 'การใช้งานล่าสุด';
 
   @override
@@ -24,6 +24,7 @@ class RecentServiceGroup extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
     final int length = recentServicesData.length;
+
     return ContentGroup(
       title: title,
       onSeeAll: () => Utils.navigatePush(

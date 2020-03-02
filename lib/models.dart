@@ -3,6 +3,7 @@ import 'dart:convert';
 
 class Service {
   final String id, name, description, image, url, depId;
+  final List tag;
   const Service({
     @required this.id,
     @required this.name,
@@ -10,6 +11,7 @@ class Service {
     this.image,
     this.url,
     this.depId,
+    this.tag,
   });
 
   factory Service.fromJson(Map<String, dynamic> json) => Service(
@@ -137,14 +139,15 @@ class UserType {
 
 class Knowledge {
   final id, title, content, attachUrl, date, author;
-  const Knowledge({
-    @required this.id,
-    @required this.title,
-    this.content,
-    this.attachUrl,
-    this.date,
-    this.author,
-  });
+  final List tag;
+  const Knowledge(
+      {@required this.id,
+      @required this.title,
+      this.content,
+      this.attachUrl,
+      this.date,
+      this.author,
+      this.tag});
 
   factory Knowledge.fromJson(Map<String, dynamic> json) => Knowledge(
         id: json["id"],

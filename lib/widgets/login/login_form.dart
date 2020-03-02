@@ -29,8 +29,8 @@ class _LoginFormState extends State<LoginForm> {
           );
           if (user != null) {
             print('render Login');
-            storage.generateInterest();
             storage.login(user);
+            storage.generateInterest();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/home', (Route<dynamic> route) => false);
           } else {

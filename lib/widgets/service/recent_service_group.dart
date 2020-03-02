@@ -10,17 +10,21 @@ class RecentServiceGroup extends StatelessWidget {
     Key key,
     @required this.recentServicesData,
     this.currentTab = 'service',
+    this.maxItems = 4,
   }) : super(key: key);
 
   final List<Service> recentServicesData;
   final String currentTab;
-
+  final int maxItems;
+  
   final String title = 'การใช้งานล่าสุด';
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
+    final int length = recentServicesData.length;
+
     return ContentGroup(
       title: title,
       onSeeAll: () => Utils.navigatePush(
@@ -41,7 +45,7 @@ class RecentServiceGroup extends StatelessWidget {
       //TODO: sort service by last used time
       children: recentServicesData.reversed
           .toList()
-          .sublist(0, 4)
+          .sublist(0, length < maxItems ? length : maxItems)
           .map((Service service) => ListItem(
                 label: service.name,
                 itemWidth: itemWidth,

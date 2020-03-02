@@ -21,6 +21,9 @@ class Storage {
   static List<UserType> userType;
   static User user;
 
+  static List<Service> suggestServices;
+  static List<Knowledge> suggestKnowledges;
+
   initDB() async {
     // Construct a file path to copy database to
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -194,5 +197,11 @@ class Storage {
     await db.rawQuery(
         '''UPDATE Users SET interestedTopics='${json.encode(value)}' WHERE id="$uid";''');
     user = await getUserDataFromId(uid);
+  }
+
+  generateInterest() {
+    suggestServices = List<Service>.from(Utils.getSuggestList(MOCK_SERVICES));
+    suggestKnowledges =
+        List<Knowledge>.from(Utils.getSuggestList(MOCK_KNOWLEDGES));
   }
 }

@@ -15,6 +15,9 @@ class _SplashPageState extends State<SplashPage> {
     final String pageName = await storage.checkUidPrefs() ? '/home' : '/login';
     await Future.delayed(Duration(milliseconds: 700));
     Navigator.pushReplacementNamed(context, pageName);
+    if (pageName == '/home'){
+      storage.generateInterest();
+    }
   }
 
   @override
@@ -27,6 +30,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
+    print('render Splash');
     return Container(
       color: Colors.white,
       child: Center(

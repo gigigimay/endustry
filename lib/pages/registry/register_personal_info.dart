@@ -55,7 +55,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               password: _form['password']);
         }
       },
-      // disabled: !_isValid,
       child: Form(
         key: _registFormKey,
         autovalidate: false,

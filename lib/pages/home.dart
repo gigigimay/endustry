@@ -1,26 +1,36 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/knowledge/knowledge_in.dart';
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/knowledge/knowledge_item.dart';
 import 'package:endustry/widgets/service/recent_service_group.dart';
 import 'package:endustry/widgets/service/suggested_service_group.dart';
 import '../widgets/home/searchbar.dart';
 import '../widgets/home/content_group.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List<Service> recentServicesData = MOCK_SERVICES;
-  final List<Service> suggestedServicesData = MOCK_SERVICES;
-  final List<Knowledge> suggestedKnowledgesData = MOCK_KNOWLEDGES;
+  final List<Service> suggestedServicesData = Storage.suggestServices;
+  final List<Knowledge> suggestedKnowledgesData = Storage.suggestKnowledges;
   final User userData = MOCK_USER;
 
   final String currentTab = 'home';
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return BgLayout(
       safeTop: false,
       navbar: NavigationBar(currentTab: currentTab),

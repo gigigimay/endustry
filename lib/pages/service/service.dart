@@ -1,16 +1,17 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/service/recent_service_group.dart';
 import 'package:endustry/widgets/service/service_list.dart';
 import 'package:endustry/widgets/service/suggested_service_group.dart';
 
 class ServiceHomePage extends StatelessWidget {
-  const ServiceHomePage({
+  ServiceHomePage({
     Key key,
   }) : super(key: key);
 
   final List<Service> recentServicesData = MOCK_SERVICES;
-  final List<Service> suggestedServicesData = MOCK_SERVICES;
+  List<Service> suggestedServicesData = Storage.suggestServices;
   final List<Service> servicesData = MOCK_SERVICES;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
+import 'package:endustry/storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -77,4 +78,28 @@ class Utils {
 
   static String encode(String text) =>
       md5.convert(utf8.encode(text)).toString();
+
+  static List getSuggestList(List list) {
+    // create list of suggest key by tier
+    Map<String, int> _suggsetTier = {};
+    final _userKey = Set.from(Storage.user.interestedTopics);
+    list.forEach((item) {
+      var intersec = Set.from(item.tag).intersection(_userKey);
+      if (intersec.length > 0) {
+        _suggsetTier['${item.id}'] = intersec.length;
+      }
+    });
+    print('sugg: $_suggsetTier');
+    List _suggsetTierAsc = _suggsetTier.keys.toList()
+      ..sort((i1, i2) => _suggsetTier[i1].compareTo(_suggsetTier[i2]));
+    List _suggsetTierDesc = _suggsetTierAsc.reversed.toList();
+    print('suggDesc: $_suggsetTierDesc');
+
+    // create list of suggest item
+    List _suggestList = [];
+    _suggsetTierDesc.forEach((sugKey) =>
+        _suggestList.add(list.firstWhere((item) => sugKey == item.id)));
+
+    return _suggestList;
+  }
 }

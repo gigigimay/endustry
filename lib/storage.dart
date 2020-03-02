@@ -51,18 +51,17 @@ class Storage {
     userType = await getUsertypes();
   }
 
-  createTable() async {
+  insertNewUser(User newUserData, String password) async {
+    var users = await db.rawQuery('SELECT * FROM Users');
     db.execute(
-        'CREATE TABLE Services (id String PRIMARY KEY, name TEXT,description TEXT,url TEXT,image TEXT,depId TEXT);');
+        "INSERT INTO USERS (id,email,password,firstName,lastName,typeId,img,favKnowledges,interestedTopics) " +
+            "VALUES ('user0${users.length}','${newUserData.email}','$password','${newUserData.firstName}','${newUserData.lastName}','${newUserData.typeId}','${newUserData.img}','${json.encode([])}','${json.encode(newUserData.interestedTopics)}')");
+  }
+
+  clearUser() async {
+    await db.execute("DELETE FROM users");
     db.execute(
-        'CREATE TABLE Departments (id String PRIMARY KEY, name TEXT,description TEXT,url TEXT,image TEXT);');
-    db.execute(
-        'CREATE TABLE News (id String PRIMARY KEY, title TEXT,content TEXT,date Date,author TEXT,imgurl TEXT,typeId TEXT);');
-    db.execute(
-        'CREATE TABLE NewsTypes (id String PRIMARY KEY, typeName TEXT);');
-    db.execute(
-        'CREATE TABLE Knowledges (id String PRIMARY KEY, title TEXT,content TEXT,date Date,author TEXT,attachUrl TEXT);');
-    db.execute('CREATE TABLE Keywords (id String PRIMARY KEY, name TEXT);');
+        "insert into users VALUES ('user01','nani@mail.com','a','แพร','อ้วนนะ','ust01','https://picsum.photos/200','[]','[]');");
   }
 
   closeDB() async {

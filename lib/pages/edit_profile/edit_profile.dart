@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/edit_profile/edit_keywords.dart';
@@ -42,6 +45,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       'typeId': _userData.typeId,
       'img': _userData.img,
     };
+    _imgByteCode = Utils.convertStringToByteCode(_userData.img);
     super.initState();
   }
 
@@ -64,6 +68,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
     await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }
+
+  File _file;
+  Uint8List _imgByteCode = kTransparentImage;
 
   Function saveForm(key) => (value) {
         setState(() {
@@ -110,14 +117,22 @@ class _EditProfileFormState extends State<EditProfileForm> {
       topOverlap: avatarSize / 2,
       bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
       topWidget: ProfileAvatar(
-        img: _form['img'],
+        img: MemoryImage(
+            _userData.img != Utils.convertByteCodeToString(kTransparentImage)
+                ? Utils.convertStringToByteCode(_userData.img)
+                : kTransparentImage),
         avatarSize: avatarSize,
         fabSize: avatarSize * 0.3,
         fabIcon: Icon(
           Icons.camera_alt,
           size: CONSTANT.SIZE_XL,
         ),
-        fabAction: () => print('edit image!'),
+        fabAction: () async {
+          _imgByteCode = await Utils.getImageByGallery();
+          setState(() {
+            _imgByteCode = _imgByteCode;
+          });
+        },
       ),
       bottomWidget: GradientButton(
         text: 'บันทึก',

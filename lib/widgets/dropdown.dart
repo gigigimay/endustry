@@ -36,18 +36,13 @@ class Dropdown extends StatelessWidget {
                 right: CONSTANT.SIZE_MD),
             elevation: 0,
             child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(valueLabel,
                     style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal)),
+                        color: Colors.white, fontWeight: FontWeight.normal)),
                 SizedBox(width: CONSTANT.SIZE_MD),
-                Icon(
-                  Icons.expand_more,
-                  color: Colors.white,
-                )
+                Icon(Icons.expand_more, color: Colors.white)
               ],
             ),
           ),

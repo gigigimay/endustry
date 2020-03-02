@@ -32,7 +32,6 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
   }
 
   void submitForm() async {
-    print('_preferList ' + _preferList.toString());
     await Storage().editUserKeyword(widget.userData.id, _preferList);
     Navigator.pop(context, true);
   }

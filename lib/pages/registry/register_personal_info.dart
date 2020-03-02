@@ -3,30 +3,27 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/registry/register_layout.dart';
 
 class RegisterPage1 extends StatefulWidget {
-  RegisterPage1({Key key, this.nextBtnFuntion, this.prevBtnFuntion})
+  RegisterPage1(
+      {Key key, this.initData, this.nextBtnFuntion, this.prevBtnFuntion})
       : super(key: key);
 
   final Function prevBtnFuntion, nextBtnFuntion;
+  final initData;
 
   @override
   _RegisterPage1State createState() => _RegisterPage1State();
 }
 
 class _RegisterPage1State extends State<RegisterPage1> {
-  final _formKey = GlobalKey<FormState>();
- 
+  final _registFormKey = GlobalKey<FormState>();
+
   var _form = {};
-  
- bool _isValid = true;
+
+  bool _isValid = false;
   void validateForm() {
     this.setState(() {
-      _isValid = _formKey.currentState.validate();
+      _isValid = _registFormKey.currentState.validate();
     });
-  }
-
-  void submitForm() {
-    print('_form >> ' + _form.toString());
-    // TODO: create profile
   }
 
   Function saveForm(key) => (value) {
@@ -36,16 +33,32 @@ class _RegisterPage1State extends State<RegisterPage1> {
       };
 
   @override
+  void initState() {
+    super.initState();
+
+    _form = widget.initData;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RegisterLayout(
       registerStep: 0,
       stateTitle: 'ข้อมูลส่วนตัว',
       prevBtnFuntion: widget.prevBtnFuntion,
-      nextBtnFuntion: widget.nextBtnFuntion,
+      nextBtnFuntion: () {
+        validateForm();
+        if (_isValid) {
+          widget.nextBtnFuntion(
+              firstname: _form['firstName'],
+              lastname: _form['lastName'],
+              email: _form['email'],
+              password: _form['password']);
+        }
+      },
+      // disabled: !_isValid,
       child: Form(
-        key: _formKey,
+        key: _registFormKey,
         autovalidate: false,
-        onChanged: validateForm,
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -56,6 +69,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Input(
+                initialValue: widget.initData['firstName'],
                 hintText: 'ชื่อ',
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_BODY,
@@ -63,6 +77,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 onChanged: saveForm('firstName'),
               ),
               Input(
+                initialValue: widget.initData['lastName'],
                 hintText: 'นามสกุล',
                 style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_BODY,
@@ -86,14 +101,16 @@ class _RegisterPage1State extends State<RegisterPage1> {
                     fontSize: CONSTANT.FONT_SIZE_BODY,
                     fontWeight: FontWeight.w300),
                 obscureText: true,
+                onChanged: saveForm('password'),
               ),
               Input(
-                hintText: 'ยืนยันรหัสผ่าน',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
-                obscureText: true,
-              ),
+                  hintText: 'ยืนยันรหัสผ่าน',
+                  style: TextStyle(
+                      fontSize: CONSTANT.FONT_SIZE_BODY,
+                      fontWeight: FontWeight.w300),
+                  obscureText: true,
+                  validator: (String value) =>
+                      value == _form['password'] ? null : 'รหัสผ่านไม่ตรงกัน'),
             ],
           ),
         ),

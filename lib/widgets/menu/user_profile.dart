@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/edit_profile/edit_profile.dart';
@@ -20,8 +22,14 @@ class UserProfile extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(CONSTANT.SIZE_SM),
           child: ProfileAvatar(
-            fabIcon: Icon(Icons.edit, size: CONSTANT.SIZE_XL),
-            img: userData.img,
+            fabIcon: Icon(
+              Icons.edit,
+              size: CONSTANT.SIZE_XL,
+            ),
+            img: MemoryImage(
+                userData.img != Utils.convertByteCodeToString(kTransparentImage)
+                    ? Utils.convertStringToByteCode(userData.img)
+                    : kTransparentImage),
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
             fabAction: () async {

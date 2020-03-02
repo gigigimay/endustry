@@ -36,6 +36,7 @@ class _ServiceListState extends State<ServiceList> {
           return widget.departmentsData
               .map((Department item) => ServiceItem(
                     text: item.name,
+                    imageUrl: item.image,
                     onPressed: () => Utils.navigatePush(
                         context, DepartmentInPage(departmentData: item)),
                   ))

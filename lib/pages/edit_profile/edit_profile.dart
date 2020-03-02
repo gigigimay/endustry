@@ -73,6 +73,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       typeId: _form['typeId'],
       img: _form['img'],
     );
+    print(newUser.toString());
     await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }

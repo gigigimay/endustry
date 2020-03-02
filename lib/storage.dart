@@ -53,9 +53,10 @@ class Storage {
   }
 
   insertNewUser(User newUserData, String password) async {
+    var users = await db.rawQuery('SELECT * FROM Users');
     db.execute(
-        "INSERT INTO USERS (email,password,firstName,lastName,typeId,img,favKnowledges,interestedTopics) " +
-            "VALUES ('${newUserData.email}','$password','${newUserData.firstName}','${newUserData.lastName}','${newUserData.typeId}','${newUserData.img}','${json.encode([])}','${json.encode(newUserData.interestedTopics)}')");
+        "INSERT INTO USERS (id,email,password,firstName,lastName,typeId,img,favKnowledges,interestedTopics) " +
+            "VALUES ('user0${users.length}','${newUserData.email}','$password','${newUserData.firstName}','${newUserData.lastName}','${newUserData.typeId}','${newUserData.img}','${json.encode([])}','${json.encode(newUserData.interestedTopics)}')");
   }
 
   clearUser() async {
@@ -134,6 +135,9 @@ class Storage {
   /// get userData from user id and return the data
   getUserDataFromId(String uid) async {
     var result = await db.rawQuery('SELECT * FROM Users WHERE id = "$uid";');
+    // TODO: something wrong
+    print('result $result');
+    print('user from json: ${User.fromJson(result.first)}');
     return result.isNotEmpty ? User.fromJson(result.first) : null;
   }
 

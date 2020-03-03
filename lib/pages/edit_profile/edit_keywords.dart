@@ -52,8 +52,6 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    final bool searched = _searchValue != null && _searchValue.isNotEmpty;
     final String descriptionText =
         'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';
 
@@ -78,10 +76,6 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
             controller: _searchFieldCtrl,
             hintText: 'ค้นหา',
             prefixIcon: Icon(Icons.search),
-            style: TextStyle(
-              fontSize: width * 0.05,
-              fontWeight: searched ? FontWeight.w700 : FontWeight.w300,
-            ),
             onChanged: onSearch,
             suffixIcon: _searchValue != null && _searchValue.isNotEmpty
                 ? IconButtonInk(

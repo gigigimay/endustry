@@ -37,13 +37,11 @@ class _KnowledgeFavPageState extends State<KnowledgeFavPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
     final bool searched = _searchValue != null && _searchValue.isNotEmpty;
-    final String message = searched
-        ? 'ไม่พบผลลัพธ์'
-        : 'ยังไม่มีคลังความรู้ของฉัน';
+    final String message =
+        searched ? 'ไม่พบผลลัพธ์' : 'ยังไม่มีคลังความรู้ของฉัน';
 
     // TODO: search for keywords
     List<Knowledge> filteredKnowledges = searched
@@ -74,10 +72,6 @@ class _KnowledgeFavPageState extends State<KnowledgeFavPage> {
                     hintText: 'ค้นหา',
                     controller: _searchFieldCtrl,
                     prefixIcon: Icon(Icons.search),
-                    style: TextStyle(
-                      fontSize: width * 0.05,
-                      fontWeight: searched ? FontWeight.w700 : FontWeight.w300
-                    ),
                     onChanged: onSearch,
                     suffixIcon: searched
                         ? IconButtonInk(

@@ -21,61 +21,63 @@ class EditProfileLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
-    return BgLayout(
-      child: Column(
-        children: <Widget>[
-          PageAppBar(
-            title: title,
-            hasBackArrow: true,
-            backArrowFunction: () {
-              Navigator.pop(context);
-            },
-          ),
-          Expanded(
-            child: PagePadding(
-              bottom: height * 0.05,
-              child: Stack(
-                children: <Widget>[
-                  // content of page
-                  RoundedBox(
-                    margin: EdgeInsets.only(
-                      top: topOverlap + marginTop,
-                      bottom: bottomOverlap,
+    return UnfocusNode(
+      child: BgLayout(
+        child: Column(
+          children: <Widget>[
+            PageAppBar(
+              title: title,
+              hasBackArrow: true,
+              backArrowFunction: () {
+                Navigator.pop(context);
+              },
+            ),
+            Expanded(
+              child: PagePadding(
+                bottom: height * 0.05,
+                child: Stack(
+                  children: <Widget>[
+                    // content of page
+                    RoundedBox(
+                      margin: EdgeInsets.only(
+                        top: topOverlap + marginTop,
+                        bottom: bottomOverlap,
+                      ),
+                      padding: EdgeInsets.only(
+                        top: topOverlap + CONSTANT.SIZE_XL,
+                        left: CONSTANT.SIZE_XL,
+                        right: CONSTANT.SIZE_XL,
+                        bottom: bottomOverlap + CONSTANT.SIZE_XL,
+                      ),
+                      child: child,
                     ),
-                    padding: EdgeInsets.only(
-                      top: topOverlap + CONSTANT.SIZE_XL,
-                      left: CONSTANT.SIZE_XL,
-                      right: CONSTANT.SIZE_XL,
-                      bottom: bottomOverlap + CONSTANT.SIZE_XL,
-                    ),
-                    child: child,
-                  ),
 
-                  // top content (avatar/image/etc.)
-                  topWidget != null
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[topWidget],
-                        )
-                      : Container(),
-
-                  // bottom content (button/etc.)
-                  bottomWidget != null
-                      ? Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Row(
+                    // top content (avatar/image/etc.)
+                    topWidget != null
+                        ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[bottomWidget],
-                          ),
-                        )
-                      : Container(),
-                ],
+                            children: <Widget>[topWidget],
+                          )
+                        : Container(),
+
+                    // bottom content (button/etc.)
+                    bottomWidget != null
+                        ? Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[bottomWidget],
+                            ),
+                          )
+                        : Container(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

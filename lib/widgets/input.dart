@@ -16,29 +16,34 @@ class Input extends StatelessWidget {
     this.suffixIcon,
     this.suffixText,
     this.style,
+    this.hintStyle,
     this.prefixIcon,
     this.textInputAction,
     this.keyboardType,
     this.onEditingComplete,
     this.controller,
+    this.fontSize,
   }) : super(key: key);
 
   final String hintText, labelText, initialValue, suffixText;
   final bool obscureText, readOnly, autofocus;
   final Function validator, onChanged, onSaved, onEditingComplete;
   final Widget suffixIcon;
-  final TextStyle style;
+  final TextStyle style, hintStyle;
   final Widget prefixIcon;
   final TextInputAction textInputAction;
   final TextInputType keyboardType;
   final TextEditingController controller;
+  final double fontSize;
+
+  String validate(String value) {
+    if (value.isEmpty) return 'กรุณากรอกข้อมูล';
+    return validator != null ? validator(value) : null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    String validate(String value) {
-      if (value.isEmpty) return 'กรุณากรอกข้อมูล';
-      return validator != null ? validator(value) : null;
-    }
+    final double width = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.only(bottom: CONSTANT.SIZE_MD),
@@ -54,11 +59,23 @@ class Input extends StatelessWidget {
         readOnly: readOnly,
         obscureText: obscureText,
         validator: validate,
-        style: style,
+        style: style ??
+            TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: fontSize ?? width * 0.05,
+              color: CONSTANT.COLOR_BODY,
+            ),
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           hasFloatingPlaceholder: true,
           suffixText: suffixText,
+          hintStyle: hintStyle ??
+              style ??
+              TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: fontSize ?? width * 0.05,
+                color: CONSTANT.COLOR_DISABLED,
+              ),
           suffixStyle: TextStyle(
             color: CONSTANT.COLOR_PRIMARY,
             fontSize: CONSTANT.FONT_SIZE_BODY,

@@ -66,24 +66,15 @@ class _RegisterPage1State extends State<RegisterPage1> {
               Input(
                 initialValue: widget.initData['firstName'],
                 hintText: 'ชื่อ',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 onChanged: saveForm('firstName'),
               ),
               Input(
                 initialValue: widget.initData['lastName'],
                 hintText: 'นามสกุล',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 onChanged: saveForm('lastName'),
               ),
               Input(
                 hintText: 'อีเมล',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 onChanged: saveForm('email'),
                 validator: (String value) =>
                     CONSTANT.REGEX.email.hasMatch(value)
@@ -92,9 +83,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
               ),
               Input(
                 hintText: 'รหัสผ่าน',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 obscureText: true,
                 onChanged: saveForm('password'),
               ),

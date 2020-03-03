@@ -86,7 +86,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.4;
-    final TextStyle textStyle = TextStyle(fontSize: width * 0.05);
 
     UserType userType = widget.userTypesData
         .firstWhere((UserType t) => t.id == _form['typeId']);
@@ -139,7 +138,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 children: <Widget>[
                   Input(
                     hintText: 'ชื่อ',
-                    style: textStyle,
                     initialValue: _form['firstName'],
                     onChanged: saveForm('firstName'),
                     // TODO: implement keyboard action
@@ -147,7 +145,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   Input(
                     hintText: 'นามสกุล',
-                    style: textStyle,
                     initialValue: _form['lastName'],
                     onChanged: saveForm('lastName'),
                     // TODO: implement keyboard action
@@ -155,7 +152,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   Input(
                     hintText: 'อีเมล',
-                    style: textStyle,
                     initialValue: _form['email'],
                     onChanged: saveForm('email'),
                     keyboardType: TextInputType.emailAddress,
@@ -167,7 +163,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   // TODO: edit password
                   Input(
                     initialValue: '••••••••••',
-                    style: textStyle,
                     readOnly: true,
                     obscureText: true,
                     suffixText: 'เปลี่ยนรหัสผ่าน',

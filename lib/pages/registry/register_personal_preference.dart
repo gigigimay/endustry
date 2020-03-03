@@ -32,6 +32,13 @@ class _RegisterPage4State extends State<RegisterPage4> {
     _preferList = widget.initData['interestTopic'];
   }
 
+  onClearSearch() {
+    _textEditingController.clear();
+    setState(() {
+      searchword = '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return RegisterLayout(
@@ -49,8 +56,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextField(
-                    style: CONSTANT.TEXT_STYLE_BODY,
+                  child: Input(
                     controller: _textEditingController,
                     decoration: InputDecoration(
                       prefixIcon:
@@ -67,6 +73,13 @@ class _RegisterPage4State extends State<RegisterPage4> {
                         searchword = _textEditingController.text;
                       });
                     },
+                    suffixIcon: searchword != null && searchword.isNotEmpty
+                        ? IconButtonInk(
+                            padding: EdgeInsets.all(0),
+                            onPressed: onClearSearch,
+                            icon: Icon(Icons.clear),
+                          )
+                        : null,
                   ),
                 ),
               ],

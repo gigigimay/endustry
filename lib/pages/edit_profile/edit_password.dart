@@ -91,7 +91,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                     controller: _oldPwdCtrl,
                     obscureText: true,
                     hintText: 'รหัสผ่านปัจจุบัน',
-                    style: TextStyle(fontSize: width * 0.05),
                     onChanged: saveForm('oldPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
@@ -100,7 +99,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                   Input(
                     obscureText: true,
                     hintText: 'รหัสผ่านใหม่',
-                    style: TextStyle(fontSize: width * 0.05),
                     onChanged: saveForm('newPassword'),
                     // TODO: implement keyboard action
                     textInputAction: TextInputAction.next,
@@ -108,7 +106,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                   Input(
                     obscureText: true,
                     hintText: 'ยืนยันรหัสผ่านใหม่',
-                    style: TextStyle(fontSize: width * 0.05),
                     onChanged: saveForm('confirmNewPassword'),
                     textInputAction: TextInputAction.done,
                     validator: (String v) =>

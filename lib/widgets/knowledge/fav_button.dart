@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 
 class FavButton extends StatefulWidget {
@@ -20,7 +21,8 @@ class _FavButtonState extends State<FavButton> {
           ? Storage.user.favKnowledges.remove(widget.knwId)
           : Storage.user.favKnowledges.add(widget.knwId);
     });
-    // TODO: update database
+    FirebaseDB firebaseDB = FirebaseDB();
+    firebaseDB.updateUserFav(Storage.user.favKnowledges);
     print(Storage.user.favKnowledges);
   }
 

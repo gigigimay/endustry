@@ -11,7 +11,7 @@ class ServiceHomePage extends StatelessWidget {
   }) : super(key: key);
 
   final List<Service> recentServicesData = MOCK_SERVICES;
-  List<Service> suggestedServicesData = Storage.suggestServices;
+  final List<Service> suggestedServicesData = Storage.suggestServices;
   final List<Service> servicesData = MOCK_SERVICES;
   final List<Department> departmentsData = MOCK_DEPARTMENT;
 

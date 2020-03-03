@@ -9,7 +9,6 @@ import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class EditProfilePage extends StatefulWidget {
   EditProfilePage({Key key}) : super(key: key);
@@ -63,7 +62,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
     FirebaseDB _firebaseDB = FirebaseDB();
     await _firebaseDB.editUserProfile(newUser);
-    // await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }
 
@@ -106,14 +104,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
-    print(_userData.img);
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
+      onTap: () => Utils.unfocus(context),
       child: EditProfileLayout(
         title: 'แก้ไขโปรไฟล์',
         topOverlap: avatarSize / 2,
@@ -179,7 +171,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               ? null
                               : 'อีเมลไม่ถูกต้อง',
                     ),
-                    // TODO: edit password
                     Input(
                       initialValue: '••••••••••',
                       readOnly: true,
@@ -211,7 +202,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ),
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG),
-                    // TODO: click to open dropdown
                     Dropdown<UserType>(
                       title: 'คุณคือ',
                       initialValue: userType,

@@ -16,7 +16,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   var _form = {};
 
   TextEditingController _oldPwdCtrl = TextEditingController();
-
+  var _oldPassfocusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -24,6 +24,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
 
   void clearField(String key, TextEditingController controller) {
     controller?.clear();
+    FocusScope.of(context).requestFocus(_oldPassfocusNode);
     setState(() {
       _form.remove(key);
     });
@@ -33,15 +34,11 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
     if (_formKey.currentState.validate()) {
       FirebaseDB _firebaseDB = FirebaseDB();
       _firebaseDB.editUserPassword(Utils.encode(_form['newPassword']));
-      // await Storage().editUserPassword(
-      //   widget.userData.id,
-      //   Utils.encode(_form['newPassword']),
-      // );
+
       Navigator.pop(context, true);
     } else if (_form.length == 3 &&
         _form['newPassword'] == _form['confirmNewPassword'] &&
         _form['oldPassword'] != Storage.user.password) {
-      // TODO: grant focus to oldPassword field when clear field
       clearField('oldPassword', _oldPwdCtrl);
     }
   }
@@ -66,16 +63,19 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.25;
 
-    return EditProfileLayout(
-      title: 'เปลี่ยนรหัสผ่าน',
-      marginTop: CONSTANT.SIZE_XL,
-      topOverlap: avatarSize / 2,
-      bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
-      topWidget: Padding(
-        padding: const EdgeInsets.only(top: CONSTANT.SIZE_XL),
-        child: Icon(
-          Icons.lock,
-          size: avatarSize,
+    return GestureDetector(
+      onTap: () => Utils.unfocus(context),
+      child: EditProfileLayout(
+        title: 'เปลี่ยนรหัสผ่าน',
+        marginTop: CONSTANT.SIZE_XL,
+        topOverlap: avatarSize / 2,
+        bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
+        topWidget: Padding(
+          padding: const EdgeInsets.only(top: CONSTANT.SIZE_XL),
+          child: Icon(
+            Icons.lock,
+            size: avatarSize,
+          ),
         ),
       ),
       bottomWidget: GradientButton(
@@ -91,6 +91,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Input(
+                    focusNode: _oldPassfocusNode,
                     controller: _oldPwdCtrl,
                     obscureText: true,
                     hintText: 'รหัสผ่านปัจจุบัน',
@@ -116,8 +117,8 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

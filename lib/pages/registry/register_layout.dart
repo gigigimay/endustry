@@ -32,12 +32,7 @@ class RegisterLayout extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: GestureDetector(
-              onTap: () {
-                FocusScopeNode currentFocus = FocusScope.of(context);
-                if (!currentFocus.hasPrimaryFocus) {
-                  currentFocus.unfocus();
-                }
-              },
+              onTap: () => Utils.unfocus(context),
               child: Container(
                 color: Colors.transparent,
                 child: Column(

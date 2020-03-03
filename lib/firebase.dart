@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,8 +6,6 @@ import 'package:endustry/export.dart';
 import 'package:endustry/storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 class FirebaseDB {
@@ -115,6 +112,12 @@ class FirebaseDB {
   editUserKeyword(List<String> value) async {
     await Firestore.instance.collection('users').document(user.uid).updateData({
       'interestedTopics': value ?? [],
+    }).catchError((e) => print(e));
+  }
+
+  updateUserFav(List<String> value) async {
+    await Firestore.instance.collection('users').document(user.uid).updateData({
+      'favKnowledges': value ?? [],
     }).catchError((e) => print(e));
   }
 }

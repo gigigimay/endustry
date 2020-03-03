@@ -36,7 +36,6 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
     FirebaseDB _firebaseDB = FirebaseDB();
     _firebaseDB.editUserKeyword(_preferList);
     Storage().generateInterest();
-    // await Storage().editUserKeyword(widget.userData.id, _preferList);
     Navigator.pop(context, true);
   }
 

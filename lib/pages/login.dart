@@ -11,12 +11,7 @@ class LoginPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
+        onTap: () => Utils.unfocus(context),
         child: Container(
           color: CONSTANT.COLOR_PRIMARY,
           child: Stack(

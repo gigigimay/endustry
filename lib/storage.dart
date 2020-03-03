@@ -26,6 +26,7 @@ class Storage {
   static List<Service> suggestServices;
   static List<Knowledge> suggestKnowledges;
 
+  /// TODO: remove?
   initDB() async {
     // Construct a file path to copy database to
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -135,6 +136,8 @@ class Storage {
     print('getUsertypes: ' + list.toString());
     return list;
   }
+
+  ///
 
   /// mush have user data in storage
   updateServiceHistory() async {

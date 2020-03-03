@@ -4,8 +4,6 @@ import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';
 import 'package:endustry/pages/registry/register_personal_status.dart';
-import 'package:endustry/storage.dart';
-
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
 

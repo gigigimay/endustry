@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/home/suggested_knowledge_group.dart';
 import 'package:endustry/widgets/service/recent_service_group.dart';
@@ -18,6 +19,13 @@ class _HomePageState extends State<HomePage> {
   final List<Knowledge> suggestedKnowledgesData = Storage.suggestKnowledges;
 
   final String currentTab = 'home';
+
+  initUserData() async {
+    if (FirebaseDB.user == null) {
+      FirebaseDB.user = await FirebaseDB()
+          .handleSignIn(Storage.user.email, Storage.user.password);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

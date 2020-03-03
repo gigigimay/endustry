@@ -26,7 +26,6 @@ class _RegisterPage3State extends State<RegisterPage3> {
     super.initState();
     _selectIndex = MOCK_USERTYPES
         .indexWhere((item) => item.id == widget.initData['typeId']);
-    print('>>$_selectIndex');
     _valid = [0, 1].contains(_selectIndex);
   }
 

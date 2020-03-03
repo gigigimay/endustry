@@ -47,11 +47,12 @@ class _UserProfileState extends State<UserProfile> {
               Icons.edit,
               size: CONSTANT.SIZE_XL,
             ),
-            img: MemoryImage(
-              _userData.img != Utils.convertByteCodeToString(kTransparentImage)
-                  ? Utils.convertStringToByteCode(_userData.img)
-                  : kTransparentImage,
-            ),
+            img: NetworkImage(_userData.img),
+            //  MemoryImage(
+            //   _userData.img != Utils.convertByteCodeToString(kTransparentImage)
+            //       ? Utils.convertStringToByteCode(_userData.img)
+            //       : kTransparentImage,
+            // ),
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
             fabAction: onEditPressed,

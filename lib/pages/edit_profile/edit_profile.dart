@@ -9,6 +9,7 @@ import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/menu/profile_avatar.dart';
 import 'package:endustry/widgets/menu/edit_button.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class EditProfilePage extends StatefulWidget {
   EditProfilePage({Key key}) : super(key: key);
@@ -35,7 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       'email': _userData.email,
       'typeId': _userData.typeId,
     };
-    _imgByteCode = Utils.convertStringToByteCode(_userData.img);
+
     super.initState();
   }
 
@@ -47,16 +48,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   void submitForm() async {
     // TODO: check if the email is already used.
+    String newImgUrl = Storage.user.img;
+    if (_imgByteCode != kTransparentImage) {
+      await FirebaseDB().addImageToStorage(_imgByteCode, Storage.user.id);
+    }
+
     final User newUser = User.fromUser(
       _userData,
       email: _form['email'],
       firstName: _form['firstName'],
       lastName: _form['lastName'],
       typeId: _form['typeId'],
-      img: Utils.convertByteCodeToString(_imgByteCode),
+      img: newImgUrl,
     );
     FirebaseDB _firebaseDB = FirebaseDB();
-    print('edit profile - user: ${Storage.user}');
     await _firebaseDB.editUserProfile(newUser);
     // await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
@@ -101,6 +106,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
+    print(_userData.img);
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -113,10 +119,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         topOverlap: avatarSize / 2,
         bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
         topWidget: ProfileAvatar(
-          img: MemoryImage(
-              _imgByteCode != Utils.convertByteCodeToString(kTransparentImage)
-                  ? _imgByteCode
-                  : kTransparentImage),
+          img: _imgByteCode == kTransparentImage
+              ? NetworkImage(_userData.img)
+              : MemoryImage(_imgByteCode),
           avatarSize: avatarSize,
           fabSize: avatarSize * 0.3,
           fabIcon: Icon(
@@ -124,12 +129,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
             size: CONSTANT.SIZE_XL,
           ),
           fabAction: () async {
+            var _oldImgByteCode = _imgByteCode;
             _imgByteCode = await Utils.getImageByGallery();
-            if (_imgByteCode != kTransparentImage) {
-              setState(() {
+            setState(() {
+              if (Utils.convertByteCodeToString(_imgByteCode) !=
+                  Utils.convertByteCodeToString(kTransparentImage)) {
                 _imgByteCode = _imgByteCode;
-              });
-            }
+              } else
+                _imgByteCode = _oldImgByteCode;
+            });
           },
         ),
         bottomWidget: GradientButton(

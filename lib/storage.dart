@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
+import 'package:endustry/firebase.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -176,8 +177,11 @@ class Storage {
   checkUidPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     var uid = prefs.getString('uid');
+    print(uid);
     if (uid != null) {
-      var userData = await getUserDataFromId(uid);
+      // var userData = await getUserDataFromId(uid);
+      FirebaseDB _firebaseDB = FirebaseDB();
+      var userData = await _firebaseDB.getUserData(uid);
       Storage.user = userData;
       updateServiceHistory();
       return true;
@@ -192,7 +196,7 @@ class Storage {
     updateServiceHistory();
     Storage().generateInterest();
     final prefs = await SharedPreferences.getInstance();
-    // prefs.setString('uid', userData.id);
+    prefs.setString('uid', FirebaseDB.user.uid);
     print(userData.id);
   }
 

@@ -47,7 +47,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   }
 
   validateOldPassword(String v) {
-    print(Storage.user.password);
     return (_form.length == 3 &&
             _form['newPassword'] == _form['confirmNewPassword'])
         ? Utils.encode(v) != Storage.user.password

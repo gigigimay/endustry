@@ -71,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             _loginFailed
                 ? Text(
-                    'อีเมลล์หรือรหัสผ่านไม่ถูกต้อง',
+                    'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
                     style: TextStyle(color: Theme.of(context).errorColor),
                   )
                 : Container(),

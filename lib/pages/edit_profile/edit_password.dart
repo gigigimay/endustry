@@ -32,7 +32,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   void submitForm() async {
     if (_formKey.currentState.validate()) {
       FirebaseDB _firebaseDB = FirebaseDB();
-      _firebaseDB.editUserPassword(_firebaseDB.user,Utils.encode(_form['newPassword']));
+      _firebaseDB.editUserPassword(Utils.encode(_form['newPassword']));
       // await Storage().editUserPassword(
       //   widget.userData.id,
       //   Utils.encode(_form['newPassword']),
@@ -47,6 +47,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   }
 
   validateOldPassword(String v) {
+    print(Storage.user.password);
     return (_form.length == 3 &&
             _form['newPassword'] == _form['confirmNewPassword'])
         ? Utils.encode(v) != Storage.user.password

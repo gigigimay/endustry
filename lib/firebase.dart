@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endustry/export.dart';
+import 'package:endustry/storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseDB {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseUser user;
+  static FirebaseUser user;
 
   Future<FirebaseUser> _handleSignIn(email, password) async {
     final AuthCredential credential = EmailAuthProvider.getCredential(
@@ -18,29 +19,32 @@ class FirebaseDB {
   }
 
   login(email, password) async {
-    User user = await _handleSignIn(email, password).then((FirebaseUser user) {
-      this.user = user;
-      return Firestore.instance
-          .collection('users')
-          .document(user.uid)
-          .get()
-          .then((DocumentSnapshot ds) {
-        return User(
-            id: user.uid,
-            email: ds['email'],
-            password: ds['password'],
-            firstName: ds['firstName'],
-            lastName: ds['lastName'],
-            img: Utils.convertByteCodeToString(kTransparentImage),
-            typeId: ds['typeId'],
-            interestedTopics: List<String>.from(ds['interestedTopics']),
-            favKnowledges: List<String>.from(ds['favKnowledges']));
-      });
-    }).catchError((e) => print(e));
+    user = await _handleSignIn(email, password).catchError((e) => print(e));
 
-    print(user.email);
-    print(user.firstName);
-    return user;
+    return await getUserData();
+  }
+
+  Future<User> getUserData() async {
+    User currentUser = await Firestore.instance
+        .collection('users')
+        .document(user.uid)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return User(
+          id: user.uid,
+          email: ds['email'],
+          password: ds['password'],
+          firstName: ds['firstName'],
+          lastName: ds['lastName'],
+          img: Utils.convertByteCodeToString(kTransparentImage),
+          typeId: ds['typeId'],
+          interestedTopics: List<String>.from(ds['interestedTopics']),
+          favKnowledges: List<String>.from(ds['favKnowledges']));
+    });
+
+    print(currentUser.email);
+    print(currentUser.password);
+    return currentUser;
   }
 
   logout() async {
@@ -56,6 +60,7 @@ class FirebaseDB {
 
     await Firestore.instance.collection('users').document(user.uid).setData({
       'email': user.email,
+      'password': password,
       'firstName': newUserData.firstName,
       'lastName': newUserData.lastName,
       // 'img': newUserData.img,
@@ -65,7 +70,7 @@ class FirebaseDB {
     });
   }
 
-  editUserProfile(user, updatedUserData) async {
+  editUserProfile(User updatedUserData) async {
     await Firestore.instance.collection('users').document(user.uid).updateData({
       'firstName': updatedUserData.firstName ?? '',
       'lastName': updatedUserData.lastName ?? '',
@@ -75,13 +80,15 @@ class FirebaseDB {
     }).catchError((e) => print(e));
 
     await user.updateEmail(updatedUserData.email);
+
+    Storage.user = await getUserData();
   }
 
-  editUserPassword(user, String newPassword) async {
+  editUserPassword(String newPassword) async {
     await user.updatePassword(newPassword);
   }
 
-  editUserKeyword(user, List<String> value) async {
+  editUserKeyword(List<String> value) async {
     await Firestore.instance.collection('users').document(user.uid).updateData({
       'interestedTopics': value ?? [],
     }).catchError((e) => print(e));

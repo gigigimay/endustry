@@ -56,8 +56,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       img: Utils.convertByteCodeToString(_imgByteCode),
     );
     FirebaseDB _firebaseDB = FirebaseDB();
-    print(FirebaseDB().user);
-    _firebaseDB.editUserProfile(_firebaseDB.user, newUser);
+    print('edit profile - user: ${Storage.user}');
+    await _firebaseDB.editUserProfile(newUser);
     // await Storage().editUserProfile(newUser);
     Navigator.pop(context, true);
   }
@@ -203,6 +203,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ),
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG),
+                    // TODO: click to open dropdown
                     Dropdown<UserType>(
                       title: 'คุณคือ',
                       initialValue: userType,

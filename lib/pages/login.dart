@@ -1,8 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/login/login_form.dart';
-import 'package:endustry/firebase.dart';
-import 'package:endustry/storage.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);

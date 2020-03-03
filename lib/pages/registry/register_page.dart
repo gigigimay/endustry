@@ -73,6 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
         firstName: userInfo['firstName'],
         lastName: userInfo['lastName'],
         email: userInfo['email'],
+        password: userInfo['password'],
         img: userInfo['img'],
         typeId: userInfo['typeId'],
         interestedTopics: List<String>.from(userInfo['interestTopic']));

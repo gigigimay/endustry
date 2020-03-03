@@ -103,7 +103,8 @@ class Utils {
     return _suggestList;
   }
 
-  static padNumber(value, {length = 2}) => value.toString().padLeft(length, '0');
+  static padNumber(value, {length = 2}) =>
+      value.toString().padLeft(length, '0');
 
   static String formatDateTime(datetime) {
     final dateData = DateTime.parse(datetime);

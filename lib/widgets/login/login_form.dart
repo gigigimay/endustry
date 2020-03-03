@@ -29,7 +29,7 @@ class _LoginFormState extends State<LoginForm> {
               _form['email'], Utils.encode(_form['password']));
 
           if (user != null) {
-            storage.login(user);
+            await storage.login(user);
             Navigator.pushNamedAndRemoveUntil(
                 context, '/home', (Route<dynamic> route) => false);
           } else {

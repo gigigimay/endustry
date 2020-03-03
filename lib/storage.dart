@@ -9,7 +9,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 Database db;
 
 class Storage {
@@ -143,8 +142,7 @@ class Storage {
       List<ServiceHistory> list = [];
       await db
           .rawQuery('''SELECT serviceId, userId, max(datetime) as datetime FROM 
-          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''')
-          .then((data) {
+          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''').then((data) {
         data.forEach((item) => list.add(ServiceHistory.fromJson(item)));
       });
       Storage.serviceHistory = list;
@@ -189,10 +187,13 @@ class Storage {
 
   /// set uid in preference, and set user data variable
   login(User userData) async {
+    print('strge login: ${userData.interestedTopics}');
     user = userData;
     updateServiceHistory();
+    Storage().generateInterest();
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('uid', userData.id);
+    // prefs.setString('uid', userData.id);
+    print(userData.id);
   }
 
   /// remove uid from preference, and clear user data variable

@@ -1,12 +1,10 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
-import 'package:endustry/pages/knowledge/knowledge_in.dart';
 import 'package:endustry/storage.dart';
-import 'package:endustry/widgets/knowledge/knowledge_item.dart';
+import 'package:endustry/widgets/home/suggested_knowledge_group.dart';
 import 'package:endustry/widgets/service/recent_service_group.dart';
 import 'package:endustry/widgets/service/suggested_service_group.dart';
 import '../widgets/home/searchbar.dart';
-import '../widgets/home/content_group.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -62,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: CONSTANT.SIZE_XX + width * 0.1),
                     SearchBar(),
-                    const SizedBox(height: CONSTANT.SIZE_MD),
+                    SizedBox(height: CONSTANT.SIZE_MD),
                     PageScrollBody(
                       child: Column(
                         children: <Widget>[
@@ -87,44 +85,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class SuggestedKnowledgeGroup extends StatelessWidget {
-  const SuggestedKnowledgeGroup({
-    Key key,
-    @required this.suggestedKnowledgesData,
-    @required this.currentTab,
-    this.maxItems = 3,
-  }) : super(key: key);
-
-  final List<Knowledge> suggestedKnowledgesData;
-  final String currentTab;
-  final int maxItems;
-
-  @override
-  Widget build(BuildContext context) {
-    final int length = suggestedKnowledgesData.length;
-    return ContentGroup(
-      title: 'คลังความรู้แนะนำ',
-      spacing: 0,
-      runSpacing: 0,
-      onSeeAll: () {
-        Utils.navigatePush(context, KnowledgePage());
-      },
-      children: suggestedKnowledgesData
-          .sublist(0, length < maxItems ? length : maxItems)
-          .map((Knowledge item) => KnowledgeItem(
-                knowledgeData: item,
-                itemOnPressed: () => Utils.navigatePush(
-                    context,
-                    KnowledgeInPage(
-                      knowledgeData: item,
-                      currentTab: currentTab,
-                    )),
-              ))
-          .toList(),
     );
   }
 }

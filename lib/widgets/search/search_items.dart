@@ -101,7 +101,7 @@ class SearchItems {
                     style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
                   ),
                   Text(
-                    data.depId,
+                    data.departmentData.name,
                     style: CONSTANT.TEXT_STYLE_BODY,
                   ),
                 ],

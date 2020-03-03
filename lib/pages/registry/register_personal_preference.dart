@@ -35,6 +35,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
   @override
   Widget build(BuildContext context) {
     return RegisterLayout(
+      scroll: false,
       registerStep: 3,
       stateTitle: 'เลือกสิ่งที่คุณสนใจ',
       stateSubTitle: 'การกำหนดสิ่งที่คุณสนใจจะช่วยทำให้...',
@@ -52,10 +53,8 @@ class _RegisterPage4State extends State<RegisterPage4> {
                     style: CONSTANT.TEXT_STYLE_BODY,
                     controller: _textEditingController,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: CONSTANT.COLOR_PRIMARY,
-                      ),
+                      prefixIcon:
+                          Icon(Icons.search, color: CONSTANT.COLOR_PRIMARY),
                       hintText: CONSTANT.WORD_SEARCH_TH,
                       hintStyle: TextStyle(
                         fontSize: CONSTANT.FONT_SIZE_BODY,
@@ -72,9 +71,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
                 ),
               ],
             ),
-            SizedBox(
-              height: CONSTANT.SIZE_XX,
-            ),
+            SizedBox(height: CONSTANT.SIZE_XX),
             Expanded(
               child: SingleChildScrollView(
                 child: Wrap(

@@ -19,7 +19,7 @@ const List<Service> MOCK_SERVICES = [
   ),
   Service(
     id: 'sv02',
-    name: 'หนึ่งนะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุ��� ธัสสะ',
+    name: 'หนึ่งนะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุทธัสสะ',
     description: 'คำอธิบาย นะโม ตัสสะ ภะคะวะโต อะระหะโต สัมมาสัมพุท ธัสสะ',
     url: 'https://www.google.com/',
     image: 'https://picsum.photos/151',
@@ -141,14 +141,8 @@ const User MOCK_USER = User(
 );
 
 const List<UserType> MOCK_USERTYPES = [
-  UserType(
-    id: 'ust00',
-    name: 'บุคคลทั่วไป',
-  ),
-  UserType(
-    id: 'ust01',
-    name: 'ผู้ประกอบการ',
-  ),
+  UserType(id: 'ust00', name: 'ผู้ประกอบการ'),
+  UserType(id: 'ust01', name: 'บุคคลทั่วไป'),
 ];
 
 const List<Knowledge> MOCK_KNOWLEDGES = [

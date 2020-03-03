@@ -3,24 +3,25 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/registry/register_btn_group.dart';
 
 class RegisterLayout extends StatelessWidget {
-  const RegisterLayout(
-      {Key key,
-      @required this.child,
-      @required this.registerStep,
-      @required this.stateTitle,
-      this.stateSubTitle = '',
-      this.nextText = 'ต่อไป',
-      this.nextBtnFuntion,
-      this.backText = 'ย้อนกลับ',
-      this.prevBtnFuntion,
-      this.disabled=false})
-      : super(key: key);
+  const RegisterLayout({
+    Key key,
+    @required this.child,
+    @required this.registerStep,
+    @required this.stateTitle,
+    this.stateSubTitle = '',
+    this.nextText = 'ต่อไป',
+    this.nextBtnFuntion,
+    this.backText = 'ย้อนกลับ',
+    this.prevBtnFuntion,
+    this.disabled = false,
+    this.scroll = true,
+  }) : super(key: key);
 
   final Widget child;
   final registerStep, stateTitle;
   final String stateSubTitle, backText, nextText;
   final Function() nextBtnFuntion, prevBtnFuntion;
-  final bool disabled;
+  final bool disabled, scroll;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,7 @@ class RegisterLayout extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TitleText('สมัครสมาชิก'),
-                    SizedBox(
-                      height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS,
-                    ),
+                    SizedBox(height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS),
                     Row(
                       children: <Widget>[
                         Stack(
@@ -69,12 +68,11 @@ class RegisterLayout extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(
-                          width: CONSTANT.SIZE_LG,
-                        ),
+                        SizedBox(width: CONSTANT.SIZE_LG),
                         Transform.translate(
                           offset: Offset(0, 10),
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
                                 stateTitle,
@@ -95,10 +93,10 @@ class RegisterLayout extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS,
-                    ),
-                    child,
+                    SizedBox(height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS),
+                    scroll
+                        ? Expanded(child: SingleChildScrollView(child: child))
+                        : child,
                   ],
                 ),
               ),

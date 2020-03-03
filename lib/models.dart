@@ -4,6 +4,7 @@ import 'dart:convert';
 class Service {
   final String id, name, description, image, url, depId;
   final List tag;
+  final Department departmentData;
   const Service({
     @required this.id,
     @required this.name,
@@ -12,6 +13,7 @@ class Service {
     this.url,
     this.depId,
     this.tag,
+    this.departmentData,
   });
 
   factory Service.fromJson(Map<String, dynamic> json) => Service(
@@ -22,6 +24,17 @@ class Service {
         url: json["url"],
         depId: json["depId"],
       );
+  
+  factory Service.joinDep(Service service, Department department) => Service(
+    id: service.id,
+    name: service.name,
+    description: service.description,
+    image: service.image,
+    url: service.url,
+    depId: service.depId,
+    tag: service.tag,
+    departmentData: department,
+  );
 }
 
 class News {

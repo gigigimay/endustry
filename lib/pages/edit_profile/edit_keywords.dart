@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 import 'package:endustry/widgets/registry/prefer_chip.dart';
@@ -32,8 +33,9 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
   }
 
   void submitForm() async {
-    await Storage().editUserKeyword(widget.userData.id, _preferList);
-    Storage().generateInterest();
+    FirebaseDB _firebaseDB = FirebaseDB();
+    _firebaseDB.editUserKeyword(_firebaseDB.user,_preferList);
+    // await Storage().editUserKeyword(widget.userData.id, _preferList);
     Navigator.pop(context, true);
   }
 

@@ -77,8 +77,8 @@ class _RegisterPageState extends State<RegisterPage> {
         typeId: userInfo['typeId'],
         interestedTopics: List<String>.from(userInfo['interestTopic']));
 
-    FirebaseDB firebasedb = FirebaseDB();
-    firebasedb.register(newUser, Utils.encode(userInfo['password']));
+    FirebaseDB _firebasedb = FirebaseDB();
+    _firebasedb.register(newUser, Utils.encode(userInfo['password']));
 
     Navigator.pop(context);
   }

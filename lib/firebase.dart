@@ -19,6 +19,7 @@ class FirebaseDB {
 
   login(email, password) async {
     User user = await _handleSignIn(email, password).then((FirebaseUser user) {
+      this.user = user;
       return Firestore.instance
           .collection('users')
           .document(user.uid)
@@ -42,6 +43,10 @@ class FirebaseDB {
     return user;
   }
 
+  logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   register(User newUserData, String password) async {
     user = (await _auth.createUserWithEmailAndPassword(
       email: newUserData.email,
@@ -49,7 +54,7 @@ class FirebaseDB {
     ))
         .user;
 
-    Firestore.instance.collection('users').document(user.uid).setData({
+    await Firestore.instance.collection('users').document(user.uid).setData({
       'email': user.email,
       'firstName': newUserData.firstName,
       'lastName': newUserData.lastName,
@@ -60,29 +65,25 @@ class FirebaseDB {
     });
   }
 
-  // TODO: convert these function to firebase function
-  //   editUserProfile(User userData) async {
-  //   var result = await db.rawQuery('''UPDATE Users
-  //       SET
-  //         firstName="${userData.firstName}",
-  //         lastName="${userData.lastName}",
-  //         email="${userData.email}",
-  //         typeId="${userData.typeId}",
-  //         img="${userData.img ?? ''}"
-  //       WHERE id="${userData.id}";''');
-  //   print('editUserProfile: ' + result.toString());
-  //   user = await getUserDataFromId(userData.id);
-  // }
+  editUserProfile(user, updatedUserData) async {
+    await Firestore.instance.collection('users').document(user.uid).updateData({
+      'firstName': updatedUserData.firstName ?? '',
+      'lastName': updatedUserData.lastName ?? '',
+      'email': updatedUserData.email ?? '',
+      'typeId': updatedUserData.typeId ?? '',
+      // 'img': updatedUserData.img ?? ''
+    }).catchError((e) => print(e));
 
-  // editUserPassword(String uid, String newPassword) async {
-  //   await db
-  //       .rawQuery('UPDATE Users SET password="$newPassword" WHERE id="$uid";');
-  //   user = await getUserDataFromId(uid);
-  // }
+    await user.updateEmail(updatedUserData.email);
+  }
 
-  // editUserKeyword(String uid, List<String> value) async {
-  //   await db.rawQuery(
-  //       '''UPDATE Users SET interestedTopics='${json.encode(value)}' WHERE id="$uid";''');
-  //   user = await getUserDataFromId(uid);
-  // }
+  editUserPassword(user, String newPassword) async {
+    await user.updatePassword(newPassword);
+  }
+
+  editUserKeyword(user, List<String> value) async {
+    await Firestore.instance.collection('users').document(user.uid).updateData({
+      'interestedTopics': value ?? [],
+    }).catchError((e) => print(e));
+  }
 }

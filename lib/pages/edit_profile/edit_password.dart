@@ -1,5 +1,6 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
+import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 import 'package:endustry/widgets/menu/edit_profile_layout.dart';
 
@@ -30,10 +31,12 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
 
   void submitForm() async {
     if (_formKey.currentState.validate()) {
-      await Storage().editUserPassword(
-        widget.userData.id,
-        Utils.encode(_form['newPassword']),
-      );
+      FirebaseDB _firebaseDB = FirebaseDB();
+      _firebaseDB.editUserPassword(_firebaseDB.user,Utils.encode(_form['newPassword']));
+      // await Storage().editUserPassword(
+      //   widget.userData.id,
+      //   Utils.encode(_form['newPassword']),
+      // );
       Navigator.pop(context, true);
     } else if (_form.length == 3 &&
         _form['newPassword'] == _form['confirmNewPassword'] &&

@@ -45,7 +45,7 @@ class ListItem extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         )
-                      : Container()),
+                      : CONSTANT.PLACEHOLDER_IMAGE),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),

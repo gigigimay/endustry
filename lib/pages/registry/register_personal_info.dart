@@ -26,11 +26,9 @@ class _RegisterPage1State extends State<RegisterPage1> {
     });
   }
 
-  Function saveForm(key) => (value) {
-        setState(() {
-          _form[key] = value;
-        });
-      };
+  Function saveForm(key) => (value) => setState(() {
+        _form[key] = value;
+      });
 
   @override
   void initState() {
@@ -49,21 +47,19 @@ class _RegisterPage1State extends State<RegisterPage1> {
         validateForm();
         if (_isValid) {
           widget.nextBtnFuntion(
-              firstname: _form['firstName'],
-              lastname: _form['lastName'],
-              email: _form['email'],
-              password: _form['password']);
+            firstname: _form['firstName'],
+            lastname: _form['lastName'],
+            email: _form['email'],
+            password: _form['password'],
+          );
         }
       },
-      child: Form(
-        key: _registFormKey,
-        autovalidate: false,
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-          padding: EdgeInsets.symmetric(
-              horizontal: CONSTANT.SIZE_XL, vertical: CONSTANT.SIZE_LG),
+      child: RoundedBox(
+        padding: EdgeInsets.symmetric(
+            horizontal: CONSTANT.SIZE_XL, vertical: CONSTANT.SIZE_LG),
+        child: Form(
+          key: _registFormKey,
+          autovalidate: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -103,13 +99,14 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 onChanged: saveForm('password'),
               ),
               Input(
-                  hintText: 'ยืนยันรหัสผ่าน',
-                  style: TextStyle(
-                      fontSize: CONSTANT.FONT_SIZE_BODY,
-                      fontWeight: FontWeight.w300),
-                  obscureText: true,
-                  validator: (String value) =>
-                      value == _form['password'] ? null : 'รหัสผ่านไม่ตรงกัน'),
+                hintText: 'ยืนยันรหัสผ่าน',
+                style: TextStyle(
+                    fontSize: CONSTANT.FONT_SIZE_BODY,
+                    fontWeight: FontWeight.w300),
+                obscureText: true,
+                validator: (String value) =>
+                    value == _form['password'] ? null : 'รหัสผ่านไม่ตรงกัน',
+              ),
             ],
           ),
         ),

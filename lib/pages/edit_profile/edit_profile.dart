@@ -113,22 +113,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
         topOverlap: avatarSize / 2,
         bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
         topWidget: ProfileAvatar(
-            img: MemoryImage(_userData.img !=
-                    Utils.convertByteCodeToString(kTransparentImage)
-                ? Utils.convertStringToByteCode(_userData.img)
-                : kTransparentImage),
-            avatarSize: avatarSize,
-            fabSize: avatarSize * 0.3,
-            fabIcon: Icon(
-              Icons.camera_alt,
-              size: CONSTANT.SIZE_XL,
-            ),
-            fabAction: () async {
-              _imgByteCode = await Utils.getImageByGallery();
+          img: MemoryImage(
+              _imgByteCode != Utils.convertByteCodeToString(kTransparentImage)
+                  ? _imgByteCode
+                  : kTransparentImage),
+          avatarSize: avatarSize,
+          fabSize: avatarSize * 0.3,
+          fabIcon: Icon(
+            Icons.image,
+            size: CONSTANT.SIZE_XL,
+          ),
+          fabAction: () async {
+            _imgByteCode = await Utils.getImageByGallery();
+            if (_imgByteCode != kTransparentImage) {
               setState(() {
                 _imgByteCode = _imgByteCode;
               });
-            }),
+            }
+          },
+        ),
         bottomWidget: GradientButton(
           text: 'บันทึก',
           disabled: !_isValid,
@@ -200,8 +203,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ),
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG),
-                    // TODO: click to open dropdown
-                    Dropdown(title: 'คุณคือ', valueLabel: userType, items: []),
+                    Dropdown<UserType>(
+                      title: 'คุณคือ',
+                      initialValue: userType,
+                      items: widget.userTypesData,
+                      getLabel: (UserType item) => item.name,
+                      onChanged: (UserType value) => setState(() {
+                        _form['typeId'] = value.id;
+                      }),
+                    ),
                     SizedBox(height: CONSTANT.SIZE_LG),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,22 +227,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         )
                       ],
                     ),
-                    Wrap(
-                      spacing: CONSTANT.SIZE_XL,
-                      runSpacing: 0.0,
-                      children: keywords
-                          .map((word) => Chip(
-                                padding: EdgeInsets.all(0),
-                                label: Text(
-                                  word,
-                                  style: TextStyle(
-                                      fontSize: CONSTANT.FONT_SIZE_BODY),
-                                ),
-                                labelPadding: EdgeInsets.all(0),
-                                backgroundColor: Colors.white,
-                              ))
-                          .toList(),
-                    )
+                    keywords.isEmpty
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.only(top: CONSTANT.SIZE_MD),
+                            child: Text(
+                              'ยังไม่มีสิ่งที่สน��จ',
+                              style: TextStyle(color: CONSTANT.COLOR_DISABLED),
+                            ),
+                          )
+                        : Wrap(
+                            spacing: CONSTANT.SIZE_XL,
+                            runSpacing: 0.0,
+                            children: keywords
+                                .map((word) => Chip(
+                                      padding: EdgeInsets.all(0),
+                                      label: Text(
+                                        word,
+                                        style: TextStyle(
+                                            fontSize: CONSTANT.FONT_SIZE_BODY),
+                                      ),
+                                      labelPadding: EdgeInsets.all(0),
+                                      backgroundColor: Colors.white,
+                                    ))
+                                .toList(),
+                          )
                   ],
                 ),
               ),

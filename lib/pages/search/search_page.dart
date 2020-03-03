@@ -28,6 +28,7 @@ class _SearchPageState extends State<SearchPage> {
   var searchNewsData = MOCK_NEWS;
   var searchServiceData = MOCK_SERVICES;
   var searchKnowledgeData = MOCK_KNOWLEDGES;
+  List<Department> departmentsData = MOCK_DEPARTMENT;
 
   void onTabChange(String value) {
     setState(() {
@@ -61,13 +62,14 @@ class _SearchPageState extends State<SearchPage> {
           item.author.contains(_searchWord))
       .toList();
 
-  // TODO: search for dep name and keywords
-  getServiceFromSearch(searchServiceData) => searchServiceData
-      .where((item) =>
-          item.name.contains(_searchWord) ||
-          item.description.contains(_searchWord) ||
-          item.depId.contains(_searchWord))
-      .toList();
+  // TODO: search for keywords
+  getServiceFromSearch(searchServiceData) =>
+      Utils.joinServiceDep(searchServiceData, departmentsData)
+          .where((Service item) =>
+              item.name.contains(_searchWord) ||
+              item.description.contains(_searchWord) ||
+              item.departmentData.name.contains(_searchWord))
+          .toList();
 
   getKnowledgeFromSearch(searchServiceData) => searchKnowledgeData
       .where((item) =>

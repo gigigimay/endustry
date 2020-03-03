@@ -103,7 +103,8 @@ class Utils {
     return _suggestList;
   }
 
-  static padNumber(value, {length = 2}) => value.toString().padLeft(length, '0');
+  static padNumber(value, {length = 2}) =>
+      value.toString().padLeft(length, '0');
 
   static String formatDateTime(datetime) {
     final dateData = DateTime.parse(datetime);
@@ -114,4 +115,13 @@ class Utils {
     final String minute = padNumber(dateData.minute);
     return '$day.$month.$year | $hour.$minute น.';
   }
+
+  static List<Service> joinServiceDep(
+    List<Service> services,
+    List<Department> departments,
+  ) =>
+      services
+          .map((Service s) => Service.joinDep(
+              s, departments.firstWhere((Department d) => d.id == s.depId)))
+          .toList();
 }

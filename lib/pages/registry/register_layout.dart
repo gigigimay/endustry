@@ -14,13 +14,14 @@ class RegisterLayout extends StatelessWidget {
     this.backText = 'ย้อนกลับ',
     this.prevBtnFuntion,
     this.disabled = false,
+    this.scroll = true,
   }) : super(key: key);
 
   final Widget child;
   final registerStep, stateTitle;
   final String stateSubTitle, backText, nextText;
   final Function() nextBtnFuntion, prevBtnFuntion;
-  final bool disabled;
+  final bool disabled, scroll;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,9 @@ class RegisterLayout extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS),
-                    Expanded(child: SingleChildScrollView(child: child)),
+                    scroll
+                        ? Expanded(child: SingleChildScrollView(child: child))
+                        : child,
                   ],
                 ),
               ),

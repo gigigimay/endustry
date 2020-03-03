@@ -53,6 +53,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    final bool searched = _searchValue != null && _searchValue.isNotEmpty;
     final String descriptionText =
         'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';
 
@@ -77,10 +78,12 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
             controller: _searchFieldCtrl,
             hintText: 'ค้นหา',
             prefixIcon: Icon(Icons.search),
-            style:
-                TextStyle(fontSize: width * 0.05, fontWeight: FontWeight.w300),
+            style: TextStyle(
+              fontSize: width * 0.05,
+              fontWeight: searched ? FontWeight.w700 : FontWeight.w300,
+            ),
             onChanged: onSearch,
-            suffixIcon: _searchValue != null
+            suffixIcon: _searchValue != null && _searchValue.isNotEmpty
                 ? IconButtonInk(
                     padding: EdgeInsets.all(0),
                     onPressed: onClearSearch,
@@ -103,6 +106,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
                 bool isSelected = _preferList.contains(item.id);
                 return PreferChip(
                   text: item.name,
+                  bgColor: Colors.white,
                   isSelected: isSelected,
                   onPressed: () => setState(() {
                     isSelected

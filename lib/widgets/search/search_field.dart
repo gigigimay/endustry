@@ -31,7 +31,11 @@ class SearchField extends StatelessWidget {
               contentPadding: EdgeInsets.all(8),
               border: InputBorder.none,
               hintText: CONSTANT.WORD_SEARCH_TH,
-              hintStyle: TextStyle(color: CONSTANT.COLOR_DISABLED, height: 0.8),
+              hintStyle: TextStyle(
+                color: CONSTANT.COLOR_DISABLED,
+                height: 0.8,
+                fontWeight: FontWeight.w300,
+              ),
             ),
             onChanged: onChange,
           ),

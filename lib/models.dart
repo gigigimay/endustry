@@ -38,7 +38,8 @@ class Service {
 }
 
 class News {
-  final String id, title, content, imgurl, date, author, typeId;
+  final String id, title, content, imgurl, date, author, typeId, bannerImage;
+  final List<String> tag;
   const News({
     @required this.id,
     @required this.title,
@@ -47,6 +48,8 @@ class News {
     this.date,
     this.author,
     this.typeId,
+    this.tag,
+    this.bannerImage,
   });
 
   factory News.fromJson(Map<String, dynamic> json) => News(

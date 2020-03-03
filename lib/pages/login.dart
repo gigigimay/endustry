@@ -10,8 +10,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
-      body: GestureDetector(
-        onTap: () => Utils.unfocus(context),
+      body: UnfocusNode(
         child: Container(
           color: CONSTANT.COLOR_PRIMARY,
           child: Stack(

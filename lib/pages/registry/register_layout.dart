@@ -31,9 +31,8 @@ class RegisterLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
-            child: GestureDetector(
-              onTap: () => Utils.unfocus(context),
-              child: Container(
+            child: UnfocusNode(
+                            child: Container(
                 color: Colors.transparent,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

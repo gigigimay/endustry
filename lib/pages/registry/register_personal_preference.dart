@@ -58,15 +58,13 @@ class _RegisterPage4State extends State<RegisterPage4> {
                 Expanded(
                   child: Input(
                     controller: _textEditingController,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          Icon(Icons.search, color: CONSTANT.COLOR_PRIMARY),
-                      hintText: CONSTANT.WORD_SEARCH_TH,
-                      hintStyle: TextStyle(
-                        fontSize: CONSTANT.FONT_SIZE_BODY,
-                        color: CONSTANT.COLOR_DISABLED,
-                        fontWeight: FontWeight.w300,
-                      ),
+                    prefixIcon:
+                        Icon(Icons.search, color: CONSTANT.COLOR_PRIMARY),
+                    hintText: CONSTANT.WORD_SEARCH_TH,
+                    hintStyle: TextStyle(
+                      fontSize: CONSTANT.FONT_SIZE_BODY,
+                      color: CONSTANT.COLOR_DISABLED,
+                      fontWeight: FontWeight.w300,
                     ),
                     onChanged: (text) {
                       setState(() {

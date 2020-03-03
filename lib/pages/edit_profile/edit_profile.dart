@@ -104,8 +104,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
-    return GestureDetector(
-      onTap: () => Utils.unfocus(context),
+    return UnfocusNode(
       child: EditProfileLayout(
         title: 'แก้ไขโปรไฟล์',
         topOverlap: avatarSize / 2,

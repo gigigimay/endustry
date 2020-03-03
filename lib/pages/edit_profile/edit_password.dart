@@ -63,8 +63,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
     double width = MediaQuery.of(context).size.width;
     final double avatarSize = width * 0.25;
 
-    return GestureDetector(
-      onTap: () => Utils.unfocus(context),
+    return UnfocusNode(
       child: EditProfileLayout(
         title: 'เปลี่ยนรหัสผ่าน',
         marginTop: CONSTANT.SIZE_XL,
@@ -77,45 +76,46 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
             size: avatarSize,
           ),
         ),
-      ),
-      bottomWidget: GradientButton(
-        text: 'ยืนยัน',
-        onPressed: submitForm,
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            PageScrollBody(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Input(
-                    focusNode: _oldPassfocusNode,
-                    controller: _oldPwdCtrl,
-                    obscureText: true,
-                    hintText: 'รหัสผ่านปัจจุบัน',
-                    onChanged: saveForm('oldPassword'),
-                    // TODO: implement keyboard action
-                    textInputAction: TextInputAction.next,
-                    validator: validateOldPassword,
-                  ),
-                  Input(
-                    obscureText: true,
-                    hintText: 'รหัสผ่านใหม่',
-                    onChanged: saveForm('newPassword'),
-                    // TODO: implement keyboard action
-                    textInputAction: TextInputAction.next,
-                  ),
-                  Input(
-                    obscureText: true,
-                    hintText: 'ยืนยันรหัสผ่านใหม่',
-                    onChanged: saveForm('confirmNewPassword'),
-                    textInputAction: TextInputAction.done,
-                    validator: (String v) =>
-                        v != _form['newPassword'] ? 'รหัสผ่านไม่ตรงกัน' : null,
-                  ),
-                ],
+        bottomWidget: GradientButton(
+          text: 'ยืนยัน',
+          onPressed: submitForm,
+        ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              PageScrollBody(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Input(
+                      focusNode: _oldPassfocusNode,
+                      controller: _oldPwdCtrl,
+                      obscureText: true,
+                      hintText: 'รหัสผ่านปัจจุบัน',
+                      onChanged: saveForm('oldPassword'),
+                      // TODO: implement keyboard action
+                      textInputAction: TextInputAction.next,
+                      validator: validateOldPassword,
+                    ),
+                    Input(
+                      obscureText: true,
+                      hintText: 'รหัสผ่านใหม่',
+                      onChanged: saveForm('newPassword'),
+                      // TODO: implement keyboard action
+                      textInputAction: TextInputAction.next,
+                    ),
+                    Input(
+                      obscureText: true,
+                      hintText: 'ยืนยันรหัสผ่านใหม่',
+                      onChanged: saveForm('confirmNewPassword'),
+                      textInputAction: TextInputAction.done,
+                      validator: (String v) => v != _form['newPassword']
+                          ? 'รหัสผ่านไม่ตรงกัน'
+                          : null,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

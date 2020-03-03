@@ -8,7 +8,7 @@ const List<News> MOCK_NEWS = [
         'การประเมินผลสัมฤทธิ์ของกฎหมาย การจัดทำคำอธิบาย คำแปลของกฎหมาย การเผยแพร่ข้อมูลกฎหมาย กฎเกณฑ์ตามพระราชบัญญัติหลักเกณฑ์การจัดทำร่างกฎหมาย และการประเมินผลสัมฤทธิ์ของกฎหมาย พ.ศ.๒๕๖๒ กรณีรัฐมนตรีว่าการกระทรวงอุตสาหกรรมเป็นผู้รักษาการตามกฎหมาย \nหน่วยงานที่รับผิดชอบการจัดทำคำอธิบายและคำแปลของกฎหมาย และการเผยแพร่ข้อมูลกฎหมายและกฎเกณฑ์สำหรับกฎหมายที่ไม่ต้องประเมินผลสัมฤทธิ์ตามมาตรา ๒๙ (๓) (๕) และ (๖) \nDownload (http://www.industry.go.th/ola/index.php/agency/2020-02-26-02-17-53/37-2020-02-26-01-45-16) \nหน่วยงานที่รับผิดชอบการประเมินผลสัมฤทธิ์ของกฎหมายการจัดทำคำอธิบายและคำแปลของกฎหมาย และการเผยแพร่ข้อมูลกฎหมายและกฎเกณฑ์กรณีรัฐมนตรีว่าการกระกรวงอุตสาหกรรมเป็นผู้รักษาการ \nDownload (http://www.industry.go.th/ola/index.php/agency/2020-02-26-02-17-53/35-2020-02-26-01-39-33) \nหน่วยงานที่รับผิดชอบการประเมินผลสัมฤทธิ์ของกฎหมายการจัดทำคำอธิบายและคำแปลของกฎหมาย และการเผยแพร่ข้อมูลกฎหมายและกฎเกณฑ์กรณีรัฐมนตรีว่าการกระกรวงอุตสาหกรรมเป็นผู้รักษาการร่วม \nDownload (http://www.industry.go.th/ola/index.php/agency/2020-02-26-02-17-53/36-2020-02-26-01-41-07)',
     date: '2563-02-26', //ไม่มีเวลาบอก
     author: 'กระทรวงอุตสาหกรรม',
-    bannerImage: 'assets/images/departments/nws01.jpg',
+    bannerImage: 'assets/images/news/nws01.jpg',
     typeId: 'nwst00',
     tag: ['kw27', 'kw33', 'kw34'],
   ),
@@ -17,7 +17,7 @@ const List<News> MOCK_NEWS = [
     title: 'รวมใจไทย ปลูกต้นไม้ เพื่อแผ่นดิน',
     content:
         'ขอเชิญเข้าร่วมโครงการและกิจกรรมปลูกต้นไม้และปลูกป่าเฉลิมพระเกียรติ เนื่องในโอกาสมหามงคลพระราชพิธีบรมราชาภิเษก \n"รวมใจไทย ปลูกต้นไม้ เพื่อแผ่นดิน" \nร่วมปลูกต้นไม้ (https://plant.forest.go.th/login)',
-    bannerImage: 'assets/images/departments/nws02.jpg',
+    bannerImage: 'assets/images/news/nws02.jpg',
     typeId: 'nwst00',
     tag: ['kw03', 'kw33', 'kw34'],
   ),
@@ -26,7 +26,7 @@ const List<News> MOCK_NEWS = [
     title: 'รางวัลแห่งเกียรติยศของอุตสาหกรรมไทย',
     content:
         '"รางวัลแห่งเกียรติยศของอุตสาหกรรมไทย" The Prime Minister\'s Industry Award 2020 ประกาศรับสมัครและสรรหาผู้สมัคร มกราคม-กุมภาพันธ์ 2563 (สามารถขยายระยะเวลารับสมัครได้ตามความเหมาะสม) ตรวจประเมินรอบที่ 1 และ 2 มีนาคม-พฤษภ่คม 2563 \nรายละเอียดเพิ่มเติม (http://www.industry.go.th/industry_award/)',
-    bannerImage: 'assets/images/departments/nws03.jpg',
+    bannerImage: 'assets/images/news/nws03.jpg',
     typeId: 'nwst00',
     tag: ['kw28', 'kw33', 'kw34'],
   ),
@@ -34,7 +34,7 @@ const List<News> MOCK_NEWS = [
     id: 'nws04',
     title: 'สินเชื่อ SME โตไว ไทยยั่งยืน',
     content: 'คลิก (https://www.smessrc.com/fund)',
-    bannerImage: 'assets/images/departments/nws04.jpg',
+    bannerImage: 'assets/images/news/nws04.jpg',
     typeId: 'nwst00',
     tag: ['kw18', 'kw34'],
   ),
@@ -47,7 +47,7 @@ const List<News> MOCK_NEWS = [
     author: 'กระทรวงอุตสาหกรรม',
     imgurl:
         'https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.0-9/p960x960/71849519_142192970450280_3202901994758995968_o.png?_nc_cat=103&_nc_sid=8024bb&_nc_ohc=3dDHvTV2icUAX_cSW5o&_nc_ht=scontent.fbkk5-4.fna&oh=0e9986bffe34fd0866a4b03acaad7edf&oe=5E835C6A',
-    bannerImage: 'assets/images/departments/nws05.jpg',
+    bannerImage: 'assets/images/news/nws05.jpg',
     typeId: 'nwst00',
     tag: ['kw07', 'kw10', 'kw34'],
   ),

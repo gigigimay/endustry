@@ -20,11 +20,6 @@ class _HomePageState extends State<HomePage> {
   final String currentTab = 'home';
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return BgLayout(

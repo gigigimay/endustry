@@ -16,14 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Service> suggestedServicesData = Storage.suggestServices;
   final List<Knowledge> suggestedKnowledgesData = Storage.suggestKnowledges;
-  final User userData = MOCK_USER;
 
   final String currentTab = 'home';
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

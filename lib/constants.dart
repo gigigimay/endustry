@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+const String PIC = 'assets/images/pic.png';
+
+const Image PLACEHOLDER_IMAGE =
+    Image(image: AssetImage(PIC));
+
 // -------------------- colors --------------------
 const Color COLOR_PRIMARY = Color(0xff7F4192);
 const Color COLOR_SECONDARY = Color(0xff4337A7);

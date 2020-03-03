@@ -5,7 +5,13 @@ export './utilities.dart';
 
 // ==========  data  ==========
 export './models.dart';
-export './mock_data.dart';
+export './mock_data/departments.dart';
+export './mock_data/services.dart';
+export './mock_data/news_types.dart';
+export './mock_data/news.dart';
+export './mock_data/knowledges.dart';
+export './mock_data/keywords.dart';
+export './mock_data/user_types.dart';
 
 // ==========  pages  ==========
 export 'pages/home.dart';

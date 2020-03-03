@@ -38,14 +38,32 @@ class ContentGroup extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Text('ดูทั้งหมด', style: CONSTANT.TEXT_STYLE_BODY_PRIMARY),
-            IconButtonInk(
-              onPressed: onSeeAll,
-              icon: Transform.rotate(
-                angle: 22 / 7,
-                child: Icon(Icons.keyboard_backspace),
+            Material(
+              color: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
               ),
-            )
+              child: InkWell(
+                borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+                onTap: onSeeAll,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    SizedBox(
+                      width: CONSTANT.SIZE_LG,
+                    ),
+                    Text('ดูทั้งหมด', style: CONSTANT.TEXT_STYLE_BODY_PRIMARY),
+                    IconButtonInk(
+                      onPressed: null,
+                      icon: Transform.rotate(
+                        angle: 22 / 7,
+                        child: Icon(Icons.keyboard_backspace),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         )
       ],

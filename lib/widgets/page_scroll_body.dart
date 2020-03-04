@@ -7,10 +7,12 @@ class PageScrollBody extends StatelessWidget {
     this.child,
     this.physics = const AlwaysScrollableScrollPhysics(),
     this.controller,
+    this.padding,
   }) : super(key: key);
   final Widget child;
   final ScrollPhysics physics;
   final ScrollController controller;
+  final EdgeInsets padding;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -18,7 +20,7 @@ class PageScrollBody extends StatelessWidget {
       child: SingleChildScrollView(
         controller: controller,
         physics: physics,
-        padding: EdgeInsets.only(bottom: height * 0.1, top: CONSTANT.SIZE_MD),
+        padding: padding ?? EdgeInsets.only(bottom: height * 0.1, top: CONSTANT.SIZE_MD),
         scrollDirection: Axis.vertical,
         child: child,
       ),

@@ -44,7 +44,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
     final filteredKeywords = items
         .where((item) =>
             !CONSTANT.USERTYPE_KW_IDS.contains(item.id) &&
-            (item.name.contains(searchword)))
+            (item.name.toLowerCase().contains(searchword.toLowerCase())))
         .toList();
 
     filteredKeywords.sort((a, b) => a.name.compareTo(b.name));

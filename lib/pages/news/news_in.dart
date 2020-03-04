@@ -38,36 +38,46 @@ class _NewsInPageState extends State<NewsInPage> {
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       SizedBox(height: CONSTANT.SIZE_SM),
-                      Text(
-                        widget.newsData.getDateTimeString(),
-                        style: TextStyle(
-                            color: CONSTANT.COLOR_PRIMARY,
-                            fontSize: CONSTANT.FONT_SIZE_BODY),
-                      ),
-                      Text(
-                        widget.newsData.author,
-                        style: TextStyle(
-                          fontSize: CONSTANT.FONT_SIZE_BODY,
-                        ),
-                      ),
-                      SizedBox(height: CONSTANT.SIZE_SM),
-                      RoundedBox(
-                        color: Colors.white,
-                        height: height * 0.24,
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-                          child: FadeInImage(
-                            width: width,
-                            fit: BoxFit.cover,
-                            image: widget.newsData.imgurl != null
-                                ? NetworkImage(widget.newsData.imgurl, scale: 1)
-                                : AssetImage(CONSTANT.PIC),
-                            placeholder:
-                                AssetImage('assets/images/news_white.png'),
-                          ),
-                        ),
-                      ),
+                      widget.newsData.date != null
+                          ? Text(
+                              widget.newsData.getDateTimeString(),
+                              style: TextStyle(
+                                  color: CONSTANT.COLOR_PRIMARY,
+                                  fontSize: CONSTANT.FONT_SIZE_BODY),
+                            )
+                          : Container(),
+                      widget.newsData.author != null
+                          ? Text(
+                              widget.newsData.author,
+                              style: TextStyle(
+                                fontSize: CONSTANT.FONT_SIZE_BODY,
+                              ),
+                            )
+                          : Container(),
+                      widget.newsData.date != null ||
+                              widget.newsData.author != null
+                          ? SizedBox(height: CONSTANT.SIZE_SM)
+                          : Container(),
+                      widget.newsData.bannerImage == null
+                          ? RoundedBox(
+                              color: Colors.white,
+                              height: height * 0.24,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                    CONSTANT.BORDER_RADIUS),
+                                child: FadeInImage(
+                                  width: width,
+                                  fit: BoxFit.cover,
+                                  image: widget.newsData.imgurl != null
+                                      ? NetworkImage(widget.newsData.imgurl,
+                                          scale: 1)
+                                      : AssetImage(CONSTANT.PIC),
+                                  placeholder: AssetImage(
+                                      'assets/images/news_white.png'),
+                                ),
+                              ),
+                            )
+                          : Container(),
                       SizedBox(height: CONSTANT.SIZE_LG),
                       Text(
                         'เนื้อหาข่าว',

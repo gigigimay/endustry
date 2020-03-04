@@ -58,7 +58,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
     final filteredKeywords = widget.keywordsData
         .where((item) =>
             !CONSTANT.USERTYPE_KW_IDS.contains(item.id) &&
-            (item.name.contains(_searchValue)))
+            (item.name.toLowerCase().contains(_searchValue.toLowerCase())))
         .toList();
 
     filteredKeywords.sort((a, b) => a.name.compareTo(b.name));

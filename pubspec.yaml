@@ -52,6 +52,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/news/
+    - assets/images/departments/
     - assets/database.db
 
   # An image asset can refer to one or more resolution-specific "variants", see

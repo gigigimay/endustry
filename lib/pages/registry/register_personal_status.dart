@@ -45,10 +45,10 @@ class _RegisterPage3State extends State<RegisterPage3> {
           RegisterStatusBtn(
             imgUrl: 'assets/images/entrepreneur.png',
             text: 'ผู้ประกอบการ',
-            isSelected: _selectIndex == 0,
+            isSelected: _selectIndex == 1,
             onTap: () {
               setState(() {
-                _selectIndex = 0;
+                _selectIndex = 1;
                 setValid(true);
               });
             },
@@ -59,10 +59,10 @@ class _RegisterPage3State extends State<RegisterPage3> {
           RegisterStatusBtn(
             imgUrl: 'assets/images/people.png',
             text: 'บุคคลทั่วไป',
-            isSelected: _selectIndex == 1,
+            isSelected: _selectIndex == 0,
             onTap: () {
               setState(() {
-                _selectIndex = 1;
+                _selectIndex = 0;
                 setValid(true);
               });
             },

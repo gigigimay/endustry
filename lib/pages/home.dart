@@ -21,10 +21,12 @@ class _HomePageState extends State<HomePage> {
   final String currentTab = 'home';
 
   initUserData() async {
+    print(FirebaseDB.user);
     if (FirebaseDB.user == null) {
       FirebaseDB.user = await FirebaseDB()
           .handleSignIn(Storage.user.email, Storage.user.password);
     }
+    print(FirebaseDB.user);
   }
 
   @override

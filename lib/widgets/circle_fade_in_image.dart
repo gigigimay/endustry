@@ -34,12 +34,19 @@ class CircleFadeInImage extends StatelessWidget {
         ),
       ),
       child: ClipOval(
-        child: FadeInImage(
-          placeholder: placeholderImage,
-          image: image != MemoryImage(kTransparentImage)
-              ? image
-              : placeholderImage,
-          fit: imagefit ?? BoxFit.cover,
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: Alignment.center,
+          children: <Widget>[
+            Image(image: placeholderImage),
+            FadeInImage(
+              placeholder: placeholderImage,
+              image: image != MemoryImage(kTransparentImage)
+                  ? image
+                  : placeholderImage,
+              fit: imagefit ?? BoxFit.cover,
+            ),
+          ],
         ),
       ),
     );

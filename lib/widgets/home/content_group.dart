@@ -25,7 +25,7 @@ class ContentGroup extends StatelessWidget {
           title,
           style: CONSTANT.TEXT_STYLE_HEADING,
         ),
-        SizedBox(height: CONSTANT.SIZE_LG),
+        SizedBox(height: CONSTANT.SIZE_MD),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.start,
           runAlignment: WrapAlignment.start,
@@ -34,7 +34,6 @@ class ContentGroup extends StatelessWidget {
           direction: Axis.horizontal,
           children: children,
         ),
-        SizedBox(height: CONSTANT.SIZE_LG),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -49,9 +48,7 @@ class ContentGroup extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    SizedBox(
-                      width: CONSTANT.SIZE_LG,
-                    ),
+                    SizedBox(width: CONSTANT.SIZE_LG),
                     Text('ดูทั้งหมด', style: CONSTANT.TEXT_STYLE_BODY_PRIMARY),
                     IconButtonInk(
                       onPressed: null,

@@ -30,14 +30,17 @@ class ServiceHomePage extends StatelessWidget {
           SizedBox(height: CONSTANT.SIZE_MD),
           PageScrollBody(
             child: PagePadding(
+              top: 0.0,
               child: Column(
                 children: <Widget>[
                   RecentServiceGroup(
                     currentTab: currentTab,
+                    maxItems: 2,
                   ),
                   SuggestedServiceGroup(
                     suggestedServicesData: suggestedServicesData,
                     currentTab: currentTab,
+                    maxItems: 2,
                   ),
                   SizedBox(height: CONSTANT.SIZE_XX),
                   Container(

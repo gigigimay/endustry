@@ -37,6 +37,7 @@ class RecentServiceGroup extends StatelessWidget {
 
     return ContentGroup(
       title: title,
+      runSpacing: CONSTANT.SIZE_MD,
       onSeeAll: () => Utils.navigatePush(
           context,
           ServiceListPage(

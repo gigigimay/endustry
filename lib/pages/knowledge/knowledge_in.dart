@@ -29,6 +29,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
               hasBackArrow: true,
               actionWidget: FavButton(
                 knwId: widget.knowledgeData.id,
+                size: CONSTANT.SIZE_XX,
               )),
           PageScrollBody(
             child: PagePadding(
@@ -46,9 +47,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                         widget.knowledgeData.title,
                         style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
                       ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_SM,
-                      ),
+                      SizedBox(height: CONSTANT.SIZE_SM),
                       widget.knowledgeData.attachUrl != null
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,12 +59,11 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                                       borderRadius: BorderRadius.circular(
                                           CONSTANT.BORDER_RADIUS),
                                       child: FadeInImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                            widget.knowledgeData.attachUrl),
-                                        placeholder: AssetImage(
-                                            'assets/images/know_white.png'),
-                                      ),
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                              widget.knowledgeData.attachUrl),
+                                          placeholder: AssetImage(
+                                              'assets/images/know_white.png')),
                                     ),
                                   ),
                                   SizedBox(

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
-import 'package:endustry/main.dart';
 import 'package:endustry/storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,12 +13,8 @@ class Utils {
   static void navigatePush(BuildContext context, Widget page,
       {animate = false}) {
     if (animate) {
-      r += page.toString();
-      print(r);
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
     } else {
-      r += page.toString();
-      print(r);
       Navigator.push(
           context, NoAnimationMaterialPageRoute(builder: (context) => page));
     }
@@ -108,11 +103,9 @@ class Utils {
         _suggsetTier['${item.id}'] = intersec.length;
       }
     });
-    print('sugg: $_suggsetTier');
     List _suggsetTierAsc = _suggsetTier.keys.toList()
       ..sort((i1, i2) => _suggsetTier[i1].compareTo(_suggsetTier[i2]));
     List _suggsetTierDesc = _suggsetTierAsc.reversed.toList();
-    print('suggDesc: $_suggsetTierDesc');
 
     // create list of suggest item
     List _suggestList = [];
@@ -129,7 +122,9 @@ class Utils {
     final dateData = DateTime.parse(datetime);
     final String day = padNumber(dateData.day);
     final String month = padNumber(dateData.month);
-    final String year = padNumber(dateData.year + 543, length: 4);
+    // this is a temporary fix, we should change all the data to B.E. year instead.
+    final int localYear = dateData.year + (dateData.year > 2100 ? 0 : 543);
+    final String year = padNumber(localYear, length: 4);
     final String hour = padNumber(dateData.hour);
     final String minute = padNumber(dateData.minute);
     return '$day.$month.$year | $hour.$minute น.';

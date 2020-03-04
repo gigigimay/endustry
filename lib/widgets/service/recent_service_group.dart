@@ -16,13 +16,14 @@ class RecentServiceGroup extends StatelessWidget {
   final String currentTab;
   final int maxItems;
 
-  final List<ServiceHistory> servicesHistoryData = Storage.serviceHistory;
   final List<Service> servicesData = MOCK_SERVICES;
 
   final String title = 'การใช้งานล่าสุด';
 
   @override
   Widget build(BuildContext context) {
+    Storage().updateServiceHistory();
+    final List<ServiceHistory> servicesHistoryData = Storage.serviceHistory;
     if (servicesHistoryData.isEmpty) return Container();
     double width = MediaQuery.of(context).size.width;
     double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
@@ -36,6 +37,7 @@ class RecentServiceGroup extends StatelessWidget {
 
     return ContentGroup(
       title: title,
+      runSpacing: CONSTANT.SIZE_MD,
       onSeeAll: () => Utils.navigatePush(
           context,
           ServiceListPage(

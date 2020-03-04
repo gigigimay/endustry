@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 const String PIC = 'assets/images/pic.png';
 
-const Image PLACEHOLDER_IMAGE =
-    Image(image: AssetImage(PIC));
+const Image PLACEHOLDER_IMAGE = Image(image: AssetImage(PIC));
+
+const USERTYPE_KW_IDS = ['kw33', 'kw34'];
 
 // -------------------- colors --------------------
 const Color COLOR_PRIMARY = Color(0xff7F4192);
@@ -88,6 +89,13 @@ class REGEX {
     caseSensitive: false,
     multiLine: false,
   );
+  static RegExp password = RegExp(r'^([A-Za-z\d]{4,})$');
+  static String validatePassword(String value) => password.hasMatch(value)
+      ? null
+      : 'รหัสผ่านต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลข และมีความยาวตั้งแต่ 4 ตัวอักษรขึ้นไป';
+
+  static String validateEmail(String value) =>
+      email.hasMatch(value) ? null : 'อีเมลไม่ถูกต้อง';
 }
 
 // -------------------- word --------------------

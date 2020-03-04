@@ -4,9 +4,10 @@ import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 
 class FavButton extends StatefulWidget {
-  FavButton({Key key, this.knwId}) : super(key: key);
+  FavButton({Key key, this.knwId, this.size}) : super(key: key);
 
-  final knwId;
+  final String knwId;
+  final double size;
 
   @override
   _FavButtonState createState() => _FavButtonState();
@@ -23,7 +24,6 @@ class _FavButtonState extends State<FavButton> {
     });
     FirebaseDB firebaseDB = FirebaseDB();
     firebaseDB.updateUserFav(Storage.user.favKnowledges);
-    print(Storage.user.favKnowledges);
   }
 
   @override
@@ -39,7 +39,7 @@ class _FavButtonState extends State<FavButton> {
       icon: Icon(
         _favStatus ? Icons.star : Icons.star_border,
         color: CONSTANT.COLOR_PRIMARY,
-        size: CONSTANT.SIZE_LG + 2.0,
+        size: widget.size ?? CONSTANT.FONT_SIZE_HEAD,
       ),
       onPressed: onPressed,
     );

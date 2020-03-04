@@ -34,8 +34,8 @@ class NewsItem extends StatelessWidget {
                     fit: BoxFit.cover,
                     image: newsData.imgurl != null
                         ? NetworkImage(newsData.imgurl, scale: 1)
-                        : AssetImage('assets/images/pic.png'),
-                    placeholder: AssetImage('assets/images/pic.png'),
+                        : AssetImage(CONSTANT.PIC),
+                    placeholder: AssetImage(CONSTANT.PIC),
                   ),
                 ),
               ),

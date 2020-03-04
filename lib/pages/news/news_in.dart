@@ -37,9 +37,7 @@ class _NewsInPageState extends State<NewsInPage> {
                         widget.newsData.title,
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_SM,
-                      ),
+                      SizedBox(height: CONSTANT.SIZE_SM),
                       Text(
                         widget.newsData.getDateTimeString(),
                         style: TextStyle(
@@ -52,9 +50,7 @@ class _NewsInPageState extends State<NewsInPage> {
                           fontSize: CONSTANT.FONT_SIZE_BODY,
                         ),
                       ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_SM,
-                      ),
+                      SizedBox(height: CONSTANT.SIZE_SM),
                       RoundedBox(
                         color: Colors.white,
                         height: height * 0.24,
@@ -66,15 +62,13 @@ class _NewsInPageState extends State<NewsInPage> {
                             fit: BoxFit.cover,
                             image: widget.newsData.imgurl != null
                                 ? NetworkImage(widget.newsData.imgurl, scale: 1)
-                                : AssetImage('assets/images/pic.png'),
+                                : AssetImage(CONSTANT.PIC),
                             placeholder:
                                 AssetImage('assets/images/news_white.png'),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: CONSTANT.SIZE_LG,
-                      ),
+                      SizedBox(height: CONSTANT.SIZE_LG),
                       Text(
                         'เนื้อหาข่าว',
                         style: TextStyle(

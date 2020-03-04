@@ -14,23 +14,16 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _mailController = TextEditingController();
   final _passController = TextEditingController();
-  var _form = {};
   bool _loginFailed = false;
-  final _firebaseDB = FirebaseDB();
-
-  Function saveForm(key) => (value) {
-        setState(() {
-          _form[key] = value;
-        });
-      };
 
   Function onSubmit(context) => () async {
         if (_formKey.currentState.validate()) {
           final storage = Storage();
-          //TODO: check if mail or pass wrong
-          var user = await _firebaseDB.login(
-              _mailController.text, Utils.encode(_passController.text));
-
+          final firebaseDB = FirebaseDB();
+          User user = await firebaseDB.login(
+            _mailController.text,
+            Utils.encode(_passController.text),
+          );
           if (user != null) {
             await storage.login(user);
             Navigator.pushNamedAndRemoveUntil(
@@ -66,17 +59,13 @@ class _LoginFormState extends State<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               // TODO: implement keyboard action
               textInputAction: TextInputAction.next,
-              onChanged: saveForm('email'),
-              validator: (String value) => CONSTANT.REGEX.email.hasMatch(value)
-                  ? null
-                  : 'อีเมลไม่ถูกต้อง',
+              validator: CONSTANT.REGEX.validateEmail,
             ),
             Input(
               controller: _passController,
               hintText: 'รหัสผ่าน',
               prefixIcon: Icon(Icons.lock),
               textInputAction: TextInputAction.done,
-              onChanged: saveForm('password'),
               obscureText: true,
             ),
             _loginFailed

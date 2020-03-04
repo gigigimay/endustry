@@ -33,7 +33,7 @@ class SearchItemList extends StatelessWidget {
         return SearchItems.searchItemNews(
             item.imgurl != null
                 ? NetworkImage(item.imgurl, scale: 1)
-                : AssetImage('assets/images/pic.png'),
+                : AssetImage(CONSTANT.PIC),
             item,
             80.0, () {
           Utils.navigatePush(context, NewsInPage(newsData: item));
@@ -45,7 +45,7 @@ class SearchItemList extends StatelessWidget {
         return SearchItems.searchItemService(
             item.image != null
                 ? AssetImage(item.image)
-                : AssetImage('assets/images/pic.png'),
+                : AssetImage(CONSTANT.PIC),
             item,
             80.0, () {
           Utils.navigatePush(context, ServiceInPage(serviceData: item));

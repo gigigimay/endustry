@@ -18,15 +18,20 @@ class FirebaseDB {
       email: email,
       password: password,
     );
-    user = (await _auth.signInWithCredential(credential)).user;
-    print("signed in " + user.email);
-    return user;
+    try {
+      user = (await _auth.signInWithCredential(credential)).user;
+      print("signed in " + user.email);
+      return user;
+    } catch (e) {
+      return null;
+    }
   }
 
   login(email, password) async {
-    user = await handleSignIn(email, password).catchError((e) => print(e));
-
-    return await getUserData(user.uid);
+    try {
+      user = await handleSignIn(email, password);
+      return await getUserData(user.uid);
+    } catch (e) {}
   }
 
   Future<User> getUserData(uid) async {

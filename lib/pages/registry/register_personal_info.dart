@@ -74,23 +74,21 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 onChanged: saveForm('lastName'),
               ),
               Input(
+                initialValue: widget.initData['email'],
                 hintText: 'อีเมล',
                 onChanged: saveForm('email'),
-                validator: (String value) =>
-                    CONSTANT.REGEX.email.hasMatch(value)
-                        ? null
-                        : 'อีเมลไม่ถูกต้อง',
+                validator: CONSTANT.REGEX.validateEmail,
               ),
               Input(
+                initialValue: widget.initData['password'],
                 hintText: 'รหัสผ่าน',
                 obscureText: true,
                 onChanged: saveForm('password'),
+                validator: CONSTANT.REGEX.validatePassword,
               ),
               Input(
+                initialValue: widget.initData['password'],
                 hintText: 'ยืนยันรหัสผ่าน',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 obscureText: true,
                 validator: (String value) =>
                     value == _form['password'] ? null : 'รหัสผ่านไม่ตรงกัน',

@@ -56,7 +56,7 @@ class NewsFilterDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                item != MOCK_NEWSTYPES.last.typeName.toString()
+                item != filterNameList.last.toString()
                     ? Divider(height: 0)
                     : Container()
               ],

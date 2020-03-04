@@ -52,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       await FirebaseDB()
           .updateImageToStorage(_imgByteCode, FirebaseDB.user.uid);
     }
-
+    
     final User newUser = User.fromUser(
       _userData,
       email: _form['email'],
@@ -61,9 +61,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
       typeId: _form['typeId'],
       img: newImgUrl,
     );
+
     FirebaseDB _firebaseDB = FirebaseDB();
-    await _firebaseDB.editUserProfile(newUser);
+    await _firebaseDB.editUserProfile(_userData, newUser);
     Storage.user = newUser;
+    _userData = newUser;
 
     Storage().generateInterest();
     Navigator.pop(context, true);
@@ -175,13 +177,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       initialValue: '••••••••••',
                       readOnly: true,
                       obscureText: true,
-                      suffixText: 'เปลี่ยนรหัสผ่าน',
-                      suffixIcon: IconButtonInk(
-                        padding: EdgeInsets.all(0),
-                        onPressed: onEditPasswordPressed,
-                        icon: Icon(
-                          Icons.edit,
-                          color: CONSTANT.COLOR_PRIMARY,
+                      suffixIcon: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: onEditPasswordPressed,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(
+                                'เปลี่ยนรหัสผ่าน',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: CONSTANT.FONT_SIZE_BODY,
+                                  color: CONSTANT.COLOR_PRIMARY,
+                                ),
+                              ),
+                              SizedBox(
+                                width: CONSTANT.SIZE_MD,
+                              ),
+                              Icon(
+                                Icons.edit,
+                                color: CONSTANT.COLOR_PRIMARY,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -196,19 +215,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       }),
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'สิ่งที่คุณสนใจ',
-                          style: CONSTANT.TEXT_STYLE_HEADING,
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: onEditPasswordPressed,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'สิ่งที่คุณสนใจ',
+                              style: CONSTANT.TEXT_STYLE_HEADING,
+                            ),
+                            EditButton(
+                              onTap: onEditKeywordPressed,
+                              icon: keywords.isEmpty ? Icons.add : Icons.edit,
+                              text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
+                            )
+                          ],
                         ),
-                        EditButton(
-                          onTap: onEditKeywordPressed,
-                          icon: keywords.isEmpty ? Icons.add : Icons.edit,
-                          text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
-                        )
-                      ],
+                      ),
                     ),
                     keywords.isEmpty
                         ? Padding(

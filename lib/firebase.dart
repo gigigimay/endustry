@@ -97,7 +97,7 @@ class FirebaseDB {
     return url;
   }
 
-  editUserProfile(User updatedUserData) async {
+  editUserProfile(User oldUser, User updatedUserData) async {
     await Firestore.instance.collection('users').document(user.uid).updateData({
       'firstName': updatedUserData.firstName ?? '',
       'lastName': updatedUserData.lastName ?? '',
@@ -106,6 +106,7 @@ class FirebaseDB {
       'img': updatedUserData.img ?? ''
     }).catchError((e) => print(e));
 
+    await handleSignIn(oldUser.email, oldUser.password);
     await user.updateEmail(updatedUserData.email);
 
     Storage.user = await getUserData(user.uid);

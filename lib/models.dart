@@ -24,17 +24,17 @@ class Service {
         url: json["url"],
         depId: json["depId"],
       );
-  
+
   factory Service.joinDep(Service service, Department department) => Service(
-    id: service.id,
-    name: service.name,
-    description: service.description,
-    image: service.image,
-    url: service.url,
-    depId: service.depId,
-    tag: service.tag,
-    departmentData: department,
-  );
+        id: service.id,
+        name: service.name,
+        description: service.description,
+        image: service.image,
+        url: service.url,
+        depId: service.depId,
+        tag: service.tag,
+        departmentData: department,
+      );
 }
 
 class News {
@@ -113,6 +113,7 @@ class User {
   factory User.fromUser(
     User oldUser, {
     @required String email,
+    String pass,
     String firstName,
     String lastName,
     String img,
@@ -123,6 +124,7 @@ class User {
     return User(
       id: oldUser.id,
       email: email ?? oldUser.email,
+      password: pass ?? oldUser.password,
       firstName: firstName ?? oldUser.firstName,
       lastName: lastName ?? oldUser.lastName,
       img: img ?? oldUser.img,

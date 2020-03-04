@@ -43,6 +43,8 @@ class CustomOutlineButton extends StatelessWidget {
         child: child ??
             Text(
               text,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: disabled ? CONSTANT.COLOR_DISABLED : color,
                 fontSize: CONSTANT.FONT_SIZE_HEAD,

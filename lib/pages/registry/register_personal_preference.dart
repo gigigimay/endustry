@@ -43,7 +43,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
   Widget build(BuildContext context) {
     final filteredKeywords = items
         .where((item) =>
-            !CONSTANT.USERTYPE_IDS.contains(item.id) &&
+            !CONSTANT.USERTYPE_KW_IDS.contains(item.id) &&
             (item.name.contains(searchword)))
         .toList();
 

@@ -127,7 +127,9 @@ class Utils {
     final dateData = DateTime.parse(datetime);
     final String day = padNumber(dateData.day);
     final String month = padNumber(dateData.month);
-    final String year = padNumber(dateData.year + 543, length: 4);
+    // this is a temporary fix, we should change all the data to B.E. year instead.
+    final int localYear = dateData.year + (dateData.year > 2100 ? 0 : 543);
+    final String year = padNumber(localYear, length: 4);
     final String hour = padNumber(dateData.hour);
     final String minute = padNumber(dateData.minute);
     return '$day.$month.$year | $hour.$minute น.';

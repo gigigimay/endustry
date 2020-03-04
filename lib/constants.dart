@@ -4,7 +4,7 @@ const String PIC = 'assets/images/pic.png';
 
 const Image PLACEHOLDER_IMAGE = Image(image: AssetImage(PIC));
 
-const USERTYPE_IDS = ['kw33', 'kw34'];
+const USERTYPE_KW_IDS = ['kw33', 'kw34'];
 
 // -------------------- colors --------------------
 const Color COLOR_PRIMARY = Color(0xff7F4192);

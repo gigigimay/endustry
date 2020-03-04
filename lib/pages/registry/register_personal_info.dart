@@ -76,21 +76,16 @@ class _RegisterPage1State extends State<RegisterPage1> {
               Input(
                 hintText: 'อีเมล',
                 onChanged: saveForm('email'),
-                validator: (String value) =>
-                    CONSTANT.REGEX.email.hasMatch(value)
-                        ? null
-                        : 'อีเมลไม่ถูกต้อง',
+                validator: CONSTANT.REGEX.validateEmail,
               ),
               Input(
                 hintText: 'รหัสผ่าน',
                 obscureText: true,
                 onChanged: saveForm('password'),
+                validator: CONSTANT.REGEX.validatePassword,
               ),
               Input(
                 hintText: 'ยืนยันรหัสผ่าน',
-                style: TextStyle(
-                    fontSize: CONSTANT.FONT_SIZE_BODY,
-                    fontWeight: FontWeight.w300),
                 obscureText: true,
                 validator: (String value) =>
                     value == _form['password'] ? null : 'รหัสผ่านไม่ตรงกัน',

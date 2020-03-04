@@ -59,9 +59,7 @@ class _LoginFormState extends State<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               // TODO: implement keyboard action
               textInputAction: TextInputAction.next,
-              validator: (String value) => CONSTANT.REGEX.email.hasMatch(value)
-                  ? null
-                  : 'อีเมลไม่ถูกต้อง',
+              validator: CONSTANT.REGEX.validateEmail,
             ),
             Input(
               controller: _passController,

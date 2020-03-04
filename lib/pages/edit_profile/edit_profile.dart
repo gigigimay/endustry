@@ -169,29 +169,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       initialValue: _form['email'],
                       onChanged: saveForm('email'),
                       keyboardType: TextInputType.emailAddress,
-                      validator: (String value) =>
-                          CONSTANT.REGEX.email.hasMatch(value)
-                              ? null
-                              : 'อีเมลไม่ถูกต้อง',
+                      validator: CONSTANT.REGEX.validateEmail,
                     ),
                     Input(
                       initialValue: '••••••••••',
-                      readOnly: true,
-                      obscureText: true,
-                      suffixText: 'เปลี่ยนรหัสผ่าน',
-                      suffixIcon: IconButtonInk(
-                        padding: EdgeInsets.all(0),
-                        onPressed: onEditPasswordPressed,
-                        icon: Icon(
-                          Icons.edit,
-                          color: CONSTANT.COLOR_PRIMARY,
-                        ),
-                      ),
-                    ),
-                    // TODO: edit password
-                    Input(
-                      initialValue: '••••••••••',
-                      style: TextStyle(fontSize: width * 0.05),
                       readOnly: true,
                       obscureText: true,
                       suffixText: 'เปลี่ยนรหัสผ่าน',

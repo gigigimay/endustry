@@ -104,6 +104,7 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                       onChanged: saveForm('newPassword'),
                       // TODO: implement keyboard action
                       textInputAction: TextInputAction.next,
+                      validator: CONSTANT.REGEX.validatePassword,
                     ),
                     Input(
                       obscureText: true,

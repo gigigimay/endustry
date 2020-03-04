@@ -112,6 +112,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                                     itemOnPressed: itemOnPressed,
                                   ))
                               .toList()),
+                      SizedBox(height: CONSTANT.SIZE_XX),
                     ],
                   ),
                 )

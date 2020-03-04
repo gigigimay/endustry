@@ -122,7 +122,8 @@ class _KnowledgePageState extends State<KnowledgePage> {
                     ))
               ],
             ),
-          )
+          ),
+          SizedBox(height: CONSTANT.SIZE_XX),
         ],
       ),
     );

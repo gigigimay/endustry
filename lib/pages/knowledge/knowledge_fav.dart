@@ -47,8 +47,8 @@ class _KnowledgeFavPageState extends State<KnowledgeFavPage> {
     List<Knowledge> filteredKnowledges = searched
         ? widget.knowledgeData
             .where((Knowledge k) =>
-                k.title.contains(_searchValue) ||
-                k.content.contains(_searchValue))
+                k.title.toLowerCase().contains(_searchValue.toLowerCase()) ||
+                k.content.toLowerCase().contains(_searchValue.toLowerCase()))
             .toList()
         : List.from(widget.knowledgeData);
     filteredKnowledges.sort((a, b) => a.title

@@ -1,6 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/menu/language_switcher.dart';
+import 'package:endustry/app_info.dart';
 
 class MenuSettingPage extends StatelessWidget {
   const MenuSettingPage({Key key}) : super(key: key);
@@ -62,7 +63,8 @@ class MenuSettingPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Version 1.0.0\n10 MB\nอัพเดทล่าสุด: 12.12.2020\nผู้พัฒนา: สงสัย.',
+                                'Version ${AppInfo.version}\n'
+                                '${AppInfo.size}\nอัพเดทล่าสุด: ${Utils.formatDateTime(AppInfo.latestUpdate)}\nผู้พัฒนา: ${AppInfo.developer}',
                                 style:
                                     TextStyle(color: CONSTANT.COLOR_DISABLED),
                               ),

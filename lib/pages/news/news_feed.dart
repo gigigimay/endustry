@@ -101,10 +101,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        _selectedFilter,
-                        style: CONSTANT.TEXT_STYLE_HEADING,
-                      ),
+                      Text(_selectedFilter, style: CONSTANT.TEXT_STYLE_HEADING),
                       Column(
                           children: displayedNewsData
                               .map((item) => NewsItem(

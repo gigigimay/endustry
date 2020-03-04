@@ -22,7 +22,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
   User _userData;
-  bool _isValid = true;
+  bool _isValid = true, _isLoading = false;
   var _form = {};
   Uint8List _imgByteCode = kTransparentImage;
 
@@ -47,6 +47,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   void submitForm() async {
     // TODO: check if the email is already used.
+    setState(() {
+      _isLoading = true;
+    });
     String newImgUrl = Storage.user.img;
     if (_imgByteCode != kTransparentImage) {
       await FirebaseDB()
@@ -63,11 +66,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
 
     FirebaseDB _firebaseDB = FirebaseDB();
+    await _firebaseDB.login(
+      Storage.user.email,
+      Storage.user.password,
+    );
     await _firebaseDB.editUserProfile(_userData, newUser);
     Storage.user = newUser;
     _userData = newUser;
 
     Storage().generateInterest();
+    setState(() {
+      _isLoading = false;
+    });
     Navigator.pop(context, true);
   }
 
@@ -110,134 +120,139 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }).toList();
     keywords.sort(); // TODO: kaizen the sort funtion
 
-    return UnfocusNode(
-      child: EditProfileLayout(
-        title: 'แก้ไขโปรไฟล์',
-        topOverlap: avatarSize / 2,
-        bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
-        topWidget: ProfileAvatar(
-          img: _imgByteCode == kTransparentImage
-              ? NetworkImage(_userData.img)
-              : MemoryImage(_imgByteCode),
-          avatarSize: avatarSize,
-          fabSize: avatarSize * 0.3,
-          fabIcon: Icon(
-            Icons.image,
-            size: CONSTANT.SIZE_XL,
+    return CustomLoadingOverlay(
+      isLoading: _isLoading,
+      child: UnfocusNode(
+        child: EditProfileLayout(
+          title: 'แก้ไขโปรไฟล์',
+          topOverlap: avatarSize / 2,
+          bottomOverlap: CONSTANT.FONT_SIZE_HEAD + CONSTANT.SIZE_XS,
+          topWidget: ProfileAvatar(
+            img: _imgByteCode == kTransparentImage
+                ? NetworkImage(_userData.img)
+                : MemoryImage(_imgByteCode),
+            avatarSize: avatarSize,
+            fabSize: avatarSize * 0.3,
+            fabIcon: Icon(
+              Icons.image,
+              size: CONSTANT.SIZE_XL,
+            ),
+            fabAction: () async {
+              var _oldImgByteCode = _imgByteCode;
+              _imgByteCode = await Utils.getImageByGallery();
+              setState(() {
+                if (Utils.convertByteCodeToString(_imgByteCode) !=
+                    Utils.convertByteCodeToString(kTransparentImage)) {
+                  _imgByteCode = _imgByteCode;
+                } else
+                  _imgByteCode = _oldImgByteCode;
+              });
+            },
           ),
-          fabAction: () async {
-            var _oldImgByteCode = _imgByteCode;
-            _imgByteCode = await Utils.getImageByGallery();
-            setState(() {
-              if (Utils.convertByteCodeToString(_imgByteCode) !=
-                  Utils.convertByteCodeToString(kTransparentImage)) {
-                _imgByteCode = _imgByteCode;
-              } else
-                _imgByteCode = _oldImgByteCode;
-            });
-          },
-        ),
-        bottomWidget: GradientButton(
-          text: 'บันทึก',
-          disabled: !_isValid,
-          onPressed: submitForm,
-        ),
-        child: Form(
-          key: _formKey,
-          autovalidate: true,
-          onChanged: validateForm,
-          child: Column(
-            children: <Widget>[
-              PageScrollBody(
-                padding: EdgeInsets.all(0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Input(
-                      hintText: 'ชื่อ',
-                      initialValue: _form['firstName'],
-                      onChanged: saveForm('firstName'),
-                      // TODO: implement keyboard action
-                      textInputAction: TextInputAction.next,
-                    ),
-                    Input(
-                      hintText: 'นามสกุล',
-                      initialValue: _form['lastName'],
-                      onChanged: saveForm('lastName'),
-                      // TODO: implement keyboard action
-                      textInputAction: TextInputAction.next,
-                    ),
-                    Input(
-                      hintText: 'อีเมล',
-                      initialValue: _form['email'],
-                      onChanged: saveForm('email'),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: CONSTANT.REGEX.validateEmail,
-                    ),
-                    Input(
-                        initialValue: '••••••••••',
-                        readOnly: true,
-                        obscureText: true,
-                        suffixIcon: EditButton(
-                          onTap: onEditKeywordPressed,
-                          icon: Icons.edit,
-                          text: 'เปลี่ยนรหัสผ่าน',
-                        )),
-                    SizedBox(height: CONSTANT.SIZE_LG),
-                    Dropdown<UserType>(
-                      title: 'คุณคือ',
-                      initialValue: userType,
-                      items: widget.userTypesData,
-                      getLabel: (UserType item) => item.name,
-                      onChanged: (UserType value) => setState(() {
-                        _form['typeId'] = value.id;
-                      }),
-                    ),
-                    SizedBox(height: CONSTANT.SIZE_LG),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'สิ่งที่คุณสนใจ',
-                          style: CONSTANT.TEXT_STYLE_HEADING,
-                        ),
-                        EditButton(
-                          onTap: onEditKeywordPressed,
-                          icon: keywords.isEmpty ? Icons.add : Icons.edit,
-                          text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
-                        )
-                      ],
-                    ),
-                    keywords.isEmpty
-                        ? Padding(
-                            padding:
-                                const EdgeInsets.only(top: CONSTANT.SIZE_MD),
-                            child: Text(
-                              'ยังไม่มีสิ่งที่สนใจ',
-                              style: TextStyle(color: CONSTANT.COLOR_DISABLED),
-                            ),
+          bottomWidget: GradientButton(
+            text: 'บันทึก',
+            disabled: !_isValid,
+            onPressed: submitForm,
+          ),
+          child: Form(
+            key: _formKey,
+            autovalidate: true,
+            onChanged: validateForm,
+            child: Column(
+              children: <Widget>[
+                PageScrollBody(
+                  padding: EdgeInsets.all(0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Input(
+                        hintText: 'ชื่อ',
+                        initialValue: _form['firstName'],
+                        onChanged: saveForm('firstName'),
+                        // TODO: implement keyboard action
+                        textInputAction: TextInputAction.next,
+                      ),
+                      Input(
+                        hintText: 'นามสกุล',
+                        initialValue: _form['lastName'],
+                        onChanged: saveForm('lastName'),
+                        // TODO: implement keyboard action
+                        textInputAction: TextInputAction.next,
+                      ),
+                      Input(
+                        hintText: 'อีเมล',
+                        initialValue: _form['email'],
+                        onChanged: saveForm('email'),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: CONSTANT.REGEX.validateEmail,
+                      ),
+                      Input(
+                          initialValue: '••••••••••',
+                          readOnly: true,
+                          obscureText: true,
+                          suffixIcon: EditButton(
+                            onTap: onEditPasswordPressed,
+                            icon: Icons.edit,
+                            text: 'เปลี่ยนรหัสผ่าน',
+                          )),
+                      SizedBox(height: CONSTANT.SIZE_LG),
+                      Dropdown<UserType>(
+                        title: 'คุณคือ',
+                        initialValue: userType,
+                        items: widget.userTypesData,
+                        getLabel: (UserType item) => item.name,
+                        onChanged: (UserType value) => setState(() {
+                          _form['typeId'] = value.id;
+                        }),
+                      ),
+                      SizedBox(height: CONSTANT.SIZE_LG),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'สิ่งที่คุณสนใจ',
+                            style: CONSTANT.TEXT_STYLE_HEADING,
+                          ),
+                          EditButton(
+                            onTap: onEditKeywordPressed,
+                            icon: keywords.isEmpty ? Icons.add : Icons.edit,
+                            text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
                           )
-                        : Wrap(
-                            spacing: CONSTANT.SIZE_XL,
-                            runSpacing: 0.0,
-                            children: keywords
-                                .map((word) => Chip(
-                                      padding: EdgeInsets.all(0),
-                                      label: Text(
-                                        word,
-                                        style: TextStyle(
-                                            fontSize: CONSTANT.FONT_SIZE_BODY),
-                                      ),
-                                      labelPadding: EdgeInsets.all(0),
-                                      backgroundColor: Colors.white,
-                                    ))
-                                .toList(),
-                          )
-                  ],
+                        ],
+                      ),
+                      keywords.isEmpty
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(top: CONSTANT.SIZE_MD),
+                              child: Text(
+                                'ยังไม่มีสิ่งที่สนใจ',
+                                style:
+                                    TextStyle(color: CONSTANT.COLOR_DISABLED),
+                              ),
+                            )
+                          : Wrap(
+                              spacing: CONSTANT.SIZE_XL,
+                              runSpacing: 0.0,
+                              children: keywords
+                                  .map((word) => Chip(
+                                        padding: EdgeInsets.all(0),
+                                        label: Text(
+                                          word,
+                                          style: TextStyle(
+                                              fontSize:
+                                                  CONSTANT.FONT_SIZE_BODY),
+                                        ),
+                                        labelPadding: EdgeInsets.all(0),
+                                        backgroundColor: Colors.white,
+                                      ))
+                                  .toList(),
+                            )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

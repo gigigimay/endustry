@@ -20,21 +20,26 @@ class TopicBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Flexible(
-      flex: 1,
-      fit: FlexFit.loose,
-      child: FlatButton(
-        padding: EdgeInsets.all(0.0),
-        onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: width * 0.04,
-            color: isActive ? CONSTANT.COLOR_PRIMARY : CONSTANT.COLOR_BODY,
-            fontWeight: isActive ? FontWeight.w700 : FontWeight.w300,
+    return Material(
+      color: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+        onTap: onPressed,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: CONSTANT.SIZE_XS,
+            vertical: CONSTANT.SIZE_MD,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: width * 0.04,
+              color: isActive ? CONSTANT.COLOR_PRIMARY : CONSTANT.COLOR_BODY,
+              fontWeight: isActive ? FontWeight.w700 : FontWeight.w300,
+            ),
           ),
         ),
       ),

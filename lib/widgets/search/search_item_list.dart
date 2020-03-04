@@ -30,8 +30,12 @@ class SearchItemList extends StatelessWidget {
 
     if (newsResult.length > 0) {
       newsItems = newsResult.map((item) {
-        return SearchItems.searchItemNews(NetworkImage(item.imgurl), item, 80.0,
-            () {
+        return SearchItems.searchItemNews(
+            item.imgurl != null
+                ? NetworkImage(item.imgurl, scale: 1)
+                : AssetImage('assets/images/pic.png'),
+            item,
+            80.0, () {
           Utils.navigatePush(context, NewsInPage(newsData: item));
         });
       }).toList();
@@ -39,7 +43,11 @@ class SearchItemList extends StatelessWidget {
     if (serviceResult.length > 0) {
       serviceItems = serviceResult.map((item) {
         return SearchItems.searchItemService(
-            NetworkImage(item.image), item, 80.0, () {
+            item.image != null
+                ? AssetImage(item.image)
+                : AssetImage('assets/images/pic.png'),
+            item,
+            80.0, () {
           Utils.navigatePush(context, ServiceInPage(serviceData: item));
         });
       }).toList();

@@ -38,7 +38,9 @@ class HilightNewsItem extends StatelessWidget {
                     width: width,
                     child: FadeInImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(newsData.imgurl, scale: 1),
+                      image: newsData.imgurl != null
+                          ? NetworkImage(newsData.imgurl, scale: 1)
+                          : AssetImage('assets/images/pic.png'),
                       placeholder: AssetImage('assets/images/pic.png'),
                     ),
                   ),

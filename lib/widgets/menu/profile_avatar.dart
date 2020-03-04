@@ -21,14 +21,11 @@ class ProfileAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
       CircleFadeInImage(
-          size: avatarSize,
-          borderColor: CONSTANT.COLOR_BORDER_LIGHT,
-          image: img,
-          placeholderImage: CircleAvatar(
-            radius: avatarSize / 2,
-            child: Image.asset('assets/images/select_profile_pic.png'),
-            backgroundColor: Colors.white,
-          )),
+        size: avatarSize,
+        borderColor: CONSTANT.COLOR_BORDER_LIGHT,
+        image: img,
+        placeholderImage: AssetImage('assets/images/select_profile_pic.png'),
+      ),
       Positioned(
         right: 0,
         bottom: 0,

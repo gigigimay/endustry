@@ -3,7 +3,8 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/login/login_form.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key key, this.initMail}) : super(key: key);
+  final initMail;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,9 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: CONSTANT.SIZE_XS),
-                    LoginForm(),
+                    LoginForm(
+                      initMail: initMail,
+                    ),
                   ],
                 ),
               ),

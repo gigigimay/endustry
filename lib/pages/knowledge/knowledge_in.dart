@@ -80,7 +80,7 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        widget.knowledgeData.content,
+                        widget.knowledgeData.content ?? '',
                         style: CONSTANT.TEXT_STYLE_BODY,
                       ),
                     ],

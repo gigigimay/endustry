@@ -21,7 +21,7 @@ class Storage {
   static List<Keyword> keywords;
   static List<UserType> userType;
   static User user;
-  static List<ServiceHistory> serviceHistory;
+  static List<ServiceHistory> serviceHistory = [];
 
   static List<Service> suggestServices;
   static List<Knowledge> suggestKnowledges;
@@ -141,7 +141,6 @@ class Storage {
 
   /// mush have user data in storage
   updateServiceHistory() async {
-    print(DateTime.now());
     if (user != null) {
       List<ServiceHistory> list = [];
       await db
@@ -180,7 +179,6 @@ class Storage {
   checkUidPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     var uid = prefs.getString('uid');
-    print(uid);
     if (uid != null) {
       // var userData = await getUserDataFromId(uid);
       FirebaseDB _firebaseDB = FirebaseDB();
@@ -194,13 +192,11 @@ class Storage {
 
   /// set uid in preference, and set user data variable
   login(User userData) async {
-    print('strge login: ${userData.interestedTopics}');
     user = userData;
     updateServiceHistory();
     Storage().generateInterest();
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('uid', FirebaseDB.user.uid);
-    print(userData.id);
   }
 
   /// remove uid from preference, and clear user data variable

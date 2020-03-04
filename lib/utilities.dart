@@ -52,9 +52,10 @@ class Utils {
     );
   }
 
-  static Future getImageByCamera() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
-  }
+  // open camera function
+  // static Future getImageByCamera() async {
+  //   File image = await ImagePicker.pickImage(source: ImageSource.camera);
+  // }
 
   static getImageByGallery() async {
     // take a photo? can but cant both in one btn

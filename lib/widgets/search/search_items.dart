@@ -58,7 +58,7 @@ class SearchItems {
                     style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
                   ),
                   Text(
-                    '${data.getDateString()} | ${data.author}',
+                    '${data.date != null ? "${data.getDateString()} | " : ""}${data.author != null ? "${data.author}" : ""}',
                     style: CONSTANT.TEXT_STYLE_BODY,
                   ),
                 ],
@@ -129,7 +129,7 @@ class SearchItems {
                 style: CONSTANT.TEXT_STYLE_BODY_PRIMARY,
               ),
               Text(
-                data.content,
+                data.content ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: CONSTANT.TEXT_STYLE_BODY,

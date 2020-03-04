@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    initUserData();
     return BgLayout(
       safeTop: false,
       navbar: NavigationBar(currentTab: currentTab),

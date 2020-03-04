@@ -4,14 +4,16 @@ import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key key}) : super(key: key);
-
+  const LoginForm({Key key, this.initMail}) : super(key: key);
+  final initMail;
   @override
   _LoginFormState createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  final _mailController = TextEditingController();
+  final _passController = TextEditingController();
   var _form = {};
   bool _loginFailed = false;
   final _firebaseDB = FirebaseDB();
@@ -25,8 +27,9 @@ class _LoginFormState extends State<LoginForm> {
   Function onSubmit(context) => () async {
         if (_formKey.currentState.validate()) {
           final storage = Storage();
+          //TODO: check if mail or pass wrong
           var user = await _firebaseDB.login(
-              _form['email'], Utils.encode(_form['password']));
+              _mailController.text, Utils.encode(_passController.text));
 
           if (user != null) {
             await storage.login(user);
@@ -41,6 +44,12 @@ class _LoginFormState extends State<LoginForm> {
       };
 
   @override
+  void initState() {
+    super.initState();
+    _mailController.text = widget.initMail;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RoundedBox(
       padding: EdgeInsets.all(CONSTANT.SIZE_XL),
@@ -50,6 +59,7 @@ class _LoginFormState extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Input(
+              controller: _mailController,
               autofocus: true,
               hintText: 'อีเมล',
               prefixIcon: Icon(Icons.email),
@@ -62,6 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                   : 'อีเมลไม่ถูกต้อง',
             ),
             Input(
+              controller: _passController,
               hintText: 'รหัสผ่าน',
               prefixIcon: Icon(Icons.lock),
               textInputAction: TextInputAction.done,

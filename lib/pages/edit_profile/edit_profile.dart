@@ -49,7 +49,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
     // TODO: check if the email is already used.
     String newImgUrl = Storage.user.img;
     if (_imgByteCode != kTransparentImage) {
-      await FirebaseDB().addImageToStorage(_imgByteCode, Storage.user.id);
+      newImgUrl =
+          await FirebaseDB().addImageToStorage(_imgByteCode, Storage.user.id);
+      print(Storage.user.id);
     }
 
     final User newUser = User.fromUser(

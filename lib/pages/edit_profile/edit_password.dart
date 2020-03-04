@@ -38,7 +38,8 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
       Navigator.pop(context, true);
     } else if (_form.length == 3 &&
         _form['newPassword'] == _form['confirmNewPassword'] &&
-        _form['oldPassword'] != Storage.user.password) {
+        _form['oldPassword'] != Storage.user.password &&
+        CONSTANT.REGEX.validatePassword(_form['newPassword']) == null) {
       clearField('oldPassword', _oldPwdCtrl);
     }
   }

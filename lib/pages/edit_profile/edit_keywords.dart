@@ -21,7 +21,7 @@ class EditKeywordForm extends StatefulWidget {
 }
 
 class _EditKeywordFormState extends State<EditKeywordForm> {
-  String _searchValue;
+  String _searchValue = '';
   List<String> _preferList;
 
   TextEditingController _searchFieldCtrl = TextEditingController();
@@ -47,15 +47,21 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
 
   onClearSearch() {
     _searchFieldCtrl.clear();
-    setState(() {
-      _searchValue = null;
-    });
+    onSearch('');
   }
 
   @override
   Widget build(BuildContext context) {
     final String descriptionText =
         'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';
+
+    final filteredKeywords = widget.keywordsData
+        .where((item) =>
+            !CONSTANT.USERTYPE_IDS.contains(item.id) &&
+            (item.name.contains(_searchValue)))
+        .toList();
+
+    filteredKeywords.sort((a, b) => a.name.compareTo(b.name));
 
     return EditProfileLayout(
       title: 'ตั้งค่าสิ่งที่สนใจ',
@@ -94,11 +100,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
               spacing: 8,
               direction: Axis.horizontal,
               alignment: WrapAlignment.center,
-              children: widget.keywordsData
-                  .where((item) => _searchValue != null
-                      ? item.name.contains(_searchValue)
-                      : true)
-                  .map((item) {
+              children: filteredKeywords.map((item) {
                 bool isSelected = _preferList.contains(item.id);
                 return PreferChip(
                   text: item.name,

@@ -41,6 +41,13 @@ class _RegisterPage4State extends State<RegisterPage4> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredKeywords = items
+        .where((item) =>
+            !CONSTANT.USERTYPE_IDS.contains(item.id) &&
+            (item.name.contains(searchword)))
+        .toList();
+
+    filteredKeywords.sort((a, b) => a.name.compareTo(b.name));
     return RegisterLayout(
       scroll: false,
       registerStep: 3,
@@ -85,8 +92,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
                   spacing: 8,
                   direction: Axis.horizontal,
                   alignment: WrapAlignment.center,
-                  children: items
-                      .where((item) => item.name.contains(searchword))
+                  children: filteredKeywords
                       .map((item) {
                     bool isSelected = _preferList.contains(item.id);
                     return PreferChip(

@@ -150,9 +150,7 @@ class _SearchPageState extends State<SearchPage> {
                           ? Container(
                               color: Colors.white,
                               height: CONSTANT.SIZE_XS,
-                              child: Divider(
-                                height: 0,
-                              ),
+                              child: Divider(height: 0),
                             )
                           : Container(),
                     ],

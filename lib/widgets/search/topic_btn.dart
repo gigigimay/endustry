@@ -19,16 +19,23 @@ class TopicBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: onPressed,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
-      ),
-      child: Text(
-        text,
-        style: isActive
-            ? CONSTANT.TEXT_STYLE_BODY_PRIMARY
-            : TextStyle(fontWeight: FontWeight.w300),
+    double width = MediaQuery.of(context).size.width;
+    return Flexible(
+      fit: FlexFit.loose,
+      child: FlatButton(
+        padding: EdgeInsets.all(0.0),
+        onPressed: onPressed,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(CONSTANT.BORDER_RADIUS),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: width * 0.04,
+            color: isActive ? CONSTANT.COLOR_PRIMARY : CONSTANT.COLOR_BODY,
+            fontWeight: isActive ? FontWeight.w700 : FontWeight.w300,
+          ),
+        ),
       ),
     );
   }

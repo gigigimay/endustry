@@ -65,8 +65,6 @@ class MenuSettingPage extends StatelessWidget {
                               Text(
                                 'Version ${AppInfo.version}\n'
                                 '${AppInfo.size}\nอัพเดทล่าสุด: ${Utils.formatDateTime(AppInfo.latestUpdate)}\nผู้พัฒนา: ${AppInfo.developer}',
-                                style:
-                                    TextStyle(color: CONSTANT.COLOR_DISABLED),
                               ),
                             ],
                           ),

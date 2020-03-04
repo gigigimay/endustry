@@ -74,17 +74,20 @@ class _RegisterPage1State extends State<RegisterPage1> {
                 onChanged: saveForm('lastName'),
               ),
               Input(
+                initialValue: widget.initData['email'],
                 hintText: 'อีเมล',
                 onChanged: saveForm('email'),
                 validator: CONSTANT.REGEX.validateEmail,
               ),
               Input(
+                initialValue: widget.initData['password'],
                 hintText: 'รหัสผ่าน',
                 obscureText: true,
                 onChanged: saveForm('password'),
                 validator: CONSTANT.REGEX.validatePassword,
               ),
               Input(
+                initialValue: widget.initData['password'],
                 hintText: 'ยืนยันรหัสผ่าน',
                 obscureText: true,
                 validator: (String value) =>

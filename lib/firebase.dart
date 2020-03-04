@@ -6,6 +6,7 @@ import 'package:endustry/export.dart';
 import 'package:endustry/storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 import 'package:uuid/uuid.dart';
 
 class FirebaseDB {
@@ -119,5 +120,22 @@ class FirebaseDB {
     await Firestore.instance.collection('users').document(user.uid).updateData({
       'favKnowledges': value ?? [],
     }).catchError((e) => print(e));
+  }
+
+  updateImageToStorage(Uint8List imageData, uid) async {
+    String imgID = await Firestore.instance
+        .collection('users')
+        .document(uid)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return (basename(ds['img'])
+          .substring(0, basename(ds['img']).indexOf('?')));
+    });
+
+    await FirebaseStorage.instance
+        .ref()
+        .child(imgID)
+        .putData(imageData)
+        .onComplete;
   }
 }

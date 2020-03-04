@@ -37,7 +37,6 @@ class _UserProfileState extends State<UserProfile> {
     String userType = MOCK_USERTYPES
         .firstWhere((UserType t) => t.id == _userData.typeId)
         .name;
-
     return Row(
       children: <Widget>[
         Container(
@@ -48,11 +47,6 @@ class _UserProfileState extends State<UserProfile> {
               size: CONSTANT.SIZE_XL,
             ),
             img: NetworkImage(_userData.img),
-            //  MemoryImage(
-            //   _userData.img != Utils.convertByteCodeToString(kTransparentImage)
-            //       ? Utils.convertStringToByteCode(_userData.img)
-            //       : kTransparentImage,
-            // ),
             avatarSize: avatarSize,
             fabSize: avatarSize * 0.4,
             fabAction: onEditPressed,

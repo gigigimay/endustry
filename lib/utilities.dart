@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
+import 'package:endustry/main.dart';
 import 'package:endustry/storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,11 +13,16 @@ import 'package:crypto/crypto.dart';
 class Utils {
   static void navigatePush(BuildContext context, Widget page,
       {animate = false}) {
-    if (animate)
+    if (animate) {
+      r += page.toString();
+      print(r);
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-    else
+    } else {
+      r += page.toString();
+      print(r);
       Navigator.push(
           context, NoAnimationMaterialPageRoute(builder: (context) => page));
+    }
   }
 
   static void navigatePushAndPopAll(BuildContext context, Widget page,
@@ -33,6 +39,16 @@ class Utils {
         NoAnimationMaterialPageRoute(builder: (context) => page),
         (Route<dynamic> r) => false,
       );
+  }
+
+  static void navigatePushReplacement(BuildContext context, Widget page,
+      {animate = false}) {
+    if (animate)
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => page));
+    else
+      Navigator.pushReplacement(
+          context, NoAnimationMaterialPageRoute(builder: (context) => page));
   }
 
   static void launchURL(String url) async {

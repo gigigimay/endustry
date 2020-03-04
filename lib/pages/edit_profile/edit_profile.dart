@@ -49,9 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     // TODO: check if the email is already used.
     String newImgUrl = Storage.user.img;
     if (_imgByteCode != kTransparentImage) {
-      newImgUrl =
-          await FirebaseDB().addImageToStorage(_imgByteCode, Storage.user.id);
-      print(Storage.user.id);
+      await FirebaseDB().updateImageToStorage(_imgByteCode, FirebaseDB.user.uid);
     }
 
     final User newUser = User.fromUser(
@@ -64,7 +62,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
     FirebaseDB _firebaseDB = FirebaseDB();
     await _firebaseDB.editUserProfile(newUser);
-    Navigator.pop(context, true);
+    Storage.user = newUser;
+    Utils.navigatePushReplacement(context, MenuPage());
+    // Navigator.pop(context);
   }
 
   Function saveForm(key) => (value) {

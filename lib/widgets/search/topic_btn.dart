@@ -21,6 +21,7 @@ class TopicBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Flexible(
+      flex: 1,
       fit: FlexFit.loose,
       child: FlatButton(
         padding: EdgeInsets.all(0.0),

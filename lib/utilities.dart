@@ -98,8 +98,10 @@ class Utils {
 
   static List getSuggestList(List list) {
     // create list of suggest key by tier
+    String userTypeKeywordId =
+        MOCK_KEYWORDS.firstWhere((item) => item.name == Storage.user.typeId).id;
     Map<String, int> _suggsetTier = {};
-    final _userKey = Set.from(Storage.user.interestedTopics);
+    final _userKey = Set.from([Storage.user.interestedTopics, userTypeKeywordId]);
     list.forEach((item) {
       var intersec = Set.from(item.tag).intersection(_userKey);
       if (intersec.length > 0) {

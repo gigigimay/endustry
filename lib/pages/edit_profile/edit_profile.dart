@@ -52,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       await FirebaseDB()
           .updateImageToStorage(_imgByteCode, FirebaseDB.user.uid);
     }
-    
+
     final User newUser = User.fromUser(
       _userData,
       email: _form['email'],
@@ -174,36 +174,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       validator: CONSTANT.REGEX.validateEmail,
                     ),
                     Input(
-                      initialValue: '••••••••••',
-                      readOnly: true,
-                      obscureText: true,
-                      suffixIcon: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: onEditPasswordPressed,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                'เปลี่ยนรหัสผ่าน',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: CONSTANT.FONT_SIZE_BODY,
-                                  color: CONSTANT.COLOR_PRIMARY,
-                                ),
-                              ),
-                              SizedBox(
-                                width: CONSTANT.SIZE_MD,
-                              ),
-                              Icon(
-                                Icons.edit,
-                                color: CONSTANT.COLOR_PRIMARY,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                        initialValue: '••••••••••',
+                        readOnly: true,
+                        obscureText: true,
+                        suffixIcon: EditButton(
+                          onTap: onEditKeywordPressed,
+                          icon: Icons.edit,
+                          text: 'เปลี่ยนรหัสผ่าน',
+                        )),
                     SizedBox(height: CONSTANT.SIZE_LG),
                     Dropdown<UserType>(
                       title: 'คุณคือ',
@@ -215,25 +193,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       }),
                     ),
                     SizedBox(height: CONSTANT.SIZE_LG),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: onEditPasswordPressed,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'สิ่งที่คุณสนใจ',
-                              style: CONSTANT.TEXT_STYLE_HEADING,
-                            ),
-                            EditButton(
-                              onTap: onEditKeywordPressed,
-                              icon: keywords.isEmpty ? Icons.add : Icons.edit,
-                              text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
-                            )
-                          ],
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'สิ่งที่คุณสนใจ',
+                          style: CONSTANT.TEXT_STYLE_HEADING,
                         ),
-                      ),
+                        EditButton(
+                          onTap: onEditKeywordPressed,
+                          icon: keywords.isEmpty ? Icons.add : Icons.edit,
+                          text: keywords.isEmpty ? 'เพิ่ม' : 'แก้ไข',
+                        )
+                      ],
                     ),
                     keywords.isEmpty
                         ? Padding(

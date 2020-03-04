@@ -45,11 +45,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
     });
   }
 
+  setLoading(bool value) {
+    setState(() {
+      _isLoading = value;
+    });
+  }
+
   void submitForm() async {
     // TODO: check if the email is already used.
-    setState(() {
-      _isLoading = true;
-    });
+    setLoading(true);
     String newImgUrl = Storage.user.img;
     if (_imgByteCode != kTransparentImage) {
       await FirebaseDB()
@@ -74,10 +78,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     Storage.user = newUser;
     _userData = newUser;
 
+    setLoading(false);
     Storage().generateInterest();
-    setState(() {
-      _isLoading = false;
-    });
     Navigator.pop(context, true);
   }
 

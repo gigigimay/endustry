@@ -90,12 +90,9 @@ class REGEX {
     multiLine: false,
   );
   static RegExp password = RegExp(r'^([A-Za-z\d]{4,})$');
-  static String validatePassword(String value) {
-    print('"$value" >> ${password.hasMatch(value)}');
-    return password.hasMatch(value)
-        ? null
-        : 'รหัสผ่านต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลข และมีความยาวตั้งแต่ 4 ตัวอักษรขึ้นไป';
-  }
+  static String validatePassword(String value) => password.hasMatch(value)
+      ? null
+      : 'รหัสผ่านต้องเป็นตัวอักษรภาษาอังกฤษหรือตัวเลข และมีความยาวตั้งแต่ 4 ตัวอักษรขึ้นไป';
 
   static String validateEmail(String value) =>
       email.hasMatch(value) ? null : 'อีเมลไม่ถูกต้อง';

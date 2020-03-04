@@ -1,7 +1,7 @@
 import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
-class PageAppBar extends StatefulWidget {
+class PageAppBar extends StatelessWidget {
   PageAppBar(
       {Key key,
       this.hasBackArrow = false,
@@ -16,11 +16,6 @@ class PageAppBar extends StatefulWidget {
   final String title;
 
   @override
-  _PageAppBarState createState() => _PageAppBarState();
-}
-
-class _PageAppBarState extends State<PageAppBar> {
-  @override
   Widget build(BuildContext context) {
     return PagePadding(
       top: CONSTANT.SIZE_XS,
@@ -30,9 +25,9 @@ class _PageAppBarState extends State<PageAppBar> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              widget.hasBackArrow
+              hasBackArrow
                   ? IconButtonInk(
-                      onPressed: widget.backArrowFunction ??
+                      onPressed: backArrowFunction ??
                           () => Navigator.of(context).pop(),
                       icon: Icon(
                         Icons.arrow_back_ios,
@@ -41,7 +36,7 @@ class _PageAppBarState extends State<PageAppBar> {
                     )
                   : Container(),
               Container(
-                child: TitleText(widget.title),
+                child: TitleText(title),
                 padding: EdgeInsets.only(
                   top: CONSTANT.SIZE_SM,
                   left: CONSTANT.SIZE_SM,
@@ -49,7 +44,7 @@ class _PageAppBarState extends State<PageAppBar> {
               )
             ],
           ),
-          widget.actionWidget ?? Container()
+          actionWidget ?? Container()
         ],
       ),
     );

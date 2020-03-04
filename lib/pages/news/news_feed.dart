@@ -16,8 +16,14 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
   final newsData = MOCK_NEWS;
   final newsType = MOCK_NEWSTYPES;
   String _selectedFilter = 'ข่าวทั้งหมด';
+  final ScrollController _scrollController = ScrollController();
 
   setFilter(newFilter) {
+    _scrollController.animateTo(
+      0.0,
+      curve: Curves.easeOut,
+      duration: const Duration(milliseconds: 300),
+    );
     setState(() {
       _selectedFilter = newFilter;
     });
@@ -69,6 +75,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
             ),
           ),
           PageScrollBody(
+            controller: _scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

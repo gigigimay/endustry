@@ -149,6 +149,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           child: Column(
             children: <Widget>[
               PageScrollBody(
+                padding: EdgeInsets.all(0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

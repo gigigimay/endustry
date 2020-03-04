@@ -3,6 +3,7 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/pages/menu/menu_about.dart';
 import 'package:endustry/pages/menu/menu_settings.dart';
 import 'package:endustry/storage.dart';
+import 'package:endustry/widgets/menu/logout_confirm_dialog.dart';
 import '../../widgets/menu/menu_item.dart';
 import '../../widgets/menu/user_profile.dart';
 
@@ -13,9 +14,17 @@ class MenuPage extends StatelessWidget {
   final Function goBackToFirst, changePage;
 
   Function onLogout(context) => () async {
-        await Storage().logout();
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/login', (Route<dynamic> route) => false);
+        bool confirm = await showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context) {
+              return LogoutConfirmDialog();
+            });
+        if (confirm ?? false) {
+          await Storage().logout();
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/login', (Route<dynamic> route) => false);
+        }
       };
 
   @override

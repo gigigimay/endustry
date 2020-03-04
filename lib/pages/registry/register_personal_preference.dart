@@ -52,7 +52,7 @@ class _RegisterPage4State extends State<RegisterPage4> {
       scroll: false,
       registerStep: 3,
       stateTitle: 'เลือกสิ่งที่คุณสนใจ',
-      stateSubTitle: 'การกำหนดสิ่งที่คุณสนใจจะช่วยทำให้...',
+      stateSubTitle: CONSTANT.DESC_INTEREDTESTOPIC,
       prevBtnFuntion: widget.prevBtnFuntion,
       nextBtnFuntion: widget.nextBtnFuntion,
       nextText: 'เสร็จสิ้น',

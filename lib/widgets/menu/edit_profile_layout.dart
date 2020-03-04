@@ -44,10 +44,10 @@ class EditProfileLayout extends StatelessWidget {
                         bottom: bottomOverlap,
                       ),
                       padding: EdgeInsets.only(
-                        top: topOverlap + CONSTANT.SIZE_XL,
+                        top: topOverlap + CONSTANT.SIZE_MD,
+                        bottom: bottomOverlap + CONSTANT.SIZE_MD,
                         left: CONSTANT.SIZE_XL,
                         right: CONSTANT.SIZE_XL,
-                        bottom: bottomOverlap + CONSTANT.SIZE_XL,
                       ),
                       child: child,
                     ),

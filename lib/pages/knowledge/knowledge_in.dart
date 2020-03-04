@@ -86,7 +86,8 @@ class _KnowledgeInPageState extends State<KnowledgeInPage> {
                 ),
               ),
             ),
-          )
+          ),
+          SizedBox(height: CONSTANT.SIZE_XX),
         ],
       ),
     );

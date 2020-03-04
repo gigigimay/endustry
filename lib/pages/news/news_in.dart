@@ -94,7 +94,8 @@ class _NewsInPageState extends State<NewsInPage> {
                 ),
               ),
             ),
-          )
+          ),
+          SizedBox(height: CONSTANT.SIZE_XX),
         ],
       ),
     );

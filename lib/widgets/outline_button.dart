@@ -31,12 +31,20 @@ class CustomOutlineButton extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
+      ),
       child: OutlineButton(
         padding: padding,
         onPressed: disabled ? null : onPressed,
         child: child ??
             Text(
               text,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: disabled ? CONSTANT.COLOR_DISABLED : color,
                 fontSize: CONSTANT.FONT_SIZE_HEAD,

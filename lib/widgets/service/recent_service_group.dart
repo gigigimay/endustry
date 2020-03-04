@@ -44,18 +44,22 @@ class RecentServiceGroup extends StatelessWidget {
             servicesData: recentServicesData,
             title: title,
             currentTab: currentTab,
-            extraWidgets: (Service service) => [
-              SizedBox(height: CONSTANT.SIZE_MD),
-              Text(
-                Utils.formatDateTime(servicesHistoryData
-                    .firstWhere((ServiceHistory h) => h.serviceId == service.id)
-                    .datetime
-                    .toString()),
-                style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: CONSTANT.FONT_SIZE_BODY * 0.8),
-              )
-            ],
+            extraWidgets: (Service service) {
+              String dateTime = Utils.formatDateTime(servicesHistoryData
+                  .firstWhere((ServiceHistory h) => h.serviceId == service.id)
+                  .datetime
+                  .toString());
+
+              return [
+                SizedBox(height: CONSTANT.SIZE_MD),
+                Text(
+                  'ใช้งานล่าสุดเมื่อ $dateTime',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: CONSTANT.FONT_SIZE_BODY * 0.8),
+                )
+              ];
+            },
           )),
       children: recentServicesData
           .toList()

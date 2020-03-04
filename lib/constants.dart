@@ -113,3 +113,5 @@ const WORD_SEARCH_TH = 'ค้นหา';
 const WORD_SEARCH_ENG = 'search';
 const WORD_DEPARTMENT_TH = 'หน่วยงาน';
 const WORD_DEPARTMENT_ENG = 'department';
+
+const DESC_INTEREDTESTOPIC = 'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';

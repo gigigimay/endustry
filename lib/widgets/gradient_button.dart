@@ -59,6 +59,8 @@ class GradientButton extends StatelessWidget {
             child: child ??
                 Text(
                   text,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,

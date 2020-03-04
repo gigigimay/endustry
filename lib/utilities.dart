@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
-import 'package:endustry/main.dart';
 import 'package:endustry/storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,12 +13,8 @@ class Utils {
   static void navigatePush(BuildContext context, Widget page,
       {animate = false}) {
     if (animate) {
-      r += page.toString();
-      print(r);
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
     } else {
-      r += page.toString();
-      print(r);
       Navigator.push(
           context, NoAnimationMaterialPageRoute(builder: (context) => page));
     }

@@ -64,7 +64,9 @@ class _NewsInPageState extends State<NewsInPage> {
                           child: FadeInImage(
                             width: width,
                             fit: BoxFit.cover,
-                            image: NetworkImage(widget.newsData.imgurl),
+                            image: widget.newsData.imgurl != null
+                                ? NetworkImage(widget.newsData.imgurl, scale: 1)
+                                : AssetImage('assets/images/pic.png'),
                             placeholder:
                                 AssetImage('assets/images/news_white.png'),
                           ),

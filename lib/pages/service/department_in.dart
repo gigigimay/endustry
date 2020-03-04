@@ -119,8 +119,9 @@ class DepartmentInPage extends StatelessWidget {
                                 size: serviceButtonWidth * 0.6,
                                 borderWidth: CONSTANT.BORDER_WIDTH_MEDIUM,
                                 borderColor: Colors.white,
-                                // TODO: Change NetworkImage to AssetImage
-                                image: NetworkImage(s.image),
+                                image: s.image != null
+                                    ? NetworkImage(s.image, scale: 1)
+                                    : AssetImage('assets/images/pic.png'),
                               ),
                               SizedBox(height: CONSTANT.SIZE_SM),
                               Text(

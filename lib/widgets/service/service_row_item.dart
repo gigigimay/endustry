@@ -32,8 +32,7 @@ class ServiceRowItem extends StatelessWidget {
           children: <Widget>[
             CircleFadeInImage(
               size: width * 0.25,
-              // TODO: Change NetworkImage to AssetImage
-              image: NetworkImage(serviceData.image),
+              image: AssetImage(serviceData.image),
             ),
             SizedBox(width: CONSTANT.SIZE_LG),
             Flexible(

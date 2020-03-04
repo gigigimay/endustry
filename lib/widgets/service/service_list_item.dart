@@ -27,8 +27,12 @@ class ServiceItem extends StatelessWidget {
           width: itemWidth,
           child: Column(
             children: <Widget>[
-              // TODO: Change NetworkImage to AssetImage
-              CircleFadeInImage(size: iconWidth, image: NetworkImage(imageUrl)),
+              CircleFadeInImage(
+                size: iconWidth,
+                image: imageUrl != null
+                    ? AssetImage(imageUrl)
+                    : AssetImage('assets/images/pic.png'),
+              ),
               SizedBox(height: CONSTANT.SIZE_SM),
               Text(
                 text,

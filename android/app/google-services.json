@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "210512071095",
+    "firebase_url": "https://endustry-5f032.firebaseio.com",
+    "project_id": "endustry-5f032",
+    "storage_bucket": "endustry-5f032.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210512071095:android:a358ac66d4d3d897ea8032",
+        "android_client_info": {
+          "package_name": "com.example.endustry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210512071095-i7nectmkg56kcu7krt2vbmulagmn9kjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMg1xy6s4auGzzumEshsZvwejVrknhFU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210512071095-i7nectmkg56kcu7krt2vbmulagmn9kjc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210512071095-5m10esruhcc5mk6cb9ei5a2mn0pelsf7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.flutter.flutter.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -32,7 +32,9 @@ class NewsItem extends StatelessWidget {
                   width: width * 0.3,
                   child: FadeInImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(newsData.imgurl, scale: 1),
+                    image: newsData.imgurl != null
+                        ? NetworkImage(newsData.imgurl, scale: 1)
+                        : AssetImage('assets/images/pic.png'),
                     placeholder: AssetImage('assets/images/pic.png'),
                   ),
                 ),
@@ -54,7 +56,7 @@ class NewsItem extends StatelessWidget {
                           Text(
                             newsData.title,
                             style: CONSTANT.TEXT_STYLE_HEADING_PRIMARY,
-                            maxLines: 3,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(

@@ -49,7 +49,7 @@ class KnowledgeItem extends StatelessWidget {
               ),
               Container(
                 child: Text(
-                  knowledgeData.content,
+                  knowledgeData.content ?? '',
                   style: CONSTANT.TEXT_STYLE_BODY,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

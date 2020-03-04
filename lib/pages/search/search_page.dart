@@ -57,25 +57,27 @@ class _SearchPageState extends State<SearchPage> {
 
   getNewsFromSearch(searchNewsData) => searchNewsData
       .where((item) =>
-          item.title.contains(_searchWord) ||
-          item.content.contains(_searchWord) ||
-          item.author.contains(_searchWord))
+          (item.title != null && item.title.contains(_searchWord)) ||
+          (item.content != null && item.content.contains(_searchWord)) ||
+          (item.author != null && item.author.contains(_searchWord)))
       .toList();
 
   // TODO: search for keywords
   getServiceFromSearch(searchServiceData) =>
       Utils.joinServiceDep(searchServiceData, departmentsData)
           .where((Service item) =>
-              item.name.contains(_searchWord) ||
-              item.description.contains(_searchWord) ||
-              item.departmentData.name.contains(_searchWord))
+              (item.name != null && item.name.contains(_searchWord)) ||
+              (item.description != null &&
+                  item.description.contains(_searchWord)) ||
+              (item.departmentData.name != null &&
+                  item.departmentData.name.contains(_searchWord)))
           .toList();
 
   getKnowledgeFromSearch(searchServiceData) => searchKnowledgeData
       .where((item) =>
-          item.title.contains(_searchWord) ||
-          item.content.contains(_searchWord) ||
-          item.author.contains(_searchWord))
+          (item.title != null && item.title.contains(_searchWord)) ||
+          (item.content != null && item.content.contains(_searchWord)) ||
+          (item.author != null && item.author.contains(_searchWord)))
       .toList();
 
   @override

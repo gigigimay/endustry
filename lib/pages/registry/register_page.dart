@@ -1,9 +1,10 @@
 import 'package:endustry/export.dart';
+import 'package:endustry/firebase.dart';
+import 'package:endustry/pages/login.dart';
 import 'package:endustry/pages/registry/register_personal_image.dart';
 import 'package:endustry/pages/registry/register_personal_info.dart';
 import 'package:endustry/pages/registry/register_personal_preference.dart';
 import 'package:endustry/pages/registry/register_personal_status.dart';
-import 'package:endustry/storage.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
@@ -72,12 +73,16 @@ class _RegisterPageState extends State<RegisterPage> {
         firstName: userInfo['firstName'],
         lastName: userInfo['lastName'],
         email: userInfo['email'],
+        password: userInfo['password'],
         img: userInfo['img'],
         typeId: userInfo['typeId'],
         interestedTopics: List<String>.from(userInfo['interestTopic']));
 
-    Storage().insertNewUser(newUser, Utils.encode(userInfo['password']));
+    FirebaseDB _firebasedb = FirebaseDB();
+    _firebasedb.register(newUser, Utils.encode(userInfo['password']));
+
     Navigator.pop(context);
+    Utils.navigatePush(context, LoginPage(initMail: userInfo['email']));
   }
 
   @override

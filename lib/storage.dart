@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:endustry/export.dart';
+import 'package:endustry/firebase.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -20,11 +21,12 @@ class Storage {
   static List<Keyword> keywords;
   static List<UserType> userType;
   static User user;
-  static List<ServiceHistory> serviceHistory;
+  static List<ServiceHistory> serviceHistory = [];
 
   static List<Service> suggestServices;
   static List<Knowledge> suggestKnowledges;
 
+  /// TODO: remove?
   initDB() async {
     // Construct a file path to copy database to
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -135,15 +137,15 @@ class Storage {
     return list;
   }
 
+  ///
+
   /// mush have user data in storage
   updateServiceHistory() async {
-    print(DateTime.now());
     if (user != null) {
       List<ServiceHistory> list = [];
       await db
           .rawQuery('''SELECT serviceId, userId, max(datetime) as datetime FROM 
-          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''')
-          .then((data) {
+          ServiceHistory WHERE userId="${user.id}" GROUP BY serviceId ORDER BY datetime DESC''').then((data) {
         data.forEach((item) => list.add(ServiceHistory.fromJson(item)));
       });
       Storage.serviceHistory = list;
@@ -178,7 +180,9 @@ class Storage {
     final prefs = await SharedPreferences.getInstance();
     var uid = prefs.getString('uid');
     if (uid != null) {
-      var userData = await getUserDataFromId(uid);
+      // var userData = await getUserDataFromId(uid);
+      FirebaseDB _firebaseDB = FirebaseDB();
+      var userData = await _firebaseDB.getUserData(uid);
       Storage.user = userData;
       updateServiceHistory();
       return true;
@@ -190,8 +194,9 @@ class Storage {
   login(User userData) async {
     user = userData;
     updateServiceHistory();
+    Storage().generateInterest();
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('uid', userData.id);
+    prefs.setString('uid', FirebaseDB.user.uid);
   }
 
   /// remove uid from preference, and clear user data variable

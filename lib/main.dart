@@ -6,6 +6,8 @@ import 'package:endustry/pages/splash.dart';
 
 void main() => runApp(MyApp());
 
+String r = 'app/';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

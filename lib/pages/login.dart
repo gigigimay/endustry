@@ -3,20 +3,15 @@ import 'package:endustry/constants.dart' as CONSTANT;
 import 'package:endustry/widgets/login/login_form.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key key, this.initMail}) : super(key: key);
+  final initMail;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
-      body: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
+      body: UnfocusNode(
         child: Container(
           color: CONSTANT.COLOR_PRIMARY,
           child: Stack(
@@ -44,7 +39,9 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: CONSTANT.SIZE_XS),
-                    LoginForm(),
+                    LoginForm(
+                      initMail: initMail,
+                    ),
                   ],
                 ),
               ),

@@ -9,13 +9,13 @@ class CircleFadeInImage extends StatelessWidget {
       this.borderColor = CONSTANT.COLOR_PRIMARY,
       this.borderWidth = CONSTANT.BORDER_WIDTH_THICK,
       this.bgColor = Colors.white,
-      this.placeholderImage})
+      this.placeholderImage = const AssetImage('assets/images/pic.png'),})
       : super(key: key);
 
   final double size, borderWidth;
   final ImageProvider image;
   final Color borderColor, bgColor;
-  final Widget placeholderImage;
+  final ImageProvider placeholderImage;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CircleFadeInImage extends StatelessWidget {
       child: image != MemoryImage(kTransparentImage)
           ? ClipOval(
               child: FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
+                placeholder: placeholderImage,
                 image: image,
                 fit: BoxFit.cover,
               ),

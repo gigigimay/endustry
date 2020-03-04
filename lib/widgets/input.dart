@@ -2,28 +2,29 @@ import 'package:endustry/export.dart';
 import 'package:endustry/constants.dart' as CONSTANT;
 
 class Input extends StatelessWidget {
-  const Input({
-    Key key,
-    this.obscureText = false,
-    this.readOnly = false,
-    this.autofocus = false,
-    this.initialValue,
-    this.onChanged,
-    this.onSaved,
-    this.hintText,
-    this.labelText,
-    this.validator,
-    this.suffixIcon,
-    this.suffixText,
-    this.style,
-    this.hintStyle,
-    this.prefixIcon,
-    this.textInputAction,
-    this.keyboardType,
-    this.onEditingComplete,
-    this.controller,
-    this.fontSize,
-  }) : super(key: key);
+  const Input(
+      {Key key,
+      this.obscureText = false,
+      this.readOnly = false,
+      this.autofocus = false,
+      this.initialValue,
+      this.onChanged,
+      this.onSaved,
+      this.hintText,
+      this.labelText,
+      this.validator,
+      this.suffixIcon,
+      this.suffixText,
+      this.style,
+      this.hintStyle,
+      this.prefixIcon,
+      this.textInputAction,
+      this.keyboardType,
+      this.onEditingComplete,
+      this.controller,
+      this.fontSize,
+      this.focusNode})
+      : super(key: key);
 
   final String hintText, labelText, initialValue, suffixText;
   final bool obscureText, readOnly, autofocus;
@@ -35,6 +36,7 @@ class Input extends StatelessWidget {
   final TextInputType keyboardType;
   final TextEditingController controller;
   final double fontSize;
+  final FocusNode focusNode;
 
   String validate(String value) {
     if (value.isEmpty) return 'กรุณากรอกข้อมูล';
@@ -48,6 +50,7 @@ class Input extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(bottom: CONSTANT.SIZE_MD),
       child: TextFormField(
+        focusNode: focusNode,
         controller: controller,
         onEditingComplete: onEditingComplete,
         keyboardType: keyboardType,

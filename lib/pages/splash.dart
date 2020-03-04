@@ -30,7 +30,6 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    print('render Splash');
     return Container(
       color: Colors.white,
       child: Center(

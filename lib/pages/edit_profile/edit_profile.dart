@@ -63,8 +63,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     FirebaseDB _firebaseDB = FirebaseDB();
     await _firebaseDB.editUserProfile(newUser);
     Storage.user = newUser;
-    Utils.navigatePushReplacement(context, MenuPage());
-    // Navigator.pop(context);
+    // Utils.navigatePushReplacement(context, MenuPage());
+    Navigator.pop(context,true);
   }
 
   Function saveForm(key) => (value) {

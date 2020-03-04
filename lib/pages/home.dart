@@ -68,10 +68,14 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: CONSTANT.SIZE_MD),
-                          RecentServiceGroup(currentTab: currentTab),
+                          RecentServiceGroup(
+                            currentTab: currentTab,
+                            maxItems: 2,
+                          ),
                           SuggestedServiceGroup(
                             suggestedServicesData: suggestedServicesData,
                             currentTab: currentTab,
+                            maxItems: 2,
                           ),
                           SuggestedKnowledgeGroup(
                             suggestedKnowledgesData: suggestedKnowledgesData,

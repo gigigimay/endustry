@@ -9,7 +9,7 @@ class CircleFadeInImage extends StatelessWidget {
     this.borderColor = CONSTANT.COLOR_PRIMARY,
     this.borderWidth = CONSTANT.BORDER_WIDTH_THICK,
     this.bgColor = Colors.white,
-    this.placeholderImage = const AssetImage('assets/images/pic.png'),
+    this.placeholderImage = const AssetImage(CONSTANT.PIC),
   }) : super(key: key);
 
   final double size, borderWidth;

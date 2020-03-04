@@ -121,7 +121,7 @@ class DepartmentInPage extends StatelessWidget {
                                 borderColor: Colors.white,
                                 image: s.image != null
                                     ? NetworkImage(s.image, scale: 1)
-                                    : AssetImage('assets/images/pic.png'),
+                                    : AssetImage(CONSTANT.PIC),
                               ),
                               SizedBox(height: CONSTANT.SIZE_SM),
                               Text(

@@ -89,7 +89,7 @@ class ServiceInPage extends StatelessWidget {
                           size: imageSize,
                           image: serviceData.image != null
                               ? NetworkImage(serviceData.image, scale: 1)
-                              : AssetImage('assets/images/pic.png'),
+                              : AssetImage(CONSTANT.PIC),
                         ),
                       )
                     ],

@@ -66,7 +66,7 @@ class _NewsInPageState extends State<NewsInPage> {
                             fit: BoxFit.cover,
                             image: widget.newsData.imgurl != null
                                 ? NetworkImage(widget.newsData.imgurl, scale: 1)
-                                : AssetImage('assets/images/pic.png'),
+                                : AssetImage(CONSTANT.PIC),
                             placeholder:
                                 AssetImage('assets/images/news_white.png'),
                           ),

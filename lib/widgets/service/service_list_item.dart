@@ -31,7 +31,7 @@ class ServiceItem extends StatelessWidget {
                 size: iconWidth,
                 image: imageUrl != null
                     ? AssetImage(imageUrl)
-                    : AssetImage('assets/images/pic.png'),
+                    : AssetImage(CONSTANT.PIC),
               ),
               SizedBox(height: CONSTANT.SIZE_SM),
               Text(

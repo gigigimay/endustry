@@ -10,16 +10,21 @@ class CircleFadeInImage extends StatelessWidget {
     this.borderWidth = CONSTANT.BORDER_WIDTH_THICK,
     this.bgColor = Colors.white,
     this.placeholderImage = const AssetImage(CONSTANT.PIC),
+    this.padding,
+    this.imagefit,
   }) : super(key: key);
 
   final double size, borderWidth;
   final ImageProvider image;
   final Color borderColor, bgColor;
   final ImageProvider placeholderImage;
+  final EdgeInsets padding;
+  final BoxFit imagefit;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: padding,
       width: size,
       height: size,
       decoration: ShapeDecoration(
@@ -34,7 +39,7 @@ class CircleFadeInImage extends StatelessWidget {
           image: image != MemoryImage(kTransparentImage)
               ? image
               : placeholderImage,
-          fit: BoxFit.cover,
+          fit: imagefit ?? BoxFit.cover,
         ),
       ),
     );

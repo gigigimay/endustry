@@ -28,6 +28,7 @@ class ServiceItem extends StatelessWidget {
           child: Column(
             children: <Widget>[
               CircleFadeInImage(
+                imagefit: BoxFit.scaleDown,
                 size: iconWidth,
                 image: imageUrl != null
                     ? AssetImage(imageUrl)
@@ -40,7 +41,7 @@ class ServiceItem extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-              )
+              ),
             ],
           ),
         ),

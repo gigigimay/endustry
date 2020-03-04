@@ -23,11 +23,19 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
     });
   }
 
+  void itemOnPressed(News item) {
+    Utils.navigatePush(context, NewsInPage(newsData: item));
+  }
+
   @override
   Widget build(BuildContext context) {
-    void itemOnPressed(News item) {
-      Utils.navigatePush(context, NewsInPage(newsData: item));
-    }
+    final List<News> displayedNewsData = newsData.where((item) {
+      if (item.typeId == newsType.first.id) return false;
+      if (_selectedFilter == 'ข่าวทั้งหมด') return true;
+      return item.typeId ==
+          newsType.firstWhere((item) => item.typeName == _selectedFilter).id;
+    }).toList();
+    displayedNewsData.sort((a, b) => b.date.compareTo(a.date));
 
     return BgLayout(
       navbar: NavigationBar(currentTab: 'news', isOnRoot: true),
@@ -91,19 +99,7 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
                         style: CONSTANT.TEXT_STYLE_HEADING,
                       ),
                       Column(
-                          children: newsData
-                              .where((item) {
-                                if (item.typeId == newsType.first.id)
-                                  return false;
-                                else if (_selectedFilter == 'ข่าวทั้งหมด')
-                                  return true;
-                                else
-                                  return item.typeId ==
-                                      newsType
-                                          .firstWhere((item) =>
-                                              item.typeName == _selectedFilter)
-                                          .id;
-                              })
+                          children: displayedNewsData
                               .map((item) => NewsItem(
                                     newsData: item,
                                     itemOnPressed: itemOnPressed,

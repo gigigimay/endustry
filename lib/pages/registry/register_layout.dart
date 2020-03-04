@@ -32,7 +32,7 @@ class RegisterLayout extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: UnfocusNode(
-                            child: Container(
+              child: Container(
                 color: Colors.transparent,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -41,11 +41,15 @@ class RegisterLayout extends StatelessWidget {
                     TitleText('สมัครสมาชิก'),
                     SizedBox(height: CONSTANT.SIZE_LG + CONSTANT.SIZE_XS),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Stack(
                           alignment: Alignment.center,
                           children: <Widget>[
                             CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                CONSTANT.COLOR_PRIMARY,
+                              ),
                               strokeWidth: 5,
                               value: (registerStep + 1) * 0.25,
                               backgroundColor: CONSTANT.COLOR_DISABLED,
@@ -63,25 +67,19 @@ class RegisterLayout extends StatelessWidget {
                           ],
                         ),
                         SizedBox(width: CONSTANT.SIZE_LG),
-                        Transform.translate(
-                          offset: Offset(0, 10),
+                        Flexible(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              SizedBox(height: 6),
                               Text(
                                 stateTitle,
                                 style: CONSTANT.TEXT_STYLE_HEADING,
                               ),
-                              Visibility(
-                                maintainState: true,
-                                maintainAnimation: true,
-                                maintainSize: true,
-                                visible: stateSubTitle.isNotEmpty,
-                                child: Text(
-                                  stateSubTitle,
-                                  style: CONSTANT.TEXT_STYLE_BODY,
-                                ),
-                              )
+                              Text(
+                                stateSubTitle ?? '',
+                                style: CONSTANT.TEXT_STYLE_BODY,
+                              ),
                             ],
                           ),
                         )

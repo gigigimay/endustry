@@ -52,8 +52,7 @@ class _EditKeywordFormState extends State<EditKeywordForm> {
 
   @override
   Widget build(BuildContext context) {
-    final String descriptionText =
-        'เลือกสิ่งที่คุณสนใจ เพื่อให้เราสามารถแนะนำคอนเทนต์ดีๆ ที่เหมาะกับคุณได้มากขึ้น!';
+    final String descriptionText = CONSTANT.DESC_INTEREDTESTOPIC;
 
     final filteredKeywords = widget.keywordsData
         .where((item) =>

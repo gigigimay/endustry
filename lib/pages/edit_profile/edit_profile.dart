@@ -215,7 +215,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             padding:
                                 const EdgeInsets.only(top: CONSTANT.SIZE_MD),
                             child: Text(
-                              'ยังไม่มีสิ่งที่สน��จ',
+                              'ยังไม่มีสิ่งที่สนใจ',
                               style: TextStyle(color: CONSTANT.COLOR_DISABLED),
                             ),
                           )

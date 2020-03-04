@@ -58,7 +58,6 @@ class _RegisterPage4State extends State<RegisterPage4> {
       nextText: 'เสร็จสิ้น',
       child: Expanded(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[

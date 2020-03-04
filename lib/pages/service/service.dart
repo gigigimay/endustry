@@ -39,7 +39,9 @@ class ServiceHomePage extends StatelessWidget {
                     suggestedServicesData: suggestedServicesData,
                     currentTab: currentTab,
                   ),
-                  SizedBox(height: CONSTANT.SIZE_XX),
+                  suggestedServicesData.isNotEmpty
+                      ? SizedBox(height: CONSTANT.SIZE_XX)
+                      : Container(),
                   Container(
                     child: ServiceList(
                       servicesData: servicesData,

@@ -21,9 +21,10 @@ class SuggestedServiceGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int length = suggestedServicesData.length;
+    if (length == 0) return Container();
     double width = MediaQuery.of(context).size.width;
     double itemWidth = (width / 2) - (CONSTANT.SIZE_XL + CONSTANT.SIZE_MD);
-    final int length = suggestedServicesData.length;
 
     return ContentGroup(
       title: title,

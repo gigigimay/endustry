@@ -18,6 +18,7 @@ class SuggestedKnowledgeGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int length = suggestedKnowledgesData.length;
+    if (length == 0) return Container();
     return ContentGroup(
       title: 'คลังความรู้แนะนำ',
       spacing: 0,

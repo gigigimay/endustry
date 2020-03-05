@@ -95,85 +95,93 @@ class _SearchPageState extends State<SearchPage> {
     final _isFoundResult = isFoundResult(
         newsResult.length, serviceResult.length, knowledgeResult.length);
 
-    return BgLayout(
-      child: PagePadding(
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: Text(
-                _searchWord == ''
-                    ? 'พิมพ์เพื่อค้นหา'
-                    : _isFoundResult ? '' : 'ไม่พบผลลัพธ์',
-                style: TextStyle(
+    return UnfocusNode(
+      child: BgLayout(
+        child: PagePadding(
+          child: Stack(
+            children: <Widget>[
+              Center(
+                child: Text(
+                  _searchWord == ''
+                      ? 'พิมพ์เพื่อค้นหา'
+                      : _isFoundResult ? '' : 'ไม่พบผลลัพธ์',
+                  style: TextStyle(
                     fontSize: CONSTANT.FONT_SIZE_HEAD,
                     fontWeight: FontWeight.w700,
-                    color: CONSTANT.COLOR_DISABLED),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
-                  child: Column(
-                    children: <Widget>[
-                      SearchField(
-                        textEditingController: _textEditingController,
-                        onChange: (text) {
-                          setState(() {
-                            _searchWord = text;
-                          });
-                        },
-                        onClear: () {
-                          setState(() {
-                            _textEditingController.clear();
-                            _searchWord = _textEditingController.text;
-                          });
-                        },
-                      ),
-                      Divider(height: 0),
-                      SizedBox(height: CONSTANT.SIZE_SM),
-                      TopicBtnGroup(
-                        topics: [
-                          CONSTANT.WORD_ALL_TH,
-                          CONSTANT.WORD_NEWS_TH,
-                          CONSTANT.WORD_SERVICE_TH,
-                          CONSTANT.WORD_KNOWLEDGE_TH,
-                        ],
-                        mode: _mode,
-                        onChange: onTabChange,
-                      ),
-                      _isFoundResult
-                          ? Container(
-                              color: Colors.white,
-                              height: CONSTANT.SIZE_XS,
-                              child: Divider(height: 0),
-                            )
-                          : Container(),
-                    ],
+                    color: CONSTANT.COLOR_DISABLED,
                   ),
                 ),
-                Expanded(
-                  child: Scrollbar(
-                    child: SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _scrollController,
-                      child: SearchItemList(
-                        mode: _mode,
-                        newsResult: newsResult,
-                        serviceResult: serviceResult,
-                        knowledgeResult: knowledgeResult,
-                        showBottomComponent: _isFoundResult,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: _isFoundResult
+                            ? BorderRadius.only(
+                                topLeft: Radius.circular(CONSTANT.BORDER_RADIUS),
+                                topRight: Radius.circular(CONSTANT.BORDER_RADIUS),
+                              )
+                            : BorderRadius.circular(CONSTANT.BORDER_RADIUS)),
+                    child: Column(
+                      children: <Widget>[
+                        SearchField(
+                          textEditingController: _textEditingController,
+                          onChange: (text) {
+                            setState(() {
+                              _searchWord = text;
+                            });
+                          },
+                          onClear: () {
+                            setState(() {
+                              _textEditingController.clear();
+                              _searchWord = _textEditingController.text;
+                            });
+                          },
+                        ),
+                        Divider(height: 0),
+                        SizedBox(height: CONSTANT.SIZE_SM),
+                        TopicBtnGroup(
+                          topics: [
+                            CONSTANT.WORD_ALL_TH,
+                            CONSTANT.WORD_NEWS_TH,
+                            CONSTANT.WORD_SERVICE_TH,
+                            CONSTANT.WORD_KNOWLEDGE_TH,
+                          ],
+                          mode: _mode,
+                          onChange: onTabChange,
+                        ),
+                        _isFoundResult
+                            ? Divider()
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        controller: _scrollController,
+                        child: Column(
+                          children: <Widget>[
+                            SearchItemList(
+                              mode: _mode,
+                              newsResult: newsResult,
+                              serviceResult: serviceResult,
+                              knowledgeResult: knowledgeResult,
+                              showBottomComponent: _isFoundResult,
+                            ),
+                            SizedBox(height: CONSTANT.SIZE_XX)
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

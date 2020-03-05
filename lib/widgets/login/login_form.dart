@@ -4,8 +4,9 @@ import 'package:endustry/firebase.dart';
 import 'package:endustry/storage.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key key, this.initMail}) : super(key: key);
+  const LoginForm({Key key, this.initMail, this.setLoading}) : super(key: key);
   final initMail;
+  final Function setLoading;
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -18,6 +19,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Function onSubmit(context) => () async {
         if (_formKey.currentState.validate()) {
+          widget.setLoading(true);
           final storage = Storage();
           final firebaseDB = FirebaseDB();
           User user = await firebaseDB.login(
@@ -26,9 +28,11 @@ class _LoginFormState extends State<LoginForm> {
           );
           if (user != null) {
             await storage.login(user);
+            widget.setLoading(false);
             Navigator.pushNamedAndRemoveUntil(
                 context, '/home', (Route<dynamic> route) => false);
           } else {
+            widget.setLoading(false);
             setState(() {
               _loginFailed = true;
             });
